@@ -228,48 +228,77 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-spacing bg-slate-blue">
-        <div className="container-editorial text-center">
-          <h2 className="font-display text-display-md text-soft-gold mb-6">
-            Ready to get started?
+      {/* Final CTA - Split layout for each audience */}
+      <section className="grid md:grid-cols-2">
+        {/* For Clients - Solid slate background */}
+        <div className="bg-slate-blue px-8 py-16 md:px-12 lg:px-16 md:py-20">
+          <span className="font-body text-ui-xs tracking-wider uppercase text-rich-gold mb-4 block">
+            For Clients
+          </span>
+          <h2 className="font-display text-display-sm md:text-display-md text-soft-gold mb-4 text-balance">
+            Reliable Staffing Support
           </h2>
-          <p className="font-body text-body-lg text-mist/80 mb-8 max-w-2xl mx-auto">
-            Complete the relevant contact form to discuss your requirements or register your interest.
+          <p className="font-body text-body-md text-mist/70 mb-8 max-w-md">
+            MediBee acts as an extension of your care team, helping maintain continuity and quality of care.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold">
-              <Link href="/contact">Contact us</Link>
-            </Button>
-            <Button variant="secondary" asChild className="border-soft-gold text-soft-gold hover:bg-soft-gold/10">
-              <Link href="/candidate/register">Apply as HCA</Link>
-            </Button>
+          <Link
+            href="/contact"
+            className="inline-block bg-cream hover:bg-mist text-ink font-body text-body-sm font-medium py-3 px-6 no-underline transition-colors"
+          >
+            Find Staff Now
+          </Link>
+        </div>
+
+        {/* For Carers - Image background with overlay */}
+        <div className="relative bg-slate-blue-light px-8 py-16 md:px-12 lg:px-16 md:py-20 overflow-hidden">
+          {/* Background image */}
+          <Image
+            src="/hca-female.png"
+            alt=""
+            fill
+            className="object-cover object-top opacity-20"
+            aria-hidden="true"
+          />
+          <div className="relative z-10">
+            <span className="font-body text-ui-xs tracking-wider uppercase text-rich-gold mb-4 block">
+              For Carers
+            </span>
+            <h2 className="font-display text-display-sm md:text-display-md text-soft-gold mb-4 text-balance">
+              Flexible Work, Local Opportunities
+            </h2>
+            <p className="font-body text-body-md text-mist/80 mb-8 max-w-md">
+              We offer consistent work that fits around your availability, with full support through onboarding.
+            </p>
+            <Link
+              href="/candidate/register"
+              className="inline-block bg-rich-gold hover:bg-soft-gold text-ink font-body text-body-sm font-medium py-3 px-6 no-underline transition-colors"
+            >
+              Join Our Team
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Portal Access */}
-      <section className="py-8 bg-deep-slate border-t border-slate-blue/30">
-        <div className="container-editorial">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-center">
-            <span className="font-body text-body-sm text-mist/60">
-              Already registered?
-            </span>
-            <div className="flex gap-6">
-              <Link
-                href="/candidate/login"
-                className="font-body text-ui-sm tracking-ui uppercase text-soft-gold hover:text-rich-gold transition-colors"
-              >
-                Candidate Login
-              </Link>
-              <span className="text-mist/30">|</span>
-              <Link
-                href="/client/login"
-                className="font-body text-ui-sm tracking-ui uppercase text-soft-gold hover:text-rich-gold transition-colors"
-              >
-                Client Login
-              </Link>
-            </div>
+      {/* Quick Portal Access - Minimal strip */}
+      <section className="bg-deep-slate py-6">
+        <div className="container-editorial flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8">
+          <span className="font-body text-ui-xs text-mist/40 uppercase tracking-wider">
+            Already registered?
+          </span>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/candidate/login"
+              className="font-body text-body-sm text-mist/60 hover:text-soft-gold transition-colors no-underline"
+            >
+              Candidate Portal
+            </Link>
+            <span className="w-px h-4 bg-mist/20" aria-hidden="true" />
+            <Link
+              href="/client/login"
+              className="font-body text-body-sm text-mist/60 hover:text-soft-gold transition-colors no-underline"
+            >
+              Client Portal
+            </Link>
           </div>
         </div>
       </section>
