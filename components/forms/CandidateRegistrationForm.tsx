@@ -58,7 +58,7 @@ export function CandidateRegistrationForm({
     <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-8">
       {/* Personal Details Section */}
       <section>
-        <h2 className="font-display text-display-sm text-soft-gold mb-6">
+        <h2 className="font-display text-display-sm text-deep-slate mb-6">
           Personal Details
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
@@ -105,7 +105,7 @@ export function CandidateRegistrationForm({
 
       {/* CV Upload Section */}
       <section>
-        <h2 className="font-display text-display-sm text-soft-gold mb-6">
+        <h2 className="font-display text-display-sm text-deep-slate mb-6">
           Your CV
         </h2>
         <FileInput
@@ -123,7 +123,7 @@ export function CandidateRegistrationForm({
 
       {/* Position & Preferences Section */}
       <section>
-        <h2 className="font-display text-display-sm text-soft-gold mb-6">
+        <h2 className="font-display text-display-sm text-deep-slate mb-6">
           Position & Preferences
         </h2>
         <div className="space-y-6">
@@ -163,7 +163,7 @@ export function CandidateRegistrationForm({
 
       {/* Right to Work Section */}
       <section>
-        <h2 className="font-display text-display-sm text-soft-gold mb-6">
+        <h2 className="font-display text-display-sm text-deep-slate mb-6">
           Right to Work
         </h2>
         <RadioGroup
@@ -179,7 +179,7 @@ export function CandidateRegistrationForm({
 
       {/* Compliance Section */}
       <section>
-        <h2 className="font-display text-display-sm text-soft-gold mb-6">
+        <h2 className="font-display text-display-sm text-deep-slate mb-6">
           Compliance & Checks
         </h2>
         <div className="space-y-6">
@@ -209,7 +209,7 @@ export function CandidateRegistrationForm({
 
       {/* Availability Section */}
       <section>
-        <h2 className="font-display text-display-sm text-soft-gold mb-6">
+        <h2 className="font-display text-display-sm text-deep-slate mb-6">
           Availability
         </h2>
         <div className="space-y-6">
@@ -249,7 +249,7 @@ export function CandidateRegistrationForm({
         </Button>
         <p className="font-body text-body-sm text-neutral-grey mt-4 text-center">
           By submitting this form, you agree to our{' '}
-          <a href="/privacy-policy" className="text-rich-gold hover:text-soft-gold underline">
+          <a href="/privacy-policy" className="text-rich-gold hover:text-deep-slate underline">
             Privacy Policy
           </a>
           .

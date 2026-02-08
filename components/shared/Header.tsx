@@ -20,7 +20,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 no-underline"
+            className="flex items-center gap-3 no-underline flex-shrink-0"
           >
             <Image
               src="/medibee-tile-logo.png"
@@ -34,12 +34,12 @@ export function Header() {
               alt="Medibee"
               width={140}
               height={40}
-              className="h-8 w-auto"
+              className="h-8 w-auto hidden lg:block"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6" aria-label="Main">
+          <nav className="hidden lg:flex items-center gap-5" aria-label="Main">
             {siteConfig.nav
               .filter((item) => item.href !== '/' && item.href !== '/contact')
               .map((item) => (
@@ -73,18 +73,17 @@ export function Header() {
               Client Login
             </Link>
 
-            {/* Primary CTA - gold button */}
+            {/* Candidate Registration link */}
             <Link
               href="/candidate/register"
               className={cn(
                 'font-body text-ui-sm tracking-ui uppercase',
-                'bg-rich-gold text-ink',
-                'px-6 py-3',
-                'hover:bg-soft-gold transition-colors',
-                'no-underline'
+                'text-rich-gold hover:text-soft-gold transition-colors',
+                'no-underline',
+                pathname === '/candidate/register' && 'text-soft-gold'
               )}
             >
-              Candidate Registration
+              Register
             </Link>
           </nav>
 
@@ -92,7 +91,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 -mr-2 text-mist hover:text-soft-gold transition-colors"
+            className="lg:hidden p-2 -mr-2 text-mist hover:text-soft-gold transition-colors"
             aria-label="Menu"
             aria-expanded={mobileMenuOpen}
           >
@@ -134,7 +133,7 @@ export function Header() {
       <nav
         data-testid="mobile-nav"
         className={cn(
-          'md:hidden bg-slate-blue text-mist overflow-hidden transition-all duration-200',
+          'lg:hidden bg-slate-blue text-mist overflow-hidden transition-all duration-200',
           mobileMenuOpen ? 'max-h-screen py-8' : 'max-h-0 py-0'
         )}
         style={{ visibility: mobileMenuOpen ? 'visible' : 'hidden' }}

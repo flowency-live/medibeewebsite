@@ -100,9 +100,9 @@ export default function CandidateRegisterPage() {
       </section>
 
       {/* Form */}
-      <section className="section-spacing bg-mist">
+      <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl bg-white p-8 md:p-12">
             {submitState === 'error' && (
               <div className="mb-8 p-4 bg-red-50 border-l-[3px] border-red-600">
                 <p className="font-body text-body-md text-red-800">

@@ -145,7 +145,7 @@ export default function WorkWithUsPage() {
             and we&apos;ll be in touch to discuss opportunities.
           </p>
           <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold">
-            <Link href="/contact">Register interest</Link>
+            <Link href="/candidate/register">Apply now</Link>
           </Button>
         </div>
       </section>
