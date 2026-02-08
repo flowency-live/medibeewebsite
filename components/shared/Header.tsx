@@ -27,7 +27,7 @@ export function Header() {
               alt=""
               width={50}
               height={50}
-              className="w-[50px] h-[50px]"
+              className="w-[50px] h-[50px] drop-shadow-[0_0_1px_rgba(0,0,0,0.8)]"
             />
             <Image
               src="/medibee-logo.png"

@@ -5,17 +5,11 @@ import { Button } from '@/components/ui';
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section - split background columns */}
-      <section className="relative">
-        {/* Split background - dark left, light right */}
-        <div className="absolute inset-0 flex">
-          <div className="w-full md:w-1/2 bg-deep-slate" />
-          <div className="hidden md:block w-1/2 bg-mist" />
-        </div>
-
-        <div className="container-editorial relative z-10 py-16 md:py-24">
+      {/* Hero Section */}
+      <section className="relative bg-slate-blue">
+        <div className="container-editorial py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Text Content - on dark side */}
+            {/* Text Content */}
             <div>
               <span className="rule-gold mb-8" />
               <h1 className="font-display text-display-lg text-soft-gold mb-6 text-balance">
@@ -35,14 +29,14 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero Image - on light side, 25% larger than container */}
-            <div className="flex items-center justify-center bg-mist md:bg-transparent p-8 md:p-0 md:-mr-[15%]">
+            {/* Hero Image */}
+            <div className="flex items-center justify-center">
               <Image
                 src="/hero-background.png"
                 alt="Medibee Recruitment - London skyline"
                 width={1000}
                 height={750}
-                className="w-[125%] h-auto max-w-none"
+                className="w-full h-auto max-w-lg md:max-w-none md:w-[125%]"
                 priority
               />
             </div>
@@ -134,7 +128,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-24 max-w-4xl mx-auto">
             {/* For Care Providers */}
             <div>
               <h3 className="font-display text-display-sm text-mist mb-6">

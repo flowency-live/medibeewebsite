@@ -52,8 +52,8 @@ export default function ContactPage() {
       {/* Hero */}
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
-          <div className="max-w-3xl">
-            <span className="rule-gold mb-8" />
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="rule-gold mx-auto mb-8" />
             <h1 className="font-display text-display-lg text-soft-gold mb-6">
               Contact us
             </h1>

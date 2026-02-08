@@ -86,8 +86,8 @@ export default function CandidateRegisterPage() {
       {/* Hero */}
       <section className="py-12 md:py-16 bg-deep-slate">
         <div className="container-editorial">
-          <div className="max-w-3xl">
-            <span className="rule-gold mb-8" />
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="rule-gold mx-auto mb-8" />
             <h1 className="font-display text-display-lg text-soft-gold mb-4">
               Apply Today
             </h1>
@@ -102,7 +102,7 @@ export default function CandidateRegisterPage() {
       {/* Form */}
       <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
-          <div className="max-w-3xl bg-white p-8 md:p-12">
+          <div className="max-w-3xl mx-auto bg-white p-8 md:p-12">
             {submitState === 'error' && (
               <div className="mb-8 p-4 bg-red-50 border-l-[3px] border-red-600">
                 <p className="font-body text-body-md text-red-800">

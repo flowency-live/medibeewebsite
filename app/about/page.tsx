@@ -34,8 +34,8 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
-          <div className="max-w-3xl">
-            <span className="rule-gold mb-8" />
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="rule-gold mx-auto mb-8" />
             <h1 className="font-display text-display-lg text-soft-gold mb-6">
               About Medibee
             </h1>
@@ -49,7 +49,7 @@ export default function AboutPage() {
       {/* Our Story */}
       <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div>
               <h2 className="font-display text-display-md text-soft-gold mb-6">
                 Our story
@@ -86,7 +86,7 @@ export default function AboutPage() {
       {/* What This Means */}
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto">
             <span className="rule-gold mb-8" />
             <h2 className="font-display text-display-md text-soft-gold mb-10">
               What this means in practice
@@ -110,7 +110,7 @@ export default function AboutPage() {
       {/* Coverage */}
       <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-display-md text-soft-gold mb-6">
               Nationwide coverage
             </h2>

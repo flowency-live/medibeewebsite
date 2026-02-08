@@ -24,8 +24,8 @@ export default function ServicesPage() {
       {/* Hero */}
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
-          <div className="max-w-3xl">
-            <span className="rule-gold mb-8" />
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="rule-gold mx-auto mb-8" />
             <h1 className="font-display text-display-lg text-soft-gold mb-6">
               Services for care providers
             </h1>
@@ -40,7 +40,7 @@ export default function ServicesPage() {
       {/* Settings We Support */}
       <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <div>
               <h2 className="font-display text-display-md text-soft-gold mb-6">
                 Settings we support
@@ -74,7 +74,7 @@ export default function ServicesPage() {
       {/* The Problem We Solve */}
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto">
             <span className="rule-gold mb-8" />
             <h2 className="font-display text-display-md text-soft-gold mb-6">
               The problems we solve
@@ -107,7 +107,7 @@ export default function ServicesPage() {
       {/* Compliance */}
       <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto">
             <h2 className="font-display text-display-md text-soft-gold mb-6">
               Our commitment to compliance
             </h2>

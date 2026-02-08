@@ -40,8 +40,8 @@ export default function TeamPage() {
       {/* Hero */}
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
-          <div className="max-w-3xl">
-            <span className="rule-gold mb-8" />
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="rule-gold mx-auto mb-8" />
             <h1 className="font-display text-display-lg text-soft-gold mb-6">
               Meet the team
             </h1>
@@ -95,7 +95,7 @@ export default function TeamPage() {
       {/* Values */}
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto">
             <span className="rule-gold mb-8" />
             <h2 className="font-display text-display-md text-soft-gold mb-6">
               Our approach

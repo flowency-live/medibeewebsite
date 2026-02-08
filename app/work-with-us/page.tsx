@@ -33,7 +33,7 @@ export default function WorkWithUsPage() {
       {/* Hero */}
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div>
               <span className="rule-gold mb-8" />
               <h1 className="font-display text-display-lg text-soft-gold mb-6">
@@ -59,7 +59,7 @@ export default function WorkWithUsPage() {
       {/* What You Can Expect */}
       <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <div>
               <h2 className="font-display text-display-md text-soft-gold mb-6">
                 What you can expect
@@ -91,7 +91,7 @@ export default function WorkWithUsPage() {
       {/* Why Healthcare Assistants Choose Us */}
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto">
             <span className="rule-gold mb-8" />
             <h2 className="font-display text-display-md text-soft-gold mb-6">
               Why healthcare assistants choose Medibee
@@ -117,7 +117,7 @@ export default function WorkWithUsPage() {
       {/* Compliance */}
       <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto">
             <h2 className="font-display text-display-md text-soft-gold mb-6">
               Your safety matters
             </h2>
