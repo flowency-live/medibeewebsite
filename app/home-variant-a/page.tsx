@@ -1,463 +1,286 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import { Button } from '@/components/ui';
+
 /**
  * HOME VARIANT A - Light & High Contrast
  *
- * Design direction: Clean, professional, light backgrounds with high contrast sections.
- * Similar to the reference screenshot - white/cream backgrounds, navy accents, gold highlights.
- *
- * This is a TEMPORARY variant for comparison. Uses inline styles to avoid affecting main CSS.
+ * Same content/structure as main homepage, different visual styling:
+ * - White/cream backgrounds instead of dark slates
+ * - High contrast text (dark on light)
+ * - Gold accents remain but used more sparingly
+ * - Clean, airy feel
  */
-
-import Link from 'next/link';
-import Image from 'next/image';
-
 export default function HomeVariantA() {
   return (
-    <div style={{ fontFamily: 'inherit' }}>
-      {/* Hero - Split layout with logo and image */}
-      <section style={{ backgroundColor: '#F5F4F0', padding: '3rem 0 4rem' }}>
-        <div className="container-editorial">
-          {/* Location tag */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <span style={{
-              fontSize: '0.75rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: '#696F8B',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem'
-            }}>
-              <span style={{ color: '#E5C55C' }}>★</span>
-              Serving Greater Manchester & Nationwide
-            </span>
-          </div>
+    <>
+      {/* Hero Section - Full width background image */}
+      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center">
+        {/* Background Image */}
+        <Image
+          src="/manchester-skyline.jpg"
+          alt="Manchester skyline"
+          fill
+          className="object-cover object-center"
+          priority
+        />
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
-            {/* Left column - Logo and text */}
-            <div>
-              {/* Large Logo */}
-              <div style={{
-                backgroundColor: '#3d4259',
-                padding: '2rem',
-                marginBottom: '2rem',
-                maxWidth: '280px'
-              }}>
-                <Image
-                  src="/medibee-logo.png"
-                  alt="Medibee Recruitment"
-                  width={220}
-                  height={80}
-                  style={{ width: '100%', height: 'auto' }}
-                />
-              </div>
+        {/* Light overlay for this variant */}
+        <div className="absolute inset-0 bg-white/80" />
 
-              <h1 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '2.75rem',
-                lineHeight: 1.1,
-                color: '#3d4259',
-                marginBottom: '1.5rem'
-              }}>
-                Reliable carers you can{' '}
-                <span style={{ color: '#E5C55C' }}>trust</span>
-              </h1>
-
-              <p style={{
-                fontSize: '1.125rem',
-                color: '#696F8B',
-                marginBottom: '2rem',
-                maxWidth: '400px',
-                lineHeight: 1.6
-              }}>
-                Supplying fully vetted, compassionate carers to care providers. We are your local partners in maintaining exceptional standards of care.
-              </p>
-
-              <div style={{ display: 'flex', gap: '1rem' }}>
-                <Link
-                  href="/contact"
-                  style={{
-                    backgroundColor: '#3d4259',
-                    color: '#F5F4F0',
-                    padding: '1rem 1.5rem',
-                    textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem'
-                  }}
-                >
-                  Request Care Staff →
-                </Link>
-                <Link
-                  href="/candidate/register"
-                  style={{
-                    backgroundColor: 'transparent',
-                    color: '#3d4259',
-                    padding: '1rem 1.5rem',
-                    textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                    border: '2px solid #3d4259'
-                  }}
-                >
-                  Join as a Carer
-                </Link>
-              </div>
-            </div>
-
-            {/* Right column - Image with badge */}
-            <div style={{ position: 'relative' }}>
-              <div style={{
-                position: 'relative',
-                aspectRatio: '4/3',
-                overflow: 'hidden',
-                border: '8px solid #3d4259'
-              }}>
-                <Image
-                  src="/consultation.png"
-                  alt="Care consultation"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-
-              {/* Compliance badge */}
-              <div style={{
-                position: 'absolute',
-                bottom: '-1rem',
-                left: '2rem',
-                backgroundColor: 'white',
-                padding: '1rem 1.5rem',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem'
-              }}>
-                <div style={{
-                  width: '40px',
-                  height: '40px',
-                  backgroundColor: '#E5C55C',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3d4259" strokeWidth="2">
-                    <path d="M9 12l2 2 4-4" />
-                    <circle cx="12" cy="12" r="10" />
-                  </svg>
-                </div>
-                <div>
-                  <div style={{ fontWeight: 600, color: '#3d4259', fontSize: '0.875rem' }}>Fully Compliant</div>
-                  <div style={{ fontSize: '0.75rem', color: '#696F8B' }}>DBS checked, referenced & right-to-work verified staff.</div>
-                </div>
-              </div>
+        {/* Content */}
+        <div className="relative z-10 container-editorial py-20 md:py-32">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-display text-display-lg md:text-[3.5rem] lg:text-[4rem] text-ink mb-6 text-balance leading-tight">
+              Specialist healthcare assistant recruitment you can trust
+            </h1>
+            <p className="font-body text-body-lg md:text-xl text-deep-slate mb-10 max-w-2xl mx-auto">
+              Care recruitment built on trust. Personal service from start to finish.
+              When you contact Medibee, you speak directly to the decision maker, 24 hours a day.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold px-8 py-4 text-base">
+                <Link href="/contact">Get in touch</Link>
+              </Button>
+              <Button variant="secondary" asChild className="border-ink text-ink hover:bg-ink/10 px-8 py-4 text-base">
+                <Link href="/services">Our services</Link>
+              </Button>
             </div>
           </div>
         </div>
+
+        {/* Gold line below hero */}
+        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-rich-gold" />
       </section>
 
-      {/* Stats Bar */}
-      <section style={{ backgroundColor: '#3d4259', padding: '2rem 0' }}>
+      {/* Audience Split - Light background */}
+      <section className="section-spacing bg-mist">
         <div className="container-editorial">
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '2rem',
-            textAlign: 'center'
-          }}>
-            <div>
-              <div style={{ fontSize: '2rem', fontWeight: 700, color: '#F5E6A3' }}>24/7</div>
-              <div style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#F5F4F0' }}>Support Available</div>
-            </div>
-            <div>
-              <div style={{ fontSize: '2rem', fontWeight: 700, color: '#F5E6A3' }}>100%</div>
-              <div style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#F5F4F0' }}>Compliance Checked</div>
-            </div>
-            <div>
-              <div style={{ fontSize: '2rem', fontWeight: 700, color: '#F5E6A3' }}>Local</div>
-              <div style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#F5F4F0' }}>Manchester Based</div>
-            </div>
-            <div>
-              <div style={{ fontSize: '2rem', fontWeight: 700, color: '#F5E6A3' }}>Fast</div>
-              <div style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#F5F4F0' }}>Response Times</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section - Image left, text right */}
-      <section style={{ backgroundColor: 'white', padding: '5rem 0' }}>
-        <div className="container-editorial">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
-            {/* Image */}
-            <div style={{ position: 'relative', aspectRatio: '4/3' }}>
-              <Image
-                src="/manchester-skyline.jpg"
-                alt="Manchester"
-                fill
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
-
-            {/* Content */}
-            <div>
-              <h2 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '2rem',
-                color: '#3d4259',
-                marginBottom: '1.5rem'
-              }}>
-                Local Experts in Healthcare Recruitment
-              </h2>
-              <p style={{
-                fontSize: '1rem',
-                color: '#696F8B',
-                marginBottom: '2rem',
-                lineHeight: 1.7
-              }}>
-                Medibee is a Manchester-based agency built on reliability, compassion, and deep local knowledge. We don&apos;t just fill shifts; we build partnerships.
-              </p>
-
-              <ul style={{ listStyle: 'none', padding: 0, marginBottom: '2rem' }}>
-                {[
-                  'Strict compliance and vetting procedures',
-                  'Personalized service for every client',
-                  'Rapid response for emergency cover',
-                  'Dedicated to the Greater Manchester & Cheshire area'
-                ].map((item) => (
-                  <li key={item} style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    marginBottom: '0.75rem',
-                    color: '#3d4259',
-                    fontSize: '0.9375rem'
-                  }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E5C55C" strokeWidth="2">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M9 12l2 2 4-4" />
-                    </svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href="/about"
-                style={{
-                  color: '#696F8B',
-                  textDecoration: 'none',
-                  fontSize: '0.875rem',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem'
-                }}
-              >
-                Read more about us →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section style={{ backgroundColor: '#F5F4F0', padding: '5rem 0' }}>
-        <div className="container-editorial">
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <span style={{
-              fontSize: '0.75rem',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: '#E5C55C',
-              fontWeight: 600
-            }}>
-              Our Services
-            </span>
-            <h2 style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '2.25rem',
-              color: '#3d4259',
-              marginTop: '0.5rem',
-              marginBottom: '1rem'
-            }}>
-              Staffing Solutions Tailored to You
+          <div className="text-center mb-12">
+            <h2 className="font-display text-display-md text-ink mb-4">
+              How can we help you?
             </h2>
-            <p style={{ color: '#696F8B', maxWidth: '600px', margin: '0 auto' }}>
-              Whether you need emergency cover or long-term placements, we have the workforce to support you.
+            <p className="font-body text-body-md text-deep-slate">
+              Select your situation to find out more
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
-            {[
-              {
-                icon: (
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
-                ),
-                title: 'Temporary Staffing',
-                description: 'Flexible, reliable carers available for short-notice cover, holidays, and sickness absence.'
-              },
-              {
-                icon: (
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M9 12l2 2 4-4" />
-                    <path d="M12 3a9 9 0 1 0 9 9" />
-                    <path d="M21 3v6h-6" />
-                  </svg>
-                ),
-                title: 'Emergency Cover',
-                description: 'Urgent staffing solutions when you need them most. We are ready to help 24/7.'
-              },
-              {
-                icon: (
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
-                    <circle cx="19" cy="11" r="3" />
-                    <path d="M22 21v-1.5a3 3 0 0 0-3-3h-1" />
-                  </svg>
-                ),
-                title: 'Contract Placements',
-                description: 'Longer-term staffing support to ensure continuity of care for your residents.'
-              }
-            ].map((service) => (
-              <div
-                key={service.title}
-                style={{
-                  backgroundColor: 'white',
-                  padding: '2rem',
-                  borderTop: '3px solid #696F8B'
-                }}
-              >
-                <div style={{ color: '#696F8B', marginBottom: '1.5rem' }}>
-                  {service.icon}
-                </div>
-                <h3 style={{
-                  fontSize: '1.125rem',
-                  fontWeight: 600,
-                  color: '#3d4259',
-                  marginBottom: '0.75rem'
-                }}>
-                  {service.title}
-                </h3>
-                <p style={{ fontSize: '0.9375rem', color: '#696F8B', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-                  {service.description}
-                </p>
-                <Link
-                  href="/contact"
-                  style={{
-                    color: '#696F8B',
-                    textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem'
-                  }}
-                >
-                  Learn more →
-                </Link>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Care Provider Card */}
+            <Link
+              href="/services"
+              className="group block bg-white border-2 border-neutral-grey/30 hover:border-rich-gold transition-colors no-underline overflow-hidden shadow-sm"
+            >
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  src="/consultation.png"
+                  alt="Care provider consultation"
+                  fill
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                />
               </div>
-            ))}
+              <div className="p-8">
+                <span className="block w-12 h-[3px] bg-rich-gold mb-6" />
+                <h3 className="font-display text-display-sm text-ink mb-4">
+                  I&apos;m a care provider
+                </h3>
+                <p className="font-body text-body-md text-deep-slate mb-6">
+                  Find reliable healthcare assistants for your NHS trust, care home,
+                  or private healthcare organisation.
+                </p>
+                <span className="font-body text-body-sm text-rich-gold uppercase tracking-ui group-hover:text-deep-slate transition-colors">
+                  Learn more →
+                </span>
+              </div>
+            </Link>
+
+            {/* HCA Card */}
+            <Link
+              href="/work-with-us"
+              className="group block bg-white border-2 border-neutral-grey/30 hover:border-rich-gold transition-colors no-underline overflow-hidden shadow-sm"
+            >
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  src="/hca-female.png"
+                  alt="Healthcare assistant in Medibee uniform"
+                  fill
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-8">
+                <span className="block w-12 h-[3px] bg-rich-gold mb-6" />
+                <h3 className="font-display text-display-sm text-ink mb-4">
+                  I&apos;m a healthcare assistant
+                </h3>
+                <p className="font-body text-body-md text-deep-slate mb-6">
+                  Join an agency that values you, with flexible work and honest communication.
+                </p>
+                <span className="font-body text-body-sm text-rich-gold uppercase tracking-ui group-hover:text-deep-slate transition-colors">
+                  Work with us →
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Dual CTA Section */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-        {/* For Clients */}
-        <div style={{
-          backgroundColor: '#3d4259',
-          padding: '4rem',
-          color: 'white'
-        }}>
-          <span style={{
-            fontSize: '0.75rem',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: '#E5C55C',
-            marginBottom: '1rem',
-            display: 'block'
-          }}>
+      {/* How It Works - White background */}
+      <section className="section-spacing bg-white">
+        <div className="container-editorial">
+          <div className="text-center mb-12">
+            <span className="block w-12 h-[3px] bg-rich-gold mx-auto mb-8" />
+            <h2 className="font-display text-display-md text-ink">
+              How it works
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-24 max-w-4xl mx-auto">
+            {/* For Care Providers */}
+            <div>
+              <h3 className="font-display text-display-sm text-deep-slate mb-6">
+                For care providers
+              </h3>
+              <ol className="space-y-6">
+                <li className="flex gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 bg-rich-gold text-ink font-display text-body-lg flex items-center justify-center">
+                    1
+                  </span>
+                  <div>
+                    <p className="font-body text-body-md text-deep-slate">
+                      Contact us with your requirements
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 bg-rich-gold text-ink font-display text-body-lg flex items-center justify-center">
+                    2
+                  </span>
+                  <div>
+                    <p className="font-body text-body-md text-deep-slate">
+                      We discuss suitability and availability
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 bg-rich-gold text-ink font-display text-body-lg flex items-center justify-center">
+                    3
+                  </span>
+                  <div>
+                    <p className="font-body text-body-md text-deep-slate">
+                      We introduce vetted healthcare assistants
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+            {/* For Healthcare Assistants */}
+            <div>
+              <h3 className="font-display text-display-sm text-deep-slate mb-6">
+                For healthcare assistants
+              </h3>
+              <ol className="space-y-6">
+                <li className="flex gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 bg-rich-gold text-ink font-display text-body-lg flex items-center justify-center">
+                    1
+                  </span>
+                  <div>
+                    <p className="font-body text-body-md text-deep-slate">
+                      Register your interest
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 bg-rich-gold text-ink font-display text-body-lg flex items-center justify-center">
+                    2
+                  </span>
+                  <div>
+                    <p className="font-body text-body-md text-deep-slate">
+                      We complete checks and understand your preferences
+                    </p>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span className="flex-shrink-0 w-8 h-8 bg-rich-gold text-ink font-display text-body-lg flex items-center justify-center">
+                    3
+                  </span>
+                  <div>
+                    <p className="font-body text-body-md text-deep-slate">
+                      We match you to suitable work
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust & Compliance - Slate background for contrast */}
+      <section className="section-spacing bg-slate-blue">
+        <div className="container-editorial">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="block w-12 h-[3px] bg-rich-gold mx-auto mb-8" />
+            <h2 className="font-display text-display-md text-soft-gold mb-6">
+              Nationwide support you can rely on
+            </h2>
+            <p className="font-body text-body-lg text-mist mb-8">
+              Nationwide support for NHS and private healthcare providers, with a clear focus on
+              suitability, safeguarding, and reliability.
+            </p>
+            <div className="flex flex-wrap justify-center gap-8 text-body-sm text-soft-gold/80 uppercase tracking-ui">
+              <span>DBS Checked</span>
+              <span>Right to Work Verified</span>
+              <span>ICO Registered</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA - Split layout for each audience */}
+      <section className="grid md:grid-cols-2">
+        {/* For Clients - Light background */}
+        <div className="bg-mist px-8 py-16 md:px-12 lg:px-16 md:py-20">
+          <span className="font-body text-ui-xs tracking-wider uppercase text-rich-gold mb-4 block">
             For Clients
           </span>
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '1.75rem',
-            marginBottom: '1rem',
-            color: '#F5E6A3'
-          }}>
+          <h2 className="font-display text-display-sm md:text-display-md text-ink mb-4 text-balance">
             Reliable Staffing Support
           </h2>
-          <p style={{ color: '#F5F4F0', opacity: 0.8, marginBottom: '2rem', maxWidth: '360px' }}>
+          <p className="font-body text-body-md text-deep-slate mb-8 max-w-md">
             MediBee acts as an extension of your care team, helping maintain continuity and quality of care.
           </p>
           <Link
             href="/contact"
-            style={{
-              backgroundColor: '#F5F4F0',
-              color: '#3d4259',
-              padding: '0.875rem 1.5rem',
-              textDecoration: 'none',
-              fontSize: '0.875rem',
-              fontWeight: 500,
-              display: 'inline-block'
-            }}
+            className="inline-block bg-deep-slate hover:bg-ink text-cream font-body text-body-sm font-medium py-3 px-6 no-underline transition-colors"
           >
             Find Staff Now
           </Link>
         </div>
 
-        {/* For Carers */}
-        <div style={{
-          backgroundColor: '#696F8B',
-          padding: '4rem',
-          color: 'white',
-          position: 'relative',
-          overflow: 'hidden'
-        }}>
+        {/* For Carers - Image background with overlay */}
+        <div className="relative bg-white px-8 py-16 md:px-12 lg:px-16 md:py-20 overflow-hidden">
+          {/* Background image */}
           <Image
             src="/hca-female.png"
             alt=""
             fill
-            style={{ objectFit: 'cover', opacity: 0.15 }}
+            className="object-cover object-top opacity-10"
+            aria-hidden="true"
           />
-          <div style={{ position: 'relative', zIndex: 1 }}>
-            <span style={{
-              fontSize: '0.75rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: '#E5C55C',
-              marginBottom: '1rem',
-              display: 'block'
-            }}>
+          <div className="relative z-10">
+            <span className="font-body text-ui-xs tracking-wider uppercase text-rich-gold mb-4 block">
               For Carers
             </span>
-            <h2 style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '1.75rem',
-              marginBottom: '1rem',
-              color: '#F5E6A3'
-            }}>
+            <h2 className="font-display text-display-sm md:text-display-md text-ink mb-4 text-balance">
               Flexible Work, Local Opportunities
             </h2>
-            <p style={{ color: '#F5F4F0', opacity: 0.9, marginBottom: '2rem', maxWidth: '360px' }}>
+            <p className="font-body text-body-md text-deep-slate mb-8 max-w-md">
               We offer consistent work that fits around your availability, with full support through onboarding.
             </p>
             <Link
               href="/candidate/register"
-              style={{
-                backgroundColor: '#E5C55C',
-                color: '#3d4259',
-                padding: '0.875rem 1.5rem',
-                textDecoration: 'none',
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                display: 'inline-block'
-              }}
+              className="inline-block bg-rich-gold hover:bg-soft-gold text-ink font-body text-body-sm font-medium py-3 px-6 no-underline transition-colors"
             >
               Join Our Team
             </Link>
@@ -465,68 +288,29 @@ export default function HomeVariantA() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section style={{ backgroundColor: 'white', padding: '5rem 0', textAlign: 'center' }}>
-        <div className="container-editorial">
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '2rem',
-            color: '#3d4259',
-            marginBottom: '1rem'
-          }}>
-            Ready to work with Medibee?
-          </h2>
-          <p style={{ color: '#696F8B', marginBottom: '2rem', maxWidth: '500px', margin: '0 auto 2rem' }}>
-            Whether you&apos;re a care provider looking for staff or a carer looking for work, we&apos;re here to help.
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-            <Link
-              href="/contact"
-              style={{
-                backgroundColor: '#E5C55C',
-                color: '#3d4259',
-                padding: '1rem 2rem',
-                textDecoration: 'none',
-                fontSize: '0.875rem',
-                fontWeight: 500
-              }}
-            >
-              Contact Us Today
-            </Link>
-            <Link
-              href="/about"
-              style={{
-                backgroundColor: 'transparent',
-                color: '#696F8B',
-                padding: '1rem 2rem',
-                textDecoration: 'none',
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                border: '2px solid #696F8B'
-              }}
-            >
-              Learn More About Us
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Portal Access Strip */}
-      <section style={{ backgroundColor: '#3d4259', padding: '1rem 0' }}>
-        <div className="container-editorial" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2rem' }}>
-          <span style={{ fontSize: '0.75rem', color: '#F5F4F0', opacity: 0.5, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+      {/* Quick Portal Access - Minimal strip */}
+      <section className="bg-deep-slate py-6">
+        <div className="container-editorial flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8">
+          <span className="font-body text-ui-xs text-mist/40 uppercase tracking-wider">
             Already registered?
           </span>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <Link href="/candidate/login" style={{ color: '#F5F4F0', opacity: 0.7, textDecoration: 'none', fontSize: '0.875rem' }}>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/candidate/login"
+              className="font-body text-body-sm text-mist/60 hover:text-soft-gold transition-colors no-underline"
+            >
               Candidate Portal
             </Link>
-            <Link href="/client/login" style={{ color: '#F5F4F0', opacity: 0.7, textDecoration: 'none', fontSize: '0.875rem' }}>
+            <span className="w-px h-4 bg-mist/20" aria-hidden="true" />
+            <Link
+              href="/client/login"
+              className="font-body text-body-sm text-mist/60 hover:text-soft-gold transition-colors no-underline"
+            >
               Client Portal
             </Link>
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
