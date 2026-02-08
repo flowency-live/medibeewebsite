@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { Button } from '@/components/ui';
 
@@ -32,14 +33,25 @@ export default function WorkWithUsPage() {
       {/* Hero */}
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
-          <div className="max-w-3xl">
-            <span className="rule-gold mb-8" />
-            <h1 className="font-display text-display-lg text-soft-gold mb-6">
-              Work with Medibee
-            </h1>
-            <p className="font-body text-body-lg text-mist">
-              At Medibee, healthcare assistants are valued, supported, and treated with respect.
-            </p>
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl">
+            <div>
+              <span className="rule-gold mb-8" />
+              <h1 className="font-display text-display-lg text-soft-gold mb-6">
+                Work with Medibee
+              </h1>
+              <p className="font-body text-body-lg text-mist">
+                At Medibee, healthcare assistants are valued, supported, and treated with respect.
+              </p>
+            </div>
+            <div className="relative aspect-[3/4] max-w-sm mx-auto md:mx-0">
+              <Image
+                src="/hca-male.png"
+                alt="Healthcare assistant in Medibee uniform"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 border-[3px] border-rich-gold translate-x-4 translate-y-4 -z-10" />
+            </div>
           </div>
         </div>
       </section>

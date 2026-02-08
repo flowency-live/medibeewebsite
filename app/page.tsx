@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui';
 
 export default function HomePage() {
@@ -6,19 +7,19 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section
-        className="relative min-h-[70vh] md:min-h-[80vh] flex items-center bg-deep-slate overflow-hidden"
+        className="relative min-h-[90vh] md:min-h-screen flex items-start bg-deep-slate overflow-hidden"
         style={{
           backgroundImage: 'url(/hero-background.png)',
-          backgroundSize: 'cover',
+          backgroundSize: 'contain',
           backgroundPosition: 'center bottom',
           backgroundRepeat: 'no-repeat',
         }}
       >
         {/* Gradient overlay for text legibility on left */}
-        <div className="absolute inset-0 bg-gradient-to-r from-deep-slate/95 via-deep-slate/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-deep-slate/95 via-deep-slate/80 to-deep-slate/40" />
 
-        <div className="container-editorial relative z-10 py-16 md:py-24">
-          <div className="max-w-xl lg:max-w-2xl">
+        <div className="container-editorial relative z-10 pt-12 md:pt-20 pb-16">
+          <div className="max-w-xl">
             <span className="rule-gold mb-8" />
             <h1 className="font-display text-display-lg text-soft-gold mb-6 text-balance">
               Specialist healthcare assistant recruitment you can trust
@@ -51,40 +52,60 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Care Provider Card */}
             <Link
               href="/services"
-              className="group block bg-deep-slate p-8 border-2 border-deep-slate hover:border-rich-gold transition-colors no-underline"
+              className="group block bg-deep-slate border-2 border-deep-slate hover:border-rich-gold transition-colors no-underline overflow-hidden"
             >
-              <span className="rule-gold mb-6" />
-              <h3 className="font-display text-display-sm text-soft-gold mb-4">
-                I&apos;m a care provider
-              </h3>
-              <p className="font-body text-body-md text-mist mb-6">
-                Find reliable healthcare assistants for your NHS trust, care home,
-                or private healthcare organisation.
-              </p>
-              <span className="font-body text-body-sm text-rich-gold uppercase tracking-ui group-hover:text-soft-gold transition-colors">
-                Learn more →
-              </span>
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src="/consultation.png"
+                  alt="Care provider consultation"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-8">
+                <span className="rule-gold mb-6" />
+                <h3 className="font-display text-display-sm text-soft-gold mb-4">
+                  I&apos;m a care provider
+                </h3>
+                <p className="font-body text-body-md text-mist mb-6">
+                  Find reliable healthcare assistants for your NHS trust, care home,
+                  or private healthcare organisation.
+                </p>
+                <span className="font-body text-body-sm text-rich-gold uppercase tracking-ui group-hover:text-soft-gold transition-colors">
+                  Learn more →
+                </span>
+              </div>
             </Link>
 
             {/* HCA Card */}
             <Link
               href="/work-with-us"
-              className="group block bg-deep-slate p-8 border-2 border-deep-slate hover:border-rich-gold transition-colors no-underline"
+              className="group block bg-deep-slate border-2 border-deep-slate hover:border-rich-gold transition-colors no-underline overflow-hidden"
             >
-              <span className="rule-gold mb-6" />
-              <h3 className="font-display text-display-sm text-soft-gold mb-4">
-                I&apos;m a healthcare assistant
-              </h3>
-              <p className="font-body text-body-md text-mist mb-6">
-                Join an agency that values you, with flexible work and honest communication.
-              </p>
-              <span className="font-body text-body-sm text-rich-gold uppercase tracking-ui group-hover:text-soft-gold transition-colors">
-                Work with us →
-              </span>
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src="/hca-female.png"
+                  alt="Healthcare assistant in Medibee uniform"
+                  fill
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-8">
+                <span className="rule-gold mb-6" />
+                <h3 className="font-display text-display-sm text-soft-gold mb-4">
+                  I&apos;m a healthcare assistant
+                </h3>
+                <p className="font-body text-body-md text-mist mb-6">
+                  Join an agency that values you, with flexible work and honest communication.
+                </p>
+                <span className="font-body text-body-sm text-rich-gold uppercase tracking-ui group-hover:text-soft-gold transition-colors">
+                  Work with us →
+                </span>
+              </div>
             </Link>
           </div>
         </div>

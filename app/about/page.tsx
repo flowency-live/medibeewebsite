@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { Button } from '@/components/ui';
 
@@ -48,24 +49,35 @@ export default function AboutPage() {
       {/* Our Story */}
       <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
-          <div className="max-w-3xl">
-            <h2 className="font-display text-display-md text-soft-gold mb-6">
-              Our story
-            </h2>
-            <div className="space-y-6 font-body text-body-lg text-mist">
-              <p>
-                Medibee was founded out of frustration with how many recruitment agencies treat
-                both healthcare staff and care providers.
-              </p>
-              <p>
-                Too often, people are treated like numbers, communication is poor, and decisions
-                are made without understanding the realities of care environments.
-              </p>
-              <p>
-                We believe healthcare recruitment should be personal, honest, and reliable. As a
-                business, we take responsibility for the service we provide and remain directly
-                accessible to the people we work with.
-              </p>
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl">
+            <div>
+              <h2 className="font-display text-display-md text-soft-gold mb-6">
+                Our story
+              </h2>
+              <div className="space-y-6 font-body text-body-lg text-mist">
+                <p>
+                  Medibee was founded out of frustration with how many recruitment agencies treat
+                  both healthcare staff and care providers.
+                </p>
+                <p>
+                  Too often, people are treated like numbers, communication is poor, and decisions
+                  are made without understanding the realities of care environments.
+                </p>
+                <p>
+                  We believe healthcare recruitment should be personal, honest, and reliable. As a
+                  business, we take responsibility for the service we provide and remain directly
+                  accessible to the people we work with.
+                </p>
+              </div>
+            </div>
+            <div className="relative aspect-[4/5] md:aspect-square">
+              <Image
+                src="/founder-placeholder.jpg"
+                alt="Medibee founder"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 border-[3px] border-rich-gold translate-x-4 translate-y-4 -z-10" />
             </div>
           </div>
         </div>
