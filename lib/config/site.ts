@@ -23,17 +23,7 @@ export const siteConfig = {
     complaints: '/complaints',
   },
   nav: [
-    {
-      label: 'Home',
-      href: '/',
-      children: [
-        { label: 'Home', href: '/' },
-        { label: 'Variant A (Light)', href: '/home-variant-a' },
-        { label: 'Variant B (Dark)', href: '/home-variant-b' },
-        { label: 'Variant C (Refined)', href: '/home-variant-c' },
-        { label: 'Variant D (Critique)', href: '/home-variant-d' },
-      ],
-    },
+    { label: 'Home', href: '/' },
     { label: 'Services', href: '/services' },
     { label: 'Work With Us', href: '/work-with-us' },
     { label: 'About', href: '/about' },
