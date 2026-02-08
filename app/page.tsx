@@ -6,35 +6,39 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section
-        className="relative min-h-[90vh] md:min-h-screen flex items-start bg-deep-slate overflow-hidden"
-        style={{
-          backgroundImage: 'url(/hero-background.png)',
-          backgroundSize: 'contain',
-          backgroundPosition: 'center bottom',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        {/* Gradient overlay for text legibility on left */}
-        <div className="absolute inset-0 bg-gradient-to-r from-deep-slate/95 via-deep-slate/80 to-deep-slate/40" />
+      <section className="section-spacing bg-deep-slate">
+        <div className="container-editorial">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Text Content */}
+            <div>
+              <span className="rule-gold mb-8" />
+              <h1 className="font-display text-display-lg text-soft-gold mb-6 text-balance">
+                Specialist healthcare assistant recruitment you can trust
+              </h1>
+              <p className="font-body text-body-lg text-mist mb-8">
+                Care recruitment built on trust. Personal service from start to finish.
+                When you contact Medibee, you speak directly to the decision maker, 24 hours a day.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold">
+                  <Link href="/contact">Get in touch</Link>
+                </Button>
+                <Button variant="secondary" asChild className="border-soft-gold text-soft-gold hover:bg-soft-gold/10">
+                  <Link href="/services">Our services</Link>
+                </Button>
+              </div>
+            </div>
 
-        <div className="container-editorial relative z-10 pt-12 md:pt-20 pb-16">
-          <div className="max-w-xl">
-            <span className="rule-gold mb-8" />
-            <h1 className="font-display text-display-lg text-soft-gold mb-6 text-balance">
-              Specialist healthcare assistant recruitment you can trust
-            </h1>
-            <p className="font-body text-body-lg text-mist mb-8">
-              Care recruitment built on trust. Personal service from start to finish.
-              When you contact Medibee, you speak directly to the decision maker, 24 hours a day.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold">
-                <Link href="/contact">Get in touch</Link>
-              </Button>
-              <Button variant="secondary" asChild className="border-soft-gold text-soft-gold hover:bg-soft-gold/10">
-                <Link href="/services">Our services</Link>
-              </Button>
+            {/* Hero Image */}
+            <div className="relative">
+              <Image
+                src="/hero-background.png"
+                alt="Medibee Recruitment - London skyline"
+                width={600}
+                height={500}
+                className="w-full h-auto"
+                priority
+              />
             </div>
           </div>
         </div>

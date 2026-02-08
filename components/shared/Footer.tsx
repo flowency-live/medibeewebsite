@@ -6,7 +6,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-deep-slate text-mist">
+    <footer className="bg-slate-blue text-mist">
       <div className="container-editorial py-12 md:py-16">
         {/* Gold rule at top */}
         <span className="rule-gold-wide mb-10 block" aria-hidden="true" />

@@ -14,7 +14,7 @@ export function Header() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className="bg-deep-slate border-b-[3px] border-rich-gold">
+    <header className="bg-slate-blue border-b-[3px] border-rich-gold">
       <div className="container-editorial">
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
@@ -25,9 +25,9 @@ export function Header() {
             <Image
               src="/medibee-tile-logo.png"
               alt=""
-              width={40}
-              height={40}
-              className="w-10 h-10"
+              width={50}
+              height={50}
+              className="w-[50px] h-[50px]"
             />
             <Image
               src="/medibee-logo.png"
