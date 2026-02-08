@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * HOME VARIANT C - Refined & Distinctive
  *
