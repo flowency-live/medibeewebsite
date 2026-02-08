@@ -9,9 +9,22 @@ import { cn } from '@/lib/utils';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [homeDropdownOpen, setHomeDropdownOpen] = React.useState(false);
   const pathname = usePathname();
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setHomeDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <header className="bg-slate-blue border-b-[3px] border-rich-gold">
@@ -42,20 +55,65 @@ export function Header() {
           <nav className="hidden lg:flex items-center gap-5" aria-label="Main">
             {siteConfig.nav
               .filter((item) => item.href !== '/contact')
-              .map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    'font-body text-ui-sm tracking-ui uppercase',
-                    'text-mist/80 hover:text-soft-gold transition-colors',
-                    'no-underline',
-                    pathname === item.href && 'text-soft-gold'
-                  )}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              .map((item) => {
+                // Check if item has children (dropdown)
+                const hasChildren = 'children' in item && item.children;
+
+                if (hasChildren) {
+                  return (
+                    <div key={item.href} className="relative" ref={dropdownRef}>
+                      <button
+                        onClick={() => setHomeDropdownOpen(!homeDropdownOpen)}
+                        className={cn(
+                          'font-body text-ui-sm tracking-ui uppercase flex items-center gap-1',
+                          'text-mist/80 hover:text-soft-gold transition-colors',
+                          (pathname === item.href || pathname.startsWith('/home-variant')) && 'text-soft-gold'
+                        )}
+                      >
+                        {item.label}
+                        <svg className={cn('w-3 h-3 transition-transform', homeDropdownOpen && 'rotate-180')} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+
+                      {homeDropdownOpen && (
+                        <div className="absolute top-full left-0 mt-2 bg-deep-slate border border-slate-blue py-2 min-w-[180px] z-50">
+                          {item.children.map((child: { label: string; href: string }) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => setHomeDropdownOpen(false)}
+                              className={cn(
+                                'block px-4 py-2 font-body text-ui-sm tracking-ui',
+                                'text-mist/80 hover:text-soft-gold hover:bg-slate-blue/50 transition-colors',
+                                'no-underline',
+                                pathname === child.href && 'text-soft-gold bg-slate-blue/30'
+                              )}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      'font-body text-ui-sm tracking-ui uppercase',
+                      'text-mist/80 hover:text-soft-gold transition-colors',
+                      'no-underline',
+                      pathname === item.href && 'text-soft-gold'
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
 
             {/* Divider */}
             <span className="w-px h-6 bg-mist/30" aria-hidden="true" />
@@ -142,21 +200,61 @@ export function Header() {
         <div className="container-editorial flex flex-col gap-6">
           {siteConfig.nav
             .filter((item) => item.href !== '/contact')
-            .map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={closeMobileMenu}
-                className={cn(
-                  'font-body text-body-lg',
-                  'text-mist hover:text-soft-gold transition-colors',
-                  'no-underline',
-                  pathname === item.href && 'text-rich-gold'
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
+            .map((item) => {
+              const hasChildren = 'children' in item && item.children;
+
+              if (hasChildren) {
+                return (
+                  <div key={item.href} className="flex flex-col gap-3">
+                    <Link
+                      href={item.href}
+                      onClick={closeMobileMenu}
+                      className={cn(
+                        'font-body text-body-lg',
+                        'text-mist hover:text-soft-gold transition-colors',
+                        'no-underline',
+                        pathname === item.href && 'text-rich-gold'
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                    <div className="pl-4 flex flex-col gap-2 border-l-2 border-rich-gold/30">
+                      {item.children.map((child: { label: string; href: string }) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={closeMobileMenu}
+                          className={cn(
+                            'font-body text-body-md',
+                            'text-mist/70 hover:text-soft-gold transition-colors',
+                            'no-underline',
+                            pathname === child.href && 'text-rich-gold'
+                          )}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMobileMenu}
+                  className={cn(
+                    'font-body text-body-lg',
+                    'text-mist hover:text-soft-gold transition-colors',
+                    'no-underline',
+                    pathname === item.href && 'text-rich-gold'
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
 
           {/* Gold rule separator */}
           <span className="rule-gold-wide" aria-hidden="true" />
