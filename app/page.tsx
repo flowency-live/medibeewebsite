@@ -5,39 +5,37 @@ import { Button } from '@/components/ui';
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative bg-slate-blue">
-        <div className="container-editorial py-16 md:py-24">
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Text Content */}
-            <div>
-              <h1 className="font-display text-display-lg text-soft-gold mb-6 text-balance">
-                Specialist healthcare assistant recruitment you can trust
-              </h1>
-              <p className="font-body text-body-lg text-mist mb-8">
-                Care recruitment built on trust. Personal service from start to finish.
-                When you contact Medibee, you speak directly to the decision maker, 24 hours a day.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold">
-                  <Link href="/contact">Get in touch</Link>
-                </Button>
-                <Button variant="secondary" asChild className="border-soft-gold text-soft-gold hover:bg-soft-gold/10">
-                  <Link href="/services">Our services</Link>
-                </Button>
-              </div>
-            </div>
+      {/* Hero Section - Full width background image */}
+      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center">
+        {/* Background Image */}
+        <Image
+          src="/manchester-skyline.jpg"
+          alt="Manchester skyline"
+          fill
+          className="object-cover object-center"
+          priority
+        />
 
-            {/* Hero Image */}
-            <div className="flex items-center justify-center md:justify-end md:-mr-8 lg:-mr-16">
-              <Image
-                src="/hero-background.png"
-                alt="Medibee Recruitment - London skyline"
-                width={1000}
-                height={750}
-                className="w-full h-auto max-w-lg md:max-w-none md:w-[130%]"
-                priority
-              />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-deep-slate/75" />
+
+        {/* Content */}
+        <div className="relative z-10 container-editorial py-20 md:py-32">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-display text-display-lg md:text-[3.5rem] lg:text-[4rem] text-soft-gold mb-6 text-balance leading-tight">
+              Specialist healthcare assistant recruitment you can trust
+            </h1>
+            <p className="font-body text-body-lg md:text-xl text-mist mb-10 max-w-2xl mx-auto">
+              Care recruitment built on trust. Personal service from start to finish.
+              When you contact Medibee, you speak directly to the decision maker, 24 hours a day.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold px-8 py-4 text-base">
+                <Link href="/contact">Get in touch</Link>
+              </Button>
+              <Button variant="secondary" asChild className="border-soft-gold text-soft-gold hover:bg-soft-gold/10 px-8 py-4 text-base">
+                <Link href="/services">Our services</Link>
+              </Button>
             </div>
           </div>
         </div>

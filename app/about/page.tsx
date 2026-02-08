@@ -123,17 +123,32 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="section-spacing bg-deep-slate">
-        <div className="container-editorial text-center">
-          <h2 className="font-display text-display-md text-soft-gold mb-6">
-            Get in touch
-          </h2>
-          <p className="font-body text-body-lg text-mist/80 mb-8 max-w-2xl mx-auto">
-            Whether you&apos;re a care provider looking for reliable staff or a healthcare
-            assistant looking for work, we&apos;d love to hear from you.
-          </p>
-          <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold">
-            <Link href="/contact">Contact us</Link>
-          </Button>
+        <div className="container-editorial">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+            {/* Image */}
+            <div className="relative aspect-video md:aspect-[4/3] order-2 md:order-1">
+              <Image
+                src="/landing-hero.png"
+                alt="Medibee Recruitment - London skyline with branding"
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            {/* Text Content */}
+            <div className="text-center md:text-left order-1 md:order-2">
+              <h2 className="font-display text-display-md text-soft-gold mb-6">
+                Get in touch
+              </h2>
+              <p className="font-body text-body-lg text-mist/80 mb-8">
+                Whether you&apos;re a care provider looking for reliable staff or a healthcare
+                assistant looking for work, we&apos;d love to hear from you.
+              </p>
+              <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold">
+                <Link href="/contact">Contact us</Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
     </>
