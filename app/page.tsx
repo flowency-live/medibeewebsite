@@ -30,16 +30,15 @@ export default function HomePage() {
             </div>
 
             {/* Hero Image */}
-            <div className="relative">
+            <div className="bg-deep-slate rounded-lg p-4">
               <Image
                 src="/hero-background.png"
                 alt="Medibee Recruitment - London skyline"
                 width={600}
-                height={500}
-                className="w-full h-auto rounded-lg"
+                height={400}
+                className="w-full h-auto"
                 priority
               />
-              <div className="absolute inset-0 border-[3px] border-rich-gold translate-x-4 translate-y-4 -z-10 rounded-lg" />
             </div>
           </div>
         </div>
@@ -238,9 +237,40 @@ export default function HomePage() {
           <p className="font-body text-body-lg text-mist/80 mb-8 max-w-2xl mx-auto">
             Complete the relevant contact form to discuss your requirements or register your interest.
           </p>
-          <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold">
-            <Link href="/contact">Contact us</Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold">
+              <Link href="/contact">Contact us</Link>
+            </Button>
+            <Button variant="secondary" asChild className="border-soft-gold text-soft-gold hover:bg-soft-gold/10">
+              <Link href="/candidate/register">Apply as HCA</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Portal Access */}
+      <section className="py-8 bg-slate-blue border-t border-slate-blue-dark/30">
+        <div className="container-editorial">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-center">
+            <span className="font-body text-body-sm text-mist/60">
+              Already registered?
+            </span>
+            <div className="flex gap-6">
+              <Link
+                href="/candidate/login"
+                className="font-body text-ui-sm tracking-ui uppercase text-soft-gold hover:text-rich-gold transition-colors"
+              >
+                Candidate Login
+              </Link>
+              <span className="text-mist/30">|</span>
+              <Link
+                href="/client/login"
+                className="font-body text-ui-sm tracking-ui uppercase text-soft-gold hover:text-rich-gold transition-colors"
+              >
+                Client Login
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </>

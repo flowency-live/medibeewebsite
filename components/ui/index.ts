@@ -12,3 +12,9 @@ export type { TextareaProps } from './textarea';
 
 export { Checkbox } from './checkbox';
 export type { CheckboxProps } from './checkbox';
+
+export { RadioGroup } from './radio-group';
+export type { RadioGroupProps, RadioOption } from './radio-group';
+
+export { FileInput } from './file-input';
+export type { FileInputProps } from './file-input';

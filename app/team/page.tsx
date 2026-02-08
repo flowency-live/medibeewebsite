@@ -53,36 +53,41 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Team Grid */}
-      <section className="section-spacing bg-slate-blue">
+      {/* Team Members */}
+      <section className="bg-slate-blue">
         <div className="container-editorial">
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl">
-            {TEAM.map((member) => (
-              <div
-                key={member.name}
-                className="bg-deep-slate border-l-[3px] border-rich-gold overflow-hidden"
-              >
-                <div className="relative h-64">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover object-top"
-                  />
+          <div className="space-y-0">
+            {TEAM.map((member, index) => {
+              const isEven = index % 2 === 0;
+              return (
+                <div
+                  key={member.name}
+                  className={`grid md:grid-cols-2 ${isEven ? '' : 'md:direction-rtl'}`}
+                >
+                  {/* Image */}
+                  <div className={`relative aspect-[4/3] md:aspect-auto md:min-h-[400px] ${isEven ? 'md:order-1' : 'md:order-2'}`}>
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+                  {/* Content */}
+                  <div className={`bg-deep-slate p-8 md:p-12 flex flex-col justify-center ${isEven ? 'md:order-2 md:border-l-[3px]' : 'md:order-1 md:border-r-[3px]'} border-rich-gold`}>
+                    <h2 className="font-display text-display-sm text-soft-gold mb-1">
+                      {member.name}
+                    </h2>
+                    <p className="font-body text-ui-sm text-rich-gold uppercase tracking-ui mb-4">
+                      {member.role}
+                    </p>
+                    <p className="font-body text-body-lg text-mist">
+                      {member.bio}
+                    </p>
+                  </div>
                 </div>
-                <div className="p-8">
-                  <h2 className="font-display text-display-sm text-soft-gold mb-1">
-                    {member.name}
-                  </h2>
-                  <p className="font-body text-ui-sm text-rich-gold uppercase tracking-ui mb-4">
-                    {member.role}
-                  </p>
-                  <p className="font-body text-body-md text-mist">
-                    {member.bio}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
