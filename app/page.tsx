@@ -35,14 +35,14 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero Image - on light side, much larger */}
-            <div className="flex items-center justify-center bg-mist md:bg-transparent p-8 md:p-0">
+            {/* Hero Image - on light side, 25% larger than container */}
+            <div className="flex items-center justify-center bg-mist md:bg-transparent p-8 md:p-0 md:-mr-[15%]">
               <Image
                 src="/hero-background.png"
                 alt="Medibee Recruitment - London skyline"
-                width={800}
-                height={600}
-                className="w-full h-auto max-w-none"
+                width={1000}
+                height={750}
+                className="w-[125%] h-auto max-w-none"
                 priority
               />
             </div>
