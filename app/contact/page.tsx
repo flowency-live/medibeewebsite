@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import type { Metadata } from 'next';
 import { CareProviderForm, HCAForm } from '@/components/forms';
 import type { CareProviderEnquiry, HCAEnquiry } from '@/lib/schemas/enquiry';
 
@@ -46,17 +45,17 @@ export default function ContactPage() {
 
   if (submitState === 'success') {
     return (
-      <section className="section-spacing">
+      <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
           <div className="max-w-2xl mx-auto text-center">
             <span className="rule-gold mx-auto mb-8" />
-            <h1 className="font-display text-display-lg text-ink mb-6">
+            <h1 className="font-display text-display-lg text-soft-gold mb-6">
               Thank you for your enquiry
             </h1>
-            <p className="font-body text-body-lg text-deep-slate mb-4">
+            <p className="font-body text-body-lg text-mist mb-4">
               We have received your message and will be in touch shortly.
             </p>
-            <p className="font-body text-body-md text-neutral-grey">
+            <p className="font-body text-body-md text-mist/60">
               We aim to respond within 24 hours.
             </p>
           </div>
@@ -68,14 +67,14 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="section-spacing bg-white">
+      <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
           <div className="max-w-3xl">
             <span className="rule-gold mb-8" />
-            <h1 className="font-display text-display-lg text-ink mb-6">
+            <h1 className="font-display text-display-lg text-soft-gold mb-6">
               Contact us
             </h1>
-            <p className="font-body text-body-lg text-deep-slate">
+            <p className="font-body text-body-lg text-mist">
               Whether you&apos;re a care provider looking for reliable staff or a healthcare
               assistant looking for flexible work, we&apos;d love to hear from you.
             </p>
@@ -83,8 +82,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Form Section */}
-      <section className="section-spacing">
+      {/* Form Section - light background for form readability */}
+      <section className="section-spacing bg-mist">
         <div className="container-editorial">
           <div className="max-w-2xl mx-auto">
             {/* Form Selector */}

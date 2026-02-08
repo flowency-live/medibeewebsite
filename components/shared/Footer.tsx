@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { siteConfig } from '@/lib/config/site';
 
 export function Footer() {
@@ -11,11 +12,17 @@ export function Footer() {
         <span className="rule-gold-wide mb-10 block" aria-hidden="true" />
 
         <div className="grid md:grid-cols-3 gap-10 md:gap-8">
-          {/* Company Info */}
+          {/* Company Info with Logo */}
           <div className="space-y-4">
-            <h2 className="font-display text-display-sm text-mist">
-              Medibee
-            </h2>
+            <Link href="/" className="inline-block no-underline">
+              <Image
+                src="/medibee-logo.png"
+                alt="Medibee"
+                width={160}
+                height={45}
+                className="h-10 w-auto"
+              />
+            </Link>
             <p className="font-body text-body-sm text-soft-gold leading-relaxed">
               Specialist healthcare assistant recruitment you can trust.
             </p>
@@ -66,7 +73,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-slate-blue/30">
-          <div className="font-body text-body-sm text-neutral-grey space-y-2 md:space-y-0 md:flex md:flex-wrap md:gap-x-6 md:gap-y-2">
+          <div className="font-body text-body-sm text-mist/60 space-y-2 md:space-y-0 md:flex md:flex-wrap md:gap-x-6 md:gap-y-2">
             <p>&copy; {currentYear} {siteConfig.company.name}</p>
             <p>{siteConfig.company.registration}</p>
             {siteConfig.company.companyNumber !== '[TBC]' && (
@@ -75,7 +82,7 @@ export function Footer() {
             <p>ICO: {siteConfig.company.icoRegistration}</p>
           </div>
           {siteConfig.company.registeredOffice !== '[TBC]' && (
-            <p className="font-body text-body-sm text-neutral-grey mt-2">
+            <p className="font-body text-body-sm text-mist/60 mt-2">
               Registered Office: {siteConfig.company.registeredOffice}
             </p>
           )}

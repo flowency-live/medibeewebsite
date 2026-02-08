@@ -9,20 +9,20 @@ export const metadata: Metadata = {
 
 export default function SafeguardingPage() {
   return (
-    <section className="section-spacing">
+    <section className="section-spacing bg-deep-slate">
       <div className="container-editorial">
         <div className="max-w-3xl">
           <span className="rule-gold mb-8" />
-          <h1 className="font-display text-display-lg text-ink mb-6">
+          <h1 className="font-display text-display-lg text-soft-gold mb-6">
             Safeguarding Policy
           </h1>
-          <p className="font-body text-body-md text-neutral-grey mb-12">
+          <p className="font-body text-body-md text-mist/60 mb-12">
             Last updated: February 2026
           </p>
 
-          <div className="prose-container space-y-8 font-body text-body-md text-ink">
+          <div className="prose-container space-y-8 font-body text-body-md text-mist">
             <section>
-              <h2 className="font-display text-display-sm text-ink mb-4">
+              <h2 className="font-display text-display-sm text-soft-gold mb-4">
                 Our commitment
               </h2>
               <p>
@@ -33,7 +33,7 @@ export default function SafeguardingPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-ink mb-4">
+              <h2 className="font-display text-display-sm text-soft-gold mb-4">
                 Pre-employment checks
               </h2>
               <p className="mb-4">
@@ -50,7 +50,7 @@ export default function SafeguardingPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-ink mb-4">
+              <h2 className="font-display text-display-sm text-soft-gold mb-4">
                 Ongoing responsibilities
               </h2>
               <p>
@@ -62,7 +62,7 @@ export default function SafeguardingPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-ink mb-4">
+              <h2 className="font-display text-display-sm text-soft-gold mb-4">
                 Raising concerns
               </h2>
               <p className="mb-4">
@@ -75,7 +75,7 @@ export default function SafeguardingPage() {
                 </li>
                 <li>
                   Contact Medibee at{' '}
-                  <a href={`mailto:${siteConfig.email}`} className="text-slate-blue underline">
+                  <a href={`mailto:${siteConfig.email}`} className="text-rich-gold hover:text-soft-gold underline">
                     {siteConfig.email}
                   </a>
                 </li>
@@ -86,7 +86,7 @@ export default function SafeguardingPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-ink mb-4">
+              <h2 className="font-display text-display-sm text-soft-gold mb-4">
                 Our role
               </h2>
               <p>
@@ -97,12 +97,12 @@ export default function SafeguardingPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-ink mb-4">
+              <h2 className="font-display text-display-sm text-soft-gold mb-4">
                 Contact
               </h2>
               <p>
                 For safeguarding queries or to report a concern, contact us at{' '}
-                <a href={`mailto:${siteConfig.email}`} className="text-slate-blue underline">
+                <a href={`mailto:${siteConfig.email}`} className="text-rich-gold hover:text-soft-gold underline">
                   {siteConfig.email}
                 </a>
                 .

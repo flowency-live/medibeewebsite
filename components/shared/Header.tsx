@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { siteConfig } from '@/lib/config/site';
 import { cn } from '@/lib/utils';
@@ -13,15 +14,28 @@ export function Header() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className="bg-mist border-b-3 border-deep-slate">
+    <header className="bg-deep-slate border-b-[3px] border-rich-gold">
       <div className="container-editorial">
         <div className="flex items-center justify-between h-20 md:h-24">
-          {/* Logo / Company name - editorial typography */}
+          {/* Logo */}
           <Link
             href="/"
-            className="font-display text-display-sm text-deep-slate hover:text-ink transition-colors no-underline"
+            className="flex items-center gap-3 no-underline"
           >
-            Medibee
+            <Image
+              src="/medibee-tile-logo.png"
+              alt=""
+              width={40}
+              height={40}
+              className="w-10 h-10"
+            />
+            <Image
+              src="/medibee-logo.png"
+              alt="Medibee"
+              width={140}
+              height={40}
+              className="h-8 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -34,23 +48,23 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     'font-body text-ui-sm tracking-ui uppercase',
-                    'text-slate-blue hover:text-deep-slate transition-colors',
+                    'text-mist/80 hover:text-soft-gold transition-colors',
                     'no-underline',
-                    pathname === item.href && 'text-deep-slate'
+                    pathname === item.href && 'text-soft-gold'
                   )}
                 >
                   {item.label}
                 </Link>
               ))}
 
-            {/* Primary CTA - distinct from nav */}
+            {/* Primary CTA - gold button */}
             <Link
               href="/contact"
               className={cn(
                 'font-body text-ui-sm tracking-ui uppercase',
-                'bg-deep-slate text-mist',
+                'bg-rich-gold text-ink',
                 'px-6 py-3',
-                'hover:bg-ink transition-colors',
+                'hover:bg-soft-gold transition-colors',
                 'no-underline'
               )}
             >
@@ -62,7 +76,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 -mr-2 text-deep-slate hover:text-ink transition-colors"
+            className="md:hidden p-2 -mr-2 text-mist hover:text-soft-gold transition-colors"
             aria-label="Menu"
             aria-expanded={mobileMenuOpen}
           >
@@ -100,11 +114,11 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation - slides down, no fancy animations */}
+      {/* Mobile Navigation - slides down */}
       <nav
         data-testid="mobile-nav"
         className={cn(
-          'md:hidden bg-deep-slate text-mist overflow-hidden transition-all duration-200',
+          'md:hidden bg-slate-blue text-mist overflow-hidden transition-all duration-200',
           mobileMenuOpen ? 'max-h-screen py-8' : 'max-h-0 py-0'
         )}
         style={{ visibility: mobileMenuOpen ? 'visible' : 'hidden' }}

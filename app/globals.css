@@ -22,7 +22,7 @@
   }
 
   body {
-    @apply bg-mist text-ink font-body text-body-md;
+    @apply bg-slate-blue text-mist font-body text-body-md;
   }
 
   /* Editorial typography - no generic heading styles */
@@ -30,13 +30,13 @@
     @apply font-display font-normal;
   }
 
-  /* Links - simple underline, no fancy hovers */
+  /* Links - gold accent on dark backgrounds */
   a {
-    @apply text-slate-blue;
+    @apply text-soft-gold;
   }
 
   a:hover {
-    @apply text-deep-slate;
+    @apply text-rich-gold;
   }
 
   /* Form focus states - gold accent */
@@ -49,7 +49,7 @@
 
   /* Selection colour */
   ::selection {
-    background-color: var(--soft-gold);
+    background-color: var(--rich-gold);
     color: var(--ink);
   }
 }
