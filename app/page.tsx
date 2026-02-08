@@ -62,12 +62,12 @@ export default function HomePage() {
               href="/services"
               className="group block bg-deep-slate border-2 border-deep-slate hover:border-rich-gold transition-colors no-underline overflow-hidden"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <Image
                   src="/consultation.png"
                   alt="Care provider consultation"
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="p-8">
@@ -90,7 +90,7 @@ export default function HomePage() {
               href="/work-with-us"
               className="group block bg-deep-slate border-2 border-deep-slate hover:border-rich-gold transition-colors no-underline overflow-hidden"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <Image
                   src="/hca-female.png"
                   alt="Healthcare assistant in Medibee uniform"
