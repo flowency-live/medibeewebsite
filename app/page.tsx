@@ -5,19 +5,17 @@ import { Button } from '@/components/ui';
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section - gradient from dark left to lighter right */}
-      <section className="section-spacing relative overflow-hidden">
-        {/* Gradient background */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(to right, #3d4259 0%, #3d4259 40%, #696F8B 100%)'
-          }}
-        />
+      {/* Hero Section - split background columns */}
+      <section className="relative">
+        {/* Split background - dark left, light right */}
+        <div className="absolute inset-0 flex">
+          <div className="w-full md:w-1/2 bg-deep-slate" />
+          <div className="hidden md:block w-1/2 bg-mist" />
+        </div>
 
-        <div className="container-editorial relative z-10">
+        <div className="container-editorial relative z-10 py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Text Content */}
+            {/* Text Content - on dark side */}
             <div>
               <span className="rule-gold mb-8" />
               <h1 className="font-display text-display-lg text-soft-gold mb-6 text-balance">
@@ -37,19 +35,22 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero Image - larger, on lighter part of gradient */}
-            <div className="flex items-center justify-center">
+            {/* Hero Image - on light side, much larger */}
+            <div className="flex items-center justify-center bg-mist md:bg-transparent p-8 md:p-0">
               <Image
                 src="/hero-background.png"
                 alt="Medibee Recruitment - London skyline"
-                width={700}
-                height={500}
-                className="w-full max-w-[700px] h-auto"
+                width={800}
+                height={600}
+                className="w-full h-auto max-w-none"
                 priority
               />
             </div>
           </div>
         </div>
+
+        {/* Gold line below hero */}
+        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-rich-gold" />
       </section>
 
       {/* Audience Split */}
