@@ -34,17 +34,54 @@ const TEAM = [
   },
 ];
 
+// Grain texture
+const grainTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
+
+// Honeycomb SVG pattern (bee-themed)
+const honeycombPattern = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath fill='%23E5C55C' fill-opacity='0.06' d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66ZM28 100L0 84L0 50L28 34L56 50L56 84L28 100Z'/%3E%3C/svg%3E")`;
+
 export default function TeamPage() {
   return (
     <>
       {/* Hero */}
-      <section className="section-spacing bg-deep-slate">
-        <div className="container-editorial">
+      <section
+        className="py-24 relative"
+        style={{ backgroundColor: '#1a1d2e' }}
+      >
+        {/* Subtle grain texture */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: grainTexture }}
+        />
+
+        <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-display text-display-lg text-soft-gold mb-6">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <span
+                className="w-12 h-[3px]"
+                style={{ backgroundColor: '#E5C55C' }}
+              />
+              <span
+                className="text-[0.8125rem] tracking-[0.2em] uppercase font-medium"
+                style={{ color: '#E5C55C' }}
+              >
+                Our People
+              </span>
+              <span
+                className="w-12 h-[3px]"
+                style={{ backgroundColor: '#E5C55C' }}
+              />
+            </div>
+            <h1
+              className="font-display text-[clamp(2.5rem,5vw,3.5rem)] leading-tight mb-6"
+              style={{ color: '#F5E6A3' }}
+            >
               Meet the team
             </h1>
-            <p className="font-body text-body-lg text-mist">
+            <p
+              className="text-lg leading-relaxed opacity-85"
+              style={{ color: '#F5F4F0' }}
+            >
               Personal service from people who understand healthcare. When you work with
               Medibee, you work with us directly.
             </p>
@@ -53,7 +90,7 @@ export default function TeamPage() {
       </section>
 
       {/* Team Members */}
-      <section className="bg-slate-blue">
+      <section style={{ backgroundColor: '#2a2e42' }}>
         <div className="container-editorial">
           <div className="space-y-0">
             {TEAM.map((member, index) => {
@@ -61,10 +98,12 @@ export default function TeamPage() {
               return (
                 <div
                   key={member.name}
-                  className={`grid md:grid-cols-2 ${isEven ? '' : 'md:direction-rtl'}`}
+                  className="grid md:grid-cols-2"
                 >
                   {/* Image */}
-                  <div className={`relative aspect-[4/3] md:aspect-auto md:min-h-[400px] ${isEven ? 'md:order-1' : 'md:order-2'}`}>
+                  <div
+                    className={`relative aspect-[4/3] md:aspect-auto md:min-h-[400px] ${isEven ? 'md:order-1' : 'md:order-2'}`}
+                  >
                     <Image
                       src={member.image}
                       alt={member.name}
@@ -73,14 +112,30 @@ export default function TeamPage() {
                     />
                   </div>
                   {/* Content */}
-                  <div className={`bg-deep-slate p-8 md:p-12 flex flex-col justify-center ${isEven ? 'md:order-2 md:border-l-[3px]' : 'md:order-1 md:border-r-[3px]'} border-rich-gold`}>
-                    <h2 className="font-display text-display-sm text-soft-gold mb-1">
+                  <div
+                    className={`p-8 md:p-12 flex flex-col justify-center ${isEven ? 'md:order-2' : 'md:order-1'}`}
+                    style={{
+                      backgroundColor: '#1a1d2e',
+                      borderLeft: isEven ? '3px solid #E5C55C' : 'none',
+                      borderRight: !isEven ? '3px solid #E5C55C' : 'none',
+                    }}
+                  >
+                    <h2
+                      className="font-display text-xl mb-1"
+                      style={{ color: '#F5E6A3' }}
+                    >
                       {member.name}
                     </h2>
-                    <p className="font-body text-ui-sm text-rich-gold uppercase tracking-ui mb-4">
+                    <p
+                      className="text-xs uppercase tracking-[0.15em] mb-6"
+                      style={{ color: '#E5C55C' }}
+                    >
                       {member.role}
                     </p>
-                    <p className="font-body text-body-lg text-mist">
+                    <p
+                      className="text-lg leading-relaxed opacity-85"
+                      style={{ color: '#F5F4F0' }}
+                    >
                       {member.bio}
                     </p>
                   </div>
@@ -91,25 +146,49 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="section-spacing bg-deep-slate">
-        <div className="container-editorial">
+      {/* Values - with honeycomb */}
+      <section
+        className="py-24 relative overflow-hidden"
+        style={{ backgroundColor: '#1a1d2e' }}
+      >
+        {/* Honeycomb pattern */}
+        <div
+          className="absolute inset-0"
+          style={{ backgroundImage: honeycombPattern }}
+        />
+
+        <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto">
-            <span className="rule-gold mb-8" />
-            <h2 className="font-display text-display-md text-soft-gold mb-6">
+            <div
+              className="w-[60px] h-[3px] mb-8"
+              style={{ backgroundColor: '#E5C55C' }}
+            />
+            <h2
+              className="font-display text-[2rem] mb-8"
+              style={{ color: '#F5E6A3' }}
+            >
               Our approach
             </h2>
-            <div className="space-y-6 font-body text-body-lg text-mist">
-              <p>
+            <div className="space-y-6">
+              <p
+                className="text-lg leading-relaxed opacity-85"
+                style={{ color: '#F5F4F0' }}
+              >
                 Every member of the Medibee team shares the same commitment: to provide
                 honest, reliable recruitment services that put people first.
               </p>
-              <p>
+              <p
+                className="text-lg leading-relaxed opacity-85"
+                style={{ color: '#F5F4F0' }}
+              >
                 We keep our team small deliberately. This means you always speak to
                 someone who knows your situation, understands your needs, and can make
                 decisions without passing you around.
               </p>
-              <p>
+              <p
+                className="text-lg leading-relaxed opacity-85"
+                style={{ color: '#F5F4F0' }}
+              >
                 When you call Medibee, you reach us directly. No call centres, no
                 automated systems, no waiting for someone to get back to you.
               </p>

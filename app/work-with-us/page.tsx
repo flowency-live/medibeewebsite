@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { Button } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'Work With Us',
@@ -27,18 +26,48 @@ const SETTINGS = [
   'End of life and hospice care',
 ];
 
+// Grain texture
+const grainTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
+
 export default function WorkWithUsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="section-spacing bg-deep-slate">
-        <div className="container-editorial">
+      <section
+        className="py-24 relative"
+        style={{ backgroundColor: '#1a1d2e' }}
+      >
+        {/* Subtle grain texture */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: grainTexture }}
+        />
+
+        <div className="container-editorial relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div>
-              <h1 className="font-display text-display-lg text-soft-gold mb-6">
+              <div className="flex items-center gap-4 mb-6">
+                <span
+                  className="w-12 h-[3px]"
+                  style={{ backgroundColor: '#E5C55C' }}
+                />
+                <span
+                  className="text-[0.8125rem] tracking-[0.2em] uppercase font-medium"
+                  style={{ color: '#E5C55C' }}
+                >
+                  For Healthcare Assistants
+                </span>
+              </div>
+              <h1
+                className="font-display text-[clamp(2.5rem,5vw,3.5rem)] leading-tight mb-6"
+                style={{ color: '#F5E6A3' }}
+              >
                 Work with Medibee
               </h1>
-              <p className="font-body text-body-lg text-mist">
+              <p
+                className="text-lg leading-relaxed opacity-85"
+                style={{ color: '#F5F4F0' }}
+              >
                 At Medibee, healthcare assistants are valued, supported, and treated with respect.
               </p>
             </div>
@@ -49,37 +78,74 @@ export default function WorkWithUsPage() {
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 border-[3px] border-rich-gold translate-x-4 translate-y-4 -z-10" />
+              {/* Gold accent frame */}
+              <div
+                className="absolute top-4 left-4 right-[-1rem] bottom-[-1rem] -z-10"
+                style={{ border: '3px solid #E5C55C' }}
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* What You Can Expect */}
-      <section className="section-spacing bg-slate-blue">
+      <section
+        className="py-24"
+        style={{ backgroundColor: '#3d4259' }}
+      >
         <div className="container-editorial">
           <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <div>
-              <h2 className="font-display text-display-md text-soft-gold mb-6">
+              <div
+                className="w-[60px] h-[3px] mb-8"
+                style={{ backgroundColor: '#E5C55C' }}
+              />
+              <h2
+                className="font-display text-[2rem] mb-8"
+                style={{ color: '#F5E6A3' }}
+              >
                 What you can expect
               </h2>
               <ul className="space-y-4">
                 {EXPECTATIONS.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="block w-2 h-2 mt-2 bg-rich-gold flex-shrink-0" />
-                    <span className="font-body text-body-md text-mist">{item}</span>
+                    <span
+                      className="block w-2 h-2 mt-2 flex-shrink-0"
+                      style={{ backgroundColor: '#E5C55C' }}
+                    />
+                    <span
+                      className="text-[1.0625rem]"
+                      style={{ color: '#F5F4F0', opacity: 0.85 }}
+                    >
+                      {item}
+                    </span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-deep-slate p-8 border-l-[3px] border-rich-gold">
-              <h3 className="font-display text-display-sm text-soft-gold mb-4">
+            <div
+              className="p-8"
+              style={{
+                backgroundColor: '#1a1d2e',
+                borderLeft: '3px solid #E5C55C'
+              }}
+            >
+              <h3
+                className="font-display text-xl mb-6"
+                style={{ color: '#F5E6A3' }}
+              >
                 Care settings we work with
               </h3>
-              <ul className="space-y-3 font-body text-body-md text-mist">
+              <ul className="space-y-3">
                 {SETTINGS.map((setting) => (
-                  <li key={setting}>{setting}</li>
+                  <li
+                    key={setting}
+                    className="text-[1.0625rem]"
+                    style={{ color: '#F5F4F0', opacity: 0.85 }}
+                  >
+                    {setting}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -88,23 +154,41 @@ export default function WorkWithUsPage() {
       </section>
 
       {/* Why Healthcare Assistants Choose Us */}
-      <section className="section-spacing bg-deep-slate">
+      <section
+        className="py-24"
+        style={{ backgroundColor: '#1a1d2e' }}
+      >
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto">
-            <span className="rule-gold mb-8" />
-            <h2 className="font-display text-display-md text-soft-gold mb-6">
+            <div
+              className="w-[60px] h-[3px] mb-8"
+              style={{ backgroundColor: '#E5C55C' }}
+            />
+            <h2
+              className="font-display text-[2rem] mb-8"
+              style={{ color: '#F5E6A3' }}
+            >
               Why healthcare assistants choose Medibee
             </h2>
-            <div className="space-y-6 font-body text-body-lg text-mist">
-              <p>
+            <div className="space-y-6">
+              <p
+                className="text-lg leading-relaxed opacity-85"
+                style={{ color: '#F5F4F0' }}
+              >
                 We specialise only in healthcare assistants and the care sector. We understand
                 care environments and expectations.
               </p>
-              <p>
+              <p
+                className="text-lg leading-relaxed opacity-85"
+                style={{ color: '#F5F4F0' }}
+              >
                 We offer flexible shifts and consistent opportunities. Pay is discussed clearly
                 and fairly on an individual basis.
               </p>
-              <p>
+              <p
+                className="text-lg leading-relaxed opacity-85"
+                style={{ color: '#F5F4F0' }}
+              >
                 We treat people with respect and provide proper support. Medibee is not a general
                 recruitment agency. Healthcare is our sole focus.
               </p>
@@ -114,38 +198,87 @@ export default function WorkWithUsPage() {
       </section>
 
       {/* Compliance */}
-      <section className="section-spacing bg-slate-blue">
+      <section
+        className="py-24"
+        style={{ backgroundColor: '#2a2e42' }}
+      >
         <div className="container-editorial">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-display-md text-soft-gold mb-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <div
+              className="w-[60px] h-[3px] mx-auto mb-8"
+              style={{ backgroundColor: '#E5C55C' }}
+            />
+            <h2
+              className="font-display text-[2rem] mb-6"
+              style={{ color: '#F5E6A3' }}
+            >
               Your safety matters
             </h2>
-            <p className="font-body text-body-lg text-mist mb-8">
+            <p
+              className="text-[1.0625rem] leading-relaxed mb-12 opacity-85"
+              style={{ color: '#F5F4F0' }}
+            >
               We carry out DBS and Right to Work checks and operate with clear safeguarding
               policies to protect both our staff and the people they care for.
             </p>
-            <div className="flex flex-wrap gap-6 text-body-sm text-soft-gold/80 uppercase tracking-ui">
-              <span>DBS Checked</span>
-              <span>Right to Work Verified</span>
-              <span>Safeguarding Policies</span>
+            <div className="flex justify-center gap-12 flex-wrap">
+              {['DBS Checked', 'Right to Work Verified', 'Safeguarding Policies'].map((badge) => (
+                <div key={badge} className="flex items-center gap-3">
+                  <div
+                    className="w-2 h-2"
+                    style={{ backgroundColor: '#E5C55C' }}
+                  />
+                  <span
+                    className="text-[0.8125rem] tracking-[0.1em] uppercase opacity-80"
+                    style={{ color: '#F5E6A3' }}
+                  >
+                    {badge}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-spacing bg-deep-slate">
-        <div className="container-editorial text-center">
-          <h2 className="font-display text-display-md text-soft-gold mb-6">
+      {/* CTA with honeycomb */}
+      <section
+        className="py-24 relative overflow-hidden"
+        style={{ backgroundColor: '#E5C55C' }}
+      >
+        {/* Honeycomb pattern (darker for gold bg) */}
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath fill='%231a1d2e' fill-opacity='1' d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66ZM28 100L0 84L0 50L28 34L56 50L56 84L28 100Z'/%3E%3C/svg%3E")`
+          }}
+        />
+
+        <div className="container-editorial relative z-10 text-center">
+          <h2
+            className="font-display text-[2rem] mb-6"
+            style={{ color: '#1a1d2e' }}
+          >
             Register your interest
           </h2>
-          <p className="font-body text-body-lg text-mist/80 mb-8 max-w-2xl mx-auto">
+          <p
+            className="text-[1.0625rem] leading-relaxed mb-10 max-w-2xl mx-auto opacity-80"
+            style={{ color: '#1a1d2e' }}
+          >
             Ready to work with a recruitment agency that values you? Register your interest
             and we&apos;ll be in touch to discuss opportunities.
           </p>
-          <Button asChild className="bg-rich-gold text-ink hover:bg-soft-gold">
-            <Link href="/candidate/register">Apply now</Link>
-          </Button>
+          <Link
+            href="/candidate/register"
+            className="inline-block px-10 py-4 text-[0.9375rem] font-semibold no-underline transition-all"
+            style={{
+              backgroundColor: '#1a1d2e',
+              color: '#F5E6A3',
+              boxShadow: '0 4px 24px rgba(0,0,0,0.2)'
+            }}
+          >
+            Apply now
+          </Link>
         </div>
       </section>
     </>
