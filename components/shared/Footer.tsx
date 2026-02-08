@@ -14,7 +14,14 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-10 md:gap-8">
           {/* Company Info with Logo */}
           <div className="space-y-4">
-            <Link href="/" className="inline-block no-underline">
+            <Link href="/" className="flex items-center gap-3 no-underline">
+              <Image
+                src="/medibee-tile-logo.png"
+                alt=""
+                width={50}
+                height={50}
+                className="w-[50px] h-[50px]"
+              />
               <Image
                 src="/medibee-logo.png"
                 alt="Medibee"
