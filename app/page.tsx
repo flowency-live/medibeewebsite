@@ -5,9 +5,20 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="section-spacing bg-deep-slate">
-        <div className="container-editorial">
-          <div className="max-w-3xl">
+      <section
+        className="relative min-h-[70vh] md:min-h-[80vh] flex items-center bg-deep-slate overflow-hidden"
+        style={{
+          backgroundImage: 'url(/hero-background.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center bottom',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Gradient overlay for text legibility on left */}
+        <div className="absolute inset-0 bg-gradient-to-r from-deep-slate/95 via-deep-slate/70 to-transparent" />
+
+        <div className="container-editorial relative z-10 py-16 md:py-24">
+          <div className="max-w-xl lg:max-w-2xl">
             <span className="rule-gold mb-8" />
             <h1 className="font-display text-display-lg text-soft-gold mb-6 text-balance">
               Specialist healthcare assistant recruitment you can trust
