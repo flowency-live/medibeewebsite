@@ -5,10 +5,18 @@ import { Button } from '@/components/ui';
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="section-spacing bg-deep-slate">
-        <div className="container-editorial">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Hero Section - gradient from dark left to lighter right */}
+      <section className="section-spacing relative overflow-hidden">
+        {/* Gradient background */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to right, #3d4259 0%, #3d4259 40%, #696F8B 100%)'
+          }}
+        />
+
+        <div className="container-editorial relative z-10">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Text Content */}
             <div>
               <span className="rule-gold mb-8" />
@@ -29,14 +37,14 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero Image */}
-            <div className="bg-deep-slate rounded-lg p-4">
+            {/* Hero Image - larger, on lighter part of gradient */}
+            <div className="flex items-center justify-center">
               <Image
                 src="/hero-background.png"
                 alt="Medibee Recruitment - London skyline"
-                width={600}
-                height={400}
-                className="w-full h-auto"
+                width={700}
+                height={500}
+                className="w-full max-w-[700px] h-auto"
                 priority
               />
             </div>
