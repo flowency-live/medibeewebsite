@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --slate-blue: #696F8B;
+  --slate-blue-light: #7d8299;
+  --deep-slate: #545971;
+  --soft-gold: #E5D7A2;
+  --rich-gold: #D3B25B;
+  --mist: #E6E3CF;
+  --neutral-grey: #9A999B;
+  --ink: #09080A;
+
+  --rule-weight: 3px;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-mist text-ink font-body text-body-md;
+  }
+
+  /* Editorial typography - no generic heading styles */
+  h1, h2, h3, h4 {
+    @apply font-display font-normal;
+  }
+
+  /* Links - simple underline, no fancy hovers */
+  a {
+    @apply text-slate-blue;
+  }
+
+  a:hover {
+    @apply text-deep-slate;
+  }
+
+  /* Form focus states - gold accent */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    @apply outline-none ring-0;
+    border-color: var(--rich-gold);
+  }
+
+  /* Selection colour */
+  ::selection {
+    background-color: var(--soft-gold);
+    color: var(--ink);
+  }
+}
+
+@layer components {
+  /* Container - asymmetric padding for editorial feel */
+  .container-editorial {
+    @apply max-w-content mx-auto;
+    padding-left: clamp(1.5rem, 5vw, 4rem);
+    padding-right: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  /* Gold accent rule - the distinctive brand element */
+  .rule-gold {
+    @apply block h-[3px] bg-rich-gold;
+    width: 3rem;
+  }
+
+  .rule-gold-wide {
+    @apply block h-[3px] bg-rich-gold;
+    width: 6rem;
+  }
+
+  /* Section spacing */
+  .section-spacing {
+    @apply py-section;
+  }
+
+  @media (max-width: 768px) {
+    .section-spacing {
+      @apply py-section-sm;
+    }
+  }
+
+  /* Prose container for readable content */
+  .prose-container {
+    @apply max-w-prose;
+  }
+
+  /* Image placeholder - clean, no rounded corners */
+  .image-placeholder {
+    @apply bg-neutral-grey/20 relative overflow-hidden;
+    aspect-ratio: 16/10;
+  }
+
+  .image-placeholder::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      135deg,
+      transparent 40%,
+      rgba(255,255,255,0.1) 50%,
+      transparent 60%
+    );
+  }
+}
+
+@layer utilities {
+  /* Text balance for headlines */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Subtle letter spacing for UI elements */
+  .tracking-ui {
+    letter-spacing: 0.04em;
+  }
+
+  /* Border utilities using brand rule weight */
+  .border-rule {
+    border-width: var(--rule-weight);
+  }
+}
