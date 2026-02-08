@@ -31,7 +31,6 @@ export default function ContactPage() {
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
           <div className="max-w-2xl mx-auto text-center">
-            <span className="rule-gold mx-auto mb-8" />
             <h1 className="font-display text-display-lg text-soft-gold mb-6">
               Thank you for your enquiry
             </h1>
@@ -53,7 +52,6 @@ export default function ContactPage() {
       <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="rule-gold mx-auto mb-8" />
             <h1 className="font-display text-display-lg text-soft-gold mb-6">
               Contact us
             </h1>

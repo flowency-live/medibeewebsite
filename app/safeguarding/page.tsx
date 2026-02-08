@@ -12,7 +12,6 @@ export default function SafeguardingPage() {
     <section className="section-spacing bg-deep-slate">
       <div className="container-editorial">
         <div className="max-w-3xl mx-auto">
-          <span className="rule-gold mb-8" />
           <h1 className="font-display text-display-lg text-soft-gold mb-6">
             Safeguarding Policy
           </h1>

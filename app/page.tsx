@@ -11,7 +11,6 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Text Content */}
             <div>
-              <span className="rule-gold mb-8" />
               <h1 className="font-display text-display-lg text-soft-gold mb-6 text-balance">
                 Specialist healthcare assistant recruitment you can trust
               </h1>
@@ -30,13 +29,13 @@ export default function HomePage() {
             </div>
 
             {/* Hero Image */}
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center md:justify-end md:-mr-8 lg:-mr-16">
               <Image
                 src="/hero-background.png"
                 alt="Medibee Recruitment - London skyline"
                 width={1000}
                 height={750}
-                className="w-full h-auto max-w-lg md:max-w-none md:w-[125%]"
+                className="w-full h-auto max-w-lg md:max-w-none md:w-[130%]"
                 priority
               />
             </div>
@@ -48,7 +47,7 @@ export default function HomePage() {
       </section>
 
       {/* Audience Split */}
-      <section className="section-spacing bg-slate-blue">
+      <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
           <div className="text-center mb-12">
             <h2 className="font-display text-display-md text-soft-gold mb-4">
@@ -119,7 +118,7 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section className="section-spacing bg-deep-slate">
+      <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
           <div className="text-center mb-12">
             <span className="rule-gold mx-auto mb-8" />
@@ -211,7 +210,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust & Compliance */}
-      <section className="section-spacing bg-slate-blue">
+      <section className="section-spacing bg-deep-slate">
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto text-center">
             <span className="rule-gold mx-auto mb-8" />
@@ -232,7 +231,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="section-spacing bg-deep-slate">
+      <section className="section-spacing bg-slate-blue">
         <div className="container-editorial text-center">
           <h2 className="font-display text-display-md text-soft-gold mb-6">
             Ready to get started?
@@ -252,7 +251,7 @@ export default function HomePage() {
       </section>
 
       {/* Portal Access */}
-      <section className="py-8 bg-slate-blue border-t border-slate-blue-dark/30">
+      <section className="py-8 bg-deep-slate border-t border-slate-blue/30">
         <div className="container-editorial">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-center">
             <span className="font-body text-body-sm text-mist/60">

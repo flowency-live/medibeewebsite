@@ -35,7 +35,6 @@ export default function WorkWithUsPage() {
         <div className="container-editorial">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div>
-              <span className="rule-gold mb-8" />
               <h1 className="font-display text-display-lg text-soft-gold mb-6">
                 Work with Medibee
               </h1>
