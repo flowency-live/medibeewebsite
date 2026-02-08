@@ -39,7 +39,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main">
+          <nav className="hidden md:flex items-center gap-6" aria-label="Main">
             {siteConfig.nav
               .filter((item) => item.href !== '/' && item.href !== '/contact')
               .map((item) => (
@@ -57,9 +57,25 @@ export function Header() {
                 </Link>
               ))}
 
+            {/* Divider */}
+            <span className="w-px h-6 bg-mist/30" aria-hidden="true" />
+
+            {/* Portal Links */}
+            <Link
+              href="/client/login"
+              className={cn(
+                'font-body text-ui-sm tracking-ui uppercase',
+                'text-mist/80 hover:text-soft-gold transition-colors',
+                'no-underline',
+                pathname === '/client/login' && 'text-soft-gold'
+              )}
+            >
+              Client Login
+            </Link>
+
             {/* Primary CTA - gold button */}
             <Link
-              href="/contact"
+              href="/candidate/register"
               className={cn(
                 'font-body text-ui-sm tracking-ui uppercase',
                 'bg-rich-gold text-ink',
@@ -68,7 +84,7 @@ export function Header() {
                 'no-underline'
               )}
             >
-              Contact
+              Candidate Registration
             </Link>
           </nav>
 
@@ -146,10 +162,32 @@ export function Header() {
           {/* Gold rule separator */}
           <span className="rule-gold-wide" aria-hidden="true" />
 
+          {/* Portal Links */}
+          <Link
+            href="/client/login"
+            onClick={closeMobileMenu}
+            className={cn(
+              'font-body text-body-lg',
+              'text-mist hover:text-soft-gold transition-colors',
+              'no-underline',
+              pathname === '/client/login' && 'text-rich-gold'
+            )}
+          >
+            Client Login
+          </Link>
+
+          <Link
+            href="/candidate/register"
+            onClick={closeMobileMenu}
+            className="font-body text-body-lg text-rich-gold hover:text-soft-gold transition-colors no-underline"
+          >
+            Candidate Registration
+          </Link>
+
           <Link
             href="/contact"
             onClick={closeMobileMenu}
-            className="font-body text-body-lg text-rich-gold hover:text-soft-gold transition-colors no-underline"
+            className="font-body text-body-lg text-mist hover:text-soft-gold transition-colors no-underline"
           >
             Contact Us
           </Link>
