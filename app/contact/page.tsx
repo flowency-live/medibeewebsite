@@ -1,14 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { CareProviderForm, HCAForm } from '@/components/forms';
-import type { CareProviderEnquiry, HCAEnquiry } from '@/lib/schemas/enquiry';
+import Link from 'next/link';
+import { CareProviderForm } from '@/components/forms';
+import type { CareProviderEnquiry } from '@/lib/schemas/enquiry';
 
-type FormType = 'care-provider' | 'hca';
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function ContactPage() {
-  const [activeForm, setActiveForm] = useState<FormType>('care-provider');
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
 
   const handleCareProviderSubmit = async (data: CareProviderEnquiry) => {
@@ -18,22 +17,6 @@ export default function ContactPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'care-provider', data }),
-      });
-
-      if (!response.ok) throw new Error('Failed to submit');
-      setSubmitState('success');
-    } catch {
-      setSubmitState('error');
-    }
-  };
-
-  const handleHCASubmit = async (data: HCAEnquiry) => {
-    setSubmitState('submitting');
-    try {
-      const response = await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type: 'hca', data }),
       });
 
       if (!response.ok) throw new Error('Failed to submit');
@@ -75,42 +58,23 @@ export default function ContactPage() {
               Contact us
             </h1>
             <p className="font-body text-body-lg text-mist">
-              Whether you&apos;re a care provider looking for reliable staff or a healthcare
-              assistant looking for flexible work, we&apos;d love to hear from you.
+              Looking for reliable healthcare staffing? Tell us about your requirements
+              and we&apos;ll discuss how Medibee can help.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Form Section - light background for form readability */}
+      {/* Form Section */}
       <section className="section-spacing bg-mist">
         <div className="container-editorial">
           <div className="max-w-2xl mx-auto">
-            {/* Form Selector */}
-            <div className="flex border-b-2 border-neutral-grey mb-8">
-              <button
-                type="button"
-                onClick={() => setActiveForm('care-provider')}
-                className={`flex-1 py-4 font-body text-body-md uppercase tracking-ui transition-colors ${
-                  activeForm === 'care-provider'
-                    ? 'text-ink border-b-[3px] border-rich-gold -mb-[2px]'
-                    : 'text-neutral-grey hover:text-deep-slate'
-                }`}
-              >
-                Care Provider
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveForm('hca')}
-                className={`flex-1 py-4 font-body text-body-md uppercase tracking-ui transition-colors ${
-                  activeForm === 'hca'
-                    ? 'text-ink border-b-[3px] border-rich-gold -mb-[2px]'
-                    : 'text-neutral-grey hover:text-deep-slate'
-                }`}
-              >
-                Healthcare Assistant
-              </button>
-            </div>
+            <h2 className="font-display text-display-sm text-ink mb-2">
+              Care Provider Enquiry
+            </h2>
+            <p className="font-body text-body-md text-deep-slate mb-8">
+              Tell us about your staffing requirements and we&apos;ll discuss how we can help.
+            </p>
 
             {/* Error Message */}
             {submitState === 'error' && (
@@ -122,31 +86,20 @@ export default function ContactPage() {
               </div>
             )}
 
-            {/* Care Provider Form */}
-            {activeForm === 'care-provider' && (
-              <div>
-                <h2 className="font-display text-display-sm text-ink mb-2">
-                  Care Provider Enquiry
-                </h2>
-                <p className="font-body text-body-md text-deep-slate mb-8">
-                  Tell us about your staffing requirements and we&apos;ll discuss how we can help.
-                </p>
-                <CareProviderForm onSubmit={handleCareProviderSubmit} />
-              </div>
-            )}
+            <CareProviderForm onSubmit={handleCareProviderSubmit} />
 
-            {/* HCA Form */}
-            {activeForm === 'hca' && (
-              <div>
-                <h2 className="font-display text-display-sm text-ink mb-2">
-                  Register Your Interest
-                </h2>
-                <p className="font-body text-body-md text-deep-slate mb-8">
-                  Tell us about yourself and the kind of work you&apos;re looking for.
-                </p>
-                <HCAForm onSubmit={handleHCASubmit} />
-              </div>
-            )}
+            {/* HCA redirect notice */}
+            <div className="mt-8 pt-8 border-t border-neutral-grey/30">
+              <p className="font-body text-body-md text-deep-slate text-center">
+                Looking for work as a healthcare assistant?{' '}
+                <Link
+                  href="/candidate/register"
+                  className="text-slate-blue hover:text-deep-slate underline font-medium"
+                >
+                  Register here
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </section>
