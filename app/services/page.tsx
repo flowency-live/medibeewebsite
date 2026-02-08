@@ -36,6 +36,97 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Staffing Solutions */}
+      <section className="section-spacing bg-mist">
+        <div className="container-editorial">
+          <div className="text-center mb-12">
+            <span className="font-body text-ui-sm tracking-ui uppercase text-rich-gold mb-4 block">
+              Our Services
+            </span>
+            <h2 className="font-display text-display-md text-ink mb-4">
+              Staffing Solutions Tailored to You
+            </h2>
+            <p className="font-body text-body-md text-deep-slate max-w-2xl mx-auto">
+              Whether you need emergency cover or long-term placements, we have the workforce to support you.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Temporary Staffing */}
+            <div className="bg-white p-8 border-t-[3px] border-slate-blue">
+              <div className="w-12 h-12 mb-6 text-slate-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <h3 className="font-display text-display-sm text-ink mb-3">
+                Temporary Staffing
+              </h3>
+              <p className="font-body text-body-md text-deep-slate mb-6">
+                Flexible, reliable carers available for short-notice cover, holidays, and sickness absence.
+              </p>
+              <Link
+                href="/contact"
+                className="font-body text-body-sm text-slate-blue hover:text-deep-slate inline-flex items-center gap-2 no-underline"
+              >
+                Learn more
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+
+            {/* Emergency Cover */}
+            <div className="bg-white p-8 border-t-[3px] border-slate-blue">
+              <div className="w-12 h-12 mb-6 text-slate-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+                  <path d="M9 12l2 2 4-4" />
+                  <path d="M12 3a9 9 0 1 0 9 9" />
+                  <path d="M21 3v6h-6" />
+                </svg>
+              </div>
+              <h3 className="font-display text-display-sm text-ink mb-3">
+                Emergency Cover
+              </h3>
+              <p className="font-body text-body-md text-deep-slate mb-6">
+                Urgent staffing solutions when you need them most. We are ready to help 24/7.
+              </p>
+              <Link
+                href="/contact"
+                className="font-body text-body-sm text-slate-blue hover:text-deep-slate inline-flex items-center gap-2 no-underline"
+              >
+                Learn more
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+
+            {/* Contract Placements */}
+            <div className="bg-white p-8 border-t-[3px] border-slate-blue">
+              <div className="w-12 h-12 mb-6 text-slate-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                  <circle cx="19" cy="11" r="3" />
+                  <path d="M22 21v-1.5a3 3 0 0 0-3-3h-1" />
+                </svg>
+              </div>
+              <h3 className="font-display text-display-sm text-ink mb-3">
+                Contract Placements
+              </h3>
+              <p className="font-body text-body-md text-deep-slate mb-6">
+                Longer-term staffing support to ensure continuity of care for your residents.
+              </p>
+              <Link
+                href="/contact"
+                className="font-body text-body-sm text-slate-blue hover:text-deep-slate inline-flex items-center gap-2 no-underline"
+              >
+                Learn more
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Settings We Support */}
       <section className="section-spacing bg-slate-blue">
         <div className="container-editorial">
