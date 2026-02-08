@@ -55,12 +55,17 @@ export function CandidateRegistrationForm({
   };
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-8">
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-10">
       {/* Personal Details Section */}
       <section>
-        <h2 className="font-display text-display-sm text-deep-slate mb-6">
-          Personal Details
-        </h2>
+        <div className="flex items-center gap-4 mb-6">
+          <span className="w-8 h-8 bg-rich-gold flex items-center justify-center flex-shrink-0">
+            <span className="font-display text-body-md text-ink">1</span>
+          </span>
+          <h2 className="font-display text-display-sm text-ink">
+            Personal Details
+          </h2>
+        </div>
         <div className="grid md:grid-cols-2 gap-6">
           <Input
             label="First Name"
@@ -103,11 +108,18 @@ export function CandidateRegistrationForm({
         </div>
       </section>
 
+      <hr className="border-neutral-grey/20" />
+
       {/* CV Upload Section */}
       <section>
-        <h2 className="font-display text-display-sm text-deep-slate mb-6">
-          Your CV
-        </h2>
+        <div className="flex items-center gap-4 mb-6">
+          <span className="w-8 h-8 bg-rich-gold flex items-center justify-center flex-shrink-0">
+            <span className="font-display text-body-md text-ink">2</span>
+          </span>
+          <h2 className="font-display text-display-sm text-ink">
+            Your CV
+          </h2>
+        </div>
         <FileInput
           label="Upload your CV"
           name="cv"
@@ -121,11 +133,18 @@ export function CandidateRegistrationForm({
         <input type="hidden" {...register('cvFileName')} />
       </section>
 
+      <hr className="border-neutral-grey/20" />
+
       {/* Position & Preferences Section */}
       <section>
-        <h2 className="font-display text-display-sm text-deep-slate mb-6">
-          Position & Preferences
-        </h2>
+        <div className="flex items-center gap-4 mb-6">
+          <span className="w-8 h-8 bg-rich-gold flex items-center justify-center flex-shrink-0">
+            <span className="font-display text-body-md text-ink">3</span>
+          </span>
+          <h2 className="font-display text-display-sm text-ink">
+            Position & Preferences
+          </h2>
+        </div>
         <div className="space-y-6">
           <RadioGroup
             label="What position are you applying for?"
@@ -161,11 +180,18 @@ export function CandidateRegistrationForm({
         </div>
       </section>
 
+      <hr className="border-neutral-grey/20" />
+
       {/* Right to Work Section */}
       <section>
-        <h2 className="font-display text-display-sm text-deep-slate mb-6">
-          Right to Work
-        </h2>
+        <div className="flex items-center gap-4 mb-6">
+          <span className="w-8 h-8 bg-rich-gold flex items-center justify-center flex-shrink-0">
+            <span className="font-display text-body-md text-ink">4</span>
+          </span>
+          <h2 className="font-display text-display-sm text-ink">
+            Right to Work
+          </h2>
+        </div>
         <RadioGroup
           label="Are you working in the UK on a Student or Sponsor VISA?"
           name="visaStatus"
@@ -177,11 +203,18 @@ export function CandidateRegistrationForm({
         />
       </section>
 
+      <hr className="border-neutral-grey/20" />
+
       {/* Compliance Section */}
       <section>
-        <h2 className="font-display text-display-sm text-deep-slate mb-6">
-          Compliance & Checks
-        </h2>
+        <div className="flex items-center gap-4 mb-6">
+          <span className="w-8 h-8 bg-rich-gold flex items-center justify-center flex-shrink-0">
+            <span className="font-display text-body-md text-ink">5</span>
+          </span>
+          <h2 className="font-display text-display-sm text-ink">
+            Compliance & Checks
+          </h2>
+        </div>
         <div className="space-y-6">
           <RadioGroup
             label="Do you have a valid Enhanced DBS?"
@@ -207,11 +240,18 @@ export function CandidateRegistrationForm({
         </div>
       </section>
 
+      <hr className="border-neutral-grey/20" />
+
       {/* Availability Section */}
       <section>
-        <h2 className="font-display text-display-sm text-deep-slate mb-6">
-          Availability
-        </h2>
+        <div className="flex items-center gap-4 mb-6">
+          <span className="w-8 h-8 bg-rich-gold flex items-center justify-center flex-shrink-0">
+            <span className="font-display text-body-md text-ink">6</span>
+          </span>
+          <h2 className="font-display text-display-sm text-ink">
+            Availability
+          </h2>
+        </div>
         <div className="space-y-6">
           <RadioGroup
             label="How far are you willing to travel for work?"
