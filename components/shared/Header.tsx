@@ -41,7 +41,7 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-5" aria-label="Main">
             {siteConfig.nav
-              .filter((item) => item.href !== '/' && item.href !== '/contact')
+              .filter((item) => item.href !== '/contact')
               .map((item) => (
                 <Link
                   key={item.href}
