@@ -16,6 +16,7 @@ export const siteConfig = {
     services: '/services',
     workWithUs: '/work-with-us',
     about: '/about',
+    team: '/team',
     contact: '/contact',
     privacy: '/privacy-policy',
     safeguarding: '/safeguarding',
@@ -26,6 +27,7 @@ export const siteConfig = {
     { label: 'Services', href: '/services' },
     { label: 'Work With Us', href: '/work-with-us' },
     { label: 'About', href: '/about' },
+    { label: 'Team', href: '/team' },
     { label: 'Contact', href: '/contact' },
   ],
 } as const;

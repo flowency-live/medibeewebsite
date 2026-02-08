@@ -36,9 +36,10 @@ export default function HomePage() {
                 alt="Medibee Recruitment - London skyline"
                 width={600}
                 height={500}
-                className="w-full h-auto"
+                className="w-full h-auto rounded-lg"
                 priority
               />
+              <div className="absolute inset-0 border-[3px] border-rich-gold translate-x-4 translate-y-4 -z-10 rounded-lg" />
             </div>
           </div>
         </div>
