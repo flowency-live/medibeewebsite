@@ -73,6 +73,13 @@ const POLICIES: PolicyItem[] = [
     href: '/complaints',
     lastUpdated: 'February 2026',
   },
+  {
+    title: 'Accessibility Statement',
+    description:
+      'Our commitment to making our website accessible to everyone.',
+    href: '/policies/accessibility',
+    lastUpdated: 'February 2026',
+  },
 ];
 
 export default function PoliciesPage() {

@@ -47,7 +47,7 @@ export function Footer() {
                 className="h-9 w-auto"
               />
             </Link>
-            <p className="font-body text-body-sm text-mist/60 mt-5 leading-relaxed max-w-xs">
+            <p className="font-body text-body-sm text-mist/75 mt-5 leading-relaxed max-w-xs">
               Specialist healthcare assistant recruitment you can trust. Personal service, nationwide reach.
             </p>
             {/* Email as a clear, accessible link */}
@@ -63,7 +63,7 @@ export function Footer() {
           <div className="flex flex-wrap gap-x-16 gap-y-8">
             {/* Quick Links */}
             <nav className="min-w-[120px]">
-              <h3 className="font-body text-ui-xs tracking-wider uppercase text-mist/40 mb-4">
+              <h3 className="font-body text-ui-xs tracking-wider uppercase text-mist/60 mb-4">
                 Navigate
               </h3>
               <ul className="space-y-2.5">
@@ -104,7 +104,7 @@ export function Footer() {
 
             {/* Policies */}
             <nav className="min-w-[120px]">
-              <h3 className="font-body text-ui-xs tracking-wider uppercase text-mist/40 mb-4">
+              <h3 className="font-body text-ui-xs tracking-wider uppercase text-mist/60 mb-4">
                 Policies
               </h3>
               <ul className="space-y-2.5">
@@ -132,6 +132,14 @@ export function Footer() {
                     Safeguarding
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/policies/accessibility"
+                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
+                  >
+                    Accessibility
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
@@ -140,10 +148,10 @@ export function Footer() {
         {/* Legal Footer - Minimal, separated by subtle border */}
         <div className="mt-16 pt-8 border-t border-mist/10">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <p className="font-body text-ui-xs text-mist/40">
+            <p className="font-body text-ui-xs text-mist/60">
               &copy; {currentYear} {siteConfig.company.name}. {siteConfig.company.registration}
             </p>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-body text-ui-xs text-mist/40">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-body text-ui-xs text-mist/60">
               {siteConfig.company.companyNumber !== '[TBC]' && (
                 <span>Company No. {siteConfig.company.companyNumber}</span>
               )}
@@ -151,7 +159,7 @@ export function Footer() {
             </div>
           </div>
           {siteConfig.company.registeredOffice !== '[TBC]' && (
-            <p className="font-body text-ui-xs text-mist/30 mt-3">
+            <p className="font-body text-ui-xs text-mist/50 mt-3">
               Registered Office: {siteConfig.company.registeredOffice}
             </p>
           )}
