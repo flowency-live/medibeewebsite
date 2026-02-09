@@ -7,30 +7,35 @@ export const metadata: Metadata = {
     'Meet the dedicated team behind Medibee Recruitment Ltd. Personal service from people who understand healthcare.',
 };
 
-const TEAM = [
+const TEAM: Array<{
+  name: string;
+  role: string;
+  bio: string;
+  image: string | null;
+}> = [
   {
-    name: 'Sarah Mitchell',
+    name: 'Team Member',
     role: 'Managing Director',
-    bio: 'With over 15 years in healthcare recruitment, Sarah founded Medibee to deliver the personal, reliable service she believes the industry deserves.',
-    image: '/team-sarah.jpg',
+    bio: 'Leading Medibee with a commitment to delivering personal, reliable healthcare recruitment services that put people first.',
+    image: null,
   },
   {
-    name: 'James Okonkwo',
+    name: 'Team Member',
     role: 'Operations Manager',
-    bio: 'James oversees day-to-day operations, ensuring our healthcare assistants and care providers receive responsive, consistent support.',
-    image: '/team-james.jpg',
+    bio: 'Overseeing day-to-day operations, ensuring our healthcare assistants and care providers receive responsive, consistent support.',
+    image: null,
   },
   {
-    name: 'Priya Sharma',
+    name: 'Team Member',
     role: 'Compliance Lead',
-    bio: 'Priya manages all pre-employment checks, DBS verification, and regulatory compliance to maintain the highest standards.',
-    image: '/team-priya.jpg',
+    bio: 'Managing all pre-employment checks, DBS verification, and regulatory compliance to maintain the highest standards.',
+    image: null,
   },
   {
-    name: 'Michael Chen',
+    name: 'Team Member',
     role: 'Client Relations',
-    bio: 'Michael works directly with care providers to understand their needs and match them with the right healthcare assistants.',
-    image: '/team-michael.jpg',
+    bio: 'Working directly with care providers to understand their needs and match them with the right healthcare assistants.',
+    image: null,
   },
 ];
 
@@ -100,16 +105,53 @@ export default function TeamPage() {
                   key={member.name}
                   className="grid md:grid-cols-2"
                 >
-                  {/* Image */}
+                  {/* Image / Placeholder */}
                   <div
                     className={`relative aspect-[4/3] md:aspect-auto md:min-h-[400px] ${isEven ? 'md:order-1' : 'md:order-2'}`}
+                    style={{ backgroundColor: '#3d4259' }}
                   >
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover object-top"
-                    />
+                    {member.image ? (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover object-top"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        {/* Avatar placeholder - hexagon-styled silhouette */}
+                        <svg
+                          width="120"
+                          height="120"
+                          viewBox="0 0 120 120"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="mb-4 opacity-40"
+                        >
+                          {/* Hexagon background */}
+                          <path
+                            d="M60 5L110 32.5V87.5L60 115L10 87.5V32.5L60 5Z"
+                            fill="#1a1d2e"
+                            stroke="#E5C55C"
+                            strokeWidth="2"
+                            strokeOpacity="0.3"
+                          />
+                          {/* Person silhouette */}
+                          <circle cx="60" cy="45" r="18" fill="#E5C55C" fillOpacity="0.4" />
+                          <path
+                            d="M35 95C35 77.327 46.193 65 60 65C73.807 65 85 77.327 85 95"
+                            fill="#E5C55C"
+                            fillOpacity="0.4"
+                          />
+                        </svg>
+                        <span
+                          className="text-sm tracking-[0.1em] uppercase opacity-50"
+                          style={{ color: '#F5E6A3' }}
+                        >
+                          Awaiting Photo
+                        </span>
+                      </div>
+                    )}
                   </div>
                   {/* Content */}
                   <div
