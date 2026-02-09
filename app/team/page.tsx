@@ -102,7 +102,7 @@ export default function TeamPage() {
               const isEven = index % 2 === 0;
               return (
                 <div
-                  key={member.name}
+                  key={member.role}
                   className="grid md:grid-cols-2"
                 >
                   {/* Image / Placeholder */}
