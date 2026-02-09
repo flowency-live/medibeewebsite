@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { HoneycombPattern, HoneycombFade } from '@/components/decorative';
 
 export const metadata: Metadata = {
   title: 'Services',
@@ -17,9 +18,6 @@ const SETTINGS = [
   'End of life and hospice care',
 ];
 
-// Honeycomb SVG pattern (proper hexagons)
-const honeycombPattern = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23E5C55C' fill-opacity='0.08'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`;
-
 // Grain texture
 const grainTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
 
@@ -27,44 +25,28 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section
-        className="py-24 relative"
-        style={{ backgroundColor: '#1a1d2e' }}
-      >
+      <section className="py-24 relative bg-midnight">
         {/* Subtle grain texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: grainTexture }}
         />
 
+        <HoneycombFade direction="bottom-to-top" opacity={0.12} />
+
         <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <span
-                className="w-12 h-[3px]"
-                style={{ backgroundColor: '#E5C55C' }}
-              />
-              <span
-                className="text-[0.8125rem] tracking-[0.2em] uppercase font-medium"
-                style={{ color: '#E5C55C' }}
-              >
+              <span className="w-12 h-[3px] bg-provider" />
+              <span className="text-[0.8125rem] tracking-[0.2em] uppercase font-medium text-provider-light">
                 For Care Providers
               </span>
-              <span
-                className="w-12 h-[3px]"
-                style={{ backgroundColor: '#E5C55C' }}
-              />
+              <span className="w-12 h-[3px] bg-provider" />
             </div>
-            <h1
-              className="font-display text-[clamp(2.5rem,5vw,3.5rem)] leading-tight mb-6"
-              style={{ color: '#F5E6A3' }}
-            >
+            <h1 className="font-display text-[clamp(2.5rem,5vw,3.5rem)] leading-tight mb-6 text-soft-gold">
               Services for care providers
             </h1>
-            <p
-              className="text-lg leading-relaxed opacity-85"
-              style={{ color: '#F5F4F0' }}
-            >
+            <p className="text-lg leading-relaxed opacity-85 text-mist">
               We supply reliable healthcare assistants into a wide range of care and clinical
               settings across the UK.
             </p>
@@ -73,28 +55,16 @@ export default function ServicesPage() {
       </section>
 
       {/* Staffing Solutions - Light breathing section */}
-      <section
-        className="py-24"
-        style={{ backgroundColor: '#F8F7F4' }}
-      >
+      <section className="py-24 bg-cream">
         <div className="container-editorial">
           <div className="text-center mb-16">
-            <span
-              className="text-xs tracking-[0.15em] uppercase mb-4 block"
-              style={{ color: '#E5C55C' }}
-            >
+            <span className="text-xs tracking-[0.15em] uppercase mb-4 block text-provider">
               Our Services
             </span>
-            <h2
-              className="font-display text-[2.25rem] mb-4"
-              style={{ color: '#1a1d2e' }}
-            >
+            <h2 className="font-display text-[2.25rem] mb-4 text-midnight">
               Staffing Solutions Tailored to You
             </h2>
-            <p
-              className="text-[1.0625rem] max-w-2xl mx-auto"
-              style={{ color: '#4a4e5a' }}
-            >
+            <p className="text-[1.0625rem] max-w-2xl mx-auto text-deep-slate">
               Whether you need emergency cover or long-term placements, we have the workforce to support you.
             </p>
           </div>
@@ -102,35 +72,24 @@ export default function ServicesPage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Temporary Staffing */}
             <div
-              className="p-8"
-              style={{
-                backgroundColor: '#ffffff',
-                borderTop: '3px solid #E5C55C',
-                boxShadow: '0 4px 24px rgba(0,0,0,0.08)'
-              }}
+              className="p-8 bg-white border-t-[3px] border-provider"
+              style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
             >
-              <div className="w-12 h-12 mb-6" style={{ color: '#3d4259' }}>
+              <div className="w-12 h-12 mb-6 text-provider">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12 6 12 12 16 14" />
                 </svg>
               </div>
-              <h3
-                className="font-display text-xl mb-3"
-                style={{ color: '#1a1d2e' }}
-              >
+              <h3 className="font-display text-xl mb-3 text-midnight">
                 Temporary Staffing
               </h3>
-              <p
-                className="mb-6 leading-relaxed"
-                style={{ color: '#4a4e5a' }}
-              >
+              <p className="mb-6 leading-relaxed text-deep-slate">
                 Flexible, reliable carers available for short-notice cover, holidays, and sickness absence.
               </p>
               <Link
                 href="/contact"
-                className="text-sm inline-flex items-center gap-2 no-underline font-medium"
-                style={{ color: '#E5C55C' }}
+                className="text-sm inline-flex items-center gap-2 no-underline font-medium text-provider"
               >
                 Learn more
                 <span aria-hidden="true">→</span>
@@ -139,36 +98,25 @@ export default function ServicesPage() {
 
             {/* Emergency Cover */}
             <div
-              className="p-8"
-              style={{
-                backgroundColor: '#ffffff',
-                borderTop: '3px solid #E5C55C',
-                boxShadow: '0 4px 24px rgba(0,0,0,0.08)'
-              }}
+              className="p-8 bg-white border-t-[3px] border-provider"
+              style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
             >
-              <div className="w-12 h-12 mb-6" style={{ color: '#3d4259' }}>
+              <div className="w-12 h-12 mb-6 text-provider">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
                   <path d="M9 12l2 2 4-4" />
                   <path d="M12 3a9 9 0 1 0 9 9" />
                   <path d="M21 3v6h-6" />
                 </svg>
               </div>
-              <h3
-                className="font-display text-xl mb-3"
-                style={{ color: '#1a1d2e' }}
-              >
+              <h3 className="font-display text-xl mb-3 text-midnight">
                 Emergency Cover
               </h3>
-              <p
-                className="mb-6 leading-relaxed"
-                style={{ color: '#4a4e5a' }}
-              >
+              <p className="mb-6 leading-relaxed text-deep-slate">
                 Urgent staffing solutions when you need them most. We are ready to help 24/7.
               </p>
               <Link
                 href="/contact"
-                className="text-sm inline-flex items-center gap-2 no-underline font-medium"
-                style={{ color: '#E5C55C' }}
+                className="text-sm inline-flex items-center gap-2 no-underline font-medium text-provider"
               >
                 Learn more
                 <span aria-hidden="true">→</span>
@@ -177,14 +125,10 @@ export default function ServicesPage() {
 
             {/* Contract Placements */}
             <div
-              className="p-8"
-              style={{
-                backgroundColor: '#ffffff',
-                borderTop: '3px solid #E5C55C',
-                boxShadow: '0 4px 24px rgba(0,0,0,0.08)'
-              }}
+              className="p-8 bg-white border-t-[3px] border-provider"
+              style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
             >
-              <div className="w-12 h-12 mb-6" style={{ color: '#3d4259' }}>
+              <div className="w-12 h-12 mb-6 text-provider">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
                   <circle cx="9" cy="7" r="4" />
                   <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
@@ -192,22 +136,15 @@ export default function ServicesPage() {
                   <path d="M22 21v-1.5a3 3 0 0 0-3-3h-1" />
                 </svg>
               </div>
-              <h3
-                className="font-display text-xl mb-3"
-                style={{ color: '#1a1d2e' }}
-              >
+              <h3 className="font-display text-xl mb-3 text-midnight">
                 Contract Placements
               </h3>
-              <p
-                className="mb-6 leading-relaxed"
-                style={{ color: '#4a4e5a' }}
-              >
+              <p className="mb-6 leading-relaxed text-deep-slate">
                 Longer-term staffing support to ensure continuity of care for your residents.
               </p>
               <Link
                 href="/contact"
-                className="text-sm inline-flex items-center gap-2 no-underline font-medium"
-                style={{ color: '#E5C55C' }}
+                className="text-sm inline-flex items-center gap-2 no-underline font-medium text-provider"
               >
                 Learn more
                 <span aria-hidden="true">→</span>
@@ -218,34 +155,19 @@ export default function ServicesPage() {
       </section>
 
       {/* Settings We Support */}
-      <section
-        className="py-24"
-        style={{ backgroundColor: '#3d4259' }}
-      >
+      <section className="py-24 bg-deep-slate">
         <div className="container-editorial">
           <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <div>
-              <div
-                className="w-[60px] h-[3px] mb-8"
-                style={{ backgroundColor: '#E5C55C' }}
-              />
-              <h2
-                className="font-display text-[2rem] mb-8"
-                style={{ color: '#F5E6A3' }}
-              >
+              <div className="w-[60px] h-[3px] mb-8 bg-provider" />
+              <h2 className="font-display text-[2rem] mb-8 text-soft-gold">
                 Settings we support
               </h2>
               <ul className="space-y-4">
                 {SETTINGS.map((setting) => (
                   <li key={setting} className="flex items-start gap-3">
-                    <span
-                      className="block w-2 h-2 mt-2 flex-shrink-0"
-                      style={{ backgroundColor: '#E5C55C' }}
-                    />
-                    <span
-                      className="text-[1.0625rem]"
-                      style={{ color: '#F5F4F0', opacity: 0.85 }}
-                    >
+                    <span className="block w-2 h-2 mt-2 flex-shrink-0 bg-provider-light" />
+                    <span className="text-[1.0625rem] text-mist opacity-85">
                       {setting}
                     </span>
                   </li>
@@ -253,17 +175,8 @@ export default function ServicesPage() {
               </ul>
             </div>
 
-            <div
-              className="p-8"
-              style={{
-                backgroundColor: '#1a1d2e',
-                borderLeft: '3px solid #E5C55C'
-              }}
-            >
-              <h3
-                className="font-display text-xl mb-6"
-                style={{ color: '#F5E6A3' }}
-              >
+            <div className="p-8 bg-midnight border-l-[3px] border-provider">
+              <h3 className="font-display text-xl mb-6 text-soft-gold">
                 Why choose Medibee?
               </h3>
               <ul className="space-y-4">
@@ -274,18 +187,9 @@ export default function ServicesPage() {
                   '24-hour availability for urgent cover',
                   'Nationwide support'
                 ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3"
-                  >
-                    <span
-                      className="block w-2 h-2 mt-2 flex-shrink-0"
-                      style={{ backgroundColor: '#E5C55C' }}
-                    />
-                    <span
-                      className="text-[1.0625rem]"
-                      style={{ color: '#F5F4F0', opacity: 0.85 }}
-                    >
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="block w-2 h-2 mt-2 flex-shrink-0 bg-provider-light" />
+                    <span className="text-[1.0625rem] text-mist opacity-85">
                       {item}
                     </span>
                   </li>
@@ -297,26 +201,16 @@ export default function ServicesPage() {
       </section>
 
       {/* The Problem We Solve */}
-      <section
-        className="py-24"
-        style={{ backgroundColor: '#1a1d2e' }}
-      >
-        <div className="container-editorial">
+      <section className="py-24 relative bg-midnight">
+        <HoneycombFade direction="top-to-bottom" opacity={0.10} />
+
+        <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto">
-            <div
-              className="w-[60px] h-[3px] mb-8"
-              style={{ backgroundColor: '#E5C55C' }}
-            />
-            <h2
-              className="font-display text-[2rem] mb-6"
-              style={{ color: '#F5E6A3' }}
-            >
+            <div className="w-[60px] h-[3px] mb-8 bg-provider" />
+            <h2 className="font-display text-[2rem] mb-6 text-soft-gold">
               The problems we solve
             </h2>
-            <p
-              className="text-lg mb-8 opacity-85"
-              style={{ color: '#F5F4F0' }}
-            >
+            <p className="text-lg mb-8 opacity-85 text-mist">
               Care providers often struggle with:
             </p>
             <ul className="space-y-4 mb-8">
@@ -326,23 +220,14 @@ export default function ServicesPage() {
                 'Short-notice cover creating operational stress'
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span
-                    className="block w-2 h-2 mt-2 flex-shrink-0"
-                    style={{ backgroundColor: '#E5C55C' }}
-                  />
-                  <span
-                    className="text-[1.0625rem]"
-                    style={{ color: '#F5F4F0', opacity: 0.85 }}
-                  >
+                  <span className="block w-2 h-2 mt-2 flex-shrink-0 bg-provider-light" />
+                  <span className="text-[1.0625rem] text-mist opacity-85">
                     {item}
                   </span>
                 </li>
               ))}
             </ul>
-            <p
-              className="text-lg opacity-85"
-              style={{ color: '#F5F4F0' }}
-            >
+            <p className="text-lg opacity-85 text-mist">
               Medibee Recruitment Ltd exists to reduce this risk by supplying dependable, suitable
               healthcare assistants and maintaining clear communication throughout.
             </p>
@@ -351,40 +236,22 @@ export default function ServicesPage() {
       </section>
 
       {/* Compliance */}
-      <section
-        className="py-24"
-        style={{ backgroundColor: '#2a2e42' }}
-      >
+      <section className="py-24 bg-midnight-light">
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto text-center">
-            <div
-              className="w-[60px] h-[3px] mx-auto mb-8"
-              style={{ backgroundColor: '#E5C55C' }}
-            />
-            <h2
-              className="font-display text-[2rem] mb-6"
-              style={{ color: '#F5E6A3' }}
-            >
+            <div className="w-[60px] h-[3px] mx-auto mb-8 bg-rich-gold" />
+            <h2 className="font-display text-[2rem] mb-6 text-soft-gold">
               Our commitment to compliance
             </h2>
-            <p
-              className="text-[1.0625rem] leading-relaxed mb-12 opacity-85"
-              style={{ color: '#F5F4F0' }}
-            >
+            <p className="text-[1.0625rem] leading-relaxed mb-12 opacity-85 text-mist">
               All healthcare assistants supplied by Medibee are vetted and supported in line with
               our compliance and safeguarding processes.
             </p>
             <div className="flex justify-center gap-12 flex-wrap">
               {['DBS Checked', 'Right to Work Verified', 'ICO Registered', 'Safeguarding Policies'].map((badge) => (
                 <div key={badge} className="flex items-center gap-3">
-                  <div
-                    className="w-2 h-2"
-                    style={{ backgroundColor: '#E5C55C' }}
-                  />
-                  <span
-                    className="text-[0.8125rem] tracking-[0.1em] uppercase opacity-80"
-                    style={{ color: '#F5E6A3' }}
-                  >
+                  <div className="w-2 h-2 bg-rich-gold" />
+                  <span className="text-[0.8125rem] tracking-[0.1em] uppercase opacity-80 text-soft-gold">
                     {badge}
                   </span>
                 </div>
@@ -395,38 +262,21 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA with honeycomb */}
-      <section
-        className="py-24 relative overflow-hidden"
-        style={{ backgroundColor: '#1a1d2e' }}
-      >
-        {/* Honeycomb pattern */}
-        <div
-          className="absolute inset-0"
-          style={{ backgroundImage: honeycombPattern }}
-        />
+      <section className="py-24 relative overflow-hidden bg-midnight">
+        <HoneycombPattern variant="gold" opacity={0.08} />
 
         <div className="container-editorial relative z-10 text-center">
-          <h2
-            className="font-display text-[2rem] mb-6"
-            style={{ color: '#F5E6A3' }}
-          >
+          <h2 className="font-display text-[2rem] mb-6 text-soft-gold">
             Discuss your staffing requirements
           </h2>
-          <p
-            className="text-[1.0625rem] leading-relaxed mb-10 max-w-2xl mx-auto opacity-75"
-            style={{ color: '#F5F4F0' }}
-          >
+          <p className="text-[1.0625rem] leading-relaxed mb-10 max-w-2xl mx-auto opacity-75 text-mist">
             Contact us to talk through your needs. We&apos;ll discuss suitability and availability
             to find the right healthcare assistants for your setting.
           </p>
           <Link
             href="/contact"
-            className="inline-block px-10 py-4 text-[0.9375rem] font-semibold no-underline transition-all"
-            style={{
-              backgroundColor: '#E5C55C',
-              color: '#1a1d2e',
-              boxShadow: '0 4px 24px rgba(229, 197, 92, 0.25)'
-            }}
+            className="inline-block px-10 py-4 text-[0.9375rem] font-semibold no-underline transition-all bg-rich-gold text-midnight"
+            style={{ boxShadow: '0 4px 24px rgba(229, 197, 92, 0.25)' }}
           >
             Contact us
           </Link>

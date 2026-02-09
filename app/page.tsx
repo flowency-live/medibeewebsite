@@ -93,7 +93,7 @@ export default function HomePage() {
 
       {/* Audience Split - Decision Fork */}
       <section className="py-24 relative bg-midnight-light">
-        <HoneycombFade direction="top-to-bottom" opacity={0.06} />
+        <HoneycombFade direction="top-to-bottom" opacity={0.12} />
 
         <div className="container-editorial relative z-10">
           <div className="text-center mb-16">
@@ -130,8 +130,10 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 bg-deep-slate">
-        <div className="container-editorial">
+      <section className="py-24 relative bg-deep-slate">
+        <HoneycombFade direction="left-to-right" opacity={0.08} />
+
+        <div className="container-editorial relative z-10">
           <div className="text-center mb-16">
             <div className="w-[60px] h-[3px] mx-auto mb-8 bg-rich-gold" />
             <h2 className="font-display text-[2.5rem] text-soft-gold">
@@ -165,7 +167,7 @@ export default function HomePage() {
 
       {/* Trust & Compliance */}
       <section className="py-20 relative bg-midnight">
-        <HoneycombFade direction="bottom-to-top" opacity={0.05} />
+        <HoneycombFade direction="bottom-to-top" opacity={0.10} />
 
         <div className="container-editorial relative z-10">
           <div className="max-w-[700px] mx-auto text-center">
