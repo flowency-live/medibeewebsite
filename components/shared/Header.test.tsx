@@ -23,11 +23,16 @@ describe('Header', () => {
     expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
   });
 
-  it('displays primary CTA linking to contact', () => {
+  it('displays contact link in mobile menu', async () => {
+    const user = userEvent.setup();
     render(<Header />);
-    // There's a desktop CTA and a mobile CTA, get all and check the first (desktop)
-    const ctaLinks = screen.getAllByRole('link', { name: /contact/i });
-    expect(ctaLinks[0]).toHaveAttribute('href', '/contact');
+
+    // Open mobile menu to see contact link
+    const menuButton = screen.getByRole('button', { name: /menu/i });
+    await user.click(menuButton);
+
+    const contactLink = screen.getByRole('link', { name: /contact us/i });
+    expect(contactLink).toHaveAttribute('href', '/contact');
   });
 
   it('renders navigation as accessible nav element', () => {

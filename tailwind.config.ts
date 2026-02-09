@@ -21,6 +21,18 @@ const config: Config = {
         'neutral-grey': '#9A999B',
         ink: '#09080A',
         'cream': '#FDFCF8',
+        'midnight': '#1a1d2e',
+        'midnight-light': '#2a2e42',
+        'provider': {
+          DEFAULT: '#4A6FA5',
+          light: '#5B82B8',
+          dark: '#3A5C8C',
+        },
+        'hca': {
+          DEFAULT: '#7B6B8D',
+          light: '#8D7DA0',
+          dark: '#69597A',
+        },
       },
       fontFamily: {
         display: ['var(--font-fraunces)', 'Georgia', 'serif'],

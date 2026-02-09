@@ -18,3 +18,6 @@ export type { RadioGroupProps, RadioOption } from './radio-group';
 
 export { FileInput } from './file-input';
 export type { FileInputProps } from './file-input';
+
+export { HexagonIcon } from './HexagonIcon';
+export { HexagonBadge } from './HexagonBadge';
