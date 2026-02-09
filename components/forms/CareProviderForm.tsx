@@ -1,5 +1,6 @@
 'use client';
 
+import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CareProviderEnquirySchema, type CareProviderEnquiry } from '@/lib/schemas/enquiry';
@@ -25,6 +26,7 @@ interface CareProviderFormProps {
 }
 
 export function CareProviderForm({ onSubmit }: CareProviderFormProps) {
+  const formRef = React.useRef<HTMLFormElement>(null);
   const {
     register,
     handleSubmit,
@@ -33,16 +35,33 @@ export function CareProviderForm({ onSubmit }: CareProviderFormProps) {
     resolver: zodResolver(CareProviderEnquirySchema),
   });
 
+  // Focus first error field after validation
+  React.useEffect(() => {
+    const errorKeys = Object.keys(errors);
+    if (errorKeys.length > 0) {
+      const firstErrorField = formRef.current?.querySelector(
+        `[name="${errorKeys[0]}"]`
+      ) as HTMLElement | null;
+      firstErrorField?.focus();
+    }
+  }, [errors]);
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+      <p className="text-body-sm text-neutral-grey mb-2">
+        Fields marked with <span aria-hidden="true">*</span><span className="sr-only">asterisk</span> are required.
+      </p>
+
       <Input
         label="Organisation Name"
+        required
         {...register('organisationName')}
         error={errors.organisationName?.message}
       />
 
       <Input
         label="Contact Name"
+        required
         {...register('contactName')}
         error={errors.contactName?.message}
       />
@@ -56,6 +75,7 @@ export function CareProviderForm({ onSubmit }: CareProviderFormProps) {
       <Input
         label="Email"
         type="email"
+        required
         {...register('email')}
         error={errors.email?.message}
       />
@@ -63,6 +83,7 @@ export function CareProviderForm({ onSubmit }: CareProviderFormProps) {
       <Input
         label="Phone"
         type="tel"
+        required
         {...register('phone')}
         error={errors.phone?.message}
       />
@@ -70,12 +91,14 @@ export function CareProviderForm({ onSubmit }: CareProviderFormProps) {
       <Select
         label="Service Type"
         options={SERVICE_TYPE_OPTIONS}
+        required
         {...register('serviceType')}
         error={errors.serviceType?.message}
       />
 
       <Input
         label="Location"
+        required
         {...register('location')}
         error={errors.location?.message}
       />
@@ -89,6 +112,7 @@ export function CareProviderForm({ onSubmit }: CareProviderFormProps) {
       <Select
         label="Preferred Contact"
         options={CONTACT_METHOD_OPTIONS}
+        required
         {...register('preferredContact')}
         error={errors.preferredContact?.message}
       />

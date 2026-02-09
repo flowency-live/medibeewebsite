@@ -16,13 +16,14 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center bg-midnight">
-        {/* Background Image */}
+        {/* Background Image - decorative */}
         <Image
           src="/manchester-skyline.jpg"
-          alt="Manchester skyline"
+          alt=""
           fill
           className="object-cover object-center"
           priority
+          aria-hidden="true"
         />
 
         {/* Gradient overlay */}
@@ -98,7 +99,7 @@ export default function HomePage() {
             <h2 className="font-display text-[2.5rem] mb-4 text-soft-gold">
               How can we help you?
             </h2>
-            <p className="text-mist opacity-60">
+            <p className="text-mist/80">
               Select your situation to find out more
             </p>
           </div>
@@ -256,15 +257,16 @@ export default function HomePage() {
       </section>
 
       {/* Quick Portal Access */}
-      <section className="py-5 bg-midnight border-t border-soft-gold/10">
+      <section className="py-5 bg-midnight border-t border-soft-gold/10" aria-labelledby="portal-heading">
+        <h2 id="portal-heading" className="sr-only">Portal Access</h2>
         <div className="container-editorial flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-12">
-          <span className="text-xs uppercase tracking-[0.1em] opacity-40 text-mist">
+          <span className="text-xs uppercase tracking-[0.1em] text-mist/70">
             Already registered?
           </span>
           <div className="flex items-center gap-8">
             <Link
               href="/candidate/login"
-              className="text-sm opacity-60 hover:opacity-100 no-underline transition-opacity text-mist"
+              className="text-sm text-mist/80 hover:text-soft-gold no-underline transition-colors"
             >
               Candidate Portal
             </Link>
@@ -274,7 +276,7 @@ export default function HomePage() {
             />
             <Link
               href="/client/login"
-              className="text-sm opacity-60 hover:opacity-100 no-underline transition-opacity text-mist"
+              className="text-sm text-mist/80 hover:text-soft-gold no-underline transition-colors"
             >
               Client Portal
             </Link>

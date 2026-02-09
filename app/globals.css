@@ -55,6 +55,15 @@
 }
 
 @layer components {
+  /* Skip link for keyboard accessibility */
+  .skip-link {
+    @apply absolute -top-12 left-4 z-50;
+    @apply bg-midnight text-soft-gold px-4 py-2;
+    @apply font-body text-body-sm;
+    @apply focus:top-4;
+    @apply transition-[top] duration-200;
+  }
+
   /* Container - asymmetric padding for editorial feel */
   .container-editorial {
     @apply max-w-content mx-auto;

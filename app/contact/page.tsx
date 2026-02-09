@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { CareProviderForm } from '@/components/forms';
+import { HoneycombCluster } from '@/components/decorative';
 import type { CareProviderEnquiry } from '@/lib/schemas/enquiry';
 
 // Grain texture
@@ -12,6 +13,14 @@ type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function ContactPage() {
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
+
+  // Focus success heading when form submits successfully
+  useEffect(() => {
+    if (submitState === 'success') {
+      successHeadingRef.current?.focus();
+    }
+  }, [submitState]);
 
   const handleCareProviderSubmit = async (data: CareProviderEnquiry) => {
     setSubmitState('submitting');
@@ -47,13 +56,15 @@ export default function ContactPage() {
               className="w-16 h-16 mx-auto mb-8 flex items-center justify-center"
               style={{ backgroundColor: '#E5C55C' }}
             >
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a1d2e" strokeWidth="2">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a1d2e" strokeWidth="2" aria-hidden="true">
                 <path d="M9 12l2 2 4-4" />
                 <circle cx="12" cy="12" r="10" />
               </svg>
             </div>
             <h1
-              className="font-display text-[2.5rem] mb-6"
+              ref={successHeadingRef}
+              tabIndex={-1}
+              className="font-display text-[2.5rem] mb-6 focus:outline-none"
               style={{ color: '#F5E6A3' }}
             >
               Thank you for your enquiry
@@ -78,9 +89,15 @@ export default function ContactPage() {
 
   return (
     <>
+      {/* Accessible status announcements */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {submitState === 'submitting' && 'Submitting your enquiry, please wait.'}
+        {submitState === 'error' && 'There was an error submitting your enquiry. Please try again.'}
+      </div>
+
       {/* Hero */}
       <section
-        className="py-24 relative"
+        className="py-24 relative overflow-hidden"
         style={{ backgroundColor: '#1a1d2e' }}
       >
         {/* Subtle grain texture */}
@@ -88,6 +105,9 @@ export default function ContactPage() {
           className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: grainTexture }}
         />
+
+        {/* Decorative hexagon clusters - brand signature */}
+        <HoneycombCluster position="top-left" variant="outline" scale={1.2} opacityMultiplier={1.5} />
 
         <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto text-center">
@@ -177,8 +197,7 @@ export default function ContactPage() {
                 Looking for work as a healthcare assistant?{' '}
                 <Link
                   href="/candidate/register"
-                  className="font-medium underline"
-                  style={{ color: '#E5C55C' }}
+                  className="font-medium underline text-deep-slate hover:text-midnight"
                 >
                   Register here
                 </Link>

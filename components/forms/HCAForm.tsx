@@ -1,5 +1,6 @@
 'use client';
 
+import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { HCAEnquirySchema, type HCAEnquiry } from '@/lib/schemas/enquiry';
@@ -27,6 +28,7 @@ interface HCAFormProps {
 }
 
 export function HCAForm({ onSubmit }: HCAFormProps) {
+  const formRef = React.useRef<HTMLFormElement>(null);
   const {
     register,
     handleSubmit,
@@ -42,6 +44,17 @@ export function HCAForm({ onSubmit }: HCAFormProps) {
 
   const selectedSettings = watch('preferredSettings') || [];
 
+  // Focus first error field after validation
+  React.useEffect(() => {
+    const errorKeys = Object.keys(errors);
+    if (errorKeys.length > 0) {
+      const firstErrorField = formRef.current?.querySelector(
+        `[name="${errorKeys[0]}"]`
+      ) as HTMLElement | null;
+      firstErrorField?.focus();
+    }
+  }, [errors]);
+
   const handleSettingChange = (value: string, checked: boolean) => {
     const current = selectedSettings;
     if (checked) {
@@ -55,9 +68,14 @@ export function HCAForm({ onSubmit }: HCAFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+      <p className="text-body-sm text-neutral-grey mb-2">
+        Fields marked with <span aria-hidden="true">*</span><span className="sr-only">asterisk</span> are required.
+      </p>
+
       <Input
         label="Full Name"
+        required
         {...register('fullName')}
         error={errors.fullName?.message}
       />
@@ -65,6 +83,7 @@ export function HCAForm({ onSubmit }: HCAFormProps) {
       <Input
         label="Email"
         type="email"
+        required
         {...register('email')}
         error={errors.email?.message}
       />
@@ -72,6 +91,7 @@ export function HCAForm({ onSubmit }: HCAFormProps) {
       <Input
         label="Phone"
         type="tel"
+        required
         {...register('phone')}
         error={errors.phone?.message}
       />
@@ -79,12 +99,14 @@ export function HCAForm({ onSubmit }: HCAFormProps) {
       <Select
         label="Experience Level"
         options={EXPERIENCE_LEVEL_OPTIONS}
+        required
         {...register('experienceLevel')}
         error={errors.experienceLevel?.message}
       />
 
       <Input
         label="Location"
+        required
         {...register('location')}
         error={errors.location?.message}
       />

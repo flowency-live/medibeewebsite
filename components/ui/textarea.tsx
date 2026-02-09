@@ -22,9 +22,10 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         >
           {label}
           {required && (
-            <span className="text-red-600 ml-1" aria-hidden="true">
-              *
-            </span>
+            <>
+              <span className="text-red-600 ml-1" aria-hidden="true">*</span>
+              <span className="sr-only">(required)</span>
+            </>
           )}
         </label>
 

@@ -18,8 +18,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               // Base - square, no rounded corners
               'peer h-5 w-5 appearance-none',
               'border-2 border-neutral-grey bg-white',
-              // Focus state
-              'focus:outline-none focus:border-rich-gold',
+              // Focus state - visible ring for accessibility
+              'focus:outline-none focus:ring-2 focus:ring-rich-gold focus:ring-offset-2',
               // Checked state
               'checked:bg-deep-slate checked:border-deep-slate',
               // Transition
@@ -37,6 +37,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             fill="none"
             stroke="currentColor"
             strokeWidth={2.5}
+            aria-hidden="true"
           >
             <path
               d="M5 10l3 3 7-7"

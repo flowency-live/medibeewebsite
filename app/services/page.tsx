@@ -78,7 +78,7 @@ export default function ServicesPage() {
               style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
             >
               <div className="w-12 h-12 mb-6 text-provider">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full" aria-hidden="true">
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12 6 12 12 16 14" />
                 </svg>
@@ -92,6 +92,7 @@ export default function ServicesPage() {
               <Link
                 href="/contact"
                 className="text-sm inline-flex items-center gap-2 no-underline font-medium text-provider"
+                aria-label="Learn more about Temporary Staffing"
               >
                 Learn more
                 <span aria-hidden="true">→</span>
@@ -104,7 +105,7 @@ export default function ServicesPage() {
               style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
             >
               <div className="w-12 h-12 mb-6 text-provider">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full" aria-hidden="true">
                   <path d="M9 12l2 2 4-4" />
                   <path d="M12 3a9 9 0 1 0 9 9" />
                   <path d="M21 3v6h-6" />
@@ -119,6 +120,7 @@ export default function ServicesPage() {
               <Link
                 href="/contact"
                 className="text-sm inline-flex items-center gap-2 no-underline font-medium text-provider"
+                aria-label="Learn more about Emergency Cover"
               >
                 Learn more
                 <span aria-hidden="true">→</span>
@@ -131,7 +133,7 @@ export default function ServicesPage() {
               style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}
             >
               <div className="w-12 h-12 mb-6 text-provider">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full" aria-hidden="true">
                   <circle cx="9" cy="7" r="4" />
                   <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
                   <circle cx="19" cy="11" r="3" />
@@ -147,6 +149,7 @@ export default function ServicesPage() {
               <Link
                 href="/contact"
                 className="text-sm inline-flex items-center gap-2 no-underline font-medium text-provider"
+                aria-label="Learn more about Contract Placements"
               >
                 Learn more
                 <span aria-hidden="true">→</span>

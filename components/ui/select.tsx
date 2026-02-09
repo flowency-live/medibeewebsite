@@ -30,9 +30,10 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         >
           {label}
           {required && (
-            <span className="text-red-600 ml-1" aria-hidden="true">
-              *
-            </span>
+            <>
+              <span className="text-red-600 ml-1" aria-hidden="true">*</span>
+              <span className="sr-only">(required)</span>
+            </>
           )}
         </label>
 
@@ -83,6 +84,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth={2}
+              aria-hidden="true"
             >
               <path
                 strokeLinecap="square"

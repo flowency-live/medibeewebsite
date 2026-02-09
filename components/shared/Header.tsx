@@ -10,8 +10,56 @@ import { cn } from '@/lib/utils';
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const pathname = usePathname();
+  const menuButtonRef = React.useRef<HTMLButtonElement>(null);
+  const mobileNavRef = React.useRef<HTMLElement>(null);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  // Close menu on route change
+  React.useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Focus trap and escape key handling for mobile menu
+  React.useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const nav = mobileNavRef.current;
+    if (!nav) return;
+
+    // Focus first link when menu opens
+    const firstLink = nav.querySelector('a') as HTMLElement | null;
+    firstLink?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Close on Escape
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+
+      // Focus trap on Tab
+      if (e.key !== 'Tab') return;
+
+      const focusableElements = nav.querySelectorAll<HTMLElement>(
+        'a, button, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
 
   return (
     <header className="bg-slate-blue border-b-[3px] border-rich-gold">
@@ -89,11 +137,13 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
+            ref={menuButtonRef}
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 -mr-2 text-mist hover:text-soft-gold transition-colors"
             aria-label="Menu"
             aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav"
           >
             <span className="sr-only">Menu</span>
             {mobileMenuOpen ? (
@@ -104,6 +154,7 @@ export function Header() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="square"
@@ -118,6 +169,7 @@ export function Header() {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="square"
@@ -131,13 +183,15 @@ export function Header() {
 
       {/* Mobile Navigation - slides down */}
       <nav
+        ref={mobileNavRef}
+        id="mobile-nav"
         data-testid="mobile-nav"
         className={cn(
           'lg:hidden bg-slate-blue text-mist overflow-hidden transition-all duration-200',
           mobileMenuOpen ? 'max-h-screen py-8' : 'max-h-0 py-0'
         )}
-        style={{ visibility: mobileMenuOpen ? 'visible' : 'hidden' }}
-        aria-label="Mobile"
+        aria-label="Mobile navigation"
+        aria-hidden={!mobileMenuOpen}
       >
         <div className="container-editorial flex flex-col gap-6">
           {siteConfig.nav
