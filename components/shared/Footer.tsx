@@ -110,6 +110,14 @@ export function Footer() {
               <ul className="space-y-2.5">
                 <li>
                   <Link
+                    href="/policies"
+                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
+                  >
+                    View all policies
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/privacy-policy"
                     className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
                   >
@@ -122,14 +130,6 @@ export function Footer() {
                     className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
                   >
                     Safeguarding
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/complaints"
-                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
-                  >
-                    Complaints
                   </Link>
                 </li>
               </ul>

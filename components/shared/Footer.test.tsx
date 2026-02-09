@@ -31,10 +31,10 @@ describe('Footer', () => {
     expect(safeguardingLink).toHaveAttribute('href', '/safeguarding');
   });
 
-  it('links to complaints page', () => {
+  it('links to policies hub', () => {
     render(<Footer />);
-    const complaintsLink = screen.getByRole('link', { name: /complaints/i });
-    expect(complaintsLink).toHaveAttribute('href', '/complaints');
+    const policiesLink = screen.getByRole('link', { name: /view all policies/i });
+    expect(policiesLink).toHaveAttribute('href', '/policies');
   });
 
   it('shows copyright with current year', () => {
