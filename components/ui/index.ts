@@ -21,3 +21,4 @@ export type { FileInputProps } from './file-input';
 
 export { HexagonIcon } from './HexagonIcon';
 export { HexagonBadge } from './HexagonBadge';
+export { HexagonBullet } from './HexagonBullet';

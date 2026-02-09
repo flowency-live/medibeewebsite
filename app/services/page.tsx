@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { HoneycombPattern, HoneycombFade } from '@/components/decorative';
+import { HoneycombPattern, HoneycombFade, HoneycombCluster } from '@/components/decorative';
+import { HexagonBullet } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'Services',
@@ -25,14 +26,15 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 relative bg-midnight">
+      <section className="py-24 relative bg-midnight overflow-hidden">
         {/* Subtle grain texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: grainTexture }}
         />
 
-        <HoneycombFade direction="bottom-to-top" opacity={0.12} />
+        {/* Decorative hexagon clusters - brand signature */}
+        <HoneycombCluster position="top-right" variant="filled" scale={1.4} opacityMultiplier={1.8} />
 
         <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto text-center">
@@ -200,10 +202,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* The Problem We Solve */}
+      {/* The Problem We Solve - Plain background for visual rest */}
       <section className="py-24 relative bg-midnight">
-        <HoneycombFade direction="top-to-bottom" opacity={0.10} />
-
         <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto">
             <div className="w-[60px] h-[3px] mb-8 bg-provider" />
@@ -250,7 +250,7 @@ export default function ServicesPage() {
             <div className="flex justify-center gap-12 flex-wrap">
               {['DBS Checked', 'Right to Work Verified', 'ICO Registered', 'Safeguarding Policies'].map((badge) => (
                 <div key={badge} className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-rich-gold" />
+                  <HexagonBullet />
                   <span className="text-[0.8125rem] tracking-[0.1em] uppercase opacity-80 text-soft-gold">
                     {badge}
                   </span>

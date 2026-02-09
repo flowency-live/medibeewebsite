@@ -47,4 +47,10 @@ describe('Footer', () => {
     render(<Footer />);
     expect(screen.getByText(/ico/i)).toBeInTheDocument();
   });
+
+  it('renders a decorative hexagon cluster', () => {
+    render(<Footer />);
+    const cluster = screen.getByTestId('footer-hex-cluster');
+    expect(cluster).toBeInTheDocument();
+  });
 });

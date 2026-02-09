@@ -108,6 +108,20 @@
 }
 
 @layer utilities {
+  /* Subtle floating animation for decorative elements */
+  @keyframes hex-float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(1deg);
+    }
+  }
+
+  .animate-hex-float {
+    animation: hex-float 8s ease-in-out infinite;
+  }
+
   /* Text balance for headlines */
   .text-balance {
     text-wrap: balance;
@@ -172,6 +186,10 @@
       opacity: 1 !important;
       transform: none !important;
       transition: none !important;
+    }
+
+    .animate-hex-float {
+      animation: none !important;
     }
   }
 }

@@ -35,6 +35,12 @@ const outlinePlacements: HexagonPlacement[] = [
 interface HoneycombClusterProps {
   position: keyof typeof positionClasses;
   variant: 'filled' | 'outline';
+  /** Scale multiplier for cluster size. Default 1. Use 1.5-2 for more visible clusters. */
+  scale?: number;
+  /** Opacity multiplier. Default 1. Use 2-3 for more visible clusters. */
+  opacityMultiplier?: number;
+  /** Apply subtle floating animation. Default false. */
+  animate?: boolean;
   className?: string;
   'data-testid'?: string;
 }
@@ -42,6 +48,9 @@ interface HoneycombClusterProps {
 export function HoneycombCluster({
   position,
   variant,
+  scale = 1,
+  opacityMultiplier = 1,
+  animate = false,
   className,
   'data-testid': testId,
 }: HoneycombClusterProps) {
@@ -52,8 +61,10 @@ export function HoneycombCluster({
       className={cn(
         'absolute pointer-events-none w-[200px] h-[200px]',
         positionClasses[position],
+        animate && 'animate-hex-float',
         className
       )}
+      style={{ transform: `scale(${scale})` }}
       aria-hidden="true"
       data-testid={testId}
     >
@@ -64,7 +75,7 @@ export function HoneycombCluster({
           style={{
             left: `${placement.x}px`,
             top: `${placement.y}px`,
-            opacity: placement.opacity,
+            opacity: Math.min(placement.opacity * opacityMultiplier, 1),
           }}
         >
           <HexagonIcon

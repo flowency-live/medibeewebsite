@@ -64,4 +64,24 @@ describe('AudienceCard', () => {
     render(<AudienceCard {...defaultProps} className="custom-class" data-testid="card" />);
     expect(screen.getByTestId('card')).toHaveClass('custom-class');
   });
+
+  it('renders a decorative hexagon corner element', () => {
+    render(<AudienceCard {...defaultProps} />);
+    const hexCorner = screen.getByTestId('hex-corner');
+    expect(hexCorner).toBeInTheDocument();
+  });
+
+  it('renders hexagon corner with provider color for provider type', () => {
+    render(<AudienceCard {...defaultProps} type="provider" />);
+    const hexCorner = screen.getByTestId('hex-corner');
+    const polygon = hexCorner.querySelector('polygon');
+    expect(polygon).toHaveAttribute('fill', '#4A6FA5');
+  });
+
+  it('renders hexagon corner with hca color for hca type', () => {
+    render(<AudienceCard {...defaultProps} type="hca" />);
+    const hexCorner = screen.getByTestId('hex-corner');
+    const polygon = hexCorner.querySelector('polygon');
+    expect(polygon).toHaveAttribute('fill', '#7B6B8D');
+  });
 });

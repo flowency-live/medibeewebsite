@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { HoneycombPattern, HoneycombFade } from '@/components/decorative';
+import { HoneycombPattern, HoneycombFade, HoneycombCluster } from '@/components/decorative';
+import { HexagonBullet } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'Work With Us',
@@ -34,14 +35,15 @@ export default function WorkWithUsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 relative bg-midnight">
+      <section className="py-24 relative bg-midnight overflow-hidden">
         {/* Subtle grain texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: grainTexture }}
         />
 
-        <HoneycombFade direction="bottom-to-top" opacity={0.12} />
+        {/* Decorative hexagon clusters - brand signature */}
+        <HoneycombCluster position="top-right" variant="filled" scale={1.4} opacityMultiplier={1.8} />
 
         <div className="container-editorial relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
@@ -110,10 +112,8 @@ export default function WorkWithUsPage() {
         </div>
       </section>
 
-      {/* Why Healthcare Assistants Choose Us */}
+      {/* Why Healthcare Assistants Choose Us - Plain background for visual rest */}
       <section className="py-24 relative bg-midnight">
-        <HoneycombFade direction="top-to-bottom" opacity={0.10} />
-
         <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto">
             <div className="w-[60px] h-[3px] mb-8 bg-hca" />
@@ -153,7 +153,7 @@ export default function WorkWithUsPage() {
             <div className="flex justify-center gap-12 flex-wrap">
               {['DBS Checked', 'Right to Work Verified', 'Safeguarding Policies'].map((badge) => (
                 <div key={badge} className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-rich-gold" />
+                  <HexagonBullet />
                   <span className="text-[0.8125rem] tracking-[0.1em] uppercase opacity-80 text-soft-gold">
                     {badge}
                   </span>

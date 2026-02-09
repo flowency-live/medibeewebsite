@@ -26,6 +26,12 @@ describe('HexagonBadge', () => {
     expect(polygon).toHaveAttribute('fill', '#7B6B8D');
   });
 
+  it('applies gold color for gold variant', () => {
+    render(<HexagonBadge number={1} variant="gold" data-testid="badge" />);
+    const polygon = screen.getByTestId('badge').querySelector('polygon');
+    expect(polygon).toHaveAttribute('fill', '#E5C55C');
+  });
+
   it('displays numbers 1-9 correctly', () => {
     const { rerender } = render(<HexagonBadge number={1} variant="provider" />);
     expect(screen.getByText('1')).toBeInTheDocument();
@@ -51,5 +57,30 @@ describe('HexagonBadge', () => {
     render(<HexagonBadge number={1} variant="provider" data-testid="badge" />);
     const number = screen.getByText('1');
     expect(number).toHaveClass('absolute');
+  });
+
+  describe('gold variant text color', () => {
+    it('uses midnight text for gold variant', () => {
+      render(<HexagonBadge number={1} variant="gold" data-testid="badge" />);
+      const number = screen.getByText('1');
+      expect(number).toHaveClass('text-midnight');
+    });
+  });
+
+  describe('size prop', () => {
+    it('defaults to medium size', () => {
+      render(<HexagonBadge number={1} variant="provider" data-testid="badge" />);
+      expect(screen.getByTestId('badge')).toHaveClass('w-14', 'h-16');
+    });
+
+    it('renders small size when specified', () => {
+      render(<HexagonBadge number={1} variant="provider" size="sm" data-testid="badge" />);
+      expect(screen.getByTestId('badge')).toHaveClass('w-10', 'h-12');
+    });
+
+    it('renders large size when specified', () => {
+      render(<HexagonBadge number={1} variant="provider" size="lg" data-testid="badge" />);
+      expect(screen.getByTestId('badge')).toHaveClass('w-20', 'h-24');
+    });
   });
 });

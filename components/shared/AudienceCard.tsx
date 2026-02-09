@@ -8,10 +8,12 @@ const typeConfig = {
   provider: {
     borderClass: 'border-l-provider',
     eyebrow: 'For Care Providers',
+    hexColor: '#4A6FA5',
   },
   hca: {
     borderClass: 'border-l-hca',
     eyebrow: 'For Healthcare Assistants',
+    hexColor: '#7B6B8D',
   },
 } as const;
 
@@ -44,7 +46,7 @@ export function AudienceCard({
     <Link
       href={href}
       className={cn(
-        'block no-underline overflow-hidden transition-all border-l-4 bg-midnight',
+        'group relative block no-underline overflow-hidden transition-all border-l-4 bg-midnight',
         config.borderClass,
         className
       )}
@@ -53,6 +55,19 @@ export function AudienceCard({
       }}
       data-testid={testId}
     >
+      {/* Decorative hexagon corner */}
+      <svg
+        viewBox="0 0 100 115"
+        className="absolute top-4 right-4 w-6 h-7 opacity-40 transition-opacity duration-300 group-hover:opacity-70 z-20"
+        aria-hidden="true"
+        data-testid="hex-corner"
+      >
+        <polygon
+          points="50,0 100,28.75 100,86.25 50,115 0,86.25 0,28.75"
+          fill={config.hexColor}
+        />
+      </svg>
+
       {/* Image section */}
       <div className="relative h-[280px] overflow-hidden">
         <Image

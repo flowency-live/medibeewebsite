@@ -4,9 +4,9 @@ import {
   HoneycombPattern,
   HoneycombCluster,
   HoneycombFade,
-  LayeredHoneycomb,
 } from '@/components/decorative';
 import { AudienceCard, HowItWorksColumn } from '@/components/shared';
+import { HexagonBullet } from '@/components/ui';
 
 // Grain texture for hero
 const grainTexture = `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
@@ -40,12 +40,9 @@ export default function HomePage() {
           style={{ backgroundImage: grainTexture }}
         />
 
-        {/* Layered honeycomb background */}
-        <LayeredHoneycomb layers={3} />
-
-        {/* Decorative hexagon clusters */}
-        <HoneycombCluster position="top-right" variant="filled" />
-        <HoneycombCluster position="top-left" variant="outline" />
+        {/* Decorative hexagon clusters - visible brand signature */}
+        <HoneycombCluster position="top-right" variant="filled" scale={1.5} opacityMultiplier={2} animate />
+        <HoneycombCluster position="top-left" variant="outline" scale={1.25} opacityMultiplier={1.8} animate />
 
         {/* Content */}
         <div className="relative z-10 container-editorial py-20 md:py-32">
@@ -91,9 +88,10 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-rich-gold" />
       </section>
 
-      {/* Audience Split - Decision Fork */}
-      <section className="py-24 relative bg-midnight-light">
-        <HoneycombFade direction="top-to-bottom" opacity={0.12} />
+      {/* Audience Split - Decision Fork - Plain background for visual rest */}
+      <section className="py-24 relative bg-midnight-light overflow-hidden">
+        {/* Subtle hexagon cluster for brand consistency */}
+        <HoneycombCluster position="bottom-right" variant="filled" scale={1} opacityMultiplier={1.2} />
 
         <div className="container-editorial relative z-10">
           <div className="text-center mb-16">
@@ -165,10 +163,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust & Compliance */}
+      {/* Trust & Compliance - Plain background for visual rest */}
       <section className="py-20 relative bg-midnight">
-        <HoneycombFade direction="bottom-to-top" opacity={0.10} />
-
         <div className="container-editorial relative z-10">
           <div className="max-w-[700px] mx-auto text-center">
             <div className="w-[60px] h-[3px] mx-auto mb-8 bg-rich-gold" />
@@ -185,7 +181,7 @@ export default function HomePage() {
               {['DBS Checked', 'Right to Work Verified', 'ICO Registered'].map(
                 (badge) => (
                   <div key={badge} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-rich-gold" />
+                    <HexagonBullet />
                     <span className="text-[0.8125rem] tracking-[0.1em] uppercase opacity-80 text-soft-gold">
                       {badge}
                     </span>

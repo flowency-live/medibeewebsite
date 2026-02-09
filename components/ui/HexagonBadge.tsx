@@ -3,11 +3,25 @@ import { cn } from '@/lib/utils';
 const variantColors = {
   provider: '#4A6FA5',
   hca: '#7B6B8D',
+  gold: '#E5C55C',
+} as const;
+
+const sizeClasses = {
+  sm: 'w-10 h-12',
+  md: 'w-14 h-16',
+  lg: 'w-20 h-24',
+} as const;
+
+const sizeFontClasses = {
+  sm: 'text-base',
+  md: 'text-xl',
+  lg: 'text-2xl',
 } as const;
 
 interface HexagonBadgeProps {
   number: number;
   variant: keyof typeof variantColors;
+  size?: keyof typeof sizeClasses;
   className?: string;
   'data-testid'?: string;
 }
@@ -15,6 +29,7 @@ interface HexagonBadgeProps {
 export function HexagonBadge({
   number,
   variant,
+  size = 'md',
   className,
   'data-testid': testId,
 }: HexagonBadgeProps) {
@@ -22,7 +37,7 @@ export function HexagonBadge({
 
   return (
     <div
-      className={cn('relative w-14 h-16 flex-shrink-0', className)}
+      className={cn('relative flex-shrink-0', sizeClasses[size], className)}
       aria-hidden="true"
       data-testid={testId}
     >
@@ -35,7 +50,10 @@ export function HexagonBadge({
           fill={colorValue}
         />
       </svg>
-      <span className="absolute inset-0 flex items-center justify-center font-display text-xl font-semibold text-midnight">
+      <span className={cn(
+        'absolute inset-0 flex items-center justify-center font-display font-semibold text-midnight',
+        sizeFontClasses[size]
+      )}>
         {number}
       </span>
     </div>
