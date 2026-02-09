@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 const colorValues = {
   gold: '#E5C55C',
   provider: '#4A6FA5',
-  hca: '#7B6B8D',
+  hca: '#E5C55C',
   'soft-gold': '#F5E6A3',
 } as const;
 

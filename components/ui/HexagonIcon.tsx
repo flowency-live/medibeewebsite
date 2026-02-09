@@ -4,7 +4,7 @@ const colors = {
   gold: '#E5C55C',
   'soft-gold': '#F5E6A3',
   provider: '#4A6FA5',
-  hca: '#7B6B8D',
+  hca: '#E5C55C',
   mist: '#F5F4F0',
   midnight: '#1a1d2e',
 } as const;

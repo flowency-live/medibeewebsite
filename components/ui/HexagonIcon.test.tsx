@@ -56,7 +56,7 @@ describe('HexagonIcon', () => {
   it('applies hca color when specified', () => {
     render(<HexagonIcon color="hca" data-testid="hexagon" />);
     const polygon = screen.getByTestId('hexagon').querySelector('polygon');
-    expect(polygon).toHaveAttribute('fill', '#7B6B8D');
+    expect(polygon).toHaveAttribute('fill', '#E5C55C');
   });
 
   it('is aria-hidden by default for decorative use', () => {

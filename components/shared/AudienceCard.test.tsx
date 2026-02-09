@@ -82,6 +82,6 @@ describe('AudienceCard', () => {
     render(<AudienceCard {...defaultProps} type="hca" />);
     const hexCorner = screen.getByTestId('hex-corner');
     const polygon = hexCorner.querySelector('polygon');
-    expect(polygon).toHaveAttribute('fill', '#7B6B8D');
+    expect(polygon).toHaveAttribute('fill', '#E5C55C');
   });
 });

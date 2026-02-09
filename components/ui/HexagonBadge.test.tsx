@@ -23,7 +23,7 @@ describe('HexagonBadge', () => {
   it('applies hca color for hca variant', () => {
     render(<HexagonBadge number={2} variant="hca" data-testid="badge" />);
     const polygon = screen.getByTestId('badge').querySelector('polygon');
-    expect(polygon).toHaveAttribute('fill', '#7B6B8D');
+    expect(polygon).toHaveAttribute('fill', '#E5C55C');
   });
 
   it('applies gold color for gold variant', () => {

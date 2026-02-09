@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 
 const variantColors = {
   provider: '#4A6FA5',
-  hca: '#7B6B8D',
+  hca: '#E5C55C',
   gold: '#E5C55C',
 } as const;
 

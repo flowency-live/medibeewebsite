@@ -65,7 +65,7 @@ describe('HowItWorksColumn', () => {
     const badges = screen.getByTestId('column').querySelectorAll('svg polygon');
     expect(badges.length).toBeGreaterThan(0);
     badges.forEach((badge) => {
-      expect(badge).toHaveAttribute('fill', '#7B6B8D');
+      expect(badge).toHaveAttribute('fill', '#E5C55C');
     });
   });
 

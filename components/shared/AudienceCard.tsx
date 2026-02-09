@@ -13,7 +13,7 @@ const typeConfig = {
   hca: {
     borderClass: 'border-l-hca',
     eyebrow: 'For Healthcare Assistants',
-    hexColor: '#7B6B8D',
+    hexColor: '#E5C55C',
   },
 } as const;
 

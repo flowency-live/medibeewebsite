@@ -29,9 +29,9 @@ const config: Config = {
           dark: '#3A5C8C',
         },
         'hca': {
-          DEFAULT: '#7B6B8D',
-          light: '#8D7DA0',
-          dark: '#69597A',
+          DEFAULT: '#E5C55C',
+          light: '#F5E6A3',
+          dark: '#C9A94A',
         },
       },
       fontFamily: {
