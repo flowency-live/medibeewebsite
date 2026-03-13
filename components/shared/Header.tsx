@@ -110,28 +110,52 @@ export function Header() {
 
             {/* Portal Links */}
             <Link
+              href="/candidate/login"
+              className={cn(
+                'font-body text-ui-sm tracking-ui uppercase',
+                'text-mist/80 hover:text-soft-gold transition-colors',
+                'no-underline flex items-center gap-1.5',
+                pathname.startsWith('/candidate') && 'text-soft-gold'
+              )}
+              title="Candidate Portal"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              Candidates
+            </Link>
+
+            <Link
               href="/client/login"
               className={cn(
                 'font-body text-ui-sm tracking-ui uppercase',
                 'text-mist/80 hover:text-soft-gold transition-colors',
-                'no-underline',
-                pathname === '/client/login' && 'text-soft-gold'
+                'no-underline flex items-center gap-1.5',
+                pathname.startsWith('/client') && 'text-soft-gold'
               )}
+              title="Client Portal"
             >
-              Client Login
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              Clients
             </Link>
 
-            {/* Candidate Registration link */}
+            {/* Admin link - subtle */}
             <Link
-              href="/candidate/register"
+              href="/admin/login"
               className={cn(
-                'font-body text-ui-sm tracking-ui uppercase',
-                'text-rich-gold hover:text-soft-gold transition-colors',
+                'text-mist/40 hover:text-mist/80 transition-colors',
                 'no-underline',
-                pathname === '/candidate/register' && 'text-soft-gold'
+                pathname.startsWith('/admin') && 'text-mist/80'
               )}
+              title="Admin Portal"
             >
-              Register
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span className="sr-only">Admin</span>
             </Link>
           </nav>
 
@@ -217,30 +241,60 @@ export function Header() {
 
           {/* Portal Links */}
           <Link
-            href="/client/login"
+            href="/candidate/login"
             onClick={closeMobileMenu}
             className={cn(
-              'font-body text-body-lg',
+              'font-body text-body-lg flex items-center gap-2',
               'text-mist hover:text-soft-gold transition-colors',
               'no-underline',
-              pathname === '/client/login' && 'text-rich-gold'
+              pathname.startsWith('/candidate') && 'text-rich-gold'
             )}
           >
-            Client Login
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            Candidate Portal
           </Link>
 
           <Link
-            href="/candidate/register"
+            href="/client/login"
             onClick={closeMobileMenu}
-            className="font-body text-body-lg text-rich-gold hover:text-soft-gold transition-colors no-underline"
+            className={cn(
+              'font-body text-body-lg flex items-center gap-2',
+              'text-mist hover:text-soft-gold transition-colors',
+              'no-underline',
+              pathname.startsWith('/client') && 'text-rich-gold'
+            )}
           >
-            Candidate Registration
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            Client Portal
           </Link>
+
+          <Link
+            href="/admin/login"
+            onClick={closeMobileMenu}
+            className={cn(
+              'font-body text-body-lg flex items-center gap-2',
+              'text-mist/60 hover:text-mist transition-colors',
+              'no-underline',
+              pathname.startsWith('/admin') && 'text-mist'
+            )}
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Admin
+          </Link>
+
+          <span className="rule-gold-wide" aria-hidden="true" />
 
           <Link
             href="/contact"
             onClick={closeMobileMenu}
-            className="font-body text-body-lg text-mist hover:text-soft-gold transition-colors no-underline"
+            className="font-body text-body-lg text-rich-gold hover:text-soft-gold transition-colors no-underline"
           >
             Contact Us
           </Link>

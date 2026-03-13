@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { HoneycombCluster } from '@/components/decorative';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -38,7 +39,7 @@ export default function AboutPage() {
     <>
       {/* Hero */}
       <section
-        className="py-24 relative"
+        className="py-24 relative overflow-hidden"
         style={{ backgroundColor: '#1a1d2e' }}
       >
         {/* Subtle grain texture */}
@@ -46,6 +47,9 @@ export default function AboutPage() {
           className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: grainTexture }}
         />
+
+        {/* Decorative hexagon clusters - brand signature */}
+        <HoneycombCluster position="top-left" variant="outline" scale={1.25} opacityMultiplier={1.6} />
 
         <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto text-center">

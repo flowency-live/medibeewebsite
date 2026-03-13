@@ -63,6 +63,7 @@ export const metadata: Metadata = {
 };
 
 import { Header, Footer } from '@/components/shared';
+import { Providers } from './providers';
 
 export default function RootLayout({
   children,
@@ -72,17 +73,19 @@ export default function RootLayout({
   return (
     <html lang="en-GB">
       <body className={`${fraunces.variable} ${outfit.variable}`}>
-        <a
-          href="#main-content"
-          className="skip-link"
-        >
-          Skip to main content
-        </a>
-        <Header />
-        <main id="main-content" tabIndex={-1} className="focus:outline-none">
-          {children}
-        </main>
-        <Footer />
+        <Providers>
+          <a
+            href="#main-content"
+            className="skip-link"
+          >
+            Skip to main content
+          </a>
+          <Header />
+          <main id="main-content" tabIndex={-1} className="focus:outline-none">
+            {children}
+          </main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

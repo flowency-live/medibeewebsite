@@ -3,24 +3,42 @@
 import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button, Input } from '@/components/ui';
+import { useAuth } from '@/lib/auth';
 
 export default function ClientLoginPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { loginClient, state } = useAuth();
+
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState('');
+
+  // Redirect if already authenticated
+  React.useEffect(() => {
+    if (state.status === 'authenticated' && state.userType === 'client') {
+      const redirect = searchParams.get('redirect') ?? '/client/dashboard';
+      router.push(redirect);
+    }
+  }, [state, router, searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
 
-    // TODO: Implement actual authentication
-    // For now, show a placeholder message
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setError('Login functionality coming soon. Please check back later.');
-    setIsLoading(false);
+    const result = await loginClient({ email, password });
+
+    if (result.success) {
+      const redirect = searchParams.get('redirect') ?? '/client/dashboard';
+      router.push(redirect);
+    } else {
+      setError(result.error ?? 'Login failed. Please check your credentials.');
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -49,7 +67,7 @@ export default function ClientLoginPage() {
           {/* Login Form */}
           <div className="bg-mist p-8">
             {error && (
-              <div className="mb-6 p-4 bg-amber-50 border-l-[3px] border-amber-500">
+              <div className="mb-6 p-4 bg-amber-50 border-l-[3px] border-amber-500" role="alert">
                 <p className="font-body text-body-sm text-amber-800">{error}</p>
               </div>
             )}
@@ -63,6 +81,7 @@ export default function ClientLoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 autoComplete="email"
+                disabled={isLoading}
               />
 
               <Input
@@ -73,6 +92,7 @@ export default function ClientLoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 autoComplete="current-password"
+                disabled={isLoading}
               />
 
               <div className="flex items-center justify-between">
@@ -84,7 +104,7 @@ export default function ClientLoginPage() {
                   <span className="font-body text-body-sm text-ink">Remember me</span>
                 </label>
                 <Link
-                  href="#"
+                  href="/client/forgot-password"
                   className="font-body text-body-sm text-slate-blue hover:text-deep-slate underline"
                 >
                   Forgot password?
@@ -101,17 +121,15 @@ export default function ClientLoginPage() {
               </Button>
             </form>
 
-            <div className="mt-6 pt-6 border-t border-neutral-grey/30">
-              <p className="font-body text-body-sm text-neutral-grey text-center">
-                Client accounts are created during onboarding. If you need access,
-                please{' '}
+            <div className="mt-6 pt-6 border-t border-neutral-grey/30 text-center">
+              <p className="font-body text-body-md text-ink">
+                Don&apos;t have an account?{' '}
                 <Link
-                  href="/contact"
+                  href="/client/register"
                   className="text-slate-blue hover:text-deep-slate underline"
                 >
-                  contact us
+                  Register your organisation
                 </Link>
-                .
               </p>
             </div>
           </div>
