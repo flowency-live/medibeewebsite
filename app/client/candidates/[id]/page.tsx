@@ -76,7 +76,7 @@ export default function ViewCandidatePage() {
 
       const [candidateResponse, shortlistsResponse] = await Promise.all([
         matchingApi.getCandidate(candidateId),
-        shortlistsApi.getShortlists(),
+        shortlistsApi.list(),
       ]);
 
       if (candidateResponse.success && candidateResponse.data) {
@@ -113,7 +113,7 @@ export default function ViewCandidatePage() {
     setIsContactLoading(true);
     setError('');
 
-    const response = await contactsApi.requestContact({ candidateId });
+    const response = await contactsApi.request({ candidateId, message: 'Contact request' });
 
     if (response.success) {
       setContactRequested(true);
@@ -127,7 +127,7 @@ export default function ViewCandidatePage() {
   };
 
   const handleAddToShortlist = async (shortlistId: string) => {
-    const response = await shortlistsApi.addToShortlist(shortlistId, candidateId);
+    const response = await shortlistsApi.addCandidate(shortlistId, candidateId);
 
     if (response.success) {
       setShowShortlistModal(false);
@@ -168,7 +168,7 @@ export default function ViewCandidatePage() {
     );
   }
 
-  const isBronze = subscription?.tier === 'Bronze';
+  const isBronze = subscription?.tier === 'bronze';
 
   return (
     <div className="max-w-4xl">

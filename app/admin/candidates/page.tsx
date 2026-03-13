@@ -59,7 +59,7 @@ export default function AdminCandidatesPage() {
       params.status = statusFilter;
     }
 
-    const response = await adminApi.getCandidates(params);
+    const response = await adminApi.listCandidates(params);
 
     if (response.success && response.data) {
       const data = response.data as { candidates: Candidate[] };
@@ -87,10 +87,10 @@ export default function AdminCandidatesPage() {
         response = await adminApi.approveCandidate(candidateId);
         break;
       case 'reject':
-        response = await adminApi.rejectCandidate(candidateId);
+        response = await adminApi.rejectCandidate(candidateId, 'Profile does not meet requirements');
         break;
       case 'suspend':
-        response = await adminApi.suspendCandidate(candidateId);
+        response = await adminApi.suspendCandidate(candidateId, 'Account suspended by admin');
         break;
       case 'reinstate':
         response = await adminApi.reinstateCandidate(candidateId);
@@ -241,7 +241,7 @@ export default function AdminCandidatesPage() {
                           {isActionLoading ? '...' : 'Approve'}
                         </Button>
                         <Button
-                          variant="danger"
+                          variant="secondary"
                           onClick={() => handleAction(candidate.candidateId, 'reject')}
                           disabled={isActionLoading}
                         >
@@ -252,7 +252,7 @@ export default function AdminCandidatesPage() {
 
                     {candidate.status === 'active' && (
                       <Button
-                        variant="danger"
+                        variant="secondary"
                         onClick={() => handleAction(candidate.candidateId, 'suspend')}
                         disabled={isActionLoading}
                       >

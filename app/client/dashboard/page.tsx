@@ -31,8 +31,8 @@ export default function ClientDashboardPage() {
 
       try {
         const [shortlistsResponse, contactsResponse] = await Promise.all([
-          shortlistsApi.getShortlists(),
-          contactsApi.getContacts(),
+          shortlistsApi.list(),
+          contactsApi.list(),
         ]);
 
         let shortlistCount = 0;
@@ -116,7 +116,7 @@ export default function ClientDashboardPage() {
             services.
           </p>
           <Link href="/client/subscription">
-            <Button variant="danger">Update Payment</Button>
+            <Button variant="secondary">Update Payment</Button>
           </Link>
         </div>
       )}

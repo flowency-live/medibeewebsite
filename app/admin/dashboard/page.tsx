@@ -47,7 +47,8 @@ export default function AdminDashboardPage() {
       const response = await adminApi.getAnalytics();
 
       if (response.success && response.data) {
-        setAnalytics(response.data as Analytics);
+        const data = response.data as { metrics: Analytics };
+        setAnalytics(data.metrics);
       }
 
       setIsLoading(false);

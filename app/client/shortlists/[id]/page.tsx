@@ -67,7 +67,7 @@ export default function ShortlistDetailPage() {
   const loadShortlist = React.useCallback(async () => {
     setIsLoading(true);
 
-    const response = await shortlistsApi.getShortlist(shortlistId);
+    const response = await shortlistsApi.get(shortlistId);
 
     if (response.success && response.data) {
       const data = response.data as { shortlist: Shortlist };
@@ -85,7 +85,7 @@ export default function ShortlistDetailPage() {
     setRemovingId(candidateId);
     setError('');
 
-    const response = await shortlistsApi.removeFromShortlist(shortlistId, candidateId);
+    const response = await shortlistsApi.removeCandidate(shortlistId, candidateId);
 
     if (response.success) {
       setSuccess('Candidate removed from shortlist.');
@@ -110,7 +110,7 @@ export default function ShortlistDetailPage() {
     setContactingId(candidateId);
     setError('');
 
-    const response = await contactsApi.requestContact({ candidateId });
+    const response = await contactsApi.request({ candidateId, message: 'Contact request' });
 
     if (response.success) {
       setSuccess('Contact request sent successfully!');
@@ -153,7 +153,7 @@ export default function ShortlistDetailPage() {
     );
   }
 
-  const isBronze = subscription?.tier === 'Bronze';
+  const isBronze = subscription?.tier === 'bronze';
 
   return (
     <div>

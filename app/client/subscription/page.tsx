@@ -12,7 +12,8 @@ import { subscriptionsApi } from '@/lib/api';
 import { Button } from '@/components/ui';
 
 interface SubscriptionPlan {
-  tier: 'Bronze' | 'Silver' | 'Gold';
+  tier: 'bronze' | 'silver' | 'gold';
+  displayName: string;
   price: number;
   credits: number | 'unlimited';
   shortlists: number | 'unlimited';
@@ -22,7 +23,8 @@ interface SubscriptionPlan {
 
 const PLANS: SubscriptionPlan[] = [
   {
-    tier: 'Bronze',
+    tier: 'bronze',
+    displayName: 'Bronze',
     price: 99,
     credits: 5,
     shortlists: 1,
@@ -35,7 +37,8 @@ const PLANS: SubscriptionPlan[] = [
     ],
   },
   {
-    tier: 'Silver',
+    tier: 'silver',
+    displayName: 'Silver',
     price: 249,
     credits: 20,
     shortlists: 3,
@@ -49,7 +52,8 @@ const PLANS: SubscriptionPlan[] = [
     ],
   },
   {
-    tier: 'Gold',
+    tier: 'gold',
+    displayName: 'Gold',
     price: 499,
     credits: 'unlimited',
     shortlists: 'unlimited',
@@ -75,7 +79,7 @@ export default function SubscriptionPage() {
     setIsLoading(tier);
     setError('');
 
-    const response = await subscriptionsApi.createCheckout(tier.toLowerCase());
+    const response = await subscriptionsApi.createCheckout({ tier: tier.toLowerCase() as 'bronze' | 'silver' | 'gold' });
 
     if (response.success && response.data) {
       const data = response.data as { checkoutUrl: string };
@@ -201,14 +205,14 @@ export default function SubscriptionPage() {
             <div
               key={plan.tier}
               className={`bg-white p-6 rounded-sm border-2 ${
-                plan.tier === 'Silver'
+                plan.tier === 'silver'
                   ? 'border-rich-gold'
                   : isCurrent
                   ? 'border-slate-blue'
                   : 'border-neutral-grey/20'
               }`}
             >
-              {plan.tier === 'Silver' && (
+              {plan.tier === 'silver' && (
                 <div className="text-center mb-4">
                   <span className="px-3 py-1 bg-rich-gold text-ink text-xs font-semibold rounded">
                     MOST POPULAR
@@ -217,7 +221,7 @@ export default function SubscriptionPage() {
               )}
 
               <div className="text-center mb-6">
-                <h3 className="font-display text-xl text-ink mb-2">{plan.tier}</h3>
+                <h3 className="font-display text-xl text-ink mb-2">{plan.displayName}</h3>
                 <div className="mb-1">
                   <span className="font-display text-display-sm text-ink">£{plan.price}</span>
                   <span className="font-body text-body-sm text-slate-blue">/month</span>
@@ -247,7 +251,7 @@ export default function SubscriptionPage() {
                   <Button
                     onClick={() => handleSubscribe(plan.tier)}
                     disabled={isLoading !== null}
-                    variant={plan.tier === 'Silver' ? 'primary' : 'secondary'}
+                    variant={plan.tier === 'silver' ? 'primary' : 'secondary'}
                     className="w-full"
                   >
                     {isLoading === plan.tier

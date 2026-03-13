@@ -171,7 +171,7 @@ export default function CandidateSettingsPage() {
           {!showDeleteConfirm ? (
             <Button
               onClick={() => setShowDeleteConfirm(true)}
-              variant="danger"
+              variant="secondary"
             >
               Delete My Account
             </Button>
@@ -205,7 +205,7 @@ export default function CandidateSettingsPage() {
                 <Button
                   onClick={handleDeleteAccount}
                   disabled={isDeleting || deleteConfirmText !== 'DELETE'}
-                  variant="danger"
+                  variant="secondary"
                 >
                   {isDeleting ? 'Deleting...' : 'Permanently Delete Account'}
                 </Button>

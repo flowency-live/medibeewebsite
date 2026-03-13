@@ -28,7 +28,7 @@ export default function ClientForgotPasswordPage() {
 
     setIsSubmitting(true);
 
-    const response = await clientsApi.forgotPassword(email);
+    const response = await clientsApi.forgotPassword({ email });
 
     // Always show success to prevent email enumeration
     setSubmitted(true);

@@ -60,7 +60,7 @@ export default function ContactsPage() {
     const loadContacts = async () => {
       setIsLoading(true);
 
-      const response = await contactsApi.getContacts();
+      const response = await contactsApi.list();
 
       if (response.success && response.data) {
         const data = response.data as { contacts: ContactRequest[] };

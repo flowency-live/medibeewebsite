@@ -51,7 +51,7 @@ export default function AdminContactsPage() {
       params.status = statusFilter;
     }
 
-    const response = await adminApi.getContacts(params);
+    const response = await adminApi.listContacts(params);
 
     if (response.success && response.data) {
       const data = response.data as { contacts: ContactRequest[] };
@@ -203,7 +203,7 @@ export default function AdminContactsPage() {
                           {isActionLoading ? '...' : 'Mark Contacted'}
                         </Button>
                         <Button
-                          variant="danger"
+                          variant="secondary"
                           onClick={() => handleResolve(contact.contactId, 'declined')}
                           disabled={isActionLoading}
                         >

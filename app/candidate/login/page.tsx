@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Button, Input } from '@/components/ui';
 import { useAuth } from '@/lib/auth';
 
-export default function CandidateLoginPage() {
+function CandidateLoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { loginCandidate, state } = useAuth();
@@ -146,5 +146,13 @@ export default function CandidateLoginPage() {
         </div>
       </div>
     </section>
+  );
+}
+
+export default function CandidateLoginPage() {
+  return (
+    <React.Suspense fallback={<div className="min-h-screen bg-deep-slate" />}>
+      <CandidateLoginContent />
+    </React.Suspense>
   );
 }

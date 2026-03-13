@@ -55,7 +55,7 @@ export default function AdminClientsPage() {
     const loadClients = async () => {
       setIsLoading(true);
 
-      const response = await adminApi.getClients();
+      const response = await adminApi.listClients();
 
       if (response.success && response.data) {
         const data = response.data as { clients: Client[] };

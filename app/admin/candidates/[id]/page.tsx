@@ -105,10 +105,10 @@ export default function AdminCandidateDetailPage() {
         response = await adminApi.approveCandidate(candidateId);
         break;
       case 'reject':
-        response = await adminApi.rejectCandidate(candidateId);
+        response = await adminApi.rejectCandidate(candidateId, 'Profile does not meet requirements');
         break;
       case 'suspend':
-        response = await adminApi.suspendCandidate(candidateId);
+        response = await adminApi.suspendCandidate(candidateId, 'Account suspended by admin');
         break;
       case 'reinstate':
         response = await adminApi.reinstateCandidate(candidateId);
@@ -218,7 +218,7 @@ export default function AdminCandidateDetailPage() {
                   {actionLoading ? '...' : 'Approve'}
                 </Button>
                 <Button
-                  variant="danger"
+                  variant="secondary"
                   onClick={() => handleAction('reject')}
                   disabled={actionLoading}
                 >
@@ -228,7 +228,7 @@ export default function AdminCandidateDetailPage() {
             )}
             {candidate.status === 'active' && (
               <Button
-                variant="danger"
+                variant="secondary"
                 onClick={() => handleAction('suspend')}
                 disabled={actionLoading}
               >

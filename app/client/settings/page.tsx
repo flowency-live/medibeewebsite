@@ -166,7 +166,7 @@ export default function ClientSettingsPage() {
           </p>
 
           {!showDeleteConfirm ? (
-            <Button onClick={() => setShowDeleteConfirm(true)} variant="danger">
+            <Button onClick={() => setShowDeleteConfirm(true)} variant="secondary">
               Delete My Account
             </Button>
           ) : (
@@ -200,7 +200,7 @@ export default function ClientSettingsPage() {
                 <Button
                   onClick={handleDeleteAccount}
                   disabled={isDeleting || deleteConfirmText !== 'DELETE'}
-                  variant="danger"
+                  variant="secondary"
                 >
                   {isDeleting ? 'Deleting...' : 'Permanently Delete Account'}
                 </Button>

@@ -148,7 +148,7 @@ export default function BrowseCandidatesPage() {
     );
   }
 
-  const isBronze = subscription.tier === 'Bronze';
+  const isBronze = subscription.tier === 'bronze';
 
   return (
     <div>

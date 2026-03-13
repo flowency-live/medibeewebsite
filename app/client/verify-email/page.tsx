@@ -12,7 +12,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { clientsApi } from '@/lib/api';
 import { Button } from '@/components/ui';
 
-export default function ClientVerifyEmailPage() {
+function ClientVerifyEmailContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -26,9 +26,9 @@ export default function ClientVerifyEmailPage() {
 
   React.useEffect(() => {
     const verifyEmail = async () => {
-      if (!token) return;
+      if (!token || !email) return;
 
-      const response = await clientsApi.verifyEmail(token);
+      const response = await clientsApi.verifyEmail({ email, token });
 
       if (response.success) {
         setStatus('success');
@@ -40,10 +40,10 @@ export default function ClientVerifyEmailPage() {
       }
     };
 
-    if (token) {
+    if (token && email) {
       verifyEmail();
     }
-  }, [token]);
+  }, [token, email]);
 
   if (status === 'verifying') {
     return (
@@ -162,5 +162,13 @@ export default function ClientVerifyEmailPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function ClientVerifyEmailPage() {
+  return (
+    <React.Suspense fallback={<div className="min-h-screen bg-mist" />}>
+      <ClientVerifyEmailContent />
+    </React.Suspense>
   );
 }

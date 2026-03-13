@@ -39,7 +39,7 @@ export default function ShortlistsPage() {
   const loadShortlists = React.useCallback(async () => {
     setIsLoading(true);
 
-    const response = await shortlistsApi.getShortlists();
+    const response = await shortlistsApi.list();
 
     if (response.success && response.data) {
       const data = response.data as { shortlists: Shortlist[] };
@@ -62,9 +62,8 @@ export default function ShortlistsPage() {
     setIsCreating(true);
     setError('');
 
-    const response = await shortlistsApi.createShortlist({
+    const response = await shortlistsApi.create({
       name: newName.trim(),
-      description: newDescription.trim() || undefined,
     });
 
     if (response.success) {
@@ -81,7 +80,7 @@ export default function ShortlistsPage() {
   };
 
   const handleDelete = async (shortlistId: string) => {
-    const response = await shortlistsApi.deleteShortlist(shortlistId);
+    const response = await shortlistsApi.delete(shortlistId);
 
     if (response.success) {
       setDeleteId(null);
@@ -287,7 +286,7 @@ export default function ShortlistsPage() {
               action cannot be undone.
             </p>
             <div className="flex gap-4">
-              <Button variant="danger" onClick={() => handleDelete(deleteId)}>
+              <Button variant="secondary" onClick={() => handleDelete(deleteId)}>
                 Delete
               </Button>
               <Button variant="secondary" onClick={() => setDeleteId(null)}>
