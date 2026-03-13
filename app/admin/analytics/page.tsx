@@ -78,7 +78,8 @@ export default function AdminAnalyticsPage() {
       const response = await adminApi.getAnalytics();
 
       if (response.success && response.data) {
-        setAnalytics(response.data as Analytics);
+        const data = response.data as { metrics: Analytics };
+        setAnalytics(data.metrics);
       }
 
       setIsLoading(false);
@@ -90,7 +91,7 @@ export default function AdminAnalyticsPage() {
   const handleExport = async (type: 'candidates' | 'clients' | 'contacts') => {
     setIsExporting(true);
 
-    const response = await adminApi.exportData(type);
+    const response = await adminApi.exportAnalytics({ format: 'csv', entity: type });
 
     if (response.success && response.data) {
       const data = response.data as { csv: string };
