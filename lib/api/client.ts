@@ -41,11 +41,16 @@ export function getStoredToken(): string | null {
 export function setStoredToken(token: string): void {
   if (typeof window === 'undefined') return;
   localStorage.setItem(TOKEN_KEY, token);
+  // Also set as cookie for middleware auth checks
+  // Max-Age: 90 days (same as JWT expiry for candidates/clients, 8 hours for admin)
+  document.cookie = `${TOKEN_KEY}=${token}; path=/; max-age=${90 * 24 * 60 * 60}; SameSite=Lax`;
 }
 
 export function clearStoredToken(): void {
   if (typeof window === 'undefined') return;
   localStorage.removeItem(TOKEN_KEY);
+  // Also clear the cookie
+  document.cookie = `${TOKEN_KEY}=; path=/; max-age=0`;
 }
 
 // ============================================
