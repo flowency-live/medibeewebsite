@@ -58,15 +58,20 @@ export default function AdminLoginPage() {
     setIsSubmitting(true);
 
     try {
+      console.log('Calling loginAdmin...');
       const result = await loginAdmin({ email, password });
+      console.log('loginAdmin result:', result);
 
       if (result.success) {
+        console.log('Login successful, redirecting...');
         router.push('/admin/dashboard');
       } else {
+        console.log('Login failed:', result.error);
         setError(result.error || 'Invalid credentials.');
         setIsSubmitting(false);
       }
     } catch (err) {
+      console.error('Login exception:', err);
       setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
       setIsSubmitting(false);
     }
