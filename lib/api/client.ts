@@ -5,7 +5,7 @@
  * Handles authentication, error handling, and response parsing.
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.medibee.opstack.uk';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://4zq0km0w5a.execute-api.eu-west-2.amazonaws.com';
 
 // ============================================
 // Types
