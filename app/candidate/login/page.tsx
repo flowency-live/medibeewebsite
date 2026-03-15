@@ -19,7 +19,7 @@ type AuthMethod = 'social' | 'phone' | 'email';
 type PhoneStep = 'input' | 'verify';
 type EmailStep = 'input' | 'sent';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://4zq0km0w5a.execute-api.eu-west-2.amazonaws.com';
 
 function CandidateLoginContent() {
   const router = useRouter();
