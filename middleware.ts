@@ -15,6 +15,7 @@ const protectedRoutes = {
     '/candidate/profile',
     '/candidate/cv',
     '/candidate/settings',
+    '/candidate/onboarding',
   ],
   client: [
     '/client/dashboard',
@@ -41,8 +42,9 @@ const authPages = {
   admin: ['/admin/login'],
 };
 
-// Token cookie name
+// Token cookie names
 const TOKEN_COOKIE = 'medibee_token';
+const SESSION_COOKIE = 'medibee_session'; // For Cognito-based auth
 
 /**
  * Decode JWT payload (without verification - verification happens server-side)
@@ -69,9 +71,11 @@ function isTokenExpired(token: string): boolean {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Get token from cookie or localStorage fallback via header
+  // Get token from cookie (check both legacy token and new session cookie)
   // Note: localStorage isn't accessible in middleware, so we use cookies
-  const token = request.cookies.get(TOKEN_COOKIE)?.value;
+  const legacyToken = request.cookies.get(TOKEN_COOKIE)?.value;
+  const sessionToken = request.cookies.get(SESSION_COOKIE)?.value;
+  const token = sessionToken || legacyToken;
 
   // Determine user type from token
   let userType: 'candidate' | 'client' | 'admin' | null = null;
