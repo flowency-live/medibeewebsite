@@ -57,12 +57,17 @@ export default function AdminLoginPage() {
 
     setIsSubmitting(true);
 
-    const result = await loginAdmin({ email, password });
+    try {
+      const result = await loginAdmin({ email, password });
 
-    if (result.success) {
-      router.push('/admin/dashboard');
-    } else {
-      setError(result.error || 'Invalid credentials.');
+      if (result.success) {
+        router.push('/admin/dashboard');
+      } else {
+        setError(result.error || 'Invalid credentials.');
+        setIsSubmitting(false);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
       setIsSubmitting(false);
     }
   };
