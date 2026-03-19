@@ -398,7 +398,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // ============================================
   // Dev-Only: Test Persona Login Bypass
   // ============================================
-  const isDev = process.env.NODE_ENV === 'development';
+  // Enable in development OR when NEXT_PUBLIC_ENABLE_DEV_LOGIN is set
+  const isDev = process.env.NODE_ENV === 'development' ||
+    process.env.NEXT_PUBLIC_ENABLE_DEV_LOGIN === 'true';
 
   const devLoginAsCandidate = useCallback((profile: CandidateProfile) => {
     if (!isDev) return;
