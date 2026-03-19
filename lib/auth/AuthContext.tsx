@@ -401,9 +401,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // TODO(PROD-WIRE): Remove these functions before production launch
 
   const devLoginAsCandidate = useCallback((profile: CandidateProfile) => {
+    // Create a fake JWT-like token for dev purposes
+    // Format: header.payload.signature (base64 encoded)
+    const payload = {
+      sub: profile.candidateId,
+      type: 'candidate',
+      exp: Math.floor(Date.now() / 1000) + 86400, // 24 hours from now
+    };
+    const fakeToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${btoa(JSON.stringify(payload))}.dev-signature`;
 
-    // Create a fake token for dev purposes
-    const fakeToken = 'dev-test-token-candidate';
+    // Set token in storage (localStorage + cookie for middleware)
+    setStoredToken(fakeToken);
 
     setState({
       status: 'authenticated',
@@ -415,9 +423,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   const devLoginAsClient = useCallback((profile: ClientProfile, subscription?: Subscription) => {
+    // Create a fake JWT-like token for dev purposes
+    const payload = {
+      sub: profile.clientId,
+      type: 'client',
+      exp: Math.floor(Date.now() / 1000) + 86400, // 24 hours from now
+    };
+    const fakeToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${btoa(JSON.stringify(payload))}.dev-signature`;
 
-    // Create a fake token for dev purposes
-    const fakeToken = 'dev-test-token-client';
+    // Set token in storage (localStorage + cookie for middleware)
+    setStoredToken(fakeToken);
 
     setState({
       status: 'authenticated',
