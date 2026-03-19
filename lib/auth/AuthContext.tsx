@@ -398,12 +398,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // ============================================
   // Dev-Only: Test Persona Login Bypass
   // ============================================
-  // Enable in development OR when NEXT_PUBLIC_ENABLE_DEV_LOGIN is set
-  const isDev = process.env.NODE_ENV === 'development' ||
-    process.env.NEXT_PUBLIC_ENABLE_DEV_LOGIN === 'true';
+  // TODO(PROD-WIRE): Remove these functions before production launch
 
   const devLoginAsCandidate = useCallback((profile: CandidateProfile) => {
-    if (!isDev) return;
 
     // Create a fake token for dev purposes
     const fakeToken = 'dev-test-token-candidate';
@@ -415,10 +412,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
       userId: profile.candidateId,
       profile,
     });
-  }, [isDev]);
+  }, []);
 
   const devLoginAsClient = useCallback((profile: ClientProfile, subscription?: Subscription) => {
-    if (!isDev) return;
 
     // Create a fake token for dev purposes
     const fakeToken = 'dev-test-token-client';
@@ -431,7 +427,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       profile,
       subscription: subscription ?? null,
     });
-  }, [isDev]);
+  }, []);
 
   // ============================================
   // Context Value
@@ -445,11 +441,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     loginAdmin,
     logout,
     refreshProfile,
-    // Only expose dev functions in development
-    ...(isDev && {
-      devLoginAsCandidate,
-      devLoginAsClient,
-    }),
+    // TODO(PROD-WIRE): Remove these before production launch
+    devLoginAsCandidate,
+    devLoginAsClient,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

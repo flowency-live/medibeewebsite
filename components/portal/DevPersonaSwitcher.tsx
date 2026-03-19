@@ -96,13 +96,8 @@ export function DevPersonaSwitcher(): ReactNode {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
 
-  // Enable in development OR when NEXT_PUBLIC_ENABLE_DEV_LOGIN is set
-  const isDevMode = process.env.NODE_ENV === 'development' ||
-    process.env.NEXT_PUBLIC_ENABLE_DEV_LOGIN === 'true';
-
-  if (!isDevMode) {
-    return null;
-  }
+  // TODO(PROD-WIRE): Remove this component before production launch
+  // Currently enabled for demo/testing purposes
 
   // Check if dev login functions are available
   if (!devLoginAsCandidate || !devLoginAsClient) {
