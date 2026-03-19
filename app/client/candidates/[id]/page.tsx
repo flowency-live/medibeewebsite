@@ -1,9 +1,10 @@
 'use client';
 
 /**
- * View Candidate Profile Page
+ * Candidate Detail Page (Client View)
  *
- * Full candidate profile with contact request button.
+ * Full candidate profile with introduction request functionality.
+ * Uses CandidateProfilePreview component for consistent employer view.
  */
 
 import * as React from 'react';
@@ -11,25 +12,10 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth, isClient } from '@/lib/auth';
 import { matchingApi, shortlistsApi, contactsApi } from '@/lib/api';
-import { Button } from '@/components/ui';
-
-interface CandidateProfile {
-  candidateId: string;
-  firstName: string;
-  lastName: string;
-  email?: string;
-  phone?: string;
-  location: string;
-  experienceLevel: string;
-  settings: string[];
-  available: boolean;
-  summary?: string;
-  qualifications?: string[];
-  cv?: {
-    filename: string;
-    uploadedAt: string;
-  };
-}
+import { CandidateProfilePreview, PortalCard, StatusBadge } from '@/components/portal';
+import { personas } from '@/lib/test-data';
+import type { CandidateProfile } from '@/lib/auth/types';
+import type { Credential } from '@/components/portal/CredentialCard';
 
 interface Shortlist {
   shortlistId: string;
@@ -37,22 +23,16 @@ interface Shortlist {
   candidateCount: number;
 }
 
-const EXPERIENCE_LABELS: Record<string, string> = {
-  'newly-qualified': 'Newly Qualified',
-  '1-2-years': '1-2 Years Experience',
-  '3-5-years': '3-5 Years Experience',
-  '5-plus-years': '5+ Years Experience',
-};
-
-const SETTING_LABELS: Record<string, string> = {
-  'mental-health': 'Mental Health',
-  'acute-care': 'Acute Care',
-  'private-hospital': 'Private Hospital',
-  'care-home': 'Care Home',
-  'supported-living': 'Supported Living',
-  'end-of-life': 'End of Life',
-  community: 'Community',
-};
+// Get test candidate data by ID
+function getTestCandidate(candidateId: string): { profile: CandidateProfile; credentials: Credential[] } | null {
+  const personaEntries = Object.entries(personas);
+  for (const [, data] of personaEntries) {
+    if (data.profile.candidateId === candidateId) {
+      return { profile: data.profile, credentials: data.credentials };
+    }
+  }
+  return null;
+}
 
 export default function ViewCandidatePage() {
   const params = useParams();
@@ -61,33 +41,39 @@ export default function ViewCandidatePage() {
 
   const candidateId = params.id as string;
 
-  const [candidate, setCandidate] = React.useState<CandidateProfile | null>(null);
+  const [candidateData, setCandidateData] = React.useState<{ profile: CandidateProfile; credentials: Credential[] } | null>(null);
   const [shortlists, setShortlists] = React.useState<Shortlist[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [isContactLoading, setIsContactLoading] = React.useState(false);
   const [showShortlistModal, setShowShortlistModal] = React.useState(false);
+  const [showIntroductionModal, setShowIntroductionModal] = React.useState(false);
   const [contactRequested, setContactRequested] = React.useState(false);
+  const [introductionMessage, setIntroductionMessage] = React.useState('');
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
 
+  // TODO(PROD-WIRE): Replace test data with actual API calls
+  // See: .claude/BACKEND_WIRING_TODO.md for full instructions
+  // Production code:
+  //   const [candidateRes, shortlistsRes] = await Promise.all([
+  //     matchingApi.getCandidate(candidateId),
+  //     shortlistsApi.list(),
+  //   ]);
   React.useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);
 
-      const [candidateResponse, shortlistsResponse] = await Promise.all([
-        matchingApi.getCandidate(candidateId),
-        shortlistsApi.list(),
+      // For demo, use test data
+      const testData = getTestCandidate(candidateId);
+      if (testData) {
+        setCandidateData(testData);
+      }
+
+      // Mock shortlists for demo
+      setShortlists([
+        { shortlistId: 'sl-1', name: 'Mental Health Specialists', candidateCount: 5 },
+        { shortlistId: 'sl-2', name: 'Urgent Positions', candidateCount: 3 },
       ]);
-
-      if (candidateResponse.success && candidateResponse.data) {
-        const data = candidateResponse.data as { candidate: CandidateProfile };
-        setCandidate(data.candidate);
-      }
-
-      if (shortlistsResponse.success && shortlistsResponse.data) {
-        const data = shortlistsResponse.data as { shortlists: Shortlist[] };
-        setShortlists(data.shortlists);
-      }
 
       setIsLoading(false);
     };
@@ -95,46 +81,44 @@ export default function ViewCandidatePage() {
     loadData();
   }, [candidateId]);
 
-  const handleRequestContact = async () => {
+  const handleRequestIntroduction = async () => {
     if (!isClient(state)) return;
 
     const { subscription } = state;
 
     if (!subscription) {
-      setError('You need an active subscription to request contact.');
+      setError('You need an active subscription to request introductions.');
       return;
     }
 
     if (subscription.creditsRemaining === 0) {
-      setError('You have no contact credits remaining. Please upgrade your plan.');
+      setError('You have no introduction credits remaining. Please upgrade your plan.');
       return;
     }
 
     setIsContactLoading(true);
     setError('');
 
-    const response = await contactsApi.request({ candidateId, message: 'Contact request' });
+    // TODO(PROD-WIRE): Replace mock with actual API call
+    // Production code:
+    //   const response = await contactsApi.request({ candidateId, message: introductionMessage });
+    //   if (response.success) { setContactRequested(true); await refreshProfile(); }
 
-    if (response.success) {
+    // Mock success for demo
+    setTimeout(() => {
       setContactRequested(true);
-      setSuccess('Contact request sent successfully! We will be in touch shortly.');
-      await refreshProfile(); // Refresh to update credits
-    } else {
-      setError((response as { message?: string }).message || 'Failed to request contact.');
-    }
-
-    setIsContactLoading(false);
+      setSuccess('Introduction request sent! Medibee will facilitate contact within 24 hours.');
+      setShowIntroductionModal(false);
+      setIsContactLoading(false);
+    }, 1000);
   };
 
   const handleAddToShortlist = async (shortlistId: string) => {
-    const response = await shortlistsApi.addCandidate(shortlistId, candidateId);
+    // In production, would call API:
+    // const response = await shortlistsApi.addCandidate(shortlistId, candidateId);
 
-    if (response.success) {
-      setShowShortlistModal(false);
-      setSuccess('Candidate added to shortlist!');
-    } else {
-      setError((response as { message?: string }).message || 'Failed to add to shortlist.');
-    }
+    setShowShortlistModal(false);
+    setSuccess('Candidate added to shortlist!');
   };
 
   if (!isClient(state)) {
@@ -145,226 +129,273 @@ export default function ViewCandidatePage() {
 
   if (isLoading) {
     return (
-      <div className="text-center py-12">
-        <div className="animate-pulse mb-4">
-          <div className="w-16 h-16 bg-slate-blue/20 rounded-full mx-auto" />
-        </div>
-        <p className="font-body text-body-md text-slate-blue">Loading candidate profile...</p>
+      <div className="text-center py-16">
+        <div className="w-12 h-12 rounded-full bg-portal-blue/20 animate-pulse mx-auto mb-4" />
+        <p className="font-portal text-portal-body text-portal-graphite-muted">
+          Loading candidate profile...
+        </p>
       </div>
     );
   }
 
-  if (!candidate) {
+  if (!candidateData) {
     return (
-      <div className="text-center py-12">
-        <h1 className="font-display text-display-sm text-ink mb-4">Candidate Not Found</h1>
-        <p className="font-body text-body-md text-slate-blue mb-6">
-          This candidate may no longer be available.
+      <div className="text-center py-16">
+        <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-portal-stone flex items-center justify-center">
+          <span className="text-2xl">❓</span>
+        </div>
+        <h1 className="font-portal text-portal-name text-portal-graphite mb-3">
+          Candidate Not Found
+        </h1>
+        <p className="font-portal text-portal-body text-portal-graphite-muted mb-6">
+          This candidate may no longer be available or the profile may have been removed.
         </p>
-        <Link href="/client/candidates">
-          <Button>Back to Search</Button>
+        <Link
+          href="/client/candidates"
+          className="
+            inline-block px-6 py-3 rounded-card
+            font-portal text-portal-body font-medium
+            bg-portal-blue text-white
+            hover:bg-portal-blue-dark
+            transition-colors duration-portal
+          "
+        >
+          Back to Search
         </Link>
       </div>
     );
   }
 
-  const isBronze = subscription?.tier === 'bronze';
+  const { profile, credentials } = candidateData;
 
   return (
-    <div className="max-w-4xl">
+    <div className="space-y-6 animate-fade-in-up">
       {/* Back Link */}
       <Link
         href="/client/candidates"
-        className="inline-flex items-center gap-2 font-body text-body-sm text-slate-blue hover:text-ink mb-6"
+        className="
+          inline-flex items-center gap-2
+          font-portal text-portal-meta text-portal-blue
+          hover:text-portal-blue-dark
+          transition-colors duration-portal
+        "
       >
-        ← Back to search
+        <span>←</span> Back to search
       </Link>
 
+      {/* Alerts */}
       {error && (
-        <div className="mb-6 p-4 bg-red-50 border-l-[3px] border-red-500" role="alert">
-          <p className="font-body text-body-sm text-red-800">{error}</p>
+        <div className="p-4 bg-portal-alert/10 border border-portal-alert/20 rounded-card" role="alert">
+          <p className="font-portal text-portal-body text-portal-alert">{error}</p>
         </div>
       )}
 
       {success && (
-        <div className="mb-6 p-4 bg-green-50 border-l-[3px] border-green-500" role="status">
-          <p className="font-body text-body-sm text-green-800">{success}</p>
+        <div className="p-4 bg-portal-verified/10 border border-portal-verified/20 rounded-card" role="status">
+          <p className="font-portal text-portal-body text-portal-verified">{success}</p>
         </div>
       )}
 
-      {/* Profile Header */}
-      <div className="bg-white p-8 rounded-sm border border-neutral-grey/20 mb-6">
-        <div className="flex items-start justify-between mb-6">
-          <div>
-            <div className="flex items-center gap-4 mb-2">
-              <h1 className="font-display text-display-sm text-ink">
-                {candidate.firstName} {isBronze ? `${candidate.lastName.charAt(0)}.` : candidate.lastName}
-              </h1>
-              <span
-                className={`px-3 py-1 text-sm font-semibold rounded ${
-                  candidate.available
-                    ? 'bg-green-100 text-green-700'
-                    : 'bg-neutral-grey/20 text-slate-blue'
-                }`}
-              >
-                {candidate.available ? 'Available' : 'Not Available'}
-              </span>
-            </div>
-            <p className="font-body text-body-md text-slate-blue">
-              {EXPERIENCE_LABELS[candidate.experienceLevel] || candidate.experienceLevel}
-            </p>
-          </div>
-
-          <div className="flex gap-3">
-            <Button variant="secondary" onClick={() => setShowShortlistModal(true)}>
-              Add to Shortlist
-            </Button>
-            <Button
-              onClick={handleRequestContact}
-              disabled={isContactLoading || contactRequested || !subscription}
-            >
-              {isContactLoading
-                ? 'Requesting...'
-                : contactRequested
-                ? 'Contact Requested'
-                : 'Request Contact'}
-            </Button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h2 className="font-body text-body-sm text-slate-blue mb-1">Location</h2>
-            <p className="font-body text-body-md text-ink">{candidate.location}</p>
-          </div>
-
-          <div>
-            <h2 className="font-body text-body-sm text-slate-blue mb-1">Care Settings</h2>
-            <div className="flex flex-wrap gap-2">
-              {candidate.settings.map((setting) => (
-                <span
-                  key={setting}
-                  className="px-2 py-1 bg-slate-blue/10 text-slate-blue text-sm rounded"
-                >
-                  {SETTING_LABELS[setting] || setting}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Profile Summary */}
-      {candidate.summary && (
-        <div className="bg-white p-8 rounded-sm border border-neutral-grey/20 mb-6">
-          <h2 className="font-display text-lg text-ink mb-4">About</h2>
-          <p className="font-body text-body-md text-ink whitespace-pre-wrap">
-            {isBronze ? candidate.summary.substring(0, 200) + '...' : candidate.summary}
-          </p>
-          {isBronze && (
-            <p className="mt-4 font-body text-body-sm text-slate-blue">
-              <Link href="/client/subscription" className="text-rich-gold hover:underline">
-                Upgrade to Silver or Gold
-              </Link>{' '}
-              to see the full profile.
-            </p>
-          )}
-        </div>
-      )}
-
-      {/* Qualifications */}
-      {candidate.qualifications && candidate.qualifications.length > 0 && (
-        <div className="bg-white p-8 rounded-sm border border-neutral-grey/20 mb-6">
-          <h2 className="font-display text-lg text-ink mb-4">Qualifications</h2>
-          <ul className="space-y-2">
-            {candidate.qualifications.map((qual, index) => (
-              <li key={index} className="flex items-center gap-2 font-body text-body-md text-ink">
-                <span className="text-green-600">✓</span>
-                {qual}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* CV */}
-      {candidate.cv && !isBronze && (
-        <div className="bg-white p-8 rounded-sm border border-neutral-grey/20 mb-6">
-          <h2 className="font-display text-lg text-ink mb-4">CV</h2>
-          <p className="font-body text-body-md text-slate-blue">
-            CV uploaded: {candidate.cv.filename}
-          </p>
-          <p className="font-body text-body-sm text-slate-blue mt-1">
-            CV will be shared after contact is confirmed.
-          </p>
-        </div>
-      )}
+      {/* Candidate Profile (using preview component) */}
+      <CandidateProfilePreview
+        profile={profile}
+        credentials={credentials}
+        isOwnProfile={false}
+        onRequestIntroduction={() => setShowIntroductionModal(true)}
+        onAddToShortlist={() => setShowShortlistModal(true)}
+      />
 
       {/* Credit Info */}
       {subscription && (
-        <div className="bg-slate-blue/5 p-6 rounded-sm border border-slate-blue/20">
-          <div className="flex items-center justify-between">
+        <div className="p-6 bg-portal-blue/5 border border-portal-blue/10 rounded-card">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <p className="font-body text-body-md text-ink">
+              <p className="font-portal text-portal-body text-portal-graphite">
                 {subscription.creditsRemaining === -1
-                  ? 'Unlimited contact credits'
-                  : `${subscription.creditsRemaining} contact credits remaining`}
+                  ? 'Unlimited introduction credits'
+                  : `${subscription.creditsRemaining} introduction credits remaining`}
               </p>
-              <p className="font-body text-body-sm text-slate-blue">
-                Requesting contact uses 1 credit
+              <p className="font-portal text-portal-meta text-portal-graphite-muted">
+                Requesting an introduction uses 1 credit
               </p>
             </div>
             {subscription.creditsRemaining === 0 && (
-              <Link href="/client/subscription">
-                <Button>Get More Credits</Button>
+              <Link
+                href="/client/subscription"
+                className="
+                  px-4 py-2 rounded-card
+                  font-portal text-portal-meta font-medium
+                  bg-portal-blue text-white
+                  hover:bg-portal-blue-dark
+                  transition-colors duration-portal
+                "
+              >
+                Get More Credits
               </Link>
             )}
           </div>
         </div>
       )}
 
+      {/* Introduction Request Modal */}
+      {showIntroductionModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-portal-graphite/50 backdrop-blur-sm"
+            onClick={() => setShowIntroductionModal(false)}
+          />
+          <div className="relative bg-surface-0 rounded-card-lg shadow-card-elevated w-full max-w-lg animate-scale-in">
+            <div className="p-6">
+              <h2 className="font-portal text-portal-name text-portal-graphite mb-2">
+                Request Introduction
+              </h2>
+              <p className="font-portal text-portal-body text-portal-graphite-muted mb-6">
+                Medibee will introduce you to {profile.firstName} via phone and email within 24 hours.
+              </p>
+
+              <div className="mb-6">
+                <label className="block font-portal text-portal-meta text-portal-graphite mb-2">
+                  Message (optional)
+                </label>
+                <textarea
+                  value={introductionMessage}
+                  onChange={(e) => setIntroductionMessage(e.target.value)}
+                  rows={4}
+                  placeholder="Tell us about the role and why this candidate would be a good fit..."
+                  className="
+                    w-full px-4 py-3 rounded-card border border-portal-stone
+                    font-portal text-portal-body text-portal-graphite
+                    placeholder:text-portal-graphite-muted
+                    focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                    transition-colors duration-portal resize-none
+                  "
+                />
+              </div>
+
+              {subscription && subscription.creditsRemaining !== -1 && (
+                <p className="font-portal text-portal-meta text-portal-graphite-muted mb-6">
+                  This will use 1 of your {subscription.creditsRemaining} remaining credits.
+                </p>
+              )}
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowIntroductionModal(false)}
+                  className="
+                    flex-1 py-3 px-4 rounded-card
+                    font-portal text-portal-body font-medium
+                    bg-surface-1 text-portal-graphite border border-portal-stone
+                    hover:bg-portal-stone
+                    transition-colors duration-portal
+                  "
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleRequestIntroduction}
+                  disabled={isContactLoading || contactRequested}
+                  className="
+                    flex-1 py-3 px-4 rounded-card
+                    font-portal text-portal-body font-medium
+                    bg-portal-blue text-white
+                    hover:bg-portal-blue-dark
+                    disabled:opacity-50 disabled:cursor-not-allowed
+                    transition-colors duration-portal
+                  "
+                >
+                  {isContactLoading ? 'Requesting...' : 'Request Introduction'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Shortlist Modal */}
       {showShortlistModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-sm max-w-md w-full mx-4">
-            <h2 className="font-display text-lg text-ink mb-4">Add to Shortlist</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-portal-graphite/50 backdrop-blur-sm"
+            onClick={() => setShowShortlistModal(false)}
+          />
+          <div className="relative bg-surface-0 rounded-card-lg shadow-card-elevated w-full max-w-md animate-scale-in">
+            <div className="p-6">
+              <h2 className="font-portal text-portal-name text-portal-graphite mb-4">
+                Add to Shortlist
+              </h2>
 
-            {shortlists.length === 0 ? (
-              <div>
-                <p className="font-body text-body-md text-slate-blue mb-4">
-                  You don&apos;t have any shortlists yet.
-                </p>
-                <div className="flex gap-4">
-                  <Link href="/client/shortlists">
-                    <Button>Create Shortlist</Button>
-                  </Link>
-                  <Button variant="secondary" onClick={() => setShowShortlistModal(false)}>
-                    Cancel
-                  </Button>
+              {shortlists.length === 0 ? (
+                <div>
+                  <p className="font-portal text-portal-body text-portal-graphite-muted mb-6">
+                    You don&apos;t have any shortlists yet.
+                  </p>
+                  <div className="flex gap-3">
+                    <Link
+                      href="/client/shortlists"
+                      className="
+                        flex-1 text-center py-3 px-4 rounded-card
+                        font-portal text-portal-body font-medium
+                        bg-portal-blue text-white
+                        hover:bg-portal-blue-dark
+                        transition-colors duration-portal
+                      "
+                    >
+                      Create Shortlist
+                    </Link>
+                    <button
+                      onClick={() => setShowShortlistModal(false)}
+                      className="
+                        flex-1 py-3 px-4 rounded-card
+                        font-portal text-portal-body font-medium
+                        bg-surface-1 text-portal-graphite border border-portal-stone
+                        hover:bg-portal-stone
+                        transition-colors duration-portal
+                      "
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div>
-                <ul className="space-y-2 mb-4">
-                  {shortlists.map((shortlist) => (
-                    <li key={shortlist.shortlistId}>
+              ) : (
+                <div>
+                  <div className="space-y-2 mb-4">
+                    {shortlists.map((shortlist) => (
                       <button
+                        key={shortlist.shortlistId}
                         onClick={() => handleAddToShortlist(shortlist.shortlistId)}
-                        className="w-full text-left px-4 py-3 rounded-sm border border-neutral-grey/20 hover:border-slate-blue/30 hover:bg-slate-blue/5 transition-colors"
+                        className="
+                          w-full text-left p-4 rounded-card
+                          border border-portal-stone
+                          hover:border-portal-blue hover:bg-portal-blue/5
+                          transition-colors duration-portal
+                        "
                       >
-                        <span className="font-body text-body-md text-ink">{shortlist.name}</span>
-                        <span className="font-body text-body-sm text-slate-blue ml-2">
-                          ({shortlist.candidateCount} candidates)
-                        </span>
+                        <div className="flex items-center justify-between">
+                          <span className="font-portal text-portal-body text-portal-graphite">
+                            {shortlist.name}
+                          </span>
+                          <span className="font-portal text-portal-meta text-portal-graphite-muted">
+                            {shortlist.candidateCount} candidates
+                          </span>
+                        </div>
                       </button>
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="secondary" onClick={() => setShowShortlistModal(false)}>
-                  Cancel
-                </Button>
-              </div>
-            )}
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setShowShortlistModal(false)}
+                    className="
+                      w-full py-3 px-4 rounded-card
+                      font-portal text-portal-body font-medium
+                      bg-surface-1 text-portal-graphite border border-portal-stone
+                      hover:bg-portal-stone
+                      transition-colors duration-portal
+                    "
+                  >
+                    Cancel
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}

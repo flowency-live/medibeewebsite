@@ -63,6 +63,7 @@ export const metadata: Metadata = {
 };
 
 import { Header, Footer } from '@/components/shared';
+import { DevPersonaSwitcher } from '@/components/portal';
 import { Providers } from './providers';
 
 export default function RootLayout({
@@ -85,6 +86,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <DevPersonaSwitcher />
         </Providers>
       </body>
     </html>

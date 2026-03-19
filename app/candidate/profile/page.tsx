@@ -1,15 +1,23 @@
 'use client';
 
 /**
- * Candidate Profile Edit Page
+ * Candidate Profile Page
  *
- * Form for candidates to update their profile information.
+ * Combined edit/preview page with "View as Employer" toggle.
+ * Similar to LinkedIn/Facebook profile preview functionality.
  */
 
 import * as React from 'react';
 import { useAuth, isCandidate } from '@/lib/auth';
 import { candidatesApi } from '@/lib/api';
 import { Button, Input } from '@/components/ui';
+import { CandidateProfilePreview, PortalCard } from '@/components/portal';
+import type { CandidateProfile } from '@/lib/auth/types';
+
+// TODO(PROD-WIRE): Replace with real credentials from API
+// See: .claude/BACKEND_WIRING_TODO.md for full instructions
+// Production: credentials should come from candidatesApi.getCredentials() or auth state
+import { amaraCredentials } from '@/lib/test-data';
 
 const experienceLevels = [
   { value: 'newly-qualified', label: 'Newly Qualified' },
@@ -26,6 +34,9 @@ const careSettings = [
   { value: 'supported-living', label: 'Supported Living' },
   { value: 'end-of-life', label: 'End of Life Care' },
   { value: 'community', label: 'Community Care' },
+  { value: 'learning-disabilities', label: 'Learning Disabilities' },
+  { value: 'dementia-care', label: 'Dementia Care' },
+  { value: 'paediatric', label: 'Paediatric' },
 ];
 
 const dbsStatuses = [
@@ -34,9 +45,12 @@ const dbsStatuses = [
   { value: 'not-started', label: 'Not Started' },
 ];
 
+type ViewMode = 'edit' | 'preview';
+
 export default function CandidateProfilePage() {
   const { state, refreshProfile } = useAuth();
 
+  const [viewMode, setViewMode] = React.useState<ViewMode>('edit');
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState('');
   const [success, setSuccess] = React.useState('');
@@ -116,193 +130,388 @@ export default function CandidateProfilePage() {
     setIsLoading(false);
   };
 
+  // Build preview profile from form data
+  const previewProfile: CandidateProfile = {
+    candidateId: state.profile.candidateId,
+    email: state.profile.email,
+    firstName: formData.firstName,
+    lastName: formData.lastName,
+    phone: formData.phone,
+    city: formData.city,
+    postcode: formData.postcode,
+    experienceLevel: formData.experienceLevel,
+    preferredSettings: formData.preferredSettings,
+    professionalSummary: formData.professionalSummary,
+    rightToWork: formData.rightToWork,
+    dbsStatus: formData.dbsStatus as 'cleared' | 'pending' | 'not-started',
+    available: state.profile.available ?? true,
+    cvUploaded: state.profile.cvUploaded ?? false,
+    status: state.profile.status ?? 'active',
+    createdAt: state.profile.createdAt,
+    updatedAt: state.profile.updatedAt,
+  };
+
   return (
-    <div className="max-w-2xl">
-      <div className="mb-8">
-        <h1 className="font-display text-display-sm text-ink mb-2">Edit Profile</h1>
-        <p className="font-body text-body-md text-slate-blue">
-          Keep your profile up to date to receive the best opportunities.
-        </p>
+    <div className="space-y-6 animate-fade-in-up">
+      {/* View Mode Toggle */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="font-portal text-portal-name text-portal-graphite mb-1">
+            {viewMode === 'edit' ? 'Edit Profile' : 'Profile Preview'}
+          </h1>
+          <p className="font-portal text-portal-body text-portal-graphite-muted">
+            {viewMode === 'edit'
+              ? 'Keep your profile up to date to receive the best opportunities.'
+              : 'This is how care providers see your profile.'}
+          </p>
+        </div>
+
+        {/* Toggle Button */}
+        <div className="flex items-center gap-2 bg-surface-1 rounded-card p-1">
+          <button
+            onClick={() => setViewMode('edit')}
+            className={`
+              px-4 py-2 rounded-card font-portal text-portal-meta font-medium
+              transition-all duration-portal
+              ${viewMode === 'edit'
+                ? 'bg-portal-blue text-white shadow-card'
+                : 'text-portal-graphite hover:bg-portal-stone'
+              }
+            `}
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => setViewMode('preview')}
+            className={`
+              px-4 py-2 rounded-card font-portal text-portal-meta font-medium
+              transition-all duration-portal flex items-center gap-2
+              ${viewMode === 'preview'
+                ? 'bg-portal-highlight text-white shadow-card'
+                : 'text-portal-graphite hover:bg-portal-stone'
+              }
+            `}
+          >
+            <span>👁</span>
+            View as Employer
+          </button>
+        </div>
       </div>
 
-      {error && (
-        <div className="mb-6 p-4 bg-red-50 border-l-[3px] border-red-500" role="alert">
-          <p className="font-body text-body-sm text-red-800">{error}</p>
-        </div>
+      {/* Preview Mode */}
+      {viewMode === 'preview' && (
+        <CandidateProfilePreview
+          profile={previewProfile}
+          credentials={amaraCredentials}
+          isOwnProfile={true}
+          onExitPreview={() => setViewMode('edit')}
+        />
       )}
 
-      {success && (
-        <div className="mb-6 p-4 bg-green-50 border-l-[3px] border-green-500" role="status">
-          <p className="font-body text-body-sm text-green-800">{success}</p>
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Personal Details */}
-        <section className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <h2 className="font-display text-lg text-ink mb-4">Personal Details</h2>
-          <div className="grid grid-cols-2 gap-4">
-            <Input
-              label="First Name"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleInputChange}
-              required
-            />
-            <Input
-              label="Last Name"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="mt-4">
-            <Input
-              label="Phone Number"
-              name="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder="07700 900123"
-            />
-          </div>
-        </section>
-
-        {/* Location */}
-        <section className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <h2 className="font-display text-lg text-ink mb-4">Location</h2>
-          <div className="grid grid-cols-2 gap-4">
-            <Input
-              label="City"
-              name="city"
-              value={formData.city}
-              onChange={handleInputChange}
-              placeholder="London"
-            />
-            <Input
-              label="Postcode"
-              name="postcode"
-              value={formData.postcode}
-              onChange={handleInputChange}
-              placeholder="SW1A 1AA"
-            />
-          </div>
-        </section>
-
-        {/* Experience */}
-        <section className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <h2 className="font-display text-lg text-ink mb-4">Experience</h2>
-          <div className="mb-4">
-            <label className="block font-body text-body-sm text-ink mb-2">
-              Experience Level
-            </label>
-            <select
-              name="experienceLevel"
-              value={formData.experienceLevel}
-              onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-neutral-grey/30 rounded-sm font-body text-body-md focus:outline-none focus:ring-2 focus:ring-slate-blue/20 focus:border-slate-blue"
-            >
-              <option value="">Select experience level</option>
-              {experienceLevels.map((level) => (
-                <option key={level.value} value={level.value}>
-                  {level.label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block font-body text-body-sm text-ink mb-2">
-              Preferred Care Settings
-            </label>
-            <div className="grid grid-cols-2 gap-2">
-              {careSettings.map((setting) => (
-                <label key={setting.value} className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.preferredSettings.includes(setting.value)}
-                    onChange={() => handleSettingsChange(setting.value)}
-                    className="w-4 h-4 border-2 border-neutral-grey accent-rich-gold"
-                  />
-                  <span className="font-body text-body-sm text-ink">{setting.label}</span>
-                </label>
-              ))}
+      {/* Edit Mode */}
+      {viewMode === 'edit' && (
+        <div className="max-w-2xl">
+          {error && (
+            <div className="mb-6 p-4 bg-portal-alert/10 border border-portal-alert/20 rounded-card" role="alert">
+              <p className="font-portal text-portal-body text-portal-alert">{error}</p>
             </div>
-          </div>
-        </section>
+          )}
 
-        {/* Professional Summary */}
-        <section className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <h2 className="font-display text-lg text-ink mb-4">Professional Summary</h2>
-          <div>
-            <label className="block font-body text-body-sm text-ink mb-2">
-              About You
-            </label>
-            <textarea
-              name="professionalSummary"
-              value={formData.professionalSummary}
-              onChange={handleInputChange}
-              rows={4}
-              placeholder="Tell employers about your experience, skills, and what makes you a great healthcare professional..."
-              className="w-full px-4 py-3 border border-neutral-grey/30 rounded-sm font-body text-body-md focus:outline-none focus:ring-2 focus:ring-slate-blue/20 focus:border-slate-blue resize-none"
-            />
-            <p className="mt-1 font-body text-body-sm text-slate-blue">
-              Minimum 50 characters recommended
-            </p>
-          </div>
-        </section>
+          {success && (
+            <div className="mb-6 p-4 bg-portal-verified/10 border border-portal-verified/20 rounded-card" role="status">
+              <p className="font-portal text-portal-body text-portal-verified">{success}</p>
+            </div>
+          )}
 
-        {/* Compliance */}
-        <section className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <h2 className="font-display text-lg text-ink mb-4">Compliance</h2>
-          <div className="space-y-4">
-            <label className="flex items-start gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                name="rightToWork"
-                checked={formData.rightToWork}
-                onChange={handleInputChange}
-                className="w-4 h-4 mt-1 border-2 border-neutral-grey accent-rich-gold"
-              />
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Personal Details */}
+            <PortalCard title="Personal Details">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block font-portal text-portal-meta text-portal-graphite mb-2">
+                    First Name <span className="text-portal-alert">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    required
+                    className="
+                      w-full px-4 py-3 rounded-card border border-portal-stone
+                      font-portal text-portal-body text-portal-graphite
+                      focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                      transition-colors duration-portal
+                    "
+                  />
+                </div>
+                <div>
+                  <label className="block font-portal text-portal-meta text-portal-graphite mb-2">
+                    Last Name <span className="text-portal-alert">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    required
+                    className="
+                      w-full px-4 py-3 rounded-card border border-portal-stone
+                      font-portal text-portal-body text-portal-graphite
+                      focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                      transition-colors duration-portal
+                    "
+                  />
+                </div>
+              </div>
+              <div className="mt-4">
+                <label className="block font-portal text-portal-meta text-portal-graphite mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="07700 900123"
+                  className="
+                    w-full px-4 py-3 rounded-card border border-portal-stone
+                    font-portal text-portal-body text-portal-graphite
+                    placeholder:text-portal-graphite-muted
+                    focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                    transition-colors duration-portal
+                  "
+                />
+              </div>
+            </PortalCard>
+
+            {/* Location */}
+            <PortalCard title="Location">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block font-portal text-portal-meta text-portal-graphite mb-2">
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    placeholder="London"
+                    className="
+                      w-full px-4 py-3 rounded-card border border-portal-stone
+                      font-portal text-portal-body text-portal-graphite
+                      placeholder:text-portal-graphite-muted
+                      focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                      transition-colors duration-portal
+                    "
+                  />
+                </div>
+                <div>
+                  <label className="block font-portal text-portal-meta text-portal-graphite mb-2">
+                    Postcode
+                  </label>
+                  <input
+                    type="text"
+                    name="postcode"
+                    value={formData.postcode}
+                    onChange={handleInputChange}
+                    placeholder="SW1A 1AA"
+                    className="
+                      w-full px-4 py-3 rounded-card border border-portal-stone
+                      font-portal text-portal-body text-portal-graphite
+                      placeholder:text-portal-graphite-muted
+                      focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                      transition-colors duration-portal
+                    "
+                  />
+                </div>
+              </div>
+            </PortalCard>
+
+            {/* Experience */}
+            <PortalCard title="Experience">
+              <div className="space-y-6">
+                <div>
+                  <label className="block font-portal text-portal-meta text-portal-graphite mb-2">
+                    Experience Level
+                  </label>
+                  <select
+                    name="experienceLevel"
+                    value={formData.experienceLevel}
+                    onChange={handleInputChange}
+                    className="
+                      w-full px-4 py-3 rounded-card border border-portal-stone
+                      font-portal text-portal-body text-portal-graphite
+                      focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                      transition-colors duration-portal
+                    "
+                  >
+                    <option value="">Select experience level</option>
+                    {experienceLevels.map((level) => (
+                      <option key={level.value} value={level.value}>
+                        {level.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-portal text-portal-meta text-portal-graphite mb-3">
+                    Preferred Care Settings
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {careSettings.map((setting) => {
+                      const isSelected = formData.preferredSettings.includes(setting.value);
+                      return (
+                        <button
+                          key={setting.value}
+                          type="button"
+                          onClick={() => handleSettingsChange(setting.value)}
+                          className={`
+                            px-4 py-3 rounded-card text-left
+                            font-portal text-portal-meta
+                            transition-all duration-portal
+                            ${isSelected
+                              ? 'bg-portal-teal/10 border-2 border-portal-teal text-portal-teal'
+                              : 'bg-surface-1 border border-portal-stone text-portal-graphite hover:border-portal-graphite-muted'
+                            }
+                          `}
+                        >
+                          <span className="flex items-center gap-2">
+                            {isSelected && <span className="text-portal-teal">✓</span>}
+                            {setting.label}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </PortalCard>
+
+            {/* Professional Summary */}
+            <PortalCard title="Professional Summary">
               <div>
-                <span className="font-body text-body-md text-ink">
-                  I confirm I have the right to work in the UK
-                </span>
-                <p className="font-body text-body-sm text-slate-blue">
-                  You may be asked to provide documentation
+                <label className="block font-portal text-portal-meta text-portal-graphite mb-2">
+                  About You
+                </label>
+                <textarea
+                  name="professionalSummary"
+                  value={formData.professionalSummary}
+                  onChange={handleInputChange}
+                  rows={5}
+                  placeholder="Tell employers about your experience, skills, and what makes you a great healthcare professional..."
+                  className="
+                    w-full px-4 py-3 rounded-card border border-portal-stone
+                    font-portal text-portal-body text-portal-graphite
+                    placeholder:text-portal-graphite-muted
+                    focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                    transition-colors duration-portal resize-none
+                  "
+                />
+                <p className="mt-2 font-portal text-portal-meta text-portal-graphite-muted">
+                  {formData.professionalSummary.length} characters
+                  {formData.professionalSummary.length < 50 && ' (50+ recommended)'}
                 </p>
               </div>
-            </label>
+            </PortalCard>
 
-            <div>
-              <label className="block font-body text-body-sm text-ink mb-2">
-                DBS Status
-              </label>
-              <select
-                name="dbsStatus"
-                value={formData.dbsStatus}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-neutral-grey/30 rounded-sm font-body text-body-md focus:outline-none focus:ring-2 focus:ring-slate-blue/20 focus:border-slate-blue"
+            {/* Compliance */}
+            <PortalCard title="Compliance">
+              <div className="space-y-6">
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <div className={`
+                    w-5 h-5 mt-0.5 rounded border-2 flex items-center justify-center
+                    transition-colors duration-portal
+                    ${formData.rightToWork
+                      ? 'bg-portal-verified border-portal-verified'
+                      : 'border-portal-stone group-hover:border-portal-graphite-muted'
+                    }
+                  `}>
+                    {formData.rightToWork && (
+                      <span className="text-white text-xs">✓</span>
+                    )}
+                  </div>
+                  <input
+                    type="checkbox"
+                    name="rightToWork"
+                    checked={formData.rightToWork}
+                    onChange={handleInputChange}
+                    className="sr-only"
+                  />
+                  <div>
+                    <span className="font-portal text-portal-body text-portal-graphite">
+                      I confirm I have the right to work in the UK
+                    </span>
+                    <p className="font-portal text-portal-meta text-portal-graphite-muted">
+                      You may be asked to provide documentation
+                    </p>
+                  </div>
+                </label>
+
+                <div>
+                  <label className="block font-portal text-portal-meta text-portal-graphite mb-2">
+                    DBS Status
+                  </label>
+                  <select
+                    name="dbsStatus"
+                    value={formData.dbsStatus}
+                    onChange={handleInputChange}
+                    className="
+                      w-full px-4 py-3 rounded-card border border-portal-stone
+                      font-portal text-portal-body text-portal-graphite
+                      focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                      transition-colors duration-portal
+                    "
+                  >
+                    <option value="">Select DBS status</option>
+                    {dbsStatuses.map((status) => (
+                      <option key={status.value} value={status.value}>
+                        {status.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </PortalCard>
+
+            {/* Submit */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
+              <button
+                type="button"
+                onClick={() => setViewMode('preview')}
+                className="
+                  order-2 sm:order-1
+                  px-6 py-3 rounded-card
+                  font-portal text-portal-body font-medium
+                  text-portal-highlight hover:text-portal-highlight/80
+                  transition-colors duration-portal
+                  flex items-center gap-2
+                "
               >
-                <option value="">Select DBS status</option>
-                {dbsStatuses.map((status) => (
-                  <option key={status.value} value={status.value}>
-                    {status.label}
-                  </option>
-                ))}
-              </select>
+                <span>👁</span>
+                Preview as Employer
+              </button>
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="
+                  order-1 sm:order-2 w-full sm:w-auto
+                  px-8 py-3 rounded-card
+                  font-portal text-portal-body font-medium
+                  bg-portal-blue text-white
+                  hover:bg-portal-blue-dark
+                  disabled:opacity-50 disabled:cursor-not-allowed
+                  transition-colors duration-portal
+                "
+              >
+                {isLoading ? 'Saving...' : 'Save Changes'}
+              </button>
             </div>
-          </div>
-        </section>
-
-        {/* Submit */}
-        <div className="flex justify-end">
-          <Button type="submit" disabled={isLoading}>
-            {isLoading ? 'Saving...' : 'Save Changes'}
-          </Button>
+          </form>
         </div>
-      </form>
+      )}
     </div>
   );
 }

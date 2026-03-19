@@ -3,13 +3,15 @@
 /**
  * Client Portal Layout
  *
- * Wraps all client pages with portal-specific navigation and auth check.
+ * Professional layout for care provider clients.
+ * Follows Medibee Design Language - "Calmly premium" aesthetic.
  */
 
 import { type ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth, isClient } from '@/lib/auth';
+import { StatusBadge } from '@/components/portal';
 
 interface ClientLayoutProps {
   children: ReactNode;
@@ -17,14 +19,20 @@ interface ClientLayoutProps {
 
 // Navigation items for the client portal
 const navItems = [
-  { href: '/client/dashboard', label: 'Dashboard', icon: '◉' },
-  { href: '/client/candidates', label: 'Browse Candidates', icon: '◎' },
-  { href: '/client/shortlists', label: 'Shortlists', icon: '★' },
-  { href: '/client/contacts', label: 'Contact Requests', icon: '✉' },
-  { href: '/client/organisation', label: 'Organisation', icon: '▤' },
-  { href: '/client/subscription', label: 'Subscription', icon: '◈' },
-  { href: '/client/settings', label: 'Settings', icon: '⚙' },
+  { href: '/client/dashboard', label: 'Dashboard', icon: '📊' },
+  { href: '/client/candidates', label: 'Browse Candidates', icon: '👥' },
+  { href: '/client/shortlists', label: 'Shortlists', icon: '⭐' },
+  { href: '/client/contacts', label: 'Contact Requests', icon: '📨' },
+  { href: '/client/organisation', label: 'Organisation', icon: '🏢' },
+  { href: '/client/subscription', label: 'Subscription', icon: '💳' },
+  { href: '/client/settings', label: 'Settings', icon: '⚙️' },
 ];
+
+const tierColors = {
+  bronze: 'bg-amber-100 text-amber-800',
+  silver: 'bg-gray-100 text-gray-800',
+  gold: 'bg-yellow-100 text-yellow-800',
+};
 
 export default function ClientLayout({ children }: ClientLayoutProps) {
   const pathname = usePathname();
@@ -42,12 +50,12 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   // Show loading state
   if (state.status === 'loading') {
     return (
-      <div className="min-h-screen bg-mist flex items-center justify-center">
+      <div className="min-h-screen bg-surface-1 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-pulse mb-4">
-            <div className="w-16 h-16 bg-slate-blue/20 rounded-full mx-auto" />
-          </div>
-          <p className="font-body text-body-md text-slate-blue">Loading...</p>
+          <div className="w-12 h-12 rounded-full bg-portal-blue/20 animate-pulse mx-auto mb-4" />
+          <p className="font-portal text-portal-body text-portal-graphite-muted">
+            Loading your portal...
+          </p>
         </div>
       </div>
     );
@@ -61,41 +69,62 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   const { profile, subscription } = state;
 
   return (
-    <div className="min-h-screen bg-mist">
+    <div className="min-h-screen bg-surface-1">
       {/* Portal Header */}
-      <header className="bg-deep-slate text-mist border-b border-slate-blue/20">
-        <div className="container-editorial py-4">
-          <div className="flex items-center justify-between">
+      <header className="sticky top-0 z-40 bg-portal-graphite text-white shadow-card">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo & Portal Label */}
             <div className="flex items-center gap-4">
-              <Link href="/client/dashboard" className="font-display text-lg text-soft-gold">
-                Medibee
+              <Link
+                href="/client/dashboard"
+                className="flex items-center gap-2"
+              >
+                <span className="font-portal text-portal-name font-semibold text-portal-available">
+                  Medibee
+                </span>
               </Link>
-              <span className="text-mist/40">|</span>
-              <span className="font-body text-body-sm text-mist/60">Client Portal</span>
+              <div className="hidden sm:flex items-center gap-2 pl-4 border-l border-white/20">
+                <span className="text-sm">🏢</span>
+                <span className="font-portal text-portal-meta text-white/70">
+                  Client Portal
+                </span>
+              </div>
             </div>
 
-            <div className="flex items-center gap-6">
+            {/* Right side */}
+            <div className="flex items-center gap-4">
+              {/* Subscription Badge */}
               {subscription && (
-                <div className="flex items-center gap-2">
-                  <span className="px-2 py-1 bg-rich-gold/20 text-rich-gold text-xs font-semibold uppercase rounded">
+                <div className="hidden md:flex items-center gap-3">
+                  <span className={`
+                    px-2 py-1 rounded-card text-xs font-semibold uppercase
+                    ${tierColors[subscription.tier]}
+                  `}>
                     {subscription.tier}
                   </span>
-                  {subscription.creditsRemaining >= 0 && (
-                    <span className="font-body text-body-sm text-mist/60">
-                      {subscription.creditsRemaining} credits
-                    </span>
-                  )}
-                  {subscription.creditsRemaining === -1 && (
-                    <span className="font-body text-body-sm text-mist/60">Unlimited</span>
-                  )}
+                  <span className="font-portal text-portal-meta text-white/70">
+                    {subscription.creditsRemaining === -1
+                      ? 'Unlimited'
+                      : `${subscription.creditsRemaining} credits`}
+                  </span>
                 </div>
               )}
-              <span className="font-body text-body-sm text-mist/80">
+
+              {/* Organisation name */}
+              <div className="hidden lg:block font-portal text-portal-meta text-white/90">
                 {profile.organisationName}
-              </span>
+              </div>
+
+              {/* Logout */}
               <button
                 onClick={() => logout()}
-                className="font-body text-body-sm text-mist/60 hover:text-mist transition-colors"
+                className="
+                  px-3 py-1.5 rounded-card
+                  font-portal text-portal-meta text-white/70
+                  hover:text-white hover:bg-white/10
+                  transition-colors duration-portal
+                "
               >
                 Logout
               </button>
@@ -104,85 +133,145 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         </div>
       </header>
 
-      <div className="container-editorial py-8">
+      {/* Main Content Area */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex gap-8">
-          {/* Sidebar Navigation */}
-          <nav className="w-64 shrink-0">
-            <ul className="space-y-2">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={`
-                        flex items-center gap-3 px-4 py-3 rounded-sm font-body text-body-md transition-colors
-                        ${isActive
-                          ? 'bg-slate-blue text-mist'
-                          : 'text-ink hover:bg-slate-blue/10'
-                        }
-                      `}
-                    >
-                      <span className="text-lg">{item.icon}</span>
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+          {/* Sidebar Navigation - Desktop */}
+          <nav className="hidden lg:block w-64 shrink-0">
+            <div className="sticky top-24 space-y-6">
+              {/* Navigation Links */}
+              <div className="bg-surface-0 rounded-card-lg shadow-card overflow-hidden">
+                <ul className="py-2">
+                  {navItems.map((item) => {
+                    const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+                    return (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          className={`
+                            flex items-center gap-3 px-4 py-3
+                            font-portal text-portal-body
+                            transition-colors duration-portal
+                            ${isActive
+                              ? 'bg-portal-blue/10 text-portal-blue border-l-2 border-portal-blue'
+                              : 'text-portal-graphite hover:bg-portal-stone/50'
+                            }
+                          `}
+                        >
+                          <span className="text-lg">{item.icon}</span>
+                          {item.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
 
-            {/* Subscription Info */}
-            {subscription ? (
-              <div className="mt-8 p-4 bg-white rounded-sm border border-neutral-grey/20">
-                <p className="font-body text-body-sm text-slate-blue mb-2">Subscription</p>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 bg-rich-gold/10 text-rich-gold text-xs font-semibold uppercase rounded">
-                    {subscription.tier}
-                  </span>
-                  <span
-                    className={`text-xs ${
-                      subscription.status === 'active'
-                        ? 'text-green-600'
-                        : subscription.status === 'past_due'
-                        ? 'text-amber-600'
-                        : 'text-red-600'
-                    }`}
+              {/* Subscription Card */}
+              {subscription ? (
+                <div className="bg-surface-0 rounded-card shadow-card p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="font-portal text-portal-meta text-portal-graphite-muted">
+                      Subscription
+                    </span>
+                    <span className={`
+                      px-2 py-0.5 rounded text-xs font-semibold uppercase
+                      ${tierColors[subscription.tier]}
+                    `}>
+                      {subscription.tier}
+                    </span>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-portal text-portal-meta text-portal-graphite-muted">
+                        Status
+                      </span>
+                      <StatusBadge
+                        status={subscription.status === 'active' ? 'verified' : 'pending'}
+                        label={subscription.status}
+                        size="sm"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-portal text-portal-meta text-portal-graphite-muted">
+                        Credits
+                      </span>
+                      <span className="font-portal text-portal-body text-portal-graphite font-medium">
+                        {subscription.creditsRemaining === -1
+                          ? 'Unlimited'
+                          : subscription.creditsRemaining}
+                      </span>
+                    </div>
+                  </div>
+
+                  <Link
+                    href="/client/subscription"
+                    className="
+                      block mt-4 text-center py-2 rounded-card
+                      font-portal text-portal-meta font-medium
+                      text-portal-blue hover:bg-portal-blue/5
+                      transition-colors duration-portal
+                    "
                   >
-                    {subscription.status}
-                  </span>
+                    Manage Subscription
+                  </Link>
                 </div>
-                <p className="font-body text-body-sm text-ink">
-                  {subscription.creditsRemaining === -1
-                    ? 'Unlimited contacts'
-                    : `${subscription.creditsRemaining} contacts remaining`}
-                </p>
-                <Link
-                  href="/client/subscription"
-                  className="mt-2 inline-block font-body text-body-sm text-slate-blue hover:text-deep-slate underline"
-                >
-                  Manage subscription →
-                </Link>
-              </div>
-            ) : (
-              <div className="mt-8 p-4 bg-amber-50 rounded-sm border border-amber-200">
-                <p className="font-body text-body-sm text-amber-800 mb-2">
-                  No Active Subscription
-                </p>
-                <p className="font-body text-body-sm text-amber-700 mb-3">
-                  Subscribe to start contacting candidates.
-                </p>
-                <Link
-                  href="/client/subscription"
-                  className="inline-block px-4 py-2 bg-rich-gold text-ink text-sm font-semibold rounded-sm hover:bg-soft-gold transition-colors"
-                >
-                  View Plans
-                </Link>
-              </div>
-            )}
+              ) : (
+                <div className="bg-portal-available/5 border border-portal-available/20 rounded-card p-4">
+                  <p className="font-portal text-portal-body font-medium text-portal-graphite mb-2">
+                    No Active Subscription
+                  </p>
+                  <p className="font-portal text-portal-meta text-portal-graphite-muted mb-4">
+                    Subscribe to start connecting with candidates.
+                  </p>
+                  <Link
+                    href="/client/subscription"
+                    className="
+                      block text-center py-2.5 rounded-card
+                      font-portal text-portal-meta font-medium
+                      bg-portal-available text-white
+                      hover:bg-portal-available/90
+                      transition-colors duration-portal
+                    "
+                  >
+                    View Plans
+                  </Link>
+                </div>
+              )}
+            </div>
           </nav>
 
+          {/* Mobile Navigation */}
+          <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface-0 border-t border-portal-stone shadow-card-elevated">
+            <div className="flex overflow-x-auto py-2 px-4 gap-1">
+              {navItems.slice(0, 5).map((item) => {
+                const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`
+                      flex flex-col items-center justify-center px-3 py-2 rounded-card
+                      min-w-[64px]
+                      ${isActive
+                        ? 'bg-portal-blue/10 text-portal-blue'
+                        : 'text-portal-graphite-muted'
+                      }
+                    `}
+                  >
+                    <span className="text-lg mb-0.5">{item.icon}</span>
+                    <span className="font-portal text-ui-xs truncate">{item.label.split(' ')[0]}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
           {/* Main Content */}
-          <main className="flex-1 min-w-0">{children}</main>
+          <main className="flex-1 min-w-0 pb-20 lg:pb-0">
+            {children}
+          </main>
         </div>
       </div>
     </div>

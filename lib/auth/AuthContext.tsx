@@ -71,6 +71,10 @@ interface AuthContextValue {
   // Common
   logout: () => Promise<void>;
   refreshProfile: () => Promise<void>;
+
+  // Dev-only: Test persona login bypass
+  devLoginAsCandidate?: (profile: CandidateProfile) => void;
+  devLoginAsClient?: (profile: ClientProfile, subscription?: Subscription) => void;
 }
 
 // ============================================
@@ -392,6 +396,42 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [state]);
 
   // ============================================
+  // Dev-Only: Test Persona Login Bypass
+  // ============================================
+  const isDev = process.env.NODE_ENV === 'development';
+
+  const devLoginAsCandidate = useCallback((profile: CandidateProfile) => {
+    if (!isDev) return;
+
+    // Create a fake token for dev purposes
+    const fakeToken = 'dev-test-token-candidate';
+
+    setState({
+      status: 'authenticated',
+      token: fakeToken,
+      userType: 'candidate',
+      userId: profile.candidateId,
+      profile,
+    });
+  }, [isDev]);
+
+  const devLoginAsClient = useCallback((profile: ClientProfile, subscription?: Subscription) => {
+    if (!isDev) return;
+
+    // Create a fake token for dev purposes
+    const fakeToken = 'dev-test-token-client';
+
+    setState({
+      status: 'authenticated',
+      token: fakeToken,
+      userType: 'client',
+      userId: profile.clientId,
+      profile,
+      subscription: subscription ?? null,
+    });
+  }, [isDev]);
+
+  // ============================================
   // Context Value
   // ============================================
   const value: AuthContextValue = {
@@ -403,6 +443,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     loginAdmin,
     logout,
     refreshProfile,
+    // Only expose dev functions in development
+    ...(isDev && {
+      devLoginAsCandidate,
+      devLoginAsClient,
+    }),
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
