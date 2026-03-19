@@ -135,7 +135,7 @@ export function CandidateProfilePreview({
 
             {/* Actions (for clients viewing candidates) */}
             {!isOwnProfile && (
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto mt-4 sm:mt-0">
                 {onAddToShortlist && (
                   <button
                     onClick={onAddToShortlist}
@@ -145,6 +145,7 @@ export function CandidateProfilePreview({
                       border border-portal-stone text-portal-graphite
                       hover:bg-portal-stone
                       transition-colors duration-portal
+                      w-full sm:w-auto
                     "
                   >
                     + Shortlist
@@ -159,6 +160,7 @@ export function CandidateProfilePreview({
                       bg-portal-blue text-white
                       hover:bg-portal-blue-dark
                       transition-colors duration-portal
+                      w-full sm:w-auto
                     "
                   >
                     Request Introduction

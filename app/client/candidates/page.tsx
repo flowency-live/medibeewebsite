@@ -280,7 +280,7 @@ export default function BrowseCandidatesPage() {
       {/* Search & Filters */}
       <div className="bg-surface-0 rounded-card-lg shadow-card p-6">
         {/* Search Bar */}
-        <div className="flex gap-4 mb-4">
+        <div className="flex flex-col sm:flex-row gap-3 mb-4">
           <div className="flex-1 relative">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-portal-graphite-muted">
               🔍
@@ -302,9 +302,10 @@ export default function BrowseCandidatesPage() {
           <button
             onClick={() => setShowFilters(!showFilters)}
             className={`
-              flex items-center gap-2 px-4 py-3 rounded-card
+              flex items-center justify-center gap-2 px-4 py-3 rounded-card
               font-portal text-portal-meta font-medium
               border transition-colors duration-portal
+              w-full sm:w-auto
               ${showFilters
                 ? 'bg-portal-teal/10 border-portal-teal text-portal-teal'
                 : 'bg-surface-0 border-portal-stone text-portal-graphite hover:bg-portal-stone/50'

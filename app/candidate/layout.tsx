@@ -204,7 +204,7 @@ export default function CandidateLayout({ children }: CandidateLayoutProps) {
       </div>
 
       {/* Mobile Bottom Actions */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-surface-0 border-t border-portal-stone p-4 safe-area-inset-bottom">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-surface-0 border-t border-portal-stone p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
         <div className="flex items-center justify-between max-w-lg mx-auto">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-portal-blue flex items-center justify-center text-white text-sm font-semibold">

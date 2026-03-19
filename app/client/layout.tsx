@@ -243,7 +243,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
           </nav>
 
           {/* Mobile Navigation */}
-          <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface-0 border-t border-portal-stone shadow-card-elevated">
+          <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface-0 border-t border-portal-stone shadow-card-elevated pb-[env(safe-area-inset-bottom)]">
             <div className="flex overflow-x-auto py-2 px-4 gap-1">
               {navItems.slice(0, 5).map((item) => {
                 const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
