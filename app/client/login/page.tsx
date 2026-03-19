@@ -7,15 +7,47 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Button, Input } from '@/components/ui';
 import { useAuth } from '@/lib/auth';
 
+// TODO(PROD-WIRE): Remove test client data before production launch
+const testClientProfile = {
+  clientId: 'CLIENT-TEST-001',
+  organisationName: 'Sunrise Care Group',
+  organisationType: 'care-home' as const,
+  contactName: 'Eleanor Hartley',
+  contactEmail: 'eleanor@sunrisecare.example.com',
+  contactPhone: '01onal 234567',
+  address: {
+    city: 'Bournemouth',
+    postcode: 'BH1 1AA',
+  },
+  status: 'active' as const,
+  createdAt: '2024-01-01T10:00:00Z',
+  updatedAt: '2024-03-15T14:30:00Z',
+};
+
+const testClientSubscription = {
+  tier: 'gold' as const,
+  status: 'active' as const,
+  creditsRemaining: 25,
+  currentPeriodEnd: '2024-04-01',
+};
+
 function ClientLoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { loginClient, state } = useAuth();
+  const { loginClient, devLoginAsClient, state } = useAuth();
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState('');
+
+  // TODO(PROD-WIRE): Remove test login handler before production launch
+  const handleTestLogin = () => {
+    if (devLoginAsClient) {
+      devLoginAsClient(testClientProfile, testClientSubscription);
+      router.push('/client/dashboard');
+    }
+  };
 
   // Redirect if already authenticated
   React.useEffect(() => {
@@ -132,6 +164,25 @@ function ClientLoginContent() {
                 </Link>
               </p>
             </div>
+
+            {/* TODO(PROD-WIRE): Remove test login section before production launch */}
+            {devLoginAsClient && (
+              <div className="mt-6 pt-6 border-t border-amber-300/50">
+                <div className="bg-amber-50 border border-amber-200 rounded p-4">
+                  <p className="font-body text-body-sm text-amber-800 mb-3 text-center">
+                    Demo / Testing Mode
+                  </p>
+                  <Button
+                    type="button"
+                    onClick={handleTestLogin}
+                    fullWidth
+                    className="bg-amber-500 text-white hover:bg-amber-600"
+                  >
+                    Test Login as Sunrise Care Group
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Back link */}

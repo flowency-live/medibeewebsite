@@ -14,6 +14,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button, Input } from '@/components/ui';
+import { useAuth } from '@/lib/auth';
+import { personas } from '@/lib/test-data';
 
 type AuthMethod = 'social' | 'phone' | 'email';
 type PhoneStep = 'input' | 'verify';
@@ -24,8 +26,17 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://4zq0km0w5a.execute-a
 function CandidateLoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { devLoginAsCandidate } = useAuth();
 
   const [method, setMethod] = React.useState<AuthMethod>('social');
+
+  // TODO(PROD-WIRE): Remove test login handler before production launch
+  const handleTestLogin = (personaKey: keyof typeof personas) => {
+    if (devLoginAsCandidate) {
+      devLoginAsCandidate(personas[personaKey].profile);
+      router.push('/candidate/dashboard');
+    }
+  };
   const [phoneStep, setPhoneStep] = React.useState<PhoneStep>('input');
   const [emailStep, setEmailStep] = React.useState<EmailStep>('input');
   const [phone, setPhone] = React.useState('');
@@ -353,6 +364,55 @@ function CandidateLoginContent() {
               </div>
             )}
           </div>
+
+          {/* TODO(PROD-WIRE): Remove test login section before production launch */}
+          {devLoginAsCandidate && (
+            <div className="mt-6 bg-amber-50 border border-amber-200 rounded p-4">
+              <p className="font-body text-body-sm text-amber-800 mb-3 text-center">
+                Demo / Testing Mode
+              </p>
+              <div className="space-y-2">
+                <Button
+                  type="button"
+                  onClick={() => handleTestLogin('amara')}
+                  fullWidth
+                  className="bg-amber-500 text-white hover:bg-amber-600"
+                >
+                  Test Login as Amara (Mental Health, 5+ yrs)
+                </Button>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handleTestLogin('james')}
+                    className="px-3 py-2 text-xs font-medium text-amber-800 bg-amber-100 hover:bg-amber-200 rounded transition-colors"
+                  >
+                    James (New)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleTestLogin('priya')}
+                    className="px-3 py-2 text-xs font-medium text-amber-800 bg-amber-100 hover:bg-amber-200 rounded transition-colors"
+                  >
+                    Priya (Acute)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleTestLogin('david')}
+                    className="px-3 py-2 text-xs font-medium text-amber-800 bg-amber-100 hover:bg-amber-200 rounded transition-colors"
+                  >
+                    David (EOL)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleTestLogin('sarah')}
+                    className="px-3 py-2 text-xs font-medium text-amber-800 bg-amber-100 hover:bg-amber-200 rounded transition-colors"
+                  >
+                    Sarah (Returning)
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Footer */}
           <div className="mt-6 text-center">
