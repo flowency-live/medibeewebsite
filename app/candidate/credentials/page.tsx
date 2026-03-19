@@ -219,7 +219,7 @@ function UploadModal({ credentialType, onClose, onUpload }: UploadModalProps) {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3 mt-6 pt-6 border-t border-portal-stone">
+          <div className="flex flex-col-reverse sm:flex-row gap-3 mt-6 pt-6 border-t border-portal-stone">
             <button
               onClick={onClose}
               className="

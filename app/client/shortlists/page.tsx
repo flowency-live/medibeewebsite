@@ -123,7 +123,7 @@ export default function ShortlistsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <div>
           <h1 className="font-display text-display-sm text-ink mb-2">Shortlists</h1>
           <p className="font-body text-body-md text-slate-blue">
@@ -132,7 +132,7 @@ export default function ShortlistsPage() {
               : `${shortlists.length} of ${limits.shortlists} shortlists used`}
           </p>
         </div>
-        <Button onClick={() => setShowCreateModal(true)} disabled={!canCreateMore}>
+        <Button onClick={() => setShowCreateModal(true)} disabled={!canCreateMore} className="w-full sm:w-auto">
           Create Shortlist
         </Button>
       </div>
@@ -264,12 +264,12 @@ export default function ShortlistsPage() {
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <Button onClick={handleCreate} disabled={isCreating}>
-                {isCreating ? 'Creating...' : 'Create Shortlist'}
-              </Button>
-              <Button variant="secondary" onClick={() => setShowCreateModal(false)}>
+            <div className="flex flex-col-reverse sm:flex-row gap-3">
+              <Button variant="secondary" onClick={() => setShowCreateModal(false)} className="w-full sm:w-auto">
                 Cancel
+              </Button>
+              <Button onClick={handleCreate} disabled={isCreating} className="w-full sm:w-auto">
+                {isCreating ? 'Creating...' : 'Create Shortlist'}
               </Button>
             </div>
           </div>
@@ -285,12 +285,12 @@ export default function ShortlistsPage() {
               This will permanently delete this shortlist and remove all candidates from it. This
               action cannot be undone.
             </p>
-            <div className="flex gap-4">
-              <Button variant="secondary" onClick={() => handleDelete(deleteId)}>
-                Delete
-              </Button>
-              <Button variant="secondary" onClick={() => setDeleteId(null)}>
+            <div className="flex flex-col-reverse sm:flex-row gap-3">
+              <Button variant="secondary" onClick={() => setDeleteId(null)} className="w-full sm:w-auto">
                 Cancel
+              </Button>
+              <Button variant="secondary" onClick={() => handleDelete(deleteId)} className="w-full sm:w-auto text-red-600 hover:bg-red-50">
+                Delete
               </Button>
             </div>
           </div>

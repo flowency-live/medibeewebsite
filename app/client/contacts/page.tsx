@@ -116,7 +116,7 @@ export default function ContactsPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
         {[
           { value: 'all', label: 'All' },
           { value: 'pending', label: 'Pending' },
@@ -127,7 +127,7 @@ export default function ContactsPage() {
           <button
             key={option.value}
             onClick={() => setFilter(option.value)}
-            className={`px-4 py-2 rounded-sm font-body text-body-sm transition-colors ${
+            className={`px-4 py-2 rounded-sm font-body text-body-sm transition-colors whitespace-nowrap ${
               filter === option.value
                 ? 'bg-slate-blue text-mist'
                 : 'bg-slate-blue/10 text-slate-blue hover:bg-slate-blue/20'
@@ -169,9 +169,9 @@ export default function ContactsPage() {
             return (
               <div
                 key={contact.contactId}
-                className="bg-white p-6 rounded-sm border border-neutral-grey/20"
+                className="bg-white p-4 sm:p-6 rounded-sm border border-neutral-grey/20"
               >
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <Link
@@ -243,9 +243,9 @@ export default function ContactsPage() {
                     )}
                   </div>
 
-                  <div className="ml-4 shrink-0">
+                  <div className="shrink-0 w-full sm:w-auto">
                     <Link href={`/client/candidates/${contact.candidateId}`}>
-                      <Button variant="secondary">View Profile</Button>
+                      <Button variant="secondary" className="w-full sm:w-auto">View Profile</Button>
                     </Link>
                   </div>
                 </div>
@@ -257,8 +257,8 @@ export default function ContactsPage() {
 
       {/* Credit Info */}
       {subscription && (
-        <div className="mt-8 bg-slate-blue/5 p-6 rounded-sm border border-slate-blue/20">
-          <div className="flex items-center justify-between">
+        <div className="mt-8 bg-slate-blue/5 p-4 sm:p-6 rounded-sm border border-slate-blue/20">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <p className="font-body text-body-md text-ink">
                 {subscription.creditsRemaining === -1
@@ -270,8 +270,8 @@ export default function ContactsPage() {
               </p>
             </div>
             {subscription.creditsRemaining === 0 && (
-              <Link href="/client/subscription">
-                <Button>Get More Credits</Button>
+              <Link href="/client/subscription" className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto">Get More Credits</Button>
               </Link>
             )}
           </div>
