@@ -32,3 +32,4 @@ export {
 } from './PortalCard';
 export { CandidateProfilePreview } from './CandidateProfilePreview';
 export { DevPersonaSwitcher } from './DevPersonaSwitcher';
+export { PortalModal, ModalActions, ModalTextarea } from './PortalModal';
