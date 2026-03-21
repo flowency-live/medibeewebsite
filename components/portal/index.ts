@@ -31,5 +31,8 @@ export {
   StatCard,
 } from './PortalCard';
 export { CandidateProfilePreview } from './CandidateProfilePreview';
+export { ProfileHero } from './ProfileHero';
+export { WorkHistoryTimeline } from './WorkHistoryTimeline';
+export { TrustMeter } from './TrustMeter';
 export { DevPersonaSwitcher } from './DevPersonaSwitcher';
 export { PortalModal, ModalActions, ModalTextarea } from './PortalModal';

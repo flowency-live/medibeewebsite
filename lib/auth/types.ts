@@ -11,6 +11,16 @@
 
 export type UserType = 'candidate' | 'client' | 'admin';
 
+// Work History Entry - structured employment record
+export interface WorkHistoryEntry {
+  role: string;
+  employer: string;
+  startDate: string; // ISO date: YYYY-MM-DD
+  endDate?: string | null; // ISO date or null for current
+  description?: string;
+  isCurrent: boolean;
+}
+
 export interface CandidateProfile {
   candidateId: string;
   firstName: string;
@@ -22,11 +32,18 @@ export interface CandidateProfile {
   experienceLevel?: string;
   preferredSettings?: string[];
   professionalSummary?: string;
+
+  // Extended profile fields
+  tagline?: string; // Professional headline (max 100 chars)
+  workHistory?: WorkHistoryEntry[];
+  skills?: string[];
+
+  // Compliance
   rightToWork?: boolean;
   dbsStatus?: string;
   available?: boolean;
   cvUploaded?: boolean;
-  status: 'pending_verification' | 'pending_review' | 'active' | 'suspended' | 'rejected';
+  status: 'pending_verification' | 'pending_profile' | 'pending_review' | 'active' | 'suspended' | 'rejected';
   createdAt: string;
   updatedAt?: string;
 }
