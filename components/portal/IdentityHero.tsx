@@ -19,7 +19,7 @@ interface IdentityHeroProps {
   profileImageUrl?: string;
   experienceLevel?: string;
   profileCompletion: number;
-  status: 'pending_verification' | 'pending_review' | 'active' | 'suspended' | 'rejected';
+  status: 'pending_verification' | 'pending_profile' | 'pending_review' | 'active' | 'suspended' | 'rejected';
   available: boolean;
   city?: string;
   onEditProfile?: () => void;
@@ -49,7 +49,7 @@ export function IdentityHero({
 
   const statusType: StatusType = status === 'active'
     ? (available ? 'available' : 'not-available')
-    : status === 'pending_verification'
+    : status === 'pending_verification' || status === 'pending_profile'
       ? 'pending'
       : status === 'pending_review'
         ? 'under-review'
