@@ -106,7 +106,7 @@ export default function CandidateOnboardingPage() {
   }[step];
 
   return (
-    <section className="min-h-screen bg-mist py-8 md:py-12">
+    <section className="min-h-screen bg-void py-8 md:py-12">
       <div className="container-editorial">
         <div className="max-w-2xl mx-auto">
           {/* Header */}
@@ -121,10 +121,10 @@ export default function CandidateOnboardingPage() {
             </Link>
             {step !== 'complete' && (
               <>
-                <h1 className="font-display text-display-sm text-ink mb-2">
+                <h1 className="font-display text-display-sm text-pearl mb-2">
                   Complete Your Profile
                 </h1>
-                <p className="font-body text-body-md text-slate-blue">
+                <p className="font-body text-body-md text-pearl-soft/70">
                   Step {stepNumber} of 4
                 </p>
               </>
@@ -134,9 +134,9 @@ export default function CandidateOnboardingPage() {
           {/* Progress Bar */}
           {step !== 'complete' && (
             <div className="mb-8">
-              <div className="h-2 bg-neutral-grey/20 rounded-full overflow-hidden">
+              <div className="h-2 bg-void-elevated/10 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-rich-gold transition-all duration-300"
+                  className="h-full bg-gold transition-all duration-300"
                   style={{ width: `${(stepNumber / 4) * 100}%` }}
                 />
               </div>
@@ -151,7 +151,7 @@ export default function CandidateOnboardingPage() {
           )}
 
           {/* Step Content */}
-          <div className="bg-white p-6 md:p-8 rounded-sm border border-neutral-grey/20">
+          <div className="bg-void-elevated p-6 md:p-8 rounded-sm border border-white/[0.08]">
             {step === 'personal' && (
               <PersonalStep
                 data={data}
@@ -227,8 +227,8 @@ function PersonalStep({ data, updateData, onNext }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="font-display text-xl text-ink mb-2">Personal Details</h2>
-        <p className="font-body text-body-sm text-slate-blue">
+        <h2 className="font-display text-xl text-pearl mb-2">Personal Details</h2>
+        <p className="font-body text-body-sm text-pearl-soft/70">
           Tell us a bit about yourself
         </p>
       </div>
@@ -288,8 +288,8 @@ function LocationStep({ data, updateData, onBack, onNext }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="font-display text-xl text-ink mb-2">Your Location</h2>
-        <p className="font-body text-body-sm text-slate-blue">
+        <h2 className="font-display text-xl text-pearl mb-2">Your Location</h2>
+        <p className="font-body text-body-sm text-pearl-soft/70">
           Help us match you with opportunities near you
         </p>
       </div>
@@ -352,14 +352,14 @@ function ExperienceStep({ data, updateData, onBack, onNext }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="font-display text-xl text-ink mb-2">Your Experience</h2>
-        <p className="font-body text-body-sm text-slate-blue">
+        <h2 className="font-display text-xl text-pearl mb-2">Your Experience</h2>
+        <p className="font-body text-body-sm text-pearl-soft/70">
           Tell us about your healthcare experience
         </p>
       </div>
 
       <div>
-        <label className="block font-body text-body-sm text-ink mb-2">
+        <label className="block font-body text-body-sm text-pearl mb-2">
           Experience Level <span className="text-red-500">*</span>
         </label>
         <div className="space-y-2">
@@ -368,8 +368,8 @@ function ExperienceStep({ data, updateData, onBack, onNext }: StepProps) {
               key={level.value}
               className={`flex items-center p-3 border rounded-sm cursor-pointer transition-colors ${
                 data.experienceLevel === level.value
-                  ? 'border-rich-gold bg-rich-gold/5'
-                  : 'border-neutral-grey/30 hover:border-slate-blue/50'
+                  ? 'border-gold bg-gold/5'
+                  : 'border-white/10 hover:border-gold/50'
               }`}
             >
               <input
@@ -378,9 +378,9 @@ function ExperienceStep({ data, updateData, onBack, onNext }: StepProps) {
                 value={level.value}
                 checked={data.experienceLevel === level.value}
                 onChange={(e) => updateData({ experienceLevel: e.target.value })}
-                className="w-4 h-4 accent-rich-gold"
+                className="w-4 h-4 accent-gold"
               />
-              <span className="ml-3 font-body text-body-md text-ink">{level.label}</span>
+              <span className="ml-3 font-body text-body-md text-pearl">{level.label}</span>
             </label>
           ))}
         </div>
@@ -390,10 +390,10 @@ function ExperienceStep({ data, updateData, onBack, onNext }: StepProps) {
       </div>
 
       <div>
-        <label className="block font-body text-body-sm text-ink mb-2">
+        <label className="block font-body text-body-sm text-pearl mb-2">
           Preferred Care Settings <span className="text-red-500">*</span>
         </label>
-        <p className="font-body text-body-sm text-slate-blue mb-3">
+        <p className="font-body text-body-sm text-pearl-soft/70 mb-3">
           Select all that apply
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -402,17 +402,17 @@ function ExperienceStep({ data, updateData, onBack, onNext }: StepProps) {
               key={setting.value}
               className={`flex items-center p-3 border rounded-sm cursor-pointer transition-colors ${
                 data.preferredSettings.includes(setting.value)
-                  ? 'border-rich-gold bg-rich-gold/5'
-                  : 'border-neutral-grey/30 hover:border-slate-blue/50'
+                  ? 'border-gold bg-gold/5'
+                  : 'border-white/10 hover:border-gold/50'
               }`}
             >
               <input
                 type="checkbox"
                 checked={data.preferredSettings.includes(setting.value)}
                 onChange={() => toggleSetting(setting.value)}
-                className="w-4 h-4 accent-rich-gold"
+                className="w-4 h-4 accent-gold"
               />
-              <span className="ml-3 font-body text-body-sm text-ink">{setting.label}</span>
+              <span className="ml-3 font-body text-body-sm text-pearl">{setting.label}</span>
             </label>
           ))}
         </div>
@@ -435,30 +435,30 @@ function CVStep({ data, updateData, onBack, onSubmit, isLoading }: StepProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="font-display text-xl text-ink mb-2">Professional Summary</h2>
-        <p className="font-body text-body-sm text-slate-blue">
+        <h2 className="font-display text-xl text-pearl mb-2">Professional Summary</h2>
+        <p className="font-body text-body-sm text-pearl-soft/70">
           Tell us a bit about your experience and career goals
         </p>
       </div>
 
       <div>
-        <label className="block font-body text-body-sm text-ink mb-2">
+        <label className="block font-body text-body-sm text-pearl mb-2">
           About You
         </label>
         <textarea
           value={data.professionalSummary}
           onChange={(e) => updateData({ professionalSummary: e.target.value })}
           rows={5}
-          className="w-full px-4 py-3 border border-neutral-grey/30 rounded-sm font-body text-body-md text-ink placeholder:text-slate-blue/50 focus:outline-none focus:ring-2 focus:ring-rich-gold/30 focus:border-rich-gold"
+          className="w-full px-4 py-3 border border-white/10 rounded-sm font-body text-body-md text-pearl placeholder:text-pearl-soft/70/50 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold"
           placeholder="Briefly describe your experience, qualifications, and what you're looking for in your next role..."
         />
-        <p className="mt-1 font-body text-body-sm text-slate-blue/60">
+        <p className="mt-1 font-body text-body-sm text-pearl-soft/70/60">
           Optional - you can add this later
         </p>
       </div>
 
       <div className="p-4 bg-slate-blue/5 rounded-sm">
-        <p className="font-body text-body-sm text-slate-blue">
+        <p className="font-body text-body-sm text-pearl-soft/70">
           You can upload your CV later from your dashboard. This helps care providers learn more about your qualifications.
         </p>
       </div>
@@ -484,14 +484,14 @@ function CompleteStep({ onContinue }: { onContinue: () => void }) {
         </svg>
       </div>
 
-      <h2 className="font-display text-2xl text-ink mb-2">Profile Complete!</h2>
-      <p className="font-body text-body-md text-slate-blue mb-6">
+      <h2 className="font-display text-2xl text-pearl mb-2">Profile Complete!</h2>
+      <p className="font-body text-body-md text-pearl-soft/70 mb-6">
         Your profile is now being reviewed by our team. We&apos;ll be in touch soon.
       </p>
 
-      <div className="p-4 bg-rich-gold/10 rounded-sm mb-6">
-        <h3 className="font-display text-lg text-ink mb-2">What happens next?</h3>
-        <ul className="font-body text-body-sm text-slate-blue text-left space-y-2">
+      <div className="p-4 bg-gold/10 rounded-sm mb-6">
+        <h3 className="font-display text-lg text-pearl mb-2">What happens next?</h3>
+        <ul className="font-body text-body-sm text-pearl-soft/70 text-left space-y-2">
           <li className="flex items-start gap-2">
             <span className="text-rich-gold mt-1">1.</span>
             <span>Our team will review your profile within 24-48 hours</span>

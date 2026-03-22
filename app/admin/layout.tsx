@@ -38,12 +38,12 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   // Show loading state
   if (state.status === 'loading') {
     return (
-      <div className="min-h-screen bg-deep-slate flex items-center justify-center">
+      <div className="min-h-screen bg-void flex items-center justify-center">
         <div className="text-center">
           <div className="animate-pulse mb-4">
-            <div className="w-16 h-16 bg-slate-blue/20 rounded-full mx-auto" />
+            <div className="w-16 h-16 bg-gold/20 rounded-full mx-auto" />
           </div>
-          <p className="font-body text-body-md text-mist/60">Loading...</p>
+          <p className="font-body text-body-md text-pearl-soft/60">Loading...</p>
         </div>
       </div>
     );
@@ -57,26 +57,26 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   const { profile } = state;
 
   return (
-    <div className="min-h-screen bg-deep-slate">
+    <div className="min-h-screen bg-void">
       {/* Admin Header */}
-      <header className="bg-ink text-mist border-b border-slate-blue/20">
+      <header className="bg-void-elevated text-pearl-soft border-b border-gold/20">
         <div className="container-editorial py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link href="/admin/dashboard" className="font-display text-lg text-soft-gold">
+              <Link href="/admin/dashboard" className="font-display text-lg text-gold-soft">
                 Medibee
               </Link>
-              <span className="text-mist/40">|</span>
+              <span className="text-pearl-soft/40">|</span>
               <span className="px-2 py-0.5 bg-red-600/20 text-red-400 text-xs font-semibold rounded">
                 ADMIN
               </span>
             </div>
 
             <div className="flex items-center gap-6">
-              <span className="font-body text-body-sm text-mist/80">{profile.email}</span>
+              <span className="font-body text-body-sm text-pearl-soft/80">{profile.email}</span>
               <button
                 onClick={() => logout()}
-                className="font-body text-body-sm text-mist/60 hover:text-mist transition-colors"
+                className="font-body text-body-sm text-pearl-soft/60 hover:text-pearl-soft transition-colors"
               >
                 Logout
               </button>
@@ -99,8 +99,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                       className={`
                         flex items-center gap-3 px-4 py-3 rounded-sm font-body text-body-md transition-colors
                         ${isActive
-                          ? 'bg-slate-blue text-mist'
-                          : 'text-mist/70 hover:bg-slate-blue/20 hover:text-mist'
+                          ? 'bg-gold/20 text-gold'
+                          : 'text-pearl-soft/70 hover:bg-gold/10 hover:text-gold-soft'
                         }
                       `}
                     >
@@ -113,9 +113,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             </ul>
 
             {/* Quick Stats */}
-            <div className="mt-8 p-4 bg-slate-blue/10 rounded-sm border border-slate-blue/20">
-              <p className="font-body text-body-sm text-mist/60 mb-2">Admin Portal</p>
-              <p className="font-body text-body-sm text-mist/80">
+            <div className="mt-8 p-4 bg-gold/5 rounded-sm border border-gold/20">
+              <p className="font-body text-body-sm text-pearl-soft/60 mb-2">Admin Portal</p>
+              <p className="font-body text-body-sm text-pearl-soft/80">
                 Manage candidates, clients, and platform operations.
               </p>
             </div>
@@ -123,7 +123,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
           {/* Main Content */}
           <main className="flex-1 min-w-0">
-            <div className="bg-mist p-8 rounded-sm">{children}</div>
+            <div className="bg-void-elevated p-8 rounded-sm border border-white/[0.06]">{children}</div>
           </main>
         </div>
       </div>

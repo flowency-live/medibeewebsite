@@ -74,7 +74,7 @@ function ClientLoginContent() {
   };
 
   return (
-    <section className="min-h-[calc(100vh-200px)] bg-deep-slate flex items-center">
+    <section className="min-h-[calc(100vh-200px)] bg-void flex items-center">
       <div className="container-editorial py-12 md:py-16">
         <div className="max-w-md mx-auto">
           {/* Logo */}
@@ -88,16 +88,16 @@ function ClientLoginContent() {
                 className="mx-auto mb-4"
               />
             </Link>
-            <h1 className="font-display text-display-md text-soft-gold mb-2">
+            <h1 className="font-display text-display-md text-gold-soft mb-2">
               Client Login
             </h1>
-            <p className="font-body text-body-md text-mist/80">
+            <p className="font-body text-body-md text-pearl-soft/80">
               Access your care provider portal
             </p>
           </div>
 
           {/* Login Form */}
-          <div className="bg-mist p-8">
+          <div className="bg-void-elevated border border-white/[0.08] rounded-lg p-8">
             {error && (
               <div className="mb-6 p-4 bg-amber-50 border-l-[3px] border-amber-500" role="alert">
                 <p className="font-body text-body-sm text-amber-800">{error}</p>
@@ -131,13 +131,13 @@ function ClientLoginContent() {
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 border-2 border-neutral-grey accent-rich-gold"
+                    className="w-4 h-4 border-2 border-white/20 accent-gold"
                   />
-                  <span className="font-body text-body-sm text-ink">Remember me</span>
+                  <span className="font-body text-body-sm text-pearl-soft">Remember me</span>
                 </label>
                 <Link
                   href="/client/forgot-password"
-                  className="font-body text-body-sm text-slate-blue hover:text-deep-slate underline"
+                  className="font-body text-body-sm text-gold-soft hover:text-gold underline"
                 >
                   Forgot password?
                 </Link>
@@ -147,18 +147,18 @@ function ClientLoginContent() {
                 type="submit"
                 disabled={isLoading}
                 fullWidth
-                className="bg-rich-gold text-ink hover:bg-soft-gold"
+                className="bg-gold text-void hover:bg-gold-light"
               >
                 {isLoading ? 'Logging in...' : 'Login'}
               </Button>
             </form>
 
-            <div className="mt-6 pt-6 border-t border-neutral-grey/30 text-center">
-              <p className="font-body text-body-md text-ink">
+            <div className="mt-6 pt-6 border-t border-white/10 text-center">
+              <p className="font-body text-body-md text-pearl-soft">
                 Don&apos;t have an account?{' '}
                 <Link
                   href="/client/register"
-                  className="text-slate-blue hover:text-deep-slate underline"
+                  className="text-gold-soft hover:text-gold underline"
                 >
                   Register your organisation
                 </Link>
@@ -189,7 +189,7 @@ function ClientLoginContent() {
           <div className="mt-6 text-center">
             <Link
               href="/"
-              className="font-body text-body-sm text-mist/60 hover:text-mist transition-colors"
+              className="font-body text-body-sm text-pearl-soft/60 hover:text-pearl-soft transition-colors"
             >
               ← Back to homepage
             </Link>
@@ -202,7 +202,7 @@ function ClientLoginContent() {
 
 export default function ClientLoginPage() {
   return (
-    <React.Suspense fallback={<div className="min-h-screen bg-deep-slate" />}>
+    <React.Suspense fallback={<div className="min-h-screen bg-void" />}>
       <ClientLoginContent />
     </React.Suspense>
   );

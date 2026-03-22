@@ -141,7 +141,7 @@ function CandidateLoginContent() {
   };
 
   return (
-    <section className="min-h-[calc(100vh-200px)] bg-deep-slate flex items-center">
+    <section className="min-h-[calc(100vh-200px)] bg-void flex items-center">
       <div className="container-editorial py-12 md:py-16">
         <div className="max-w-md mx-auto">
           {/* Logo */}
@@ -155,16 +155,16 @@ function CandidateLoginContent() {
                 className="mx-auto mb-4"
               />
             </Link>
-            <h1 className="font-display text-display-md text-soft-gold mb-2">
+            <h1 className="font-display text-display-md text-gold-soft mb-2">
               Join Medibee
             </h1>
-            <p className="font-body text-body-md text-mist/80">
+            <p className="font-body text-body-md text-pearl-soft/80">
               Sign in or create your account
             </p>
           </div>
 
           {/* Auth Card */}
-          <div className="bg-mist p-8">
+          <div className="bg-void-elevated border border-white/[0.08] rounded-lg p-8">
             {error && (
               <div className="mb-6 p-4 bg-amber-50 border-l-[3px] border-amber-500" role="alert">
                 <p className="font-body text-body-sm text-amber-800">{error}</p>
@@ -196,10 +196,10 @@ function CandidateLoginContent() {
 
                 <div className="relative my-6">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-neutral-grey/30" />
+                    <div className="w-full border-t border-white/10" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-mist text-slate-blue">or</span>
+                    <span className="px-2 bg-void-elevated text-pearl-soft/60">or</span>
                   </div>
                 </div>
 
@@ -224,7 +224,7 @@ function CandidateLoginContent() {
             {/* Phone - Enter Number */}
             {method === 'phone' && phoneStep === 'input' && (
               <form onSubmit={handlePhoneRequest} className="space-y-6">
-                <p className="font-body text-body-sm text-slate-blue text-center mb-4">
+                <p className="font-body text-body-sm text-pearl-soft/70 text-center mb-4">
                   We&apos;ll send you a verification code
                 </p>
 
@@ -250,7 +250,7 @@ function CandidateLoginContent() {
                     setMethod('social');
                     setError('');
                   }}
-                  className="w-full text-center font-body text-body-sm text-slate-blue hover:underline"
+                  className="w-full text-center font-body text-body-sm text-pearl-soft/70 hover:underline"
                 >
                   Back to options
                 </button>
@@ -291,7 +291,7 @@ function CandidateLoginContent() {
                     setOtp('');
                     setError('');
                   }}
-                  className="w-full text-center font-body text-body-sm text-slate-blue hover:underline"
+                  className="w-full text-center font-body text-body-sm text-pearl-soft/70 hover:underline"
                 >
                   Enter different number
                 </button>
@@ -301,7 +301,7 @@ function CandidateLoginContent() {
             {/* Email - Enter Address */}
             {method === 'email' && emailStep === 'input' && (
               <form onSubmit={handleEmailRequest} className="space-y-6">
-                <p className="font-body text-body-sm text-slate-blue text-center mb-4">
+                <p className="font-body text-body-sm text-pearl-soft/70 text-center mb-4">
                   We&apos;ll send you a secure sign-in link
                 </p>
 
@@ -327,7 +327,7 @@ function CandidateLoginContent() {
                     setMethod('social');
                     setError('');
                   }}
-                  className="w-full text-center font-body text-body-sm text-slate-blue hover:underline"
+                  className="w-full text-center font-body text-body-sm text-pearl-soft/70 hover:underline"
                 >
                   Back to options
                 </button>
@@ -337,17 +337,17 @@ function CandidateLoginContent() {
             {/* Email - Check Inbox */}
             {method === 'email' && emailStep === 'sent' && (
               <div className="text-center py-4">
-                <div className="w-16 h-16 bg-rich-gold/20 rounded-full mx-auto flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-gold/20 rounded-full mx-auto flex items-center justify-center mb-4">
                   <MailIcon />
                 </div>
-                <h2 className="font-display text-lg text-ink mb-2">Check your email</h2>
-                <p className="font-body text-body-sm text-slate-blue mb-2">
+                <h2 className="font-display text-lg text-pearl mb-2">Check your email</h2>
+                <p className="font-body text-body-sm text-pearl-soft/70 mb-2">
                   We sent a sign-in link to
                 </p>
-                <p className="font-body text-body-md text-ink font-semibold mb-6">
+                <p className="font-body text-body-md text-pearl font-semibold mb-6">
                   {email}
                 </p>
-                <p className="font-body text-body-sm text-slate-blue/70 mb-6">
+                <p className="font-body text-body-sm text-pearl-soft/60 mb-6">
                   The link will expire in 15 minutes.
                 </p>
                 <button
@@ -357,7 +357,7 @@ function CandidateLoginContent() {
                     setEmail('');
                     setError('');
                   }}
-                  className="font-body text-body-sm text-rich-gold hover:underline"
+                  className="font-body text-body-sm text-gold hover:underline"
                 >
                   Use a different email
                 </button>
@@ -418,20 +418,20 @@ function CandidateLoginContent() {
           <div className="mt-6 text-center">
             <Link
               href="/"
-              className="font-body text-body-sm text-mist/60 hover:text-mist transition-colors"
+              className="font-body text-body-sm text-pearl-soft/60 hover:text-pearl-soft transition-colors"
             >
               Back to homepage
             </Link>
           </div>
 
           {/* Legal */}
-          <p className="mt-4 text-center font-body text-body-sm text-mist/50">
+          <p className="mt-4 text-center font-body text-body-sm text-pearl-soft/50">
             By continuing, you agree to our{' '}
-            <Link href="/privacy-policy" className="underline hover:text-mist/70">
+            <Link href="/privacy-policy" className="underline hover:text-pearl-soft/70">
               Privacy Policy
             </Link>{' '}
             and{' '}
-            <Link href="/terms" className="underline hover:text-mist/70">
+            <Link href="/terms" className="underline hover:text-pearl-soft/70">
               Terms of Service
             </Link>
           </p>
@@ -475,7 +475,7 @@ function AppleIcon() {
 
 function MailIcon() {
   return (
-    <svg className="w-8 h-8 text-rich-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg className="w-8 h-8 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
     </svg>
   );
@@ -483,7 +483,7 @@ function MailIcon() {
 
 export default function CandidateLoginPage() {
   return (
-    <React.Suspense fallback={<div className="min-h-screen bg-deep-slate" />}>
+    <React.Suspense fallback={<div className="min-h-screen bg-void" />}>
       <CandidateLoginContent />
     </React.Suspense>
   );

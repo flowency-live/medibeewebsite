@@ -39,12 +39,12 @@ export default function CandidateRegisterPage() {
 
   if (submitState === 'success') {
     return (
-      <section className="section-spacing bg-deep-slate">
+      <section className="section-spacing bg-void">
         <div className="container-editorial">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="w-16 h-16 bg-rich-gold mx-auto mb-6 flex items-center justify-center">
+            <div className="w-16 h-16 bg-gold mx-auto mb-6 flex items-center justify-center">
               <svg
-                className="w-8 h-8 text-ink"
+                className="w-8 h-8 text-void"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -53,25 +53,25 @@ export default function CandidateRegisterPage() {
                 <path strokeLinecap="square" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h1 className="font-display text-display-lg text-soft-gold mb-6">
+            <h1 className="font-display text-display-lg text-gold-soft mb-6">
               Application Submitted
             </h1>
-            <p className="font-body text-body-lg text-mist mb-8">
+            <p className="font-body text-body-lg text-pearl-soft mb-8">
               Thank you for registering with Medibee. We have received your application
               and will be in touch within 2 working days to discuss next steps.
             </p>
-            <p className="font-body text-body-md text-mist/80 mb-8">
+            <p className="font-body text-body-md text-pearl-soft/80 mb-8">
               In the meantime, if you have any questions, please contact us at{' '}
               <a
                 href="mailto:hello@medibee-recruitment.co.uk"
-                className="text-rich-gold hover:text-soft-gold underline"
+                className="text-gold hover:text-gold-soft underline"
               >
                 hello@medibee-recruitment.co.uk
               </a>
             </p>
             <Link
               href="/"
-              className="inline-block font-body text-ui-sm tracking-ui uppercase bg-rich-gold text-ink px-8 py-4 hover:bg-soft-gold transition-colors"
+              className="inline-block font-body text-ui-sm tracking-ui uppercase bg-gold text-void px-8 py-4 hover:bg-gold-light transition-colors"
             >
               Return to Homepage
             </Link>
@@ -84,13 +84,13 @@ export default function CandidateRegisterPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-12 md:py-16 bg-deep-slate">
+      <section className="py-12 md:py-16 bg-void">
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-display text-display-lg text-soft-gold mb-4">
+            <h1 className="font-display text-display-lg text-gold-soft mb-4">
               Apply Today
             </h1>
-            <p className="font-body text-body-lg text-mist">
+            <p className="font-body text-body-lg text-pearl-soft">
               Join Medibee and work with a recruitment agency that values you.
               Complete the form below to register your interest.
             </p>
@@ -99,9 +99,9 @@ export default function CandidateRegisterPage() {
       </section>
 
       {/* Form */}
-      <section className="section-spacing bg-slate-blue">
+      <section className="section-spacing bg-void-elevated">
         <div className="container-editorial">
-          <div className="max-w-3xl mx-auto bg-white p-8 md:p-12">
+          <div className="max-w-3xl mx-auto bg-void-medium p-8 md:p-12">
             {submitState === 'error' && (
               <div className="mb-8 p-4 bg-red-50 border-l-[3px] border-red-600">
                 <p className="font-body text-body-md text-red-800">
@@ -112,12 +112,12 @@ export default function CandidateRegisterPage() {
 
             <CandidateRegistrationForm onSubmit={handleSubmit} />
 
-            <div className="mt-8 pt-8 border-t border-neutral-grey/30 text-center">
-              <p className="font-body text-body-md text-ink">
+            <div className="mt-8 pt-8 border-t border-white/10 text-center">
+              <p className="font-body text-body-md text-void">
                 Already registered?{' '}
                 <Link
                   href="/candidate/login"
-                  className="text-slate-blue hover:text-deep-slate underline"
+                  className="text-gold-soft hover:text-gold underline"
                 >
                   Login to your account
                 </Link>

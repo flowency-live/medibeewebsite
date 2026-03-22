@@ -73,24 +73,24 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-deep-slate flex items-center justify-center py-12 px-4">
+    <div className="min-h-screen bg-void flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
-          <Link href="/" className="font-display text-2xl text-soft-gold">
+          <Link href="/" className="font-display text-2xl text-gold-soft">
             Medibee
           </Link>
           <div className="mt-2">
-            <span className="px-3 py-1 bg-slate-blue/20 text-slate-blue text-xs font-semibold rounded">
+            <span className="px-3 py-1 bg-gold/20 text-gold text-xs font-semibold rounded">
               ADMIN
             </span>
           </div>
-          <h1 className="font-display text-display-sm text-mist mt-6 mb-2">Admin Sign In</h1>
-          <p className="font-body text-body-md text-mist/60">
+          <h1 className="font-display text-display-sm text-pearl mt-6 mb-2">Admin Sign In</h1>
+          <p className="font-body text-body-md text-pearl-soft/60">
             Access the administration portal.
           </p>
         </div>
 
-        <div className="bg-white p-8 rounded-sm border border-neutral-grey/20">
+        <div className="bg-void-elevated p-8 rounded-lg border border-white/[0.08]">
           {error && (
             <div className="mb-6 p-4 bg-red-50 border-l-[3px] border-red-500" role="alert">
               <p className="font-body text-body-sm text-red-800">{error}</p>
@@ -101,7 +101,7 @@ export default function AdminLoginPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block font-body text-body-sm text-slate-blue mb-1"
+                className="block font-body text-body-sm text-pearl-soft/70 mb-1"
               >
                 Email Address
               </label>
@@ -110,7 +110,7 @@ export default function AdminLoginPage() {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 border border-neutral-grey/30 rounded-sm font-body text-body-md text-ink placeholder:text-slate-blue/50 focus:outline-none focus:ring-2 focus:ring-soft-gold focus:border-slate-blue"
+                className="w-full px-4 py-3 border border-white/10 rounded-sm font-body text-body-md text-pearl placeholder:text-pearl-soft/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
                 placeholder="admin@medibee.dev"
                 autoComplete="email"
               />
@@ -119,7 +119,7 @@ export default function AdminLoginPage() {
             <div>
               <label
                 htmlFor="password"
-                className="block font-body text-body-sm text-slate-blue mb-1"
+                className="block font-body text-body-sm text-pearl-soft/70 mb-1"
               >
                 Password
               </label>
@@ -129,13 +129,13 @@ export default function AdminLoginPage() {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 pr-12 border border-neutral-grey/30 rounded-sm font-body text-body-md text-ink placeholder:text-slate-blue/50 focus:outline-none focus:ring-2 focus:ring-soft-gold focus:border-slate-blue"
+                  className="w-full px-4 py-3 pr-12 border border-white/10 rounded-sm font-body text-body-md text-pearl placeholder:text-pearl-soft/50 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
                   autoComplete="current-password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-blue hover:text-ink transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-pearl-soft/70 hover:text-pearl transition-colors"
                   aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? <EyeOffIcon /> : <EyeIcon />}
@@ -149,8 +149,8 @@ export default function AdminLoginPage() {
           </form>
         </div>
 
-        <p className="mt-6 text-center font-body text-body-sm text-mist/60">
-          <Link href="/" className="text-soft-gold hover:underline">
+        <p className="mt-6 text-center font-body text-body-sm text-pearl-soft/60">
+          <Link href="/" className="text-gold-soft hover:underline">
             ← Back to website
           </Link>
         </p>
