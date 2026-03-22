@@ -4,41 +4,60 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  // Base styles - editorial, no rounded corners, uppercase tracking for UI
+  // Base styles - dark theme, uppercase tracking for UI
   [
-    'inline-flex items-center justify-center',
+    'inline-flex items-center justify-center gap-2',
     'font-body font-medium text-ui-sm tracking-ui uppercase',
-    'transition-colors duration-150',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rich-gold focus-visible:ring-offset-2 focus-visible:ring-offset-mist',
-    'disabled:pointer-events-none disabled:opacity-50',
+    'transition-all duration-normal',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-void',
+    'disabled:pointer-events-none disabled:opacity-40',
   ],
   {
     variants: {
       variant: {
-        // Primary - solid deep slate, no gradients, no rounded corners
-        primary: [
-          'bg-deep-slate text-mist',
-          'hover:bg-ink',
+        // Gold - primary CTA, signature color
+        gold: [
+          'bg-gold text-void',
+          'hover:bg-gold-light hover:shadow-gold-glow-sm',
           'border-0',
         ],
-        // Secondary - outlined, transparent background
-        secondary: [
-          'bg-transparent text-deep-slate',
-          'border-2 border-deep-slate',
-          'hover:bg-deep-slate hover:text-mist',
+        // Outline Gold - secondary on dark backgrounds
+        'outline-gold': [
+          'bg-transparent text-gold',
+          'border border-gold/40',
+          'hover:border-gold hover:bg-gold/10',
         ],
-        // Ghost - just underlined text, editorial style
+        // Ghost - minimal style for dark backgrounds
         ghost: [
-          'bg-transparent text-slate-blue',
+          'bg-transparent text-pearl-soft',
+          'hover:bg-ash-border hover:text-pearl',
+          'border-0',
+        ],
+        // Secondary - subtle dark button
+        secondary: [
+          'bg-void-elevated text-pearl-soft',
+          'border border-ash-border',
+          'hover:bg-void-medium hover:border-ash-border-light hover:text-pearl',
+        ],
+        // Destructive - for delete/danger actions
+        destructive: [
+          'bg-status-expired/10 text-status-expired',
+          'border border-status-expired/30',
+          'hover:bg-status-expired/20 hover:border-status-expired/50',
+        ],
+        // Link style - underlined text
+        link: [
+          'bg-transparent text-gold',
           'underline underline-offset-4 decoration-1',
-          'hover:text-deep-slate hover:decoration-2',
-          'p-0',
+          'hover:text-gold-light hover:decoration-2',
+          'p-0 h-auto',
         ],
       },
       size: {
         default: 'h-12 px-8',
-        sm: 'h-10 px-6',
+        sm: 'h-10 px-6 text-ui-xs',
         lg: 'h-14 px-10',
+        icon: 'h-10 w-10 p-0',
       },
       fullWidth: {
         true: 'w-full',
@@ -46,7 +65,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'primary',
+      variant: 'gold',
       size: 'default',
       fullWidth: false,
     },

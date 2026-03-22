@@ -18,12 +18,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className="space-y-2">
         <label
           htmlFor={name}
-          className="block font-body text-body-sm text-ink"
+          className="block font-body text-body-sm text-pearl-soft"
         >
           {label}
           {required && (
             <>
-              <span className="text-red-600 ml-1" aria-hidden="true">*</span>
+              <span className="text-gold ml-1" aria-hidden="true">*</span>
               <span className="sr-only">(required)</span>
             </>
           )}
@@ -39,33 +39,33 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             error ? errorId : hint ? hintId : undefined
           }
           className={cn(
-            // Base styles - clean, no rounded corners
+            // Base styles - dark theme
             'block w-full px-4 py-3',
-            'font-body text-body-md text-ink',
-            'bg-white border-2 border-neutral-grey',
+            'font-body text-body-md text-pearl-soft',
+            'bg-void-medium border border-ash-border rounded-sm',
             // Focus state - gold accent
-            'focus:border-rich-gold focus:outline-none',
+            'focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/30',
             // Transition
-            'transition-colors duration-150',
+            'transition-all duration-normal',
             // Placeholder
-            'placeholder:text-neutral-grey',
+            'placeholder:text-ash',
             // Error state
-            error && 'border-red-600 focus:border-red-600',
+            error && 'border-status-expired focus:border-status-expired focus:ring-status-expired/30',
             // Disabled
-            'disabled:bg-mist disabled:text-neutral-grey disabled:cursor-not-allowed',
+            'disabled:bg-void-elevated disabled:text-ash-dark disabled:cursor-not-allowed',
             className
           )}
           {...props}
         />
 
         {hint && !error && (
-          <p id={hintId} className="text-body-sm text-neutral-grey">
+          <p id={hintId} className="text-body-sm text-ash-light">
             {hint}
           </p>
         )}
 
         {error && (
-          <p id={errorId} className="text-body-sm text-red-600" role="alert">
+          <p id={errorId} className="text-body-sm text-status-expired" role="alert">
             {error}
           </p>
         )}

@@ -251,7 +251,7 @@ export default function SubscriptionPage() {
                   <Button
                     onClick={() => handleSubscribe(plan.tier)}
                     disabled={isLoading !== null}
-                    variant={plan.tier === 'silver' ? 'primary' : 'secondary'}
+                    variant={plan.tier === 'silver' ? 'gold' : 'secondary'}
                     className="w-full"
                   >
                     {isLoading === plan.tier

@@ -45,10 +45,10 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     return (
       <div ref={ref} className={cn('space-y-3', className)}>
         <fieldset>
-          <legend className="font-body text-body-sm text-ink mb-3 block">
+          <legend className="font-body text-body-sm text-pearl-soft mb-3 block">
             {label}
             {required && (
-              <span className="text-red-600 ml-1" aria-hidden="true">
+              <span className="text-gold ml-1" aria-hidden="true">
                 *
               </span>
             )}
@@ -65,9 +65,9 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
                 key={option.value}
                 className={cn(
                   'relative flex items-start gap-3 p-4 cursor-pointer',
-                  'border-2 border-neutral-grey/30 bg-white',
-                  'hover:border-slate-blue transition-colors',
-                  value === option.value && 'border-rich-gold bg-soft-gold/10'
+                  'border border-ash-border bg-void-medium rounded-sm',
+                  'hover:border-ash-border-light transition-all duration-normal',
+                  value === option.value && 'border-gold bg-gold/5'
                 )}
               >
                 <input
@@ -80,23 +80,23 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
                 />
                 <span
                   className={cn(
-                    'flex-shrink-0 w-5 h-5 border-2 mt-0.5',
-                    'flex items-center justify-center',
+                    'flex-shrink-0 w-5 h-5 border rounded-full mt-0.5',
+                    'flex items-center justify-center transition-all duration-normal',
                     value === option.value
-                      ? 'border-rich-gold bg-rich-gold'
-                      : 'border-neutral-grey'
+                      ? 'border-gold bg-gold'
+                      : 'border-ash-border'
                   )}
                 >
                   {value === option.value && (
-                    <span className="w-2 h-2 bg-white" />
+                    <span className="w-2 h-2 bg-void rounded-full" />
                   )}
                 </span>
                 <span className="flex flex-col">
-                  <span className="font-body text-body-md text-ink">
+                  <span className="font-body text-body-md text-pearl-soft">
                     {option.label}
                   </span>
                   {option.description && (
-                    <span className="font-body text-body-sm text-neutral-grey mt-1">
+                    <span className="font-body text-body-sm text-ash-light mt-1">
                       {option.description}
                     </span>
                   )}
@@ -106,7 +106,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
           </div>
         </fieldset>
         {error && (
-          <p id={errorId} className="font-body text-body-sm text-red-600" role="alert">
+          <p id={errorId} className="font-body text-body-sm text-status-expired" role="alert">
             {error}
           </p>
         )}

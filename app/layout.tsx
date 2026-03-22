@@ -1,20 +1,13 @@
 import type { Metadata } from 'next';
-import { Fraunces, Outfit } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { siteConfig } from '@/lib/config/site';
 
-const fraunces = Fraunces({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-fraunces',
+  variable: '--font-inter',
   display: 'swap',
-  weight: ['400', '500', '600'],
-});
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  variable: '--font-outfit',
-  display: 'swap',
-  weight: ['400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -73,7 +66,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-GB">
-      <body className={`${fraunces.variable} ${outfit.variable}`}>
+      <body className={inter.variable}>
         <Providers>
           <a
             href="#main-content"

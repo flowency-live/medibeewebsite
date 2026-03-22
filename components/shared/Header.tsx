@@ -62,7 +62,7 @@ export function Header() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="bg-slate-blue border-b-[3px] border-rich-gold">
+    <header className="bg-void border-b border-gold/30">
       <div className="container-editorial">
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
@@ -75,14 +75,14 @@ export function Header() {
               alt=""
               width={50}
               height={50}
-              className="w-[50px] h-[50px] drop-shadow-[0_0_1px_rgba(0,0,0,0.8)]"
+              className="w-[50px] h-[50px] drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]"
             />
             <Image
               src="/medibee-logo.png"
               alt="Medibee"
               width={140}
               height={40}
-              className="h-6 md:h-8 w-auto"
+              className="h-6 md:h-8 w-auto brightness-0 invert"
             />
           </Link>
 
@@ -96,9 +96,9 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     'font-body text-ui-sm tracking-ui uppercase',
-                    'text-mist/80 hover:text-soft-gold transition-colors',
+                    'text-pearl-soft/80 hover:text-gold transition-colors',
                     'no-underline',
-                    pathname === item.href && 'text-soft-gold'
+                    pathname === item.href && 'text-gold'
                   )}
                 >
                   {item.label}
@@ -106,16 +106,16 @@ export function Header() {
               ))}
 
             {/* Divider */}
-            <span className="w-px h-6 bg-mist/30" aria-hidden="true" />
+            <span className="w-px h-6 bg-ash-border" aria-hidden="true" />
 
             {/* Portal Links */}
             <Link
               href="/candidate/login"
               className={cn(
                 'font-body text-ui-sm tracking-ui uppercase',
-                'text-mist/80 hover:text-soft-gold transition-colors',
+                'text-pearl-soft/80 hover:text-gold transition-colors',
                 'no-underline flex items-center gap-1.5',
-                pathname.startsWith('/candidate') && 'text-soft-gold'
+                pathname.startsWith('/candidate') && 'text-gold'
               )}
               title="Candidate Portal"
             >
@@ -129,9 +129,9 @@ export function Header() {
               href="/client/login"
               className={cn(
                 'font-body text-ui-sm tracking-ui uppercase',
-                'text-mist/80 hover:text-soft-gold transition-colors',
+                'text-pearl-soft/80 hover:text-gold transition-colors',
                 'no-underline flex items-center gap-1.5',
-                pathname.startsWith('/client') && 'text-soft-gold'
+                pathname.startsWith('/client') && 'text-gold'
               )}
               title="Client Portal"
             >
@@ -145,9 +145,9 @@ export function Header() {
             <Link
               href="/admin/login"
               className={cn(
-                'text-mist/40 hover:text-mist/80 transition-colors',
+                'text-ash hover:text-pearl-soft/80 transition-colors',
                 'no-underline',
-                pathname.startsWith('/admin') && 'text-mist/80'
+                pathname.startsWith('/admin') && 'text-pearl-soft/80'
               )}
               title="Admin Portal"
             >
@@ -164,7 +164,7 @@ export function Header() {
             ref={menuButtonRef}
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 -mr-2 text-mist hover:text-soft-gold transition-colors"
+            className="lg:hidden p-2 -mr-2 text-pearl-soft hover:text-gold transition-colors"
             aria-label="Menu"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav"
@@ -181,7 +181,8 @@ export function Header() {
                 aria-hidden="true"
               >
                 <path
-                  strokeLinecap="square"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M6 6l12 12M6 18L18 6"
                 />
               </svg>
@@ -196,7 +197,8 @@ export function Header() {
                 aria-hidden="true"
               >
                 <path
-                  strokeLinecap="square"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
@@ -211,7 +213,7 @@ export function Header() {
         id="mobile-nav"
         data-testid="mobile-nav"
         className={cn(
-          'lg:hidden bg-slate-blue text-mist overflow-hidden transition-all duration-200',
+          'lg:hidden bg-void-light text-pearl-soft overflow-hidden transition-all duration-normal',
           mobileMenuOpen ? 'max-h-screen py-8' : 'max-h-0 py-0'
         )}
         aria-label="Mobile navigation"
@@ -227,9 +229,9 @@ export function Header() {
                 onClick={closeMobileMenu}
                 className={cn(
                   'font-body text-body-lg',
-                  'text-mist hover:text-soft-gold transition-colors',
+                  'text-pearl-soft hover:text-gold transition-colors',
                   'no-underline',
-                  pathname === item.href && 'text-rich-gold'
+                  pathname === item.href && 'text-gold'
                 )}
               >
                 {item.label}
@@ -245,9 +247,9 @@ export function Header() {
             onClick={closeMobileMenu}
             className={cn(
               'font-body text-body-lg flex items-center gap-2',
-              'text-mist hover:text-soft-gold transition-colors',
+              'text-pearl-soft hover:text-gold transition-colors',
               'no-underline',
-              pathname.startsWith('/candidate') && 'text-rich-gold'
+              pathname.startsWith('/candidate') && 'text-gold'
             )}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -261,9 +263,9 @@ export function Header() {
             onClick={closeMobileMenu}
             className={cn(
               'font-body text-body-lg flex items-center gap-2',
-              'text-mist hover:text-soft-gold transition-colors',
+              'text-pearl-soft hover:text-gold transition-colors',
               'no-underline',
-              pathname.startsWith('/client') && 'text-rich-gold'
+              pathname.startsWith('/client') && 'text-gold'
             )}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -277,9 +279,9 @@ export function Header() {
             onClick={closeMobileMenu}
             className={cn(
               'font-body text-body-lg flex items-center gap-2',
-              'text-mist/60 hover:text-mist transition-colors',
+              'text-ash hover:text-pearl-soft transition-colors',
               'no-underline',
-              pathname.startsWith('/admin') && 'text-mist'
+              pathname.startsWith('/admin') && 'text-pearl-soft'
             )}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -294,7 +296,7 @@ export function Header() {
           <Link
             href="/contact"
             onClick={closeMobileMenu}
-            className="font-body text-body-lg text-rich-gold hover:text-soft-gold transition-colors no-underline"
+            className="font-body text-body-lg text-gold hover:text-gold-light transition-colors no-underline"
           >
             Contact Us
           </Link>

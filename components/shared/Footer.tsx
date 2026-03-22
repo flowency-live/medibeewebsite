@@ -7,12 +7,13 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-deep-slate text-mist relative overflow-hidden">
-      {/* Subtle noise texture for depth */}
+    <footer className="bg-void text-pearl-soft relative overflow-hidden">
+      {/* Subtle hexagonal pattern overlay */}
       <div
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3C/svg%3E")`,
+          backgroundSize: '60px 52px',
         }}
         aria-hidden="true"
       />
@@ -22,7 +23,7 @@ export function Footer() {
         position="top-right"
         variant="outline"
         scale={0.9}
-        opacityMultiplier={0.8}
+        opacityMultiplier={0.5}
         data-testid="footer-hex-cluster"
       />
 
@@ -37,23 +38,23 @@ export function Footer() {
                 alt=""
                 width={44}
                 height={44}
-                className="w-11 h-11 transition-transform duration-300 group-hover:scale-105"
+                className="w-11 h-11 transition-transform duration-normal group-hover:scale-105 drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]"
               />
               <Image
                 src="/medibee-logo.png"
                 alt="Medibee"
                 width={140}
                 height={40}
-                className="h-9 w-auto"
+                className="h-9 w-auto brightness-0 invert"
               />
             </Link>
-            <p className="font-body text-body-sm text-mist/75 mt-5 leading-relaxed max-w-xs">
+            <p className="font-body text-body-sm text-pearl-soft/75 mt-5 leading-relaxed max-w-xs">
               Specialist healthcare assistant recruitment you can trust. Personal service, nationwide reach.
             </p>
             {/* Email as a clear, accessible link */}
             <a
               href={`mailto:${siteConfig.email}`}
-              className="inline-block mt-5 font-body text-body-sm text-soft-gold hover:text-rich-gold transition-colors no-underline"
+              className="inline-block mt-5 font-body text-body-sm text-gold hover:text-gold-light transition-colors no-underline"
             >
               {siteConfig.email}
             </a>
@@ -63,14 +64,14 @@ export function Footer() {
           <div className="flex flex-wrap gap-x-16 gap-y-8">
             {/* Quick Links */}
             <nav className="min-w-[120px]">
-              <h3 className="font-body text-ui-xs tracking-wider uppercase text-mist/60 mb-4">
+              <h3 className="font-body text-ui-xs tracking-wider uppercase text-ash mb-4">
                 Navigate
               </h3>
               <ul className="space-y-2.5">
                 <li>
                   <Link
                     href="/services"
-                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
+                    className="font-body text-body-sm text-pearl-soft/70 hover:text-gold transition-colors no-underline"
                   >
                     Services
                   </Link>
@@ -78,7 +79,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/work-with-us"
-                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
+                    className="font-body text-body-sm text-pearl-soft/70 hover:text-gold transition-colors no-underline"
                   >
                     Work With Us
                   </Link>
@@ -86,7 +87,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/about"
-                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
+                    className="font-body text-body-sm text-pearl-soft/70 hover:text-gold transition-colors no-underline"
                   >
                     About
                   </Link>
@@ -94,7 +95,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/contact"
-                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
+                    className="font-body text-body-sm text-pearl-soft/70 hover:text-gold transition-colors no-underline"
                   >
                     Contact
                   </Link>
@@ -104,14 +105,14 @@ export function Footer() {
 
             {/* Policies */}
             <nav className="min-w-[120px]">
-              <h3 className="font-body text-ui-xs tracking-wider uppercase text-mist/60 mb-4">
+              <h3 className="font-body text-ui-xs tracking-wider uppercase text-ash mb-4">
                 Policies
               </h3>
               <ul className="space-y-2.5">
                 <li>
                   <Link
                     href="/policies"
-                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
+                    className="font-body text-body-sm text-pearl-soft/70 hover:text-gold transition-colors no-underline"
                   >
                     View all policies
                   </Link>
@@ -119,7 +120,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/privacy-policy"
-                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
+                    className="font-body text-body-sm text-pearl-soft/70 hover:text-gold transition-colors no-underline"
                   >
                     Privacy Policy
                   </Link>
@@ -127,7 +128,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/safeguarding"
-                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
+                    className="font-body text-body-sm text-pearl-soft/70 hover:text-gold transition-colors no-underline"
                   >
                     Safeguarding
                   </Link>
@@ -135,7 +136,7 @@ export function Footer() {
                 <li>
                   <Link
                     href="/policies/accessibility"
-                    className="font-body text-body-sm text-mist/70 hover:text-soft-gold transition-colors no-underline"
+                    className="font-body text-body-sm text-pearl-soft/70 hover:text-gold transition-colors no-underline"
                   >
                     Accessibility
                   </Link>
@@ -146,12 +147,12 @@ export function Footer() {
         </div>
 
         {/* Legal Footer - Minimal, separated by subtle border */}
-        <div className="mt-16 pt-8 border-t border-mist/10">
+        <div className="mt-16 pt-8 border-t border-ash-border">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <p className="font-body text-ui-xs text-mist/60">
+            <p className="font-body text-ui-xs text-ash">
               &copy; {currentYear} {siteConfig.company.name}. {siteConfig.company.registration}
             </p>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-body text-ui-xs text-mist/60">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-body text-ui-xs text-ash">
               {siteConfig.company.companyNumber !== '[TBC]' && (
                 <span>Company No. {siteConfig.company.companyNumber}</span>
               )}
@@ -159,7 +160,7 @@ export function Footer() {
             </div>
           </div>
           {siteConfig.company.registeredOffice !== '[TBC]' && (
-            <p className="font-body text-ui-xs text-mist/50 mt-3">
+            <p className="font-body text-ui-xs text-ash-dark mt-3">
               Registered Office: {siteConfig.company.registeredOffice}
             </p>
           )}

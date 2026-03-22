@@ -26,12 +26,12 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       <div className="space-y-2">
         <label
           htmlFor={name}
-          className="block font-body text-body-sm text-ink"
+          className="block font-body text-body-sm text-pearl-soft"
         >
           {label}
           {required && (
             <>
-              <span className="text-red-600 ml-1" aria-hidden="true">*</span>
+              <span className="text-gold ml-1" aria-hidden="true">*</span>
               <span className="sr-only">(required)</span>
             </>
           )}
@@ -46,40 +46,40 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             aria-invalid={error ? 'true' : undefined}
             aria-describedby={error ? errorId : undefined}
             className={cn(
-              // Base styles - matching input, no rounded corners
+              // Base styles - dark theme
               'block w-full px-4 py-3 pr-10',
-              'font-body text-body-md text-ink',
-              'bg-white border-2 border-neutral-grey',
-              // Focus state
-              'focus:border-rich-gold focus:outline-none',
+              'font-body text-body-md text-pearl-soft',
+              'bg-void-medium border border-ash-border rounded-sm',
+              // Focus state - gold accent
+              'focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/30',
               // Transition
-              'transition-colors duration-150',
+              'transition-all duration-normal',
               // Appearance - remove default arrow
               'appearance-none cursor-pointer',
               // Error state
-              error && 'border-red-600 focus:border-red-600',
+              error && 'border-status-expired focus:border-status-expired focus:ring-status-expired/30',
               // Disabled
-              'disabled:bg-mist disabled:text-neutral-grey disabled:cursor-not-allowed',
+              'disabled:bg-void-elevated disabled:text-ash-dark disabled:cursor-not-allowed',
               className
             )}
             {...props}
           >
             {placeholder && (
-              <option value="" disabled>
+              <option value="" disabled className="text-ash">
                 {placeholder}
               </option>
             )}
             {options.map((option) => (
-              <option key={option.value} value={option.value}>
+              <option key={option.value} value={option.value} className="bg-void-medium text-pearl-soft">
                 {option.label}
               </option>
             ))}
           </select>
 
-          {/* Custom dropdown arrow */}
+          {/* Custom dropdown arrow - gold accent */}
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
             <svg
-              className="h-4 w-4 text-neutral-grey"
+              className="h-4 w-4 text-gold"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -87,8 +87,8 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               aria-hidden="true"
             >
               <path
-                strokeLinecap="square"
-                strokeLinejoin="miter"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M19 9l-7 7-7-7"
               />
             </svg>
@@ -96,7 +96,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         </div>
 
         {error && (
-          <p id={errorId} className="text-body-sm text-red-600" role="alert">
+          <p id={errorId} className="text-body-sm text-status-expired" role="alert">
             {error}
           </p>
         )}

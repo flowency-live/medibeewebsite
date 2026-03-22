@@ -78,10 +78,10 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
 
     return (
       <div className={cn('space-y-2', className)}>
-        <label className="font-body text-body-sm text-ink block">
+        <label className="font-body text-body-sm text-pearl-soft block">
           {label}
           {required && (
-            <span className="text-red-600 ml-1" aria-hidden="true">
+            <span className="text-gold ml-1" aria-hidden="true">
               *
             </span>
           )}
@@ -92,13 +92,13 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           className={cn(
-            'relative border-2 border-dashed p-6 cursor-pointer transition-colors',
+            'relative border border-dashed p-6 cursor-pointer transition-all duration-normal rounded-sm',
             'flex flex-col items-center justify-center text-center',
             isDragging
-              ? 'border-rich-gold bg-soft-gold/10'
+              ? 'border-gold bg-gold/10'
               : error
-                ? 'border-red-600 bg-red-50'
-                : 'border-neutral-grey/50 hover:border-slate-blue'
+                ? 'border-status-expired bg-status-expired/10'
+                : 'border-ash-border bg-void-medium hover:border-ash-border-light hover:bg-void-light'
           )}
         >
           <input
@@ -122,22 +122,23 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
           {fileName ? (
             <div className="flex items-center gap-3">
               <svg
-                className="w-6 h-6 text-rich-gold"
+                className="w-6 h-6 text-gold"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
               >
                 <path
-                  strokeLinecap="square"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
-              <span className="font-body text-body-md text-ink">{fileName}</span>
+              <span className="font-body text-body-md text-pearl-soft">{fileName}</span>
               <button
                 type="button"
                 onClick={handleRemove}
-                className="text-neutral-grey hover:text-red-600 transition-colors"
+                className="text-ash hover:text-status-expired transition-colors"
                 aria-label="Remove file"
               >
                 <svg
@@ -147,40 +148,41 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
                   stroke="currentColor"
                   strokeWidth={2}
                 >
-                  <path strokeLinecap="square" d="M6 18L18 6M6 6l12 12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
           ) : (
             <>
               <svg
-                className="w-10 h-10 text-neutral-grey mb-3"
+                className="w-10 h-10 text-ash mb-3"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={1.5}
               >
                 <path
-                  strokeLinecap="square"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                 />
               </svg>
-              <span className="font-body text-body-md text-ink mb-1">
+              <span className="font-body text-body-md text-pearl-soft mb-1">
                 Click to upload or drag and drop
               </span>
-              <span className="font-body text-body-sm text-neutral-grey">
+              <span className="font-body text-body-sm text-ash">
                 PDF, DOC, or DOCX (max 5MB)
               </span>
             </>
           )}
         </div>
         {hint && !error && (
-          <p id={hintId} className="font-body text-body-sm text-neutral-grey">
+          <p id={hintId} className="font-body text-body-sm text-ash-light">
             {hint}
           </p>
         )}
         {error && (
-          <p id={errorId} className="font-body text-body-sm text-red-600" role="alert">
+          <p id={errorId} className="font-body text-body-sm text-status-expired" role="alert">
             {error}
           </p>
         )}
