@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center bg-midnight">
+      <section className="relative min-h-[85vh] flex items-center bg-void">
         {/* Background Image - decorative */}
         <Image
           src="/manchester-skyline.jpg"
@@ -31,7 +31,7 @@ export default function HomePage() {
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(135deg, rgba(29,32,50,0.92) 0%, rgba(61,66,89,0.85) 50%, rgba(29,32,50,0.95) 100%)',
+              'linear-gradient(135deg, rgba(13,13,13,0.92) 0%, rgba(26,26,26,0.85) 50%, rgba(13,13,13,0.95) 100%)',
           }}
         />
 
@@ -50,17 +50,17 @@ export default function HomePage() {
           <div className="max-w-[800px]">
             {/* Eyebrow with gold accent */}
             <div className="flex items-center gap-4 mb-8">
-              <span className="w-12 h-[3px] bg-rich-gold" />
-              <span className="text-[0.8125rem] tracking-[0.2em] uppercase font-medium text-rich-gold">
+              <span className="w-12 h-[3px] bg-gold" />
+              <span className="text-[0.8125rem] tracking-[0.2em] uppercase font-medium text-gold">
                 Healthcare Recruitment
               </span>
             </div>
 
-            <h1 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[1.05] mb-6 tracking-[-0.02em] text-soft-gold">
+            <h1 className="font-body text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-[1.05] mb-6 tracking-[-0.02em] text-gold-soft">
               Specialist healthcare assistant recruitment you can trust
             </h1>
 
-            <p className="text-xl mb-12 max-w-[580px] leading-relaxed text-mist opacity-85">
+            <p className="text-xl mb-12 max-w-[580px] leading-relaxed text-pearl-soft opacity-85">
               Care recruitment built on trust. Personal service from start to
               finish. When you contact Medibee, you speak directly to the
               decision maker, 24 hours a day.
@@ -69,15 +69,15 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/contact"
-                className="px-10 py-[1.125rem] text-[0.9375rem] font-semibold tracking-[0.02em] no-underline transition-all bg-rich-gold text-midnight"
-                style={{ boxShadow: '0 4px 24px rgba(229, 197, 92, 0.25)' }}
+                className="px-10 py-[1.125rem] text-[0.9375rem] font-semibold tracking-[0.02em] no-underline transition-all bg-gold text-void hover:bg-gold-light"
+                style={{ boxShadow: '0 4px 24px rgba(212, 175, 55, 0.25)' }}
               >
                 Get in touch
               </Link>
               <Link
                 href="/services"
-                className="px-10 py-[1.125rem] text-[0.9375rem] font-medium tracking-[0.02em] no-underline border-2 bg-transparent text-soft-gold"
-                style={{ borderColor: 'rgba(245, 230, 163, 0.4)' }}
+                className="px-10 py-[1.125rem] text-[0.9375rem] font-medium tracking-[0.02em] no-underline border-2 bg-transparent text-gold-soft hover:text-gold hover:border-gold transition-colors"
+                style={{ borderColor: 'rgba(212, 175, 55, 0.4)' }}
               >
                 Our services
               </Link>
@@ -86,20 +86,20 @@ export default function HomePage() {
         </div>
 
         {/* Gold line at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-rich-gold" />
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gold" />
       </section>
 
-      {/* Audience Split - Decision Fork - Plain background for visual rest */}
-      <section className="py-24 relative bg-midnight-light overflow-hidden">
+      {/* Audience Split - Decision Fork */}
+      <section className="py-24 relative bg-void-light overflow-hidden">
         {/* Subtle hexagon cluster for brand consistency */}
         <HoneycombCluster position="bottom-right" variant="filled" scale={1} opacityMultiplier={1.2} />
 
         <div className="container-editorial relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-display text-[2.5rem] mb-4 text-soft-gold">
+            <h2 className="font-body text-[2.5rem] font-semibold mb-4 text-gold-soft">
               How can we help you?
             </h2>
-            <p className="text-mist/80">
+            <p className="text-pearl-soft/80">
               Select your situation to find out more
             </p>
           </div>
@@ -129,13 +129,13 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 relative bg-deep-slate">
+      <section className="py-24 relative bg-void-medium">
         <HoneycombFade direction="left-to-right" opacity={0.08} />
 
         <div className="container-editorial relative z-10">
           <div className="text-center mb-16">
-            <div className="w-[60px] h-[3px] mx-auto mb-8 bg-rich-gold" />
-            <h2 className="font-display text-[2.5rem] text-soft-gold">
+            <div className="w-[60px] h-[3px] mx-auto mb-8 bg-gold" />
+            <h2 className="font-body text-[2.5rem] font-semibold text-gold-soft">
               How it works
             </h2>
           </div>
@@ -164,15 +164,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust & Compliance - Plain background for visual rest */}
-      <section className="py-20 relative bg-midnight">
+      {/* Trust & Compliance */}
+      <section className="py-20 relative bg-void">
         <div className="container-editorial relative z-10">
           <div className="max-w-[700px] mx-auto text-center">
-            <div className="w-[60px] h-[3px] mx-auto mb-8 bg-rich-gold" />
-            <h2 className="font-display text-[2rem] mb-6 text-soft-gold">
+            <div className="w-[60px] h-[3px] mx-auto mb-8 bg-gold" />
+            <h2 className="font-body text-[2rem] font-semibold mb-6 text-gold-soft">
               Nationwide support you can rely on
             </h2>
-            <p className="text-[1.0625rem] leading-relaxed mb-12 opacity-75 text-mist">
+            <p className="text-[1.0625rem] leading-relaxed mb-12 opacity-75 text-pearl-soft">
               Nationwide support for NHS and private healthcare providers, with
               a clear focus on suitability, safeguarding, and reliability.
             </p>
@@ -183,7 +183,7 @@ export default function HomePage() {
                 (badge) => (
                   <div key={badge} className="flex items-center gap-3">
                     <HexagonBullet />
-                    <span className="text-[0.8125rem] tracking-[0.1em] uppercase opacity-80 text-soft-gold">
+                    <span className="text-[0.8125rem] tracking-[0.1em] uppercase opacity-80 text-gold-soft">
                       {badge}
                     </span>
                   </div>
@@ -197,23 +197,23 @@ export default function HomePage() {
       {/* Final CTA - Split with honeycomb pattern */}
       <section className="grid md:grid-cols-2">
         {/* For Clients */}
-        <div className="px-8 py-20 md:px-12 lg:px-16 relative overflow-hidden bg-midnight-light">
+        <div className="px-8 py-20 md:px-12 lg:px-16 relative overflow-hidden bg-void-light">
           <HoneycombPattern variant="gold" opacity={0.08} />
 
           <div className="relative z-10 max-w-[400px]">
-            <span className="text-xs tracking-[0.15em] uppercase mb-4 block text-rich-gold">
+            <span className="text-xs tracking-[0.15em] uppercase mb-4 block text-gold">
               For Clients
             </span>
-            <h2 className="font-display text-[2rem] leading-tight mb-4 text-soft-gold">
+            <h2 className="font-body text-[2rem] font-semibold leading-tight mb-4 text-gold-soft">
               Reliable Staffing Support
             </h2>
-            <p className="leading-relaxed mb-8 opacity-70 text-mist">
+            <p className="leading-relaxed mb-8 opacity-70 text-pearl-soft">
               MediBee acts as an extension of your care team, helping maintain
               continuity and quality of care.
             </p>
             <Link
               href="/contact"
-              className="inline-block px-8 py-4 text-[0.9375rem] font-semibold no-underline bg-mist text-midnight"
+              className="inline-block px-8 py-4 text-[0.9375rem] font-semibold no-underline bg-pearl text-void hover:bg-pearl-soft transition-colors"
               style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.2)' }}
             >
               Find Staff Now
@@ -222,7 +222,7 @@ export default function HomePage() {
         </div>
 
         {/* For Carers - Gold with honeycomb */}
-        <div className="px-8 py-20 md:px-12 lg:px-16 relative overflow-hidden bg-rich-gold">
+        <div className="px-8 py-20 md:px-12 lg:px-16 relative overflow-hidden bg-gold">
           {/* Background image */}
           <Image
             src="/hca-male.png"
@@ -235,19 +235,19 @@ export default function HomePage() {
           <HoneycombPattern variant="dark" opacity={0.12} />
 
           <div className="relative z-10 max-w-[400px]">
-            <span className="text-xs tracking-[0.15em] uppercase mb-4 block opacity-70 text-midnight">
+            <span className="text-xs tracking-[0.15em] uppercase mb-4 block opacity-70 text-void">
               For Carers
             </span>
-            <h2 className="font-display text-[2rem] leading-tight mb-4 text-midnight">
+            <h2 className="font-body text-[2rem] font-semibold leading-tight mb-4 text-void">
               Flexible Work, Local Opportunities
             </h2>
-            <p className="leading-relaxed mb-8 opacity-75 text-midnight">
+            <p className="leading-relaxed mb-8 opacity-75 text-void">
               We offer consistent work that fits around your availability, with
               full support through onboarding.
             </p>
             <Link
               href="/candidate/register"
-              className="inline-block px-8 py-4 text-[0.9375rem] font-semibold no-underline bg-midnight text-soft-gold"
+              className="inline-block px-8 py-4 text-[0.9375rem] font-semibold no-underline bg-void text-gold-soft hover:bg-void-light transition-colors"
               style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.2)' }}
             >
               Join Our Team
@@ -257,26 +257,26 @@ export default function HomePage() {
       </section>
 
       {/* Quick Portal Access */}
-      <section className="py-5 bg-midnight border-t border-soft-gold/10" aria-labelledby="portal-heading">
+      <section className="py-5 bg-void border-t border-gold/10" aria-labelledby="portal-heading">
         <h2 id="portal-heading" className="sr-only">Portal Access</h2>
         <div className="container-editorial flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-12">
-          <span className="text-xs uppercase tracking-[0.1em] text-mist/70">
+          <span className="text-xs uppercase tracking-[0.1em] text-pearl-soft/70">
             Already registered?
           </span>
           <div className="flex items-center gap-8">
             <Link
               href="/candidate/login"
-              className="text-sm text-mist/80 hover:text-soft-gold no-underline transition-colors"
+              className="text-sm text-pearl-soft/80 hover:text-gold no-underline transition-colors"
             >
               Candidate Portal
             </Link>
             <span
-              className="w-px h-4 bg-mist/20"
+              className="w-px h-4 bg-pearl-soft/20"
               aria-hidden="true"
             />
             <Link
               href="/client/login"
-              className="text-sm text-mist/80 hover:text-soft-gold no-underline transition-colors"
+              className="text-sm text-pearl-soft/80 hover:text-gold no-underline transition-colors"
             >
               Client Portal
             </Link>

@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 
 export default function ModernSlaveryPage() {
   return (
-    <section className="section-spacing bg-deep-slate">
+    <section className="section-spacing bg-void">
       <div className="container-editorial">
         <div className="max-w-3xl mx-auto">
           <Link
             href="/policies"
-            className="inline-flex items-center gap-2 text-sm text-mist/60 hover:text-soft-gold mb-8 no-underline transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-pearl-soft/60 hover:text-gold-soft mb-8 no-underline transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -22,16 +22,16 @@ export default function ModernSlaveryPage() {
             Back to Policies
           </Link>
 
-          <h1 className="font-display text-display-lg text-soft-gold mb-6">
+          <h1 className="font-display text-display-lg text-gold-soft mb-6">
             Modern Slavery Statement
           </h1>
-          <p className="font-body text-body-md text-mist/60 mb-12">
+          <p className="font-body text-body-md text-pearl-soft/60 mb-12">
             Financial year ending: February 2026
           </p>
 
-          <div className="prose-container space-y-8 font-body text-body-md text-mist">
+          <div className="prose-container space-y-8 font-body text-body-md text-pearl-soft">
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Introduction
               </h2>
               <p>
@@ -47,7 +47,7 @@ export default function ModernSlaveryPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 About our business
               </h2>
               <p>
@@ -59,7 +59,7 @@ export default function ModernSlaveryPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Our policies
               </h2>
               <p className="mb-4">
@@ -87,7 +87,7 @@ export default function ModernSlaveryPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Due diligence in recruitment
               </h2>
               <p className="mb-4">
@@ -117,7 +117,7 @@ export default function ModernSlaveryPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Supply chain
               </h2>
               <p>
@@ -129,7 +129,7 @@ export default function ModernSlaveryPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Training
               </h2>
               <p>
@@ -152,13 +152,13 @@ export default function ModernSlaveryPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Reporting concerns
               </h2>
               <p>
                 If you have concerns about modern slavery or human trafficking in relation to
                 our business or supply chain, please report them immediately to{' '}
-                <a href={`mailto:${siteConfig.email}`} className="text-rich-gold hover:text-soft-gold underline">
+                <a href={`mailto:${siteConfig.email}`} className="text-gold hover:text-gold-soft underline">
                   {siteConfig.email}
                 </a>
                 . All reports will be taken seriously and investigated appropriately.
@@ -170,7 +170,7 @@ export default function ModernSlaveryPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Effectiveness
               </h2>
               <p>
@@ -190,7 +190,7 @@ export default function ModernSlaveryPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Approval
               </h2>
               <p>

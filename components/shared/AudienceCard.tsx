@@ -46,7 +46,7 @@ export function AudienceCard({
     <Link
       href={href}
       className={cn(
-        'group relative block no-underline overflow-hidden transition-all border-l-4 bg-midnight',
+        'group relative block no-underline overflow-hidden transition-all border-l-4 bg-void-medium rounded-card',
         config.borderClass,
         className
       )}
@@ -79,7 +79,7 @@ export function AudienceCard({
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(to top, rgba(26,29,46,1) 0%, transparent 60%)',
+            background: 'linear-gradient(to top, rgba(26,26,26,1) 0%, transparent 60%)',
           }}
         />
       </div>
@@ -87,22 +87,22 @@ export function AudienceCard({
       {/* Content section */}
       <div className="p-8">
         {/* Eyebrow */}
-        <span className="text-xs tracking-[0.15em] uppercase mb-3 block text-soft-gold opacity-70">
+        <span className="text-xs tracking-[0.15em] uppercase mb-3 block text-gold-soft opacity-70">
           {config.eyebrow}
         </span>
 
         {/* Gold accent line */}
-        <div className="w-10 h-[3px] bg-rich-gold mb-6" />
+        <div className="w-10 h-[3px] bg-gold mb-6" />
 
-        <h3 className="font-display text-2xl mb-4 text-soft-gold">
+        <h3 className="font-display text-2xl mb-4 text-gold-soft">
           {title}
         </h3>
 
-        <p className="mb-6 leading-relaxed text-mist opacity-70">
+        <p className="mb-6 leading-relaxed text-pearl-soft opacity-70">
           {description}
         </p>
 
-        <span className="text-sm font-medium inline-flex items-center gap-2 text-rich-gold">
+        <span className="text-sm font-medium inline-flex items-center gap-2 text-gold">
           {ctaText}
           <svg
             width="16"

@@ -40,10 +40,7 @@ export default function ContactPage() {
 
   if (submitState === 'success') {
     return (
-      <section
-        className="py-24 min-h-[60vh] flex items-center relative"
-        style={{ backgroundColor: '#1a1d2e' }}
-      >
+      <section className="py-24 min-h-[60vh] flex items-center relative bg-void">
         {/* Subtle grain texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -52,11 +49,8 @@ export default function ContactPage() {
 
         <div className="container-editorial relative z-10">
           <div className="max-w-2xl mx-auto text-center">
-            <div
-              className="w-16 h-16 mx-auto mb-8 flex items-center justify-center"
-              style={{ backgroundColor: '#E5C55C' }}
-            >
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a1d2e" strokeWidth="2" aria-hidden="true">
+            <div className="w-16 h-16 mx-auto mb-8 flex items-center justify-center bg-gold rounded-card">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" strokeWidth="2" aria-hidden="true">
                 <path d="M9 12l2 2 4-4" />
                 <circle cx="12" cy="12" r="10" />
               </svg>
@@ -64,21 +58,14 @@ export default function ContactPage() {
             <h1
               ref={successHeadingRef}
               tabIndex={-1}
-              className="font-display text-[2.5rem] mb-6 focus:outline-none"
-              style={{ color: '#F5E6A3' }}
+              className="font-display text-[2.5rem] mb-6 focus:outline-none text-gold-soft"
             >
               Thank you for your enquiry
             </h1>
-            <p
-              className="text-lg mb-4 opacity-85"
-              style={{ color: '#F5F4F0' }}
-            >
+            <p className="text-lg mb-4 opacity-85 text-pearl-soft">
               We have received your message and will be in touch shortly.
             </p>
-            <p
-              className="text-[1.0625rem] opacity-60"
-              style={{ color: '#F5F4F0' }}
-            >
+            <p className="text-[1.0625rem] opacity-60 text-pearl-soft">
               We aim to respond within 24 hours.
             </p>
           </div>
@@ -96,10 +83,7 @@ export default function ContactPage() {
       </div>
 
       {/* Hero */}
-      <section
-        className="py-24 relative overflow-hidden"
-        style={{ backgroundColor: '#1a1d2e' }}
-      >
+      <section className="py-24 relative overflow-hidden bg-void">
         {/* Subtle grain texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -112,31 +96,16 @@ export default function ContactPage() {
         <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <span
-                className="w-12 h-[3px]"
-                style={{ backgroundColor: '#E5C55C' }}
-              />
-              <span
-                className="text-[0.8125rem] tracking-[0.2em] uppercase font-medium"
-                style={{ color: '#E5C55C' }}
-              >
+              <span className="w-12 h-[3px] bg-gold" />
+              <span className="text-[0.8125rem] tracking-[0.2em] uppercase font-medium text-gold">
                 Get In Touch
               </span>
-              <span
-                className="w-12 h-[3px]"
-                style={{ backgroundColor: '#E5C55C' }}
-              />
+              <span className="w-12 h-[3px] bg-gold" />
             </div>
-            <h1
-              className="font-display text-[clamp(2.5rem,5vw,3.5rem)] leading-tight mb-6"
-              style={{ color: '#F5E6A3' }}
-            >
+            <h1 className="font-display text-[clamp(2.5rem,5vw,3.5rem)] leading-tight mb-6 text-gold-soft">
               Contact us
             </h1>
-            <p
-              className="text-lg leading-relaxed opacity-85"
-              style={{ color: '#F5F4F0' }}
-            >
+            <p className="text-lg leading-relaxed opacity-85 text-pearl-soft">
               Looking for reliable healthcare staffing? Tell us about your requirements
               and we&apos;ll discuss how Medibee can help.
             </p>
@@ -144,39 +113,21 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Form Section - Light breathing section */}
-      <section
-        className="py-24"
-        style={{ backgroundColor: '#F8F7F4' }}
-      >
+      {/* Form Section */}
+      <section className="py-24 bg-void-light">
         <div className="container-editorial">
           <div className="max-w-2xl mx-auto">
-            <h2
-              className="font-display text-xl mb-2"
-              style={{ color: '#1a1d2e' }}
-            >
+            <h2 className="font-display text-xl mb-2 text-pearl">
               Care Provider Enquiry
             </h2>
-            <p
-              className="text-[1.0625rem] mb-8"
-              style={{ color: '#4a4e5a' }}
-            >
+            <p className="text-[1.0625rem] mb-8 text-pearl-soft">
               Tell us about your staffing requirements and we&apos;ll discuss how we can help.
             </p>
 
             {/* Error Message */}
             {submitState === 'error' && (
-              <div
-                className="p-4 mb-8"
-                style={{
-                  backgroundColor: '#FEF2F2',
-                  borderLeft: '3px solid #DC2626'
-                }}
-              >
-                <p
-                  className="text-[1.0625rem]"
-                  style={{ color: '#DC2626' }}
-                >
+              <div className="p-4 mb-8 bg-status-expired/10 border-l-[3px] border-status-expired rounded-card">
+                <p className="text-[1.0625rem] text-status-expired">
                   There was a problem submitting your enquiry. Please try again or contact us
                   directly.
                 </p>
@@ -186,18 +137,12 @@ export default function ContactPage() {
             <CareProviderForm onSubmit={handleCareProviderSubmit} />
 
             {/* HCA redirect notice */}
-            <div
-              className="mt-8 pt-8"
-              style={{ borderTop: '1px solid rgba(154, 153, 155, 0.3)' }}
-            >
-              <p
-                className="text-[1.0625rem] text-center"
-                style={{ color: '#4a4e5a' }}
-              >
+            <div className="mt-8 pt-8 border-t border-ash-border">
+              <p className="text-[1.0625rem] text-center text-pearl-soft">
                 Looking for work as a healthcare assistant?{' '}
                 <Link
                   href="/candidate/register"
-                  className="font-medium underline text-deep-slate hover:text-midnight"
+                  className="font-medium underline text-gold hover:text-gold-light"
                 >
                   Register here
                 </Link>

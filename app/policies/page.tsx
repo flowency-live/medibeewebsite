@@ -86,7 +86,7 @@ export default function PoliciesPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-20 bg-midnight overflow-hidden">
+      <section className="relative py-20 bg-void overflow-hidden">
         <HoneycombCluster
           position="top-right"
           variant="filled"
@@ -97,17 +97,17 @@ export default function PoliciesPage() {
         <div className="container-editorial relative z-10">
           <div className="max-w-2xl">
             <div className="flex items-center gap-4 mb-6">
-              <span className="w-12 h-[3px] bg-rich-gold" />
-              <span className="text-[0.8125rem] tracking-[0.2em] uppercase font-medium text-rich-gold">
+              <span className="w-12 h-[3px] bg-gold" />
+              <span className="text-[0.8125rem] tracking-[0.2em] uppercase font-medium text-gold">
                 Governance
               </span>
             </div>
 
-            <h1 className="font-display text-[clamp(2rem,4vw,3rem)] leading-tight mb-6 text-soft-gold">
+            <h1 className="font-display text-[clamp(2rem,4vw,3rem)] leading-tight mb-6 text-gold-soft">
               Policies & Statements
             </h1>
 
-            <p className="text-lg leading-relaxed text-mist opacity-80">
+            <p className="text-lg leading-relaxed text-pearl-soft opacity-80">
               We are committed to transparency in how we operate. Access our
               policy documents and governance statements below.
             </p>
@@ -116,14 +116,14 @@ export default function PoliciesPage() {
       </section>
 
       {/* Policies Grid */}
-      <section className="py-20 bg-deep-slate">
+      <section className="py-20 bg-void-elevated">
         <div className="container-editorial">
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {POLICIES.map((policy) => (
               <Link
                 key={policy.href}
                 href={policy.href}
-                className="group block p-6 bg-midnight border-l-4 border-l-rich-gold/40 hover:border-l-rich-gold transition-all no-underline"
+                className="group block p-6 bg-void border-l-4 border-l-rich-gold/40 hover:border-l-rich-gold transition-all no-underline"
                 style={{ boxShadow: '0 4px 20px rgba(0,0,0,0.2)' }}
               >
                 <div className="flex items-start gap-4">
@@ -131,13 +131,13 @@ export default function PoliciesPage() {
                     <HexagonIcon size="sm" variant="filled" color="gold" />
                   </div>
                   <div>
-                    <h2 className="font-display text-xl text-soft-gold mb-2 group-hover:text-rich-gold transition-colors">
+                    <h2 className="font-display text-xl text-gold-soft mb-2 group-hover:text-gold transition-colors">
                       {policy.title}
                     </h2>
-                    <p className="text-sm text-mist/70 mb-3 leading-relaxed">
+                    <p className="text-sm text-pearl-soft/70 mb-3 leading-relaxed">
                       {policy.description}
                     </p>
-                    <span className="text-xs text-mist/50">
+                    <span className="text-xs text-pearl-soft/50">
                       Last updated: {policy.lastUpdated}
                     </span>
                   </div>
@@ -149,19 +149,19 @@ export default function PoliciesPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-midnight">
+      <section className="py-16 bg-void">
         <div className="container-editorial">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="font-display text-2xl text-soft-gold mb-4">
+            <h2 className="font-display text-2xl text-gold-soft mb-4">
               Questions about our policies?
             </h2>
-            <p className="text-mist/70 mb-6">
+            <p className="text-pearl-soft/70 mb-6">
               If you have any questions about our policies or wish to exercise
               your data protection rights, please get in touch.
             </p>
             <Link
               href="/contact"
-              className="inline-block px-8 py-3 text-[0.9375rem] font-semibold no-underline bg-rich-gold text-midnight hover:bg-soft-gold transition-colors"
+              className="inline-block px-8 py-3 text-[0.9375rem] font-semibold no-underline bg-gold text-void hover:bg-gold-light transition-colors"
             >
               Contact us
             </Link>

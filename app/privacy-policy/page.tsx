@@ -8,19 +8,19 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <section className="section-spacing bg-deep-slate">
+    <section className="section-spacing bg-void">
       <div className="container-editorial">
         <div className="max-w-3xl mx-auto">
-          <h1 className="font-display text-display-lg text-soft-gold mb-6">
+          <h1 className="font-display text-display-lg text-gold-soft mb-6">
             Privacy Policy
           </h1>
-          <p className="font-body text-body-md text-mist/60 mb-12">
+          <p className="font-body text-body-md text-pearl-soft/60 mb-12">
             Last updated: February 2026
           </p>
 
-          <div className="prose-container space-y-8 font-body text-body-md text-mist">
+          <div className="prose-container space-y-8 font-body text-body-md text-pearl-soft">
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Who we are
               </h2>
               <p>
@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 What data we collect
               </h2>
               <p className="mb-4">
@@ -46,7 +46,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 How we use your data
               </h2>
               <p className="mb-4">
@@ -61,7 +61,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 How we store your data
               </h2>
               <p>
@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Your rights
               </h2>
               <p className="mb-4">
@@ -88,13 +88,13 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Contact us
               </h2>
               <p>
                 If you have questions about this privacy policy or wish to exercise your rights,
                 please contact us at{' '}
-                <a href={`mailto:${siteConfig.email}`} className="text-rich-gold hover:text-soft-gold underline">
+                <a href={`mailto:${siteConfig.email}`} className="text-gold hover:text-gold-soft underline">
                   {siteConfig.email}
                 </a>
                 .
@@ -102,13 +102,13 @@ export default function PrivacyPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Complaints
               </h2>
               <p>
                 If you are not satisfied with how we handle your data, you have the right to
                 lodge a complaint with the Information Commissioner&apos;s Office (ICO) at{' '}
-                <a href="https://ico.org.uk" className="text-rich-gold hover:text-soft-gold underline">
+                <a href="https://ico.org.uk" className="text-gold hover:text-gold-soft underline">
                   ico.org.uk
                 </a>
                 .

@@ -35,7 +35,7 @@ export default function WorkWithUsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 relative bg-midnight overflow-hidden">
+      <section className="py-24 relative bg-void overflow-hidden">
         {/* Subtle grain texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -54,10 +54,10 @@ export default function WorkWithUsPage() {
                   For Healthcare Assistants
                 </span>
               </div>
-              <h1 className="font-display text-[clamp(2.5rem,5vw,3.5rem)] leading-tight mb-6 text-soft-gold">
+              <h1 className="font-display text-[clamp(2.5rem,5vw,3.5rem)] leading-tight mb-6 text-gold-soft">
                 Work with Medibee
               </h1>
-              <p className="text-lg leading-relaxed opacity-85 text-mist">
+              <p className="text-lg leading-relaxed opacity-85 text-pearl-soft">
                 At Medibee, healthcare assistants are valued, supported, and treated with respect.
               </p>
             </div>
@@ -76,19 +76,19 @@ export default function WorkWithUsPage() {
       </section>
 
       {/* What You Can Expect */}
-      <section className="py-24 bg-deep-slate">
+      <section className="py-24 bg-void-elevated">
         <div className="container-editorial">
           <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <div>
-              <div className="w-[60px] h-[3px] mb-8 bg-hca" />
-              <h2 className="font-display text-[2rem] mb-8 text-soft-gold">
+              <div className="w-[60px] h-[3px] mb-8 bg-gold" />
+              <h2 className="font-display text-[2rem] mb-8 text-gold-soft">
                 What you can expect
               </h2>
               <ul className="space-y-4">
                 {EXPECTATIONS.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="block w-2 h-2 mt-2 flex-shrink-0 bg-hca-light" />
-                    <span className="text-[1.0625rem] text-mist opacity-85">
+                    <span className="block w-2 h-2 mt-2 flex-shrink-0 bg-gold" />
+                    <span className="text-[1.0625rem] text-pearl-soft opacity-85">
                       {item}
                     </span>
                   </li>
@@ -96,13 +96,13 @@ export default function WorkWithUsPage() {
               </ul>
             </div>
 
-            <div className="p-8 bg-midnight border-l-[3px] border-hca">
-              <h3 className="font-display text-xl mb-6 text-soft-gold">
+            <div className="p-8 bg-void rounded-card border-l-[3px] border-gold">
+              <h3 className="font-display text-xl mb-6 text-gold-soft">
                 Care settings we work with
               </h3>
               <ul className="space-y-3">
                 {SETTINGS.map((setting) => (
-                  <li key={setting} className="text-[1.0625rem] text-mist opacity-85">
+                  <li key={setting} className="text-[1.0625rem] text-pearl-soft opacity-85">
                     {setting}
                   </li>
                 ))}
@@ -113,23 +113,23 @@ export default function WorkWithUsPage() {
       </section>
 
       {/* Why Healthcare Assistants Choose Us - Plain background for visual rest */}
-      <section className="py-24 relative bg-midnight">
+      <section className="py-24 relative bg-void">
         <div className="container-editorial relative z-10">
           <div className="max-w-3xl mx-auto">
-            <div className="w-[60px] h-[3px] mb-8 bg-hca" />
-            <h2 className="font-display text-[2rem] mb-8 text-soft-gold">
+            <div className="w-[60px] h-[3px] mb-8 bg-gold" />
+            <h2 className="font-display text-[2rem] mb-8 text-gold-soft">
               Why healthcare assistants choose Medibee
             </h2>
             <div className="space-y-6">
-              <p className="text-lg leading-relaxed opacity-85 text-mist">
+              <p className="text-lg leading-relaxed opacity-85 text-pearl-soft">
                 We specialise only in healthcare assistants and the care sector. We understand
                 care environments and expectations.
               </p>
-              <p className="text-lg leading-relaxed opacity-85 text-mist">
+              <p className="text-lg leading-relaxed opacity-85 text-pearl-soft">
                 We offer flexible shifts and consistent opportunities. Pay is discussed clearly
                 and fairly on an individual basis.
               </p>
-              <p className="text-lg leading-relaxed opacity-85 text-mist">
+              <p className="text-lg leading-relaxed opacity-85 text-pearl-soft">
                 We treat people with respect and provide proper support. Medibee is not a general
                 recruitment agency. Healthcare is our sole focus.
               </p>
@@ -139,14 +139,14 @@ export default function WorkWithUsPage() {
       </section>
 
       {/* Compliance */}
-      <section className="py-24 bg-midnight-light">
+      <section className="py-24 bg-void-light">
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="w-[60px] h-[3px] mx-auto mb-8 bg-rich-gold" />
-            <h2 className="font-display text-[2rem] mb-6 text-soft-gold">
+            <div className="w-[60px] h-[3px] mx-auto mb-8 bg-gold" />
+            <h2 className="font-display text-[2rem] mb-6 text-gold-soft">
               Your safety matters
             </h2>
-            <p className="text-[1.0625rem] leading-relaxed mb-12 opacity-85 text-mist">
+            <p className="text-[1.0625rem] leading-relaxed mb-12 opacity-85 text-pearl-soft">
               We carry out DBS and Right to Work checks and operate with clear safeguarding
               policies to protect both our staff and the people they care for.
             </p>
@@ -154,7 +154,7 @@ export default function WorkWithUsPage() {
               {['DBS Checked', 'Right to Work Verified', 'Safeguarding Policies'].map((badge) => (
                 <div key={badge} className="flex items-center gap-3">
                   <HexagonBullet />
-                  <span className="text-[0.8125rem] tracking-[0.1em] uppercase opacity-80 text-soft-gold">
+                  <span className="text-[0.8125rem] tracking-[0.1em] uppercase opacity-80 text-gold-soft">
                     {badge}
                   </span>
                 </div>
@@ -165,20 +165,20 @@ export default function WorkWithUsPage() {
       </section>
 
       {/* CTA with honeycomb */}
-      <section className="py-24 relative overflow-hidden bg-hca">
+      <section className="py-24 relative overflow-hidden bg-gold">
         <HoneycombPattern variant="dark" opacity={0.12} />
 
         <div className="container-editorial relative z-10 text-center">
-          <h2 className="font-display text-[2rem] mb-6 text-midnight">
+          <h2 className="font-display text-[2rem] mb-6 text-void">
             Register your interest
           </h2>
-          <p className="text-[1.0625rem] leading-relaxed mb-10 max-w-2xl mx-auto opacity-80 text-midnight">
+          <p className="text-[1.0625rem] leading-relaxed mb-10 max-w-2xl mx-auto opacity-80 text-void">
             Ready to work with a recruitment agency that values you? Register your interest
             and we&apos;ll be in touch to discuss opportunities.
           </p>
           <Link
             href="/candidate/register"
-            className="inline-block px-10 py-4 text-[0.9375rem] font-semibold no-underline transition-all bg-midnight text-soft-gold"
+            className="inline-block px-10 py-4 text-[0.9375rem] font-semibold no-underline transition-all bg-void text-gold-soft rounded-card hover:bg-void-light"
             style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.2)' }}
           >
             Apply now

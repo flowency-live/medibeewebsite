@@ -30,7 +30,7 @@ export function HowItWorksColumn({
   return (
     <AnimatedSection animation={animationDirection}>
       <div className={cn('', className)} data-testid={testId}>
-        <h3 className="text-lg mb-8 uppercase tracking-[0.1em] text-mist">
+        <h3 className="text-lg mb-8 uppercase tracking-[0.1em] text-pearl-soft">
           {title}
         </h3>
 
@@ -38,7 +38,7 @@ export function HowItWorksColumn({
           {steps.map((step, index) => (
             <li key={index} className="flex gap-6 items-start">
               <HexagonBadge number={index + 1} variant={type} />
-              <p className="text-[1.0625rem] leading-normal pt-3 opacity-85 text-mist">
+              <p className="text-[1.0625rem] leading-normal pt-3 opacity-85 text-pearl-soft">
                 {step.text}
               </p>
             </li>

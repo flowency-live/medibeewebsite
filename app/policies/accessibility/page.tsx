@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 
 export default function AccessibilityStatementPage() {
   return (
-    <section className="section-spacing bg-deep-slate">
+    <section className="section-spacing bg-void">
       <div className="container-editorial">
         <div className="max-w-3xl mx-auto">
           <Link
             href="/policies"
-            className="inline-flex items-center gap-2 text-sm text-mist/60 hover:text-soft-gold mb-8 no-underline transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-pearl-soft/60 hover:text-gold-soft mb-8 no-underline transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -22,16 +22,16 @@ export default function AccessibilityStatementPage() {
             Back to Policies
           </Link>
 
-          <h1 className="font-display text-display-lg text-soft-gold mb-6">
+          <h1 className="font-display text-display-lg text-gold-soft mb-6">
             Accessibility Statement
           </h1>
-          <p className="font-body text-body-md text-mist/60 mb-12">
+          <p className="font-body text-body-md text-pearl-soft/60 mb-12">
             Last updated: February 2026
           </p>
 
-          <div className="prose-container space-y-8 font-body text-body-md text-mist">
+          <div className="prose-container space-y-8 font-body text-body-md text-pearl-soft">
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Our commitment
               </h2>
               <p>
@@ -42,7 +42,7 @@ export default function AccessibilityStatementPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Conformance status
               </h2>
               <p>
@@ -53,7 +53,7 @@ export default function AccessibilityStatementPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Measures we take
               </h2>
               <p className="mb-4">
@@ -72,7 +72,7 @@ export default function AccessibilityStatementPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Compatibility
               </h2>
               <p className="mb-4">
@@ -87,7 +87,7 @@ export default function AccessibilityStatementPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Known limitations
               </h2>
               <p>
@@ -99,13 +99,13 @@ export default function AccessibilityStatementPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Feedback
               </h2>
               <p>
                 We welcome your feedback on the accessibility of our website. If you encounter
                 accessibility barriers or have suggestions for improvement, please contact us at{' '}
-                <a href={`mailto:${siteConfig.email}`} className="text-rich-gold hover:text-soft-gold underline">
+                <a href={`mailto:${siteConfig.email}`} className="text-gold hover:text-gold-soft underline">
                   {siteConfig.email}
                 </a>
                 . We aim to respond to accessibility feedback within 5 working days.
@@ -113,7 +113,7 @@ export default function AccessibilityStatementPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Alternative formats
               </h2>
               <p>
@@ -124,7 +124,7 @@ export default function AccessibilityStatementPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Enforcement procedure
               </h2>
               <p>
@@ -134,7 +134,7 @@ export default function AccessibilityStatementPage() {
                   href="https://www.equalityadvisoryservice.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-rich-gold hover:text-soft-gold underline"
+                  className="text-gold hover:text-gold-soft underline"
                 >
                   equalityadvisoryservice.com
                 </a>

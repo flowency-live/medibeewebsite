@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 
 export default function EqualityDiversityPage() {
   return (
-    <section className="section-spacing bg-deep-slate">
+    <section className="section-spacing bg-void">
       <div className="container-editorial">
         <div className="max-w-3xl mx-auto">
           <Link
             href="/policies"
-            className="inline-flex items-center gap-2 text-sm text-mist/60 hover:text-soft-gold mb-8 no-underline transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-pearl-soft/60 hover:text-gold-soft mb-8 no-underline transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -22,16 +22,16 @@ export default function EqualityDiversityPage() {
             Back to Policies
           </Link>
 
-          <h1 className="font-display text-display-lg text-soft-gold mb-6">
+          <h1 className="font-display text-display-lg text-gold-soft mb-6">
             Equality, Diversity & Inclusion Policy
           </h1>
-          <p className="font-body text-body-md text-mist/60 mb-12">
+          <p className="font-body text-body-md text-pearl-soft/60 mb-12">
             Last updated: February 2026
           </p>
 
-          <div className="prose-container space-y-8 font-body text-body-md text-mist">
+          <div className="prose-container space-y-8 font-body text-body-md text-pearl-soft">
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Our commitment
               </h2>
               <p>
@@ -42,7 +42,7 @@ export default function EqualityDiversityPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Policy statement
               </h2>
               <p className="mb-4">
@@ -65,7 +65,7 @@ export default function EqualityDiversityPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 For our candidates
               </h2>
               <p className="mb-4">
@@ -93,7 +93,7 @@ export default function EqualityDiversityPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 For our clients
               </h2>
               <p className="mb-4">
@@ -118,7 +118,7 @@ export default function EqualityDiversityPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Training and awareness
               </h2>
               <p>
@@ -129,7 +129,7 @@ export default function EqualityDiversityPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Monitoring and review
               </h2>
               <p>
@@ -140,17 +140,17 @@ export default function EqualityDiversityPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Raising concerns
               </h2>
               <p>
                 If you believe you have been treated unfairly or have witnessed discrimination,
                 we encourage you to raise your concern. You can contact us at{' '}
-                <a href={`mailto:${siteConfig.email}`} className="text-rich-gold hover:text-soft-gold underline">
+                <a href={`mailto:${siteConfig.email}`} className="text-gold hover:text-gold-soft underline">
                   {siteConfig.email}
                 </a>{' '}
                 or submit a{' '}
-                <Link href="/complaints" className="text-rich-gold hover:text-soft-gold underline">
+                <Link href="/complaints" className="text-gold hover:text-gold-soft underline">
                   formal complaint
                 </Link>
                 . All concerns will be taken seriously and investigated appropriately.
@@ -158,7 +158,7 @@ export default function EqualityDiversityPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Legal framework
               </h2>
               <p>

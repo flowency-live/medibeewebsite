@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <section className="section-spacing bg-deep-slate">
+    <section className="section-spacing bg-void">
       <div className="container-editorial">
         <div className="max-w-3xl mx-auto">
           <Link
             href="/policies"
-            className="inline-flex items-center gap-2 text-sm text-mist/60 hover:text-soft-gold mb-8 no-underline transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-pearl-soft/60 hover:text-gold-soft mb-8 no-underline transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -22,16 +22,16 @@ export default function CookiePolicyPage() {
             Back to Policies
           </Link>
 
-          <h1 className="font-display text-display-lg text-soft-gold mb-6">
+          <h1 className="font-display text-display-lg text-gold-soft mb-6">
             Cookie Policy
           </h1>
-          <p className="font-body text-body-md text-mist/60 mb-12">
+          <p className="font-body text-body-md text-pearl-soft/60 mb-12">
             Last updated: February 2026
           </p>
 
-          <div className="prose-container space-y-8 font-body text-body-md text-mist">
+          <div className="prose-container space-y-8 font-body text-body-md text-pearl-soft">
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 What are cookies?
               </h2>
               <p>
@@ -41,7 +41,7 @@ export default function CookiePolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 How we use cookies
               </h2>
               <p className="mb-4">
@@ -56,11 +56,11 @@ export default function CookiePolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Types of cookies we use
               </h2>
 
-              <h3 className="font-display text-lg text-soft-gold/80 mb-3 mt-6">
+              <h3 className="font-display text-lg text-gold-soft/80 mb-3 mt-6">
                 Essential cookies
               </h3>
               <p className="mb-4">
@@ -69,7 +69,7 @@ export default function CookiePolicyPage() {
                 opt out of these cookies.
               </p>
 
-              <h3 className="font-display text-lg text-soft-gold/80 mb-3 mt-6">
+              <h3 className="font-display text-lg text-gold-soft/80 mb-3 mt-6">
                 Analytics cookies
               </h3>
               <p className="mb-4">
@@ -78,7 +78,7 @@ export default function CookiePolicyPage() {
                 information anonymously.
               </p>
 
-              <h3 className="font-display text-lg text-soft-gold/80 mb-3 mt-6">
+              <h3 className="font-display text-lg text-gold-soft/80 mb-3 mt-6">
                 Functional cookies
               </h3>
               <p>
@@ -88,7 +88,7 @@ export default function CookiePolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Managing your cookie preferences
               </h2>
               <p className="mb-4">
@@ -107,7 +107,7 @@ export default function CookiePolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Third-party cookies
               </h2>
               <p>
@@ -118,7 +118,7 @@ export default function CookiePolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Updates to this policy
               </h2>
               <p>
@@ -129,12 +129,12 @@ export default function CookiePolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Contact us
               </h2>
               <p>
                 If you have questions about our use of cookies, please contact us at{' '}
-                <a href={`mailto:${siteConfig.email}`} className="text-rich-gold hover:text-soft-gold underline">
+                <a href={`mailto:${siteConfig.email}`} className="text-gold hover:text-gold-soft underline">
                   {siteConfig.email}
                 </a>
                 .

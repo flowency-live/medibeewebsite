@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 
 export default function RightToWorkPolicyPage() {
   return (
-    <section className="section-spacing bg-deep-slate">
+    <section className="section-spacing bg-void">
       <div className="container-editorial">
         <div className="max-w-3xl mx-auto">
           <Link
             href="/policies"
-            className="inline-flex items-center gap-2 text-sm text-mist/60 hover:text-soft-gold mb-8 no-underline transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-pearl-soft/60 hover:text-gold-soft mb-8 no-underline transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -22,16 +22,16 @@ export default function RightToWorkPolicyPage() {
             Back to Policies
           </Link>
 
-          <h1 className="font-display text-display-lg text-soft-gold mb-6">
+          <h1 className="font-display text-display-lg text-gold-soft mb-6">
             Right to Work Policy
           </h1>
-          <p className="font-body text-body-md text-mist/60 mb-12">
+          <p className="font-body text-body-md text-pearl-soft/60 mb-12">
             Last updated: February 2026
           </p>
 
-          <div className="prose-container space-y-8 font-body text-body-md text-mist">
+          <div className="prose-container space-y-8 font-body text-body-md text-pearl-soft">
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Overview
               </h2>
               <p>
@@ -43,7 +43,7 @@ export default function RightToWorkPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Our verification process
               </h2>
               <p className="mb-4">
@@ -71,13 +71,13 @@ export default function RightToWorkPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Acceptable documents
               </h2>
               <p className="mb-4">
                 We accept documents from List A or List B as specified by the Home Office:
               </p>
-              <h3 className="font-display text-lg text-soft-gold/80 mb-3 mt-6">
+              <h3 className="font-display text-lg text-gold-soft/80 mb-3 mt-6">
                 List A documents (unlimited right to work)
               </h3>
               <ul className="list-disc pl-6 space-y-2">
@@ -86,7 +86,7 @@ export default function RightToWorkPolicyPage() {
                 <li>Permanent Residence Card or EU Settlement Scheme status</li>
               </ul>
 
-              <h3 className="font-display text-lg text-soft-gold/80 mb-3 mt-6">
+              <h3 className="font-display text-lg text-gold-soft/80 mb-3 mt-6">
                 List B documents (time-limited right to work)
               </h3>
               <ul className="list-disc pl-6 space-y-2">
@@ -102,7 +102,7 @@ export default function RightToWorkPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Online Right to Work checks
               </h2>
               <p>
@@ -115,7 +115,7 @@ export default function RightToWorkPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Record keeping
               </h2>
               <p className="mb-4">
@@ -132,7 +132,7 @@ export default function RightToWorkPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Our responsibilities
               </h2>
               <p className="mb-4">
@@ -159,7 +159,7 @@ export default function RightToWorkPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Non-discrimination
               </h2>
               <p>
@@ -171,13 +171,13 @@ export default function RightToWorkPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Contact us
               </h2>
               <p>
                 If you have questions about our Right to Work verification process, please
                 contact us at{' '}
-                <a href={`mailto:${siteConfig.email}`} className="text-rich-gold hover:text-soft-gold underline">
+                <a href={`mailto:${siteConfig.email}`} className="text-gold hover:text-gold-soft underline">
                   {siteConfig.email}
                 </a>
                 .

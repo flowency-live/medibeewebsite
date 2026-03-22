@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 
 export default function DataRetentionPolicyPage() {
   return (
-    <section className="section-spacing bg-deep-slate">
+    <section className="section-spacing bg-void">
       <div className="container-editorial">
         <div className="max-w-3xl mx-auto">
           <Link
             href="/policies"
-            className="inline-flex items-center gap-2 text-sm text-mist/60 hover:text-soft-gold mb-8 no-underline transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-pearl-soft/60 hover:text-gold-soft mb-8 no-underline transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -22,16 +22,16 @@ export default function DataRetentionPolicyPage() {
             Back to Policies
           </Link>
 
-          <h1 className="font-display text-display-lg text-soft-gold mb-6">
+          <h1 className="font-display text-display-lg text-gold-soft mb-6">
             Data Retention Policy
           </h1>
-          <p className="font-body text-body-md text-mist/60 mb-12">
+          <p className="font-body text-body-md text-pearl-soft/60 mb-12">
             Last updated: February 2026
           </p>
 
-          <div className="prose-container space-y-8 font-body text-body-md text-mist">
+          <div className="prose-container space-y-8 font-body text-body-md text-pearl-soft">
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Overview
               </h2>
               <p>
@@ -43,7 +43,7 @@ export default function DataRetentionPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Candidate data
               </h2>
               <p className="mb-4">
@@ -73,7 +73,7 @@ export default function DataRetentionPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Client data
               </h2>
               <p className="mb-4">
@@ -96,7 +96,7 @@ export default function DataRetentionPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Enquiry data
               </h2>
               <p>
@@ -107,7 +107,7 @@ export default function DataRetentionPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Legal and regulatory requirements
               </h2>
               <p>
@@ -118,7 +118,7 @@ export default function DataRetentionPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Requesting deletion
               </h2>
               <p className="mb-4">
@@ -127,7 +127,7 @@ export default function DataRetentionPolicyPage() {
               <ol className="list-decimal pl-6 space-y-2">
                 <li>
                   Contact us at{' '}
-                  <a href={`mailto:${siteConfig.email}`} className="text-rich-gold hover:text-soft-gold underline">
+                  <a href={`mailto:${siteConfig.email}`} className="text-gold hover:text-gold-soft underline">
                     {siteConfig.email}
                   </a>{' '}
                   with &quot;Data Deletion Request&quot; in the subject line
@@ -147,7 +147,7 @@ export default function DataRetentionPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Secure disposal
               </h2>
               <p>
@@ -158,12 +158,12 @@ export default function DataRetentionPolicyPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-display-sm text-soft-gold mb-4">
+              <h2 className="font-display text-display-sm text-gold-soft mb-4">
                 Contact us
               </h2>
               <p>
                 If you have questions about our data retention practices, please contact us at{' '}
-                <a href={`mailto:${siteConfig.email}`} className="text-rich-gold hover:text-soft-gold underline">
+                <a href={`mailto:${siteConfig.email}`} className="text-gold hover:text-gold-soft underline">
                   {siteConfig.email}
                 </a>
                 .
