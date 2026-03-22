@@ -2,15 +2,7 @@
  * PortalModal
  *
  * Premium modal component for the Medibee portal.
- * Designed with "Refined Medical Luxury" aesthetic - elegant,
- * trustworthy, and distinctively premium.
- *
- * Features:
- * - Proper scroll behavior for long content
- * - Rich visual depth with layered shadows
- * - Gold accent details
- * - Refined typography hierarchy
- * - Smooth enter/exit animations
+ * Dark theme with gold accents and smooth animations.
  */
 
 'use client';
@@ -76,11 +68,11 @@ export function PortalModal({
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      {/* Backdrop with refined blur */}
+      {/* Backdrop */}
       <div
         className="
           absolute inset-0
-          bg-gradient-to-br from-portal-graphite/60 via-portal-blue-dark/50 to-portal-graphite/60
+          bg-void/80
           backdrop-blur-md
           animate-[fadeIn_0.2s_ease-out]
         "
@@ -104,7 +96,7 @@ export function PortalModal({
             <div
               className="
                 absolute -inset-[1px] rounded-[18px]
-                bg-gradient-to-br from-rich-gold/30 via-soft-gold/20 to-rich-gold/30
+                bg-gradient-to-br from-gold/30 via-gold-soft/20 to-gold/30
                 blur-[1px]
               "
               aria-hidden="true"
@@ -115,21 +107,21 @@ export function PortalModal({
           <div
             className={`
               relative
-              bg-gradient-to-b from-white via-white to-surface-1
+              bg-gradient-to-b from-void-medium via-void-medium to-void-light
               rounded-[17px]
-              shadow-[0_8px_32px_rgba(0,0,0,0.12),0_24px_64px_rgba(0,0,0,0.08)]
+              shadow-[0_8px_32px_rgba(0,0,0,0.4),0_24px_64px_rgba(0,0,0,0.3)]
               overflow-hidden
-              ${variant === 'elevated' ? 'ring-1 ring-portal-stone' : ''}
-              ${variant === 'premium' ? 'ring-1 ring-rich-gold/20' : ''}
+              ${variant === 'elevated' ? 'ring-1 ring-ash-border' : ''}
+              ${variant === 'premium' ? 'ring-1 ring-gold/20' : ''}
             `}
           >
-            {/* Header with subtle gradient */}
+            {/* Header */}
             <div
               className={`
                 px-6 sm:px-8 pt-6 sm:pt-8 pb-4
                 ${variant === 'premium'
-                  ? 'bg-gradient-to-r from-surface-0 via-soft-gold/5 to-surface-0'
-                  : 'bg-surface-0'
+                  ? 'bg-gradient-to-r from-void-medium via-gold/5 to-void-medium'
+                  : 'bg-void-medium'
                 }
               `}
             >
@@ -140,10 +132,10 @@ export function PortalModal({
                   absolute top-4 right-4
                   w-8 h-8 rounded-full
                   flex items-center justify-center
-                  text-portal-graphite-muted
-                  hover:text-portal-graphite hover:bg-portal-stone
+                  text-ash
+                  hover:text-pearl hover:bg-void-elevated
                   transition-all duration-200
-                  focus:outline-none focus:ring-2 focus:ring-portal-teal/30
+                  focus:outline-none focus:ring-2 focus:ring-gold/30
                 "
                 aria-label="Close modal"
               >
@@ -162,8 +154,8 @@ export function PortalModal({
               <h2
                 id="modal-title"
                 className="
-                  font-display text-[1.625rem] sm:text-[1.875rem]
-                  text-portal-graphite
+                  font-body text-[1.625rem] sm:text-[1.875rem] font-semibold
+                  text-pearl
                   tracking-[-0.02em]
                   leading-tight
                   pr-8
@@ -174,15 +166,15 @@ export function PortalModal({
 
               {/* Subtitle */}
               {subtitle && (
-                <p className="mt-2 font-body text-[0.9375rem] text-portal-graphite-muted leading-relaxed">
+                <p className="mt-2 font-body text-[0.9375rem] text-ash leading-relaxed">
                   {subtitle}
                 </p>
               )}
 
               {/* Decorative line with gold accent */}
               <div className="mt-5 flex items-center gap-3">
-                <div className="h-[2px] w-12 bg-gradient-to-r from-rich-gold to-soft-gold rounded-full" />
-                <div className="h-px flex-1 bg-portal-stone" />
+                <div className="h-[2px] w-12 bg-gradient-to-r from-gold to-gold-soft rounded-full" />
+                <div className="h-px flex-1 bg-ash-border" />
               </div>
             </div>
 
@@ -196,8 +188,8 @@ export function PortalModal({
               <div
                 className="
                   px-6 sm:px-8 py-5
-                  bg-gradient-to-b from-surface-1/50 to-surface-1
-                  border-t border-portal-stone/60
+                  bg-gradient-to-b from-void-light/50 to-void-light
+                  border-t border-ash-border/60
                 "
               >
                 {footer}
@@ -236,24 +228,23 @@ export function ModalActions({
 }: ModalActionsProps): ReactNode {
   const confirmClasses = {
     default: `
-      bg-gradient-to-b from-portal-blue to-portal-blue-dark
+      bg-gradient-to-b from-tier-colony to-tier-colony/80
       text-white
-      shadow-[0_2px_8px_rgba(59,74,107,0.3),inset_0_1px_0_rgba(255,255,255,0.1)]
-      hover:shadow-[0_4px_12px_rgba(59,74,107,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]
-      hover:from-portal-blue-light hover:to-portal-blue
+      shadow-[0_2px_8px_rgba(129,140,248,0.3),inset_0_1px_0_rgba(255,255,255,0.1)]
+      hover:shadow-[0_4px_12px_rgba(129,140,248,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]
     `,
     danger: `
-      bg-gradient-to-b from-portal-alert to-[#8a4a4a]
+      bg-gradient-to-b from-status-expired to-status-expired/80
       text-white
-      shadow-[0_2px_8px_rgba(154,90,90,0.3),inset_0_1px_0_rgba(255,255,255,0.1)]
-      hover:shadow-[0_4px_12px_rgba(154,90,90,0.4)]
+      shadow-[0_2px_8px_rgba(248,113,113,0.3),inset_0_1px_0_rgba(255,255,255,0.1)]
+      hover:shadow-[0_4px_12px_rgba(248,113,113,0.4)]
     `,
     premium: `
-      bg-gradient-to-b from-rich-gold to-[#c9a94a]
-      text-portal-graphite
-      shadow-[0_2px_8px_rgba(229,197,92,0.4),inset_0_1px_0_rgba(255,255,255,0.3)]
-      hover:shadow-[0_4px_12px_rgba(229,197,92,0.5),inset_0_1px_0_rgba(255,255,255,0.3)]
-      hover:from-soft-gold hover:to-rich-gold
+      bg-gradient-to-b from-gold to-gold-dim
+      text-void
+      shadow-[0_2px_8px_rgba(212,175,55,0.4),inset_0_1px_0_rgba(255,255,255,0.3)]
+      hover:shadow-[0_4px_12px_rgba(212,175,55,0.5),inset_0_1px_0_rgba(255,255,255,0.3)]
+      hover:from-gold-light hover:to-gold
     `,
   };
 
@@ -265,14 +256,14 @@ export function ModalActions({
         className="
           flex-1 py-3 px-5 rounded-xl
           font-body text-[0.9375rem] font-medium
-          text-portal-graphite
-          bg-surface-0
-          border border-portal-stone
-          shadow-[0_1px_2px_rgba(0,0,0,0.04)]
-          hover:bg-portal-stone/50 hover:border-portal-graphite-muted/30
+          text-pearl
+          bg-void-medium
+          border border-ash-border
+          shadow-[0_1px_2px_rgba(0,0,0,0.2)]
+          hover:bg-void-elevated hover:border-ash
           active:scale-[0.98]
           transition-all duration-200
-          focus:outline-none focus:ring-2 focus:ring-portal-teal/30
+          focus:outline-none focus:ring-2 focus:ring-gold/30
         "
       >
         {cancelLabel}
@@ -287,7 +278,7 @@ export function ModalActions({
           ${confirmClasses[variant]}
           active:scale-[0.98]
           transition-all duration-200
-          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-portal-teal/50
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold/50
           disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100
         `}
       >
@@ -341,7 +332,7 @@ export function ModalTextarea({
 }: ModalTextareaProps): ReactNode {
   return (
     <div className="space-y-2">
-      <label className="block font-body text-[0.875rem] font-medium text-portal-graphite">
+      <label className="block font-body text-[0.875rem] font-medium text-pearl">
         {label}
       </label>
       <textarea
@@ -352,19 +343,19 @@ export function ModalTextarea({
         className="
           w-full px-4 py-3.5
           rounded-xl
-          border border-portal-stone
-          bg-surface-0
-          font-body text-[0.9375rem] text-portal-graphite
-          placeholder:text-portal-graphite-muted/60
-          shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]
-          focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
-          hover:border-portal-graphite-muted/50
+          border border-ash-border
+          bg-void-medium
+          font-body text-[0.9375rem] text-pearl
+          placeholder:text-ash/60
+          shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)]
+          focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold
+          hover:border-ash
           transition-all duration-200
           resize-none
         "
       />
       {helperText && (
-        <p className="text-[0.8125rem] text-portal-graphite-muted">{helperText}</p>
+        <p className="text-[0.8125rem] text-ash">{helperText}</p>
       )}
     </div>
   );

@@ -1,18 +1,22 @@
 import { cn } from '@/lib/utils';
 
 const colors = {
-  gold: '#E5C55C',
-  'soft-gold': '#F5E6A3',
+  gold: '#D4AF37',
+  'gold-light': '#F5C542',
+  'gold-soft': '#E5D7A2',
   provider: '#4A6FA5',
-  hca: '#E5C55C',
-  mist: '#F5F4F0',
-  midnight: '#1a1d2e',
+  hca: '#D4AF37',
+  pearl: '#FFFFFF',
+  void: '#0D0D0D',
+  ash: '#8A8A8A',
 } as const;
 
 const sizes = {
+  xs: 'w-4 h-5',
   sm: 'w-6 h-7',
   md: 'w-12 h-14',
   lg: 'w-16 h-[74px]',
+  xl: 'w-24 h-28',
 } as const;
 
 interface HexagonIconProps {

@@ -3,7 +3,7 @@
  *
  * Composed view of a candidate profile as seen by employers.
  * Uses ProfileHero, WorkHistoryTimeline, TrustMeter components.
- * Under 150 LOC per CLAUDE.md requirements.
+ * Dark theme with gold accents.
  */
 
 'use client';
@@ -54,22 +54,22 @@ export function CandidateProfilePreview({
     <div className="space-y-6 animate-fade-in-up">
       {/* Preview Mode Banner */}
       {isOwnProfile && onExitPreview && (
-        <div className="bg-portal-highlight/10 border border-portal-highlight/20 rounded-card p-4">
+        <div className="bg-gold/10 border border-gold/20 rounded-card p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="text-xl">👁</span>
               <div>
-                <p className="font-portal text-portal-body font-medium text-portal-graphite">
+                <p className="font-body text-body-md font-medium text-pearl">
                   Employer Preview Mode
                 </p>
-                <p className="font-portal text-portal-meta text-portal-graphite-muted">
+                <p className="font-body text-body-sm text-ash">
                   This is how care providers see your profile
                 </p>
               </div>
             </div>
             <button
               onClick={onExitPreview}
-              className="px-4 py-2 rounded-card font-portal text-portal-meta font-medium bg-portal-highlight text-white hover:bg-portal-highlight/90 transition-colors duration-portal"
+              className="px-4 py-2 rounded-card font-body text-body-sm font-medium bg-gold text-void hover:bg-gold-light transition-colors duration-normal"
             >
               Exit Preview
             </button>
@@ -91,9 +91,9 @@ export function CandidateProfilePreview({
         <div className="lg:col-span-2 space-y-6">
           {/* About / Professional Summary */}
           {truncatedSummary && (
-            <div className="bg-surface-0 rounded-card shadow-card p-6">
-              <h2 className="font-portal text-portal-heading text-portal-graphite mb-3">About</h2>
-              <p className="font-portal text-portal-body text-portal-graphite-light leading-relaxed">
+            <div className="bg-void-medium rounded-card shadow-card p-6">
+              <h2 className="font-body text-body-md font-semibold text-pearl mb-3">About</h2>
+              <p className="font-body text-body-md text-pearl-soft leading-relaxed">
                 {isOwnProfile ? profile.professionalSummary : truncatedSummary}
               </p>
             </div>
@@ -101,19 +101,19 @@ export function CandidateProfilePreview({
 
           {/* Work History */}
           {profile.workHistory && profile.workHistory.length > 0 && (
-            <div className="bg-surface-0 rounded-card shadow-card p-6">
-              <h2 className="font-portal text-portal-heading text-portal-graphite mb-4">Experience</h2>
+            <div className="bg-void-medium rounded-card shadow-card p-6">
+              <h2 className="font-body text-body-md font-semibold text-pearl mb-4">Experience</h2>
               <WorkHistoryTimeline entries={profile.workHistory} />
             </div>
           )}
 
           {/* Skills */}
           {profile.skills && profile.skills.length > 0 && (
-            <div className="bg-surface-0 rounded-card shadow-card p-6">
-              <h2 className="font-portal text-portal-heading text-portal-graphite mb-3">Skills</h2>
+            <div className="bg-void-medium rounded-card shadow-card p-6">
+              <h2 className="font-body text-body-md font-semibold text-pearl mb-3">Skills</h2>
               <div className="flex flex-wrap gap-2">
                 {profile.skills.map((skill) => (
-                  <span key={skill} className="px-3 py-1.5 rounded-full bg-portal-blue/10 text-portal-blue font-portal text-portal-meta">
+                  <span key={skill} className="px-3 py-1.5 rounded-full bg-tier-colony/10 text-tier-colony font-body text-body-sm">
                     {skill}
                   </span>
                 ))}
@@ -123,11 +123,11 @@ export function CandidateProfilePreview({
 
           {/* Care Settings */}
           {profile.preferredSettings && profile.preferredSettings.length > 0 && (
-            <div className="bg-surface-0 rounded-card shadow-card p-6">
-              <h2 className="font-portal text-portal-heading text-portal-graphite mb-3">Care Settings</h2>
+            <div className="bg-void-medium rounded-card shadow-card p-6">
+              <h2 className="font-body text-body-md font-semibold text-pearl mb-3">Care Settings</h2>
               <div className="flex flex-wrap gap-2">
                 {profile.preferredSettings.map((setting) => (
-                  <span key={setting} className="px-3 py-1.5 rounded-full bg-portal-teal/10 text-portal-teal font-portal text-portal-meta">
+                  <span key={setting} className="px-3 py-1.5 rounded-full bg-gold/10 text-gold font-body text-body-sm">
                     {careSettingLabels[setting] ?? setting}
                   </span>
                 ))}
@@ -137,12 +137,12 @@ export function CandidateProfilePreview({
 
           {/* Contact Details (hidden) */}
           {!isOwnProfile && (
-            <div className="bg-surface-1 rounded-card p-6 border border-dashed border-portal-stone">
-              <div className="flex items-center gap-3 text-portal-graphite-muted">
+            <div className="bg-void-light rounded-card p-6 border border-dashed border-ash-border">
+              <div className="flex items-center gap-3 text-ash">
                 <span className="text-xl">🔒</span>
                 <div>
-                  <p className="font-portal text-portal-body font-medium">Contact details protected</p>
-                  <p className="font-portal text-portal-meta">Request an introduction to connect</p>
+                  <p className="font-body text-body-md font-medium">Contact details protected</p>
+                  <p className="font-body text-body-sm">Request an introduction to connect</p>
                 </div>
               </div>
             </div>
@@ -151,8 +151,8 @@ export function CandidateProfilePreview({
 
         {/* Right Column - Trust & Credentials */}
         <div className="space-y-6">
-          <div className="bg-surface-0 rounded-card shadow-card p-6">
-            <h2 className="font-portal text-portal-heading text-portal-graphite mb-4">Trust Score</h2>
+          <div className="bg-void-medium rounded-card shadow-card p-6">
+            <h2 className="font-body text-body-md font-semibold text-pearl mb-4">Trust Score</h2>
             <TrustMeter profile={profile} credentials={credentials} />
           </div>
         </div>

@@ -2,7 +2,7 @@
  * WorkHistoryTimeline Component
  *
  * Visual career journey timeline showing work history entries.
- * Per plan: "Visual journey, timeline graphic, career progression"
+ * Dark theme with gold accent timeline.
  */
 
 'use client';
@@ -33,7 +33,7 @@ function calculateDuration(startDate: string, endDate?: string | null): string {
 export function WorkHistoryTimeline({ entries }: WorkHistoryTimelineProps) {
   if (entries.length === 0) {
     return (
-      <div className="text-center py-8 text-portal-graphite-muted font-portal text-portal-meta">
+      <div className="text-center py-8 text-ash font-body text-body-sm">
         No work history added yet
       </div>
     );
@@ -50,7 +50,7 @@ export function WorkHistoryTimeline({ entries }: WorkHistoryTimelineProps) {
       {sorted.length > 1 && (
         <div
           data-testid="timeline-connector"
-          className="absolute left-4 top-6 bottom-6 w-0.5 bg-gradient-to-b from-portal-teal via-portal-blue to-portal-teal/30"
+          className="absolute left-4 top-6 bottom-6 w-0.5 bg-gradient-to-b from-gold via-tier-colony to-gold/30"
         />
       )}
 
@@ -61,45 +61,45 @@ export function WorkHistoryTimeline({ entries }: WorkHistoryTimelineProps) {
             data-testid={entry.isCurrent ? 'timeline-entry-current' : `timeline-entry-${index}`}
             className={`
               relative pl-10 py-3
-              ${entry.isCurrent ? 'bg-portal-teal/5 rounded-card border-l-2 border-portal-teal' : ''}
+              ${entry.isCurrent ? 'bg-gold/5 rounded-card border-l-2 border-gold' : ''}
             `}
           >
             {/* Timeline dot */}
             <div
               className={`
-                absolute left-2 top-5 w-4 h-4 rounded-full border-2 border-white shadow-sm
-                ${entry.isCurrent ? 'bg-portal-teal' : 'bg-portal-blue'}
+                absolute left-2 top-5 w-4 h-4 rounded-full border-2 border-void-medium shadow-sm
+                ${entry.isCurrent ? 'bg-gold' : 'bg-tier-colony'}
               `}
             />
 
             {/* Entry content */}
             <div>
               <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-1">
-                <h3 className="font-portal text-portal-body font-semibold text-portal-graphite">
+                <h3 className="font-body text-body-md font-semibold text-pearl">
                   {entry.role}
                 </h3>
                 {entry.isCurrent && (
-                  <span className="px-2 py-0.5 bg-portal-teal/10 text-portal-teal rounded-full font-portal text-ui-xs font-medium">
+                  <span className="px-2 py-0.5 bg-gold/10 text-gold rounded-full font-body text-ui-xs font-medium">
                     Current
                   </span>
                 )}
               </div>
 
-              <p className="font-portal text-portal-meta text-portal-graphite-light mb-1">
+              <p className="font-body text-body-sm text-pearl-soft mb-1">
                 {entry.employer}
               </p>
 
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-portal text-ui-xs text-portal-graphite-muted">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-body text-ui-xs text-ash">
                 <span>
                   {formatDate(entry.startDate)} — {entry.isCurrent || !entry.endDate ? 'Present' : formatDate(entry.endDate)}
                 </span>
-                <span className="text-portal-teal">
+                <span className="text-gold">
                   {calculateDuration(entry.startDate, entry.endDate)}
                 </span>
               </div>
 
               {entry.description && (
-                <p className="mt-2 font-portal text-portal-meta text-portal-graphite-light leading-relaxed">
+                <p className="mt-2 font-body text-body-sm text-pearl-soft leading-relaxed">
                   {entry.description}
                 </p>
               )}

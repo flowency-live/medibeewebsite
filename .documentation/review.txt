@@ -1,0 +1,116 @@
+1. The honeycomb background is overused
+
+This is the main issue.
+
+Right now, the honeycomb appears:
+
+In the hero
+
+Behind “How can we help?”
+
+Behind “How it works”
+
+Behind “Nationwide support”
+
+In the gold CTA panel
+
+Effect:
+
+Visual noise builds up
+
+The eye never gets a true rest
+
+Sections start to blur into one another
+
+Irony:
+The pattern that makes the brand distinctive is also flattening hierarchy.
+
+Recommendation (very important)
+
+Treat honeycomb like a power move, not wallpaper.
+
+Rule of thumb:
+
+2–3 major uses per page, max
+
+Alternate with plain navy or plain light sections
+
+If everything is special, nothing is.
+
+2. Hero background is doing double duty
+
+You currently have:
+
+Cityscape image
+
+Dark overlay
+
+Honeycomb pattern on top
+
+That’s three visual layers competing.
+
+The result:
+
+Slightly muddy depth
+
+Reduced clarity around the headline block
+
+Visual “buzz” rather than calm authority
+
+You only need two.
+
+Best option:
+
+Cityscape + subtle gradient
+
+Save honeycomb for lower sections or transitions
+
+The hero should feel calm and decisive, not textured.
+
+3. Mid-page sections lose hierarchy
+
+Because the background treatment is similar across multiple sections:
+
+“How can we help?”
+
+“How it works”
+
+“Nationwide support”
+
+They start to feel like peers, when they shouldn’t be.
+
+Visually, I want to feel:
+
+Choice
+
+Explanation
+
+Reassurance
+
+Right now it’s more:
+
+“Here’s another section with the same visual weight.”
+
+This is a hierarchy issue, not a layout issue.
+
+4. The gold CTA panel is almost too loud
+
+The bottom right gold panel is powerful — but it’s the loudest thing on the page.
+
+That’s fine if:
+
+It’s the only gold-dominant area
+
+But because honey appears everywhere:
+
+The CTA loses its “final decision” role
+
+Gold becomes ambient rather than directional
+
+Gold should say:
+
+“Act now.”
+
+Not:
+
+“This is our brand colour.”

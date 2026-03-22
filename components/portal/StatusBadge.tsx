@@ -1,8 +1,8 @@
 /**
  * StatusBadge
  *
- * Visual status indicator with muted, trust-building colors.
- * Per design language: "calm, readable, data-driven, non-judgemental"
+ * Visual status indicator for dark theme.
+ * Uses status colors: verified (green), pending (amber), expired (red), active (blue)
  */
 
 import { type ReactNode } from 'react';
@@ -16,7 +16,8 @@ export type StatusType =
   | 'active'
   | 'available'
   | 'not-available'
-  | 'new';
+  | 'new'
+  | 'premium';
 
 interface StatusBadgeProps {
   status: StatusType;
@@ -32,58 +33,64 @@ const statusConfig: Record<StatusType, {
   defaultLabel: string;
 }> = {
   verified: {
-    bg: 'bg-portal-verified/10',
-    text: 'text-portal-verified',
-    dot: 'bg-portal-verified',
+    bg: 'bg-status-verified/10',
+    text: 'text-status-verified',
+    dot: 'bg-status-verified',
     defaultLabel: 'Verified',
   },
   pending: {
-    bg: 'bg-portal-pending/10',
-    text: 'text-portal-pending',
-    dot: 'bg-portal-pending',
+    bg: 'bg-status-pending/10',
+    text: 'text-status-pending',
+    dot: 'bg-status-pending',
     defaultLabel: 'Pending',
   },
   'under-review': {
-    bg: 'bg-portal-blue/10',
-    text: 'text-portal-blue',
-    dot: 'bg-portal-blue',
+    bg: 'bg-status-active/10',
+    text: 'text-status-active',
+    dot: 'bg-status-active',
     defaultLabel: 'Under Review',
   },
   expiring: {
-    bg: 'bg-portal-available/10',
-    text: 'text-portal-available',
-    dot: 'bg-portal-available',
+    bg: 'bg-status-pending/10',
+    text: 'text-status-pending',
+    dot: 'bg-status-pending',
     defaultLabel: 'Expiring Soon',
   },
   expired: {
-    bg: 'bg-portal-alert/10',
-    text: 'text-portal-alert',
-    dot: 'bg-portal-alert',
+    bg: 'bg-status-expired/10',
+    text: 'text-status-expired',
+    dot: 'bg-status-expired',
     defaultLabel: 'Expired',
   },
   active: {
-    bg: 'bg-portal-verified/10',
-    text: 'text-portal-verified',
-    dot: 'bg-portal-verified',
+    bg: 'bg-status-active/10',
+    text: 'text-status-active',
+    dot: 'bg-status-active',
     defaultLabel: 'Active',
   },
   available: {
-    bg: 'bg-portal-verified/10',
-    text: 'text-portal-verified',
-    dot: 'bg-portal-verified',
+    bg: 'bg-status-verified/10',
+    text: 'text-status-verified',
+    dot: 'bg-status-verified',
     defaultLabel: 'Available',
   },
   'not-available': {
-    bg: 'bg-portal-graphite-muted/10',
-    text: 'text-portal-graphite-muted',
-    dot: 'bg-portal-graphite-muted',
+    bg: 'bg-ash/10',
+    text: 'text-ash',
+    dot: 'bg-ash',
     defaultLabel: 'Not Available',
   },
   new: {
-    bg: 'bg-portal-highlight/10',
-    text: 'text-portal-highlight',
-    dot: 'bg-portal-highlight',
+    bg: 'bg-gold/10',
+    text: 'text-gold',
+    dot: 'bg-gold',
     defaultLabel: 'New',
+  },
+  premium: {
+    bg: 'bg-gold/15',
+    text: 'text-gold',
+    dot: 'bg-gold',
+    defaultLabel: 'Premium',
   },
 };
 
@@ -98,13 +105,13 @@ export function StatusBadge({
 
   const sizeClasses = {
     sm: 'px-2 py-0.5 text-[11px]',
-    md: 'px-2.5 py-1 text-portal-meta',
+    md: 'px-2.5 py-1 text-ui-xs',
   };
 
   return (
     <span
       className={`
-        inline-flex items-center gap-1.5 rounded-full font-portal font-medium
+        inline-flex items-center gap-1.5 rounded-full font-body font-medium
         ${config.bg} ${config.text} ${sizeClasses[size]}
       `}
     >

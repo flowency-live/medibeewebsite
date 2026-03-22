@@ -2,7 +2,7 @@
  * IntroductionCard
  *
  * Card for introduction requests - designed to feel like an invitation.
- * Per design language: "Request cards feel like invitations, not job alerts"
+ * Dark theme with gold accents for pending/new requests.
  */
 
 'use client';
@@ -126,18 +126,18 @@ export function IntroductionCard({
   return (
     <div
       className={`
-        bg-surface-0 rounded-card-lg border overflow-hidden
-        transition-all duration-portal ease-portal
+        bg-void-medium rounded-lg border overflow-hidden
+        transition-all duration-normal
         ${isPending
-          ? 'border-portal-highlight/30 shadow-card-elevated'
-          : 'border-portal-stone shadow-card'
+          ? 'border-gold/30 shadow-card-elevated'
+          : 'border-ash-border shadow-card'
         }
       `}
     >
       {/* Header band for pending requests */}
       {isPending && (
-        <div className="bg-portal-highlight/10 px-5 py-2 border-b border-portal-highlight/20">
-          <span className="font-portal text-portal-meta font-medium text-portal-highlight">
+        <div className="bg-gold/10 px-5 py-2 border-b border-gold/20">
+          <span className="font-body text-body-sm font-medium text-gold">
             New introduction request
           </span>
         </div>
@@ -150,17 +150,17 @@ export function IntroductionCard({
             {/* Provider avatar placeholder */}
             <div
               className="
-                w-12 h-12 rounded-card bg-portal-teal/10 flex items-center justify-center
-                text-portal-teal font-portal font-semibold text-lg
+                w-12 h-12 rounded-card bg-gold/10 flex items-center justify-center
+                text-gold font-body font-semibold text-lg
               "
             >
               {introduction.clientName.charAt(0)}
             </div>
             <div>
-              <h3 className="font-portal text-portal-heading text-portal-graphite">
+              <h3 className="font-body text-body-md font-semibold text-pearl">
                 {introduction.clientName}
               </h3>
-              <p className="font-portal text-portal-meta text-portal-graphite-muted">
+              <p className="font-body text-body-sm text-ash">
                 {introduction.clientType} • {introduction.location}
               </p>
             </div>
@@ -170,11 +170,11 @@ export function IntroductionCard({
 
         {/* Role/message if present */}
         {introduction.roleTitle && (
-          <div className="mb-3 p-3 bg-portal-stone rounded-lg">
-            <p className="font-portal text-portal-meta text-portal-graphite-muted mb-1">
+          <div className="mb-3 p-3 bg-void-elevated rounded-lg">
+            <p className="font-body text-body-sm text-ash mb-1">
               Looking for:
             </p>
-            <p className="font-portal text-portal-body text-portal-graphite font-medium">
+            <p className="font-body text-body-md text-pearl font-medium">
               {introduction.roleTitle}
             </p>
           </div>
@@ -185,15 +185,15 @@ export function IntroductionCard({
           <div className="mb-4">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="font-portal text-portal-meta text-portal-teal hover:underline"
+              className="font-body text-body-sm text-gold hover:underline"
             >
               {isExpanded ? 'Hide message' : 'View message from provider'}
             </button>
             {isExpanded && (
               <div
                 className="
-                  mt-2 p-3 bg-portal-stone rounded-lg
-                  font-portal text-portal-body text-portal-graphite
+                  mt-2 p-3 bg-void-elevated rounded-lg
+                  font-body text-body-md text-pearl
                   animate-fade-in-up
                 "
               >
@@ -204,23 +204,23 @@ export function IntroductionCard({
         )}
 
         {/* Status description */}
-        <p className="font-portal text-portal-meta text-portal-graphite-muted mb-4">
+        <p className="font-body text-body-sm text-ash mb-4">
           {config.description}
         </p>
 
         {/* Actions for pending requests */}
         {isPending && onAccept && onDecline && (
-          <div className="flex gap-3 pt-4 border-t border-portal-stone">
+          <div className="flex gap-3 pt-4 border-t border-ash-border">
             <button
               onClick={handleDecline}
               disabled={isProcessing}
               className="
                 flex-1 py-3 px-4 rounded-card
-                font-portal text-portal-body font-medium
-                bg-surface-1 text-portal-graphite border border-portal-stone
-                hover:bg-portal-stone hover:border-portal-graphite-muted
+                font-body text-body-md font-medium
+                bg-void-light text-pearl border border-ash-border
+                hover:bg-void-elevated hover:border-ash
                 disabled:opacity-50 disabled:cursor-not-allowed
-                transition-colors duration-portal
+                transition-colors duration-normal
               "
             >
               {isProcessing ? 'Processing...' : 'Decline'}
@@ -230,11 +230,11 @@ export function IntroductionCard({
               disabled={isProcessing}
               className="
                 flex-1 py-3 px-4 rounded-card
-                font-portal text-portal-body font-medium
-                bg-portal-blue text-white
-                hover:bg-portal-blue-dark
+                font-body text-body-md font-medium
+                bg-gold text-void
+                hover:bg-gold-light
                 disabled:opacity-50 disabled:cursor-not-allowed
-                transition-colors duration-portal
+                transition-colors duration-normal
               "
             >
               {isProcessing ? 'Processing...' : 'Accept Introduction'}
@@ -248,10 +248,10 @@ export function IntroductionCard({
             onClick={() => onView(introduction.id)}
             className="
               w-full py-2.5 px-4 rounded-card
-              font-portal text-portal-meta font-medium
-              bg-surface-1 text-portal-graphite border border-portal-stone
-              hover:bg-portal-stone
-              transition-colors duration-portal
+              font-body text-body-sm font-medium
+              bg-void-light text-pearl border border-ash-border
+              hover:bg-void-elevated
+              transition-colors duration-normal
             "
           >
             View Details
@@ -259,7 +259,7 @@ export function IntroductionCard({
         )}
 
         {/* Timestamp */}
-        <p className="mt-4 font-portal text-ui-xs text-portal-graphite-muted text-right">
+        <p className="mt-4 font-body text-ui-xs text-ash text-right">
           Requested {formatDate(introduction.requestedAt)}
         </p>
       </div>
@@ -272,14 +272,14 @@ export function IntroductionCard({
  */
 export function NoIntroductionsCard(): ReactNode {
   return (
-    <div className="bg-surface-1 rounded-card-lg border border-dashed border-portal-stone p-8 text-center">
-      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-portal-stone flex items-center justify-center">
+    <div className="bg-void-light rounded-lg border border-dashed border-ash-border p-8 text-center">
+      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-void-elevated flex items-center justify-center">
         <span className="text-2xl">💼</span>
       </div>
-      <h3 className="font-portal text-portal-heading text-portal-graphite mb-2">
+      <h3 className="font-body text-body-md font-semibold text-pearl mb-2">
         No introduction requests yet
       </h3>
-      <p className="font-portal text-portal-body text-portal-graphite-muted max-w-sm mx-auto">
+      <p className="font-body text-body-md text-ash max-w-sm mx-auto">
         When care providers want to connect with you, their requests will appear here.
         Keep your profile complete and set yourself as available.
       </p>

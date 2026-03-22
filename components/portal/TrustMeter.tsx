@@ -2,7 +2,7 @@
  * TrustMeter Component
  *
  * Visual indicator of profile verification and trust level.
- * Per plan: "Trust meter, verification progress bar"
+ * Gold gradient progress bar with dark theme.
  */
 
 'use client';
@@ -56,17 +56,17 @@ export function TrustMeter({ profile, credentials, compact = false }: TrustMeter
   if (compact) {
     return (
       <div className="flex items-center gap-3">
-        <div className="flex-1 h-2 bg-portal-stone rounded-full overflow-hidden">
+        <div className="flex-1 h-2 bg-ash-border rounded-full overflow-hidden">
           <div
             role="progressbar"
             aria-valuenow={score}
             aria-valuemin={0}
             aria-valuemax={100}
-            className="h-full bg-gradient-to-r from-portal-teal to-portal-verified transition-all duration-500"
+            className="h-full bg-gradient-to-r from-gold to-status-verified transition-all duration-500"
             style={{ width: `${score}%` }}
           />
         </div>
-        <span className="font-portal text-portal-meta text-portal-graphite-muted">{score}%</span>
+        <span className="font-body text-body-sm text-ash">{score}%</span>
       </div>
     );
   }
@@ -75,17 +75,17 @@ export function TrustMeter({ profile, credentials, compact = false }: TrustMeter
     <div className="space-y-4">
       {/* Progress bar and percentage */}
       <div className="flex items-center gap-3">
-        <div className="flex-1 h-3 bg-portal-stone rounded-full overflow-hidden">
+        <div className="flex-1 h-3 bg-ash-border rounded-full overflow-hidden">
           <div
             role="progressbar"
             aria-valuenow={score}
             aria-valuemin={0}
             aria-valuemax={100}
-            className="h-full bg-gradient-to-r from-portal-teal to-portal-verified transition-all duration-500"
+            className="h-full bg-gradient-to-r from-gold to-status-verified transition-all duration-500"
             style={{ width: `${score}%` }}
           />
         </div>
-        <span className="font-portal text-portal-body font-semibold text-portal-graphite min-w-[3rem] text-right">
+        <span className="font-body text-body-md font-semibold text-pearl min-w-[3rem] text-right">
           {score}%
         </span>
       </div>
@@ -93,10 +93,10 @@ export function TrustMeter({ profile, credentials, compact = false }: TrustMeter
       {/* Trust level label */}
       <div className="text-center">
         <span className={`
-          font-portal text-portal-meta font-medium px-3 py-1 rounded-full
-          ${score >= 80 ? 'bg-portal-verified/10 text-portal-verified' :
-            score >= 50 ? 'bg-portal-teal/10 text-portal-teal' :
-            'bg-portal-stone text-portal-graphite-muted'}
+          font-body text-body-sm font-medium px-3 py-1 rounded-full
+          ${score >= 80 ? 'bg-status-verified/10 text-status-verified' :
+            score >= 50 ? 'bg-gold/10 text-gold' :
+            'bg-void-elevated text-ash'}
         `}>
           {level}
         </span>
@@ -111,11 +111,11 @@ export function TrustMeter({ profile, credentials, compact = false }: TrustMeter
         >
           <div className={`
             w-5 h-5 rounded-full flex items-center justify-center
-            ${rtwCompleted ? 'bg-portal-verified text-white' : 'bg-portal-stone'}
+            ${rtwCompleted ? 'bg-status-verified text-void' : 'bg-void-elevated'}
           `}>
             {rtwCompleted && <span className="text-xs">✓</span>}
           </div>
-          <span className={`font-portal text-portal-meta ${rtwCompleted ? 'text-portal-graphite' : 'text-portal-graphite-muted'}`}>
+          <span className={`font-body text-body-sm ${rtwCompleted ? 'text-pearl' : 'text-ash'}`}>
             Right to Work
           </span>
         </div>
@@ -127,11 +127,11 @@ export function TrustMeter({ profile, credentials, compact = false }: TrustMeter
         >
           <div className={`
             w-5 h-5 rounded-full flex items-center justify-center
-            ${dbsCompleted ? 'bg-portal-verified text-white' : 'bg-portal-stone'}
+            ${dbsCompleted ? 'bg-status-verified text-void' : 'bg-void-elevated'}
           `}>
             {dbsCompleted && <span className="text-xs">✓</span>}
           </div>
-          <span className={`font-portal text-portal-meta ${dbsCompleted ? 'text-portal-graphite' : 'text-portal-graphite-muted'}`}>
+          <span className={`font-body text-body-sm ${dbsCompleted ? 'text-pearl' : 'text-ash'}`}>
             DBS Cleared
           </span>
         </div>
@@ -143,11 +143,11 @@ export function TrustMeter({ profile, credentials, compact = false }: TrustMeter
         >
           <div className={`
             w-5 h-5 rounded-full flex items-center justify-center
-            ${cvCompleted ? 'bg-portal-verified text-white' : 'bg-portal-stone'}
+            ${cvCompleted ? 'bg-status-verified text-void' : 'bg-void-elevated'}
           `}>
             {cvCompleted && <span className="text-xs">✓</span>}
           </div>
-          <span className={`font-portal text-portal-meta ${cvCompleted ? 'text-portal-graphite' : 'text-portal-graphite-muted'}`}>
+          <span className={`font-body text-body-sm ${cvCompleted ? 'text-pearl' : 'text-ash'}`}>
             CV Uploaded
           </span>
         </div>
@@ -159,11 +159,11 @@ export function TrustMeter({ profile, credentials, compact = false }: TrustMeter
         >
           <div className={`
             w-5 h-5 rounded-full flex items-center justify-center
-            ${verifiedCreds > 0 ? 'bg-portal-verified text-white' : 'bg-portal-stone'}
+            ${verifiedCreds > 0 ? 'bg-status-verified text-void' : 'bg-void-elevated'}
           `}>
             {verifiedCreds > 0 && <span className="text-xs">✓</span>}
           </div>
-          <span className={`font-portal text-portal-meta ${verifiedCreds > 0 ? 'text-portal-graphite' : 'text-portal-graphite-muted'}`}>
+          <span className={`font-body text-body-sm ${verifiedCreds > 0 ? 'text-pearl' : 'text-ash'}`}>
             Verified Credentials ({verifiedCreds})
           </span>
         </div>

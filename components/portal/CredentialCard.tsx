@@ -2,7 +2,7 @@
  * CredentialCard
  *
  * Card for displaying credential status in the credential wallet.
- * Per design language: "Trust is the core product. This needs to feel secure and professional."
+ * Dark theme with gold accents for verified states.
  */
 
 'use client';
@@ -100,9 +100,9 @@ export function CredentialCard({
   return (
     <div
       className={`
-        relative bg-surface-0 rounded-card border border-portal-stone
-        p-5 transition-all duration-portal ease-portal
-        ${isHovered ? 'shadow-card-hover border-portal-teal/30' : 'shadow-card'}
+        relative bg-void-medium rounded-card border border-ash-border
+        p-5 transition-all duration-normal
+        ${isHovered ? 'shadow-card-hover border-gold/30' : 'shadow-card'}
       `}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -112,7 +112,7 @@ export function CredentialCard({
         <div
           className={`
             w-12 h-12 rounded-card flex items-center justify-center text-xl
-            ${credential.status === 'verified' ? 'bg-portal-verified/10' : 'bg-portal-stone'}
+            ${credential.status === 'verified' ? 'bg-status-verified/10' : 'bg-void-elevated'}
           `}
         >
           {typeConfig.icon}
@@ -121,20 +121,20 @@ export function CredentialCard({
         {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-3 mb-1">
-            <h3 className="font-portal text-portal-heading text-portal-graphite truncate">
+            <h3 className="font-body text-body-md font-semibold text-pearl truncate">
               {credential.name || typeConfig.label}
             </h3>
             <StatusBadge status={statusType} size="sm" />
           </div>
 
-          <p className="font-portal text-portal-meta text-portal-graphite-muted mb-3">
+          <p className="font-body text-body-sm text-ash mb-3">
             {typeConfig.description}
           </p>
 
           {/* Date info */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-portal-meta font-portal">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-body-sm font-body">
             {credential.verifiedDate && (
-              <span className="text-portal-verified">
+              <span className="text-status-verified">
                 Verified {formatDate(credential.verifiedDate)}
               </span>
             )}
@@ -142,10 +142,10 @@ export function CredentialCard({
               <span
                 className={
                   daysUntilExpiry !== null && daysUntilExpiry <= 30
-                    ? 'text-portal-alert'
+                    ? 'text-status-expired'
                     : daysUntilExpiry !== null && daysUntilExpiry <= 90
-                      ? 'text-portal-available'
-                      : 'text-portal-graphite-muted'
+                      ? 'text-status-pending'
+                      : 'text-ash'
                 }
               >
                 {daysUntilExpiry !== null && daysUntilExpiry <= 0
@@ -162,8 +162,8 @@ export function CredentialCard({
       {/* Actions */}
       <div
         className={`
-          flex gap-2 mt-4 pt-4 border-t border-portal-stone
-          transition-opacity duration-portal
+          flex gap-2 mt-4 pt-4 border-t border-ash-border
+          transition-opacity duration-normal
           ${isHovered ? 'opacity-100' : 'opacity-60'}
         `}
       >
@@ -172,10 +172,10 @@ export function CredentialCard({
             onClick={() => onView(credential)}
             className="
               flex-1 py-2 px-3 rounded-lg
-              font-portal text-portal-meta font-medium
-              bg-portal-stone text-portal-graphite
-              hover:bg-portal-blue/10 hover:text-portal-blue
-              transition-colors duration-portal
+              font-body text-body-sm font-medium
+              bg-void-elevated text-pearl-soft
+              hover:bg-gold/10 hover:text-gold
+              transition-colors duration-normal
             "
           >
             View
@@ -186,10 +186,10 @@ export function CredentialCard({
             onClick={() => onReplace(credential)}
             className="
               flex-1 py-2 px-3 rounded-lg
-              font-portal text-portal-meta font-medium
-              bg-portal-stone text-portal-graphite
-              hover:bg-portal-teal/10 hover:text-portal-teal
-              transition-colors duration-portal
+              font-body text-body-sm font-medium
+              bg-void-elevated text-pearl-soft
+              hover:bg-gold/10 hover:text-gold
+              transition-colors duration-normal
             "
           >
             Replace
@@ -200,10 +200,10 @@ export function CredentialCard({
             onClick={onUpload}
             className="
               flex-1 py-2.5 px-4 rounded-lg
-              font-portal text-portal-meta font-medium
-              bg-portal-blue text-white
-              hover:bg-portal-blue-dark
-              transition-colors duration-portal
+              font-body text-body-sm font-medium
+              bg-gold text-void
+              hover:bg-gold-light
+              transition-colors duration-normal
             "
           >
             Upload Document
@@ -229,9 +229,9 @@ export function AddCredentialCard({ type, onClick }: AddCredentialCardProps): Re
     <button
       onClick={onClick}
       className="
-        w-full bg-surface-1 rounded-card border-2 border-dashed border-portal-stone
-        p-5 transition-all duration-portal ease-portal
-        hover:border-portal-teal hover:bg-portal-teal/5
+        w-full bg-void-light rounded-card border-2 border-dashed border-ash-border
+        p-5 transition-all duration-normal
+        hover:border-gold hover:bg-gold/5
         group
       "
     >
@@ -239,26 +239,26 @@ export function AddCredentialCard({ type, onClick }: AddCredentialCardProps): Re
         <div
           className="
             w-12 h-12 rounded-card flex items-center justify-center text-xl
-            bg-portal-stone group-hover:bg-portal-teal/10
-            transition-colors duration-portal
+            bg-void-elevated group-hover:bg-gold/10
+            transition-colors duration-normal
           "
         >
           {typeConfig.icon}
         </div>
         <div className="text-left">
-          <h3 className="font-portal text-portal-heading text-portal-graphite">
+          <h3 className="font-body text-body-md font-semibold text-pearl">
             Add {typeConfig.label}
           </h3>
-          <p className="font-portal text-portal-meta text-portal-graphite-muted">
+          <p className="font-body text-body-sm text-ash">
             Upload your {typeConfig.description.toLowerCase()}
           </p>
         </div>
         <div
           className="
             ml-auto w-8 h-8 rounded-full flex items-center justify-center
-            bg-portal-stone text-portal-graphite-muted text-xl
-            group-hover:bg-portal-teal group-hover:text-white
-            transition-colors duration-portal
+            bg-void-elevated text-ash text-xl
+            group-hover:bg-gold group-hover:text-void
+            transition-colors duration-normal
           "
         >
           +

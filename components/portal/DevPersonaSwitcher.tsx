@@ -4,7 +4,7 @@
  * DevPersonaSwitcher
  *
  * Development-only component for bypassing auth and switching between test personas.
- * Displays a floating panel that allows quick persona switching.
+ * Dark theme styling to match portal.
  *
  * IMPORTANT: This component only renders in development mode.
  */
@@ -146,11 +146,11 @@ export function DevPersonaSwitcher(): ReactNode {
         className="
           fixed bottom-4 right-4 z-[9999]
           w-12 h-12 rounded-full
-          bg-portal-highlight text-white
+          bg-gold text-void
           shadow-card-elevated
           flex items-center justify-center
-          hover:bg-portal-highlight/90
-          transition-colors duration-portal
+          hover:bg-gold-light
+          transition-colors duration-normal
         "
         title="Open Dev Persona Switcher"
       >
@@ -167,11 +167,11 @@ export function DevPersonaSwitcher(): ReactNode {
           onClick={() => setIsOpen(!isOpen)}
           className="
             flex items-center gap-2 px-4 py-2
-            bg-portal-highlight text-white
+            bg-gold text-void
             rounded-card shadow-card-elevated
-            font-portal text-portal-meta font-medium
-            hover:bg-portal-highlight/90
-            transition-colors duration-portal
+            font-body text-body-sm font-medium
+            hover:bg-gold-light
+            transition-colors duration-normal
           "
         >
           <span>🧪</span>
@@ -193,10 +193,10 @@ export function DevPersonaSwitcher(): ReactNode {
           className="
             absolute -top-2 -right-2
             w-6 h-6 rounded-full
-            bg-portal-graphite text-white
+            bg-ash text-void
             text-xs flex items-center justify-center
-            hover:bg-portal-graphite-muted
-            transition-colors duration-portal
+            hover:bg-ash-light
+            transition-colors duration-normal
           "
           title="Minimize"
         >
@@ -208,29 +208,29 @@ export function DevPersonaSwitcher(): ReactNode {
       {isOpen && (
         <div className="
           absolute bottom-full right-0 mb-2
-          w-72 bg-surface-0 rounded-card-lg shadow-card-elevated
-          border border-portal-stone
+          w-72 bg-void-medium rounded-lg shadow-card-elevated
+          border border-ash-border
           overflow-hidden
           animate-scale-in
         ">
           {/* Header */}
-          <div className="p-3 border-b border-portal-stone bg-portal-highlight/5">
+          <div className="p-3 border-b border-ash-border bg-gold/5">
             <div className="flex items-center justify-between">
-              <span className="font-portal text-portal-meta font-medium text-portal-graphite">
+              <span className="font-body text-body-sm font-medium text-pearl">
                 Test Persona Switcher
               </span>
-              <span className="px-2 py-0.5 rounded bg-portal-alert/10 text-portal-alert font-portal text-ui-xs font-medium">
+              <span className="px-2 py-0.5 rounded bg-status-expired/10 text-status-expired font-body text-ui-xs font-medium">
                 DEV ONLY
               </span>
             </div>
-            <p className="font-portal text-ui-xs text-portal-graphite-muted mt-1">
+            <p className="font-body text-ui-xs text-ash mt-1">
               Bypass auth with test personas
             </p>
           </div>
 
           {/* Candidates Section */}
           <div className="p-2">
-            <p className="px-2 py-1 font-portal text-ui-xs text-portal-graphite-muted uppercase tracking-wide">
+            <p className="px-2 py-1 font-body text-ui-xs text-ash uppercase tracking-wide">
               Candidates
             </p>
             {personaOptions
@@ -247,32 +247,32 @@ export function DevPersonaSwitcher(): ReactNode {
                     onClick={() => handleSelectPersona(option)}
                     className={`
                       w-full text-left px-3 py-2 rounded-card
-                      transition-colors duration-portal
+                      transition-colors duration-normal
                       ${isActive
-                        ? 'bg-portal-teal/10 border border-portal-teal'
-                        : 'hover:bg-portal-stone'
+                        ? 'bg-gold/10 border border-gold'
+                        : 'hover:bg-void-elevated'
                       }
                     `}
                   >
                     <div className="flex items-center gap-3">
                       <div className={`
                         w-8 h-8 rounded-full flex items-center justify-center
-                        ${isActive ? 'bg-portal-teal text-white' : 'bg-portal-blue/10 text-portal-blue'}
+                        ${isActive ? 'bg-gold text-void' : 'bg-tier-colony/10 text-tier-colony'}
                       `}>
-                        <span className="font-portal text-portal-meta font-medium">
+                        <span className="font-body text-body-sm font-medium">
                           {option.name.split(' ').map((n) => n[0]).join('')}
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-portal text-portal-meta text-portal-graphite truncate">
+                        <p className="font-body text-body-sm text-pearl truncate">
                           {option.name}
                         </p>
-                        <p className="font-portal text-ui-xs text-portal-graphite-muted truncate">
+                        <p className="font-body text-ui-xs text-ash truncate">
                           {option.subtitle}
                         </p>
                       </div>
                       {isActive && (
-                        <span className="text-portal-teal text-sm">✓</span>
+                        <span className="text-gold text-sm">✓</span>
                       )}
                     </div>
                   </button>
@@ -281,8 +281,8 @@ export function DevPersonaSwitcher(): ReactNode {
           </div>
 
           {/* Clients Section */}
-          <div className="p-2 border-t border-portal-stone">
-            <p className="px-2 py-1 font-portal text-ui-xs text-portal-graphite-muted uppercase tracking-wide">
+          <div className="p-2 border-t border-ash-border">
+            <p className="px-2 py-1 font-body text-ui-xs text-ash uppercase tracking-wide">
               Clients
             </p>
             {personaOptions
@@ -299,30 +299,30 @@ export function DevPersonaSwitcher(): ReactNode {
                     onClick={() => handleSelectPersona(option)}
                     className={`
                       w-full text-left px-3 py-2 rounded-card
-                      transition-colors duration-portal
+                      transition-colors duration-normal
                       ${isActive
-                        ? 'bg-portal-teal/10 border border-portal-teal'
-                        : 'hover:bg-portal-stone'
+                        ? 'bg-gold/10 border border-gold'
+                        : 'hover:bg-void-elevated'
                       }
                     `}
                   >
                     <div className="flex items-center gap-3">
                       <div className={`
                         w-8 h-8 rounded-card flex items-center justify-center
-                        ${isActive ? 'bg-portal-teal text-white' : 'bg-portal-highlight/10 text-portal-highlight'}
+                        ${isActive ? 'bg-gold text-void' : 'bg-gold/10 text-gold'}
                       `}>
                         <span className="text-sm">🏢</span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-portal text-portal-meta text-portal-graphite truncate">
+                        <p className="font-body text-body-sm text-pearl truncate">
                           {option.name}
                         </p>
-                        <p className="font-portal text-ui-xs text-portal-graphite-muted truncate">
+                        <p className="font-body text-ui-xs text-ash truncate">
                           {option.subtitle}
                         </p>
                       </div>
                       {isActive && (
-                        <span className="text-portal-teal text-sm">✓</span>
+                        <span className="text-gold text-sm">✓</span>
                       )}
                     </div>
                   </button>
@@ -332,14 +332,14 @@ export function DevPersonaSwitcher(): ReactNode {
 
           {/* Logout */}
           {state.status === 'authenticated' && (
-            <div className="p-2 border-t border-portal-stone">
+            <div className="p-2 border-t border-ash-border">
               <button
                 onClick={handleLogout}
                 className="
                   w-full text-left px-3 py-2 rounded-card
-                  font-portal text-portal-meta text-portal-alert
-                  hover:bg-portal-alert/5
-                  transition-colors duration-portal
+                  font-body text-body-sm text-status-expired
+                  hover:bg-status-expired/5
+                  transition-colors duration-normal
                 "
               >
                 Logout

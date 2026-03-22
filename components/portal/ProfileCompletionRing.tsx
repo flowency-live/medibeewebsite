@@ -2,7 +2,7 @@
  * ProfileCompletionRing
  *
  * Circular progress indicator for profile completion.
- * Per design language: "Credential completion ring" - calm, confidence-reinforcing
+ * Gold-accented ring with smooth progression.
  */
 
 import { type ReactNode } from 'react';
@@ -38,10 +38,10 @@ export function ProfileCompletionRing({
 
   // Color based on completion level
   const getProgressColor = () => {
-    if (progress >= 100) return 'stroke-portal-verified';
-    if (progress >= 70) return 'stroke-portal-teal';
-    if (progress >= 40) return 'stroke-portal-available';
-    return 'stroke-portal-pending';
+    if (progress >= 100) return 'stroke-status-verified';
+    if (progress >= 70) return 'stroke-gold';
+    if (progress >= 40) return 'stroke-status-pending';
+    return 'stroke-ash';
   };
 
   return (
@@ -59,7 +59,7 @@ export function ProfileCompletionRing({
           r={radius}
           fill="none"
           strokeWidth={stroke}
-          className="stroke-portal-stone"
+          className="stroke-ash-border"
         />
         {/* Progress circle */}
         <circle
@@ -71,13 +71,13 @@ export function ProfileCompletionRing({
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          className={`${getProgressColor()} transition-all duration-portal ease-portal`}
+          className={`${getProgressColor()} transition-all duration-normal`}
         />
       </svg>
       {showPercentage && (
         <span
           className={`
-            absolute font-portal font-semibold text-portal-graphite
+            absolute font-body font-semibold text-pearl
             ${config.fontSize}
           `}
         >

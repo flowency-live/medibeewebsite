@@ -2,8 +2,7 @@
  * AvailabilityToggle
  *
  * 3-state toggle for candidate availability.
- * Per design language: "Ambient professional signalling... soft glow halo,
- * status pill with gentle tonal background"
+ * Dark theme with status colors for each state.
  */
 
 'use client';
@@ -28,23 +27,23 @@ const availabilityConfig: Record<AvailabilityState, {
   'actively-looking': {
     label: 'Actively Looking',
     description: 'Show me to all providers',
-    dotColor: 'bg-portal-verified',
-    bgColor: 'bg-portal-verified/5',
-    borderColor: 'border-portal-verified/30',
+    dotColor: 'bg-status-verified',
+    bgColor: 'bg-status-verified/5',
+    borderColor: 'border-status-verified/30',
   },
   'open-to-offers': {
     label: 'Open to Offers',
     description: 'Only show to matched providers',
-    dotColor: 'bg-portal-available',
-    bgColor: 'bg-portal-available/5',
-    borderColor: 'border-portal-available/30',
+    dotColor: 'bg-status-pending',
+    bgColor: 'bg-status-pending/5',
+    borderColor: 'border-status-pending/30',
   },
   'not-looking': {
     label: 'Not Looking',
     description: 'Hide my profile',
-    dotColor: 'bg-portal-graphite-muted',
-    bgColor: 'bg-portal-stone',
-    borderColor: 'border-portal-stone',
+    dotColor: 'bg-ash',
+    bgColor: 'bg-void-elevated',
+    borderColor: 'border-ash-border',
   },
 };
 
@@ -57,7 +56,7 @@ export function AvailabilityToggle({
 
   return (
     <div className="space-y-2">
-      <label className="font-portal text-portal-meta font-medium text-portal-graphite">
+      <label className="font-body text-body-sm font-medium text-pearl">
         Your Availability
       </label>
       <div className="flex flex-col gap-2">
@@ -73,10 +72,10 @@ export function AvailabilityToggle({
               disabled={disabled}
               className={`
                 relative flex items-start gap-3 p-3 rounded-card text-left
-                border transition-all duration-portal ease-portal
+                border transition-all duration-normal
                 ${isSelected
                   ? `${config.bgColor} ${config.borderColor}`
-                  : 'bg-surface-0 border-portal-stone hover:border-portal-graphite-muted'
+                  : 'bg-void-medium border-ash-border hover:border-ash'
                 }
                 ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}
               `}
@@ -85,12 +84,12 @@ export function AvailabilityToggle({
               <div
                 className={`
                   relative w-5 h-5 rounded-full border-2 flex-shrink-0 mt-0.5
-                  transition-colors duration-portal
-                  ${isSelected ? `border-current ${config.dotColor}` : 'border-portal-graphite-muted'}
+                  transition-colors duration-normal
+                  ${isSelected ? `border-current ${config.dotColor}` : 'border-ash'}
                 `}
               >
                 {isSelected && (
-                  <div className="absolute inset-1 rounded-full bg-white" />
+                  <div className="absolute inset-1 rounded-full bg-void" />
                 )}
               </div>
 
@@ -105,14 +104,14 @@ export function AvailabilityToggle({
                   />
                   <span
                     className={`
-                      font-portal text-portal-body font-medium
-                      ${isSelected ? 'text-portal-graphite' : 'text-portal-graphite-light'}
+                      font-body text-body-md font-medium
+                      ${isSelected ? 'text-pearl' : 'text-pearl-soft'}
                     `}
                   >
                     {config.label}
                   </span>
                 </div>
-                <p className="font-portal text-portal-meta text-portal-graphite-muted mt-0.5 pl-4">
+                <p className="font-body text-body-sm text-ash mt-0.5 pl-4">
                   {config.description}
                 </p>
               </div>
@@ -143,12 +142,12 @@ export function AvailabilityIndicator({
       className={`
         inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full
         ${config.bgColor} border ${config.borderColor}
-        font-portal text-portal-meta
+        font-body text-body-sm
         ${className}
       `}
     >
       <span className={`w-1.5 h-1.5 rounded-full ${config.dotColor}`} />
-      <span className="text-portal-graphite">{config.label}</span>
+      <span className="text-pearl">{config.label}</span>
     </span>
   );
 }
