@@ -8,14 +8,58 @@
 
 ## Project Overview
 
-**Medibee-Website** is the Day-1 marketing website for Medibee Recruitment Ltd.
+**Medibee-Website** is the marketing website AND platform for Medibee - a professional identity and verification platform for healthcare workers.
 
-- **Purpose:** Credibility website and enquiry capture
-- **Type:** Static marketing site (NOT a platform or portal)
+- **Purpose:** Marketing + Cell/Hive/Colony membership platform
+- **Type:** Next.js application with authentication and portal features
 - **Deployment:** AWS Amplify
 - **Domain (Dev):** medibee.opstack.uk
 - **Domain (Prod):** www.medibee-recruitment.co.uk
-- **Backend:** Day-1 = email-only forms, Future = PulsePlatform integration
+- **Backend:** AWS serverless (future PulsePlatform integration)
+
+---
+
+## Cell/Hive/Colony Membership Model
+
+**This is the core product structure. Understand it thoroughly.**
+
+| Tier | Price | User Type | Purpose |
+|------|-------|-----------|---------|
+| **Cell** | Free | Healthcare professional | Basic digital presence |
+| **Hive** | £4.99/mo | Healthcare professional | Vault, Passport, verification badges |
+| **Colony** | From £100/mo | Employers/recruiters | Talent discovery, full profile access |
+
+### Cell (Free - Healthcare Workers)
+- Free profile creation
+- Basic visibility in search
+- Cell Member badge
+- **Upgrade incentive:** "Need verification? Upgrade to Hive"
+
+### Hive (£4.99/mo - Healthcare Workers)
+- Full platform access
+- **Vault:** Secure document storage (DBS, RTW, qualifications)
+- **Passport:** QR-scannable verification summary
+- Verification badges (purchased separately via Verification Pack £29)
+- Premium visibility in search results
+
+### Colony (From £100/mo - Employers)
+- Find & recruit talent
+- Unlock full profiles
+- Streamline hiring process
+- Custom solutions available
+
+### Verification Pack (£29 one-off, Hive only)
+- Document review service
+- Awards verification badges (ID Verified, DBS Verified, etc.)
+- Fast Track add-on: +£15 for priority processing
+- Badges expire after 12 months
+
+**Key terminology:**
+- Cell = Free tier (like a single cell in the hive)
+- Hive = Premium candidate tier (full hive membership)
+- Colony = Employer tier (the collective that recruits from the hive)
+- Vault = Secure document storage
+- Passport = Public verification summary with QR code
 
 ---
 
@@ -58,30 +102,64 @@ Following DorsetTransferCompany-Website patterns:
 
 ## Design System
 
-### Brand Colours (from brand guide)
+### CRITICAL: Hexagonal/Bee Theme
+
+**Everything is bee-themed. Hexagons are fundamental to the brand.**
+
+When building ANY UI component, consider:
+- Hexagonal shapes for badges, icons, decorative elements
+- Honeycomb patterns for backgrounds and textures
+- Bee imagery (the Medibee bee logo)
+- Cell/Hive/Colony terminology (never generic "tier" or "plan")
+
+**Hexagonal components already built:**
+- `HexagonIcon` - Icon wrapper with hexagonal frame
+- `HexagonBadge` - Tier badges (Cell/Hive/Colony Member)
+- `HexagonBullet` - Bullet points with hexagon shape
+- `HoneycombPattern` - SVG honeycomb background
+- `HoneycombFade` - Fading honeycomb overlay
+- `HoneycombCluster` - Decorative honeycomb grouping
+- `LayeredHoneycomb` - Multi-layer honeycomb effect
+
+### Brand Colours (Dark Theme)
+
+**Primary approach: Dark backgrounds with gold accents**
 
 ```typescript
 // tailwind.config.ts
 colors: {
-  'slate-blue': {
-    DEFAULT: '#696F8B',  // Primary CTAs, links
-    dark: '#545971',     // Headers, navigation, footer
-    light: '#7d8299',    // Hover states
-  },
-  gold: {
-    soft: '#E5D7A2',     // Subtle accents, dividers
-    rich: '#D3B25B',     // Highlights, focus states
-  },
-  mist: '#E6E3CF',       // Primary background
-  neutral: '#9A999B',    // Borders, secondary UI
-  ink: '#09080A',        // Primary text
+  // Dark backgrounds
+  'brand-dark': '#0D0D0D',      // Primary background (near-black)
+  'brand-slate': '#1A1A2E',     // Card backgrounds, elevated surfaces
+  'brand-charcoal': '#2D2D3A',  // Borders, dividers
+
+  // Gold accent system
+  'brand-gold': '#D4AF37',      // Primary gold (CTAs, highlights)
+  'brand-gold-light': '#E5C158', // Hover states
+  'brand-gold-muted': '#A08830', // Subdued gold, borders
+
+  // Text colors
+  'brand-cream': '#F5F5DC',     // Primary text on dark
+  'brand-gray': '#9CA3AF',      // Secondary text
+
+  // Legacy (being phased out)
+  'slate-blue': { ... },
+  gold: { ... },
+  mist: '#E6E3CF',
 }
 ```
+
+### Tier-Specific Styling
+
+| Tier | Badge Color | Accent | CTA Style |
+|------|-------------|--------|-----------|
+| Cell | Gold outline on dark | Gold checkmarks | Gold filled button |
+| Hive | Gold filled badge | Gold checkmarks | Gold filled button |
+| Colony | Gold outline on dark | Gold checkmarks | Gold outline button ("Contact Us") |
 
 ### Typography
 
 ```typescript
-// tailwind.config.ts
 fontFamily: {
   sans: ['Inter', 'system-ui', 'Arial', 'Helvetica', 'sans-serif'],
 }
@@ -95,26 +173,90 @@ fontFamily: {
 
 ### Design Principles
 
-- Generous whitespace, clear content blocks
-- Max content width: 1100-1200px
-- No animations, gradients, dark mode
-- Elegance through restraint
-- Mobile-first responsive design
+- **Dark theme with gold accents** - Professional, premium feel
+- **Hexagonal everything** - Badges, icons, decorative patterns
+- **Honeycomb textures** - Denim-textured honeycomb backgrounds
+- **Glassmorphism cards** - Semi-transparent with backdrop blur on dark
+- **Generous whitespace** - Clear content blocks
+- **Max content width:** 1100-1200px
+- **Mobile-first** responsive design
+
+### Background Pattern
+
+The signature Medibee background is a **denim-textured honeycomb pattern** on dark slate. This appears:
+- Behind pricing/tier cards
+- On portal dashboard backgrounds
+- As subtle texture throughout
+
+Implementation: Use `HoneycombPattern` or `LayeredHoneycomb` components with appropriate opacity.
 
 ---
 
 ## Page Structure
 
+### Marketing Pages
 | Page | Route | Purpose |
 |------|-------|---------|
-| Home | `/` | Entry point, audience selector |
+| Home | `/` | Platform showcase, tier cards, audience selector |
 | Services | `/services` | For care providers |
 | Work with Us | `/work-with-us` | For healthcare assistants |
 | About | `/about` | Company story |
 | Contact | `/contact` | Lead capture forms |
+| Team | `/team` | Team page |
+
+### Policy Pages
+| Page | Route | Purpose |
+|------|-------|---------|
 | Privacy Policy | `/privacy-policy` | GDPR compliance |
 | Safeguarding | `/safeguarding` | Public policy summary |
 | Complaints | `/complaints` | Procedure explanation |
+| Policies Hub | `/policies` | Links to all policy pages |
+| Cookies | `/policies/cookies` | Cookie policy |
+| Data Retention | `/policies/data-retention` | Data retention policy |
+| Accessibility | `/policies/accessibility` | Accessibility statement |
+| Modern Slavery | `/policies/modern-slavery` | Modern slavery statement |
+| Equality & Diversity | `/policies/equality-diversity` | E&D policy |
+| Right to Work | `/policies/right-to-work` | RTW policy |
+
+### Candidate Portal (Cell/Hive)
+| Page | Route | Purpose |
+|------|-------|---------|
+| Login | `/candidate/login` | Candidate authentication |
+| Register | `/candidate/register` | Cell account creation |
+| Onboarding | `/candidate/onboarding` | Post-registration setup |
+| Dashboard | `/candidate/dashboard` | Main candidate hub |
+| Profile | `/candidate/profile` | Profile management |
+| Credentials | `/candidate/credentials` | Vault document management |
+| Passport | `/candidate/passport` | QR verification summary (Hive only) |
+| Introductions | `/candidate/introductions` | Colony contact requests |
+| Settings | `/candidate/settings` | Account settings |
+
+### Client Portal (Colony)
+| Page | Route | Purpose |
+|------|-------|---------|
+| Login | `/client/login` | Colony authentication |
+| Register | `/client/register` | Colony account creation |
+| Verify Email | `/client/verify-email` | Email verification |
+| Dashboard | `/client/dashboard` | Main Colony hub |
+| Candidates | `/client/candidates` | Search & browse candidates |
+| Candidate Detail | `/client/candidates/[id]` | Full candidate profile |
+| Shortlists | `/client/shortlists` | Saved candidate lists |
+| Shortlist Detail | `/client/shortlists/[id]` | Individual shortlist |
+| Contacts | `/client/contacts` | Contact history |
+| Organisation | `/client/organisation` | Company profile |
+| Subscription | `/client/subscription` | Billing & subscription |
+| Settings | `/client/settings` | Account settings |
+
+### Admin Portal
+| Page | Route | Purpose |
+|------|-------|---------|
+| Login | `/admin/login` | Admin authentication |
+| Dashboard | `/admin/dashboard` | Admin overview |
+| Candidates | `/admin/candidates` | Candidate management |
+| Candidate Detail | `/admin/candidates/[id]` | Individual candidate admin |
+| Clients | `/admin/clients` | Colony/employer management |
+| Contacts | `/admin/contacts` | All contact requests |
+| Analytics | `/admin/analytics` | Platform metrics |
 
 ---
 
@@ -351,18 +493,39 @@ frontend:
 
 ---
 
-## What NOT to Build (Day-1)
+## What NOT to Build (Current Phase)
 
-Per PRD exclusions:
-
-- Testimonials
+- Testimonials (no real users yet)
 - Published pay rates
 - Blog/news section
-- Portals or login areas
-- File upload functionality
-- Animations/transitions
-- Dark mode
-- Gradients
+- Downloadable Passport PDF (Phase 2)
+- Partner perks integration (Phase 2)
+- Wellbeing benefits (Phase 2)
+- Mobile app (Phase 3)
+- Automated verification/OCR (Phase 3)
+
+## Design Patterns to Follow
+
+### Tier Card Pattern
+When showing Cell/Hive/Colony options:
+- Dark card background (`bg-brand-slate`)
+- Gold border/accent
+- Tier badge at top (with bee icon)
+- Price prominently displayed
+- Feature list with gold checkmarks
+- CTA button (gold filled for candidates, gold outline for Colony)
+
+### Portal Card Pattern
+- Dark card with subtle border
+- Rounded corners (8px)
+- Padding: 24px
+- Optional honeycomb texture in background
+
+### Badge Pattern
+- Hexagonal frame where possible
+- Medibee bee icon
+- Tier-specific text: "MEDIBEE [TIER] MEMBER"
+- Gold on dark color scheme
 
 ---
 
@@ -371,40 +534,90 @@ Per PRD exclusions:
 ```
 Medibee-Website/
 ├── app/
-│   ├── layout.tsx
-│   ├── page.tsx              # Home
-│   ├── services/
-│   │   └── page.tsx
-│   ├── work-with-us/
-│   │   └── page.tsx
+│   ├── layout.tsx            # Root layout with providers
+│   ├── providers.tsx         # Context providers
+│   ├── page.tsx              # Home (platform showcase)
+│   ├── api/
+│   │   └── enquiry/route.ts  # Form submission API
+│   ├── admin/                # Admin portal
+│   │   ├── layout.tsx
+│   │   ├── login/
+│   │   ├── dashboard/
+│   │   ├── candidates/
+│   │   ├── clients/
+│   │   ├── contacts/
+│   │   └── analytics/
+│   ├── candidate/            # Candidate portal (Cell/Hive)
+│   │   ├── layout.tsx
+│   │   ├── login/
+│   │   ├── register/
+│   │   ├── onboarding/
+│   │   ├── dashboard/
+│   │   ├── profile/
+│   │   ├── credentials/      # Vault
+│   │   ├── introductions/
+│   │   └── settings/
+│   ├── client/               # Client portal (Colony)
+│   │   ├── layout.tsx
+│   │   ├── login/
+│   │   ├── register/
+│   │   ├── verify-email/
+│   │   ├── forgot-password/
+│   │   ├── dashboard/
+│   │   ├── candidates/
+│   │   ├── shortlists/
+│   │   ├── contacts/
+│   │   ├── organisation/
+│   │   ├── subscription/
+│   │   └── settings/
+│   ├── services/             # Marketing page
+│   ├── work-with-us/         # Marketing page
 │   ├── about/
-│   │   └── page.tsx
 │   ├── contact/
-│   │   └── page.tsx
+│   ├── team/
+│   ├── policies/             # Policy hub + sub-pages
 │   ├── privacy-policy/
-│   │   └── page.tsx
 │   ├── safeguarding/
-│   │   └── page.tsx
 │   └── complaints/
-│       └── page.tsx
 ├── components/
-│   ├── ui/                   # Base components
+│   ├── ui/                   # Base UI (Button, Input, etc.)
+│   │   ├── HexagonIcon.tsx   # Hexagonal icon wrapper
+│   │   ├── HexagonBadge.tsx  # Tier badges
+│   │   └── HexagonBullet.tsx # Hex bullet points
+│   ├── decorative/           # Visual elements
+│   │   ├── HoneycombPattern.tsx
+│   │   ├── HoneycombFade.tsx
+│   │   ├── HoneycombCluster.tsx
+│   │   └── LayeredHoneycomb.tsx
 │   ├── forms/                # Contact forms
+│   │   ├── CareProviderForm.tsx
+│   │   ├── HCAForm.tsx
+│   │   └── CandidateRegistrationForm.tsx
+│   ├── portal/               # Portal-specific components
+│   │   ├── PortalCard.tsx
+│   │   ├── ProfileHero.tsx
+│   │   ├── IdentityHero.tsx
+│   │   ├── TrustMeter.tsx
+│   │   ├── CredentialCard.tsx
+│   │   ├── WorkHistoryTimeline.tsx
+│   │   ├── AvailabilityToggle.tsx
+│   │   └── ...
 │   └── shared/               # Header, Footer, etc.
+│       ├── Header.tsx
+│       ├── Footer.tsx
+│       ├── AudienceCard.tsx
+│       └── AnimatedSection.tsx
 ├── lib/
-│   ├── config/
-│   │   └── site.ts           # Site configuration
-│   ├── services/
-│   │   └── formApi.ts        # Form submission
 │   └── utils.ts
 ├── public/
 │   └── images/
-├── .documentation/           # PRD and brand guide
+├── .documentation/           # PRD and planning docs
+│   └── CPO/                  # Product decisions
+│       ├── DECISIONS_LOG.md
+│       └── MEDIBEE_PRD_V4_CELL_HIVE_COLONY.md
 ├── .claude/
 │   └── CLAUDE.md             # This file
-├── amplify.yml
 ├── tailwind.config.ts
-├── tsconfig.json
 └── package.json
 ```
 
@@ -412,12 +625,27 @@ Medibee-Website/
 
 ## Related Documentation
 
-- [PRD](.documentation/medibee_recruitment_ltd_website_prd_day_1.md)
-- [Brand Guide](.documentation/medibee_recruitment_ltd_website_style_brand_guide.md)
+### Product & Business
+- [PRD v4 - Cell/Hive/Colony](.documentation/CPO/MEDIBEE_PRD_V4_CELL_HIVE_COLONY.md) - **PRIMARY**
+- [UI/UX Baseline v1](.documentation/CPO/UI_UX_BASELINE_V1.md) - **DESIGN SOURCE OF TRUTH**
+- [Decisions Log](.documentation/CPO/DECISIONS_LOG.md) - Stakeholder decisions
+- [Open Questions](.documentation/CPO/OPEN_QUESTIONS_V2.md) - Unresolved items
+- [Implementation Roadmap](.documentation/CPO/IMPLEMENTATION_ROADMAP_V2.md)
+
+### Technical
+- [Technical Architecture](.documentation/CPO/TECHNICAL_ARCHITECTURE_DDD_TDD.md)
+- [Data Model](.documentation/CPO/DATA_MODEL_V2.md)
 - [Deployment Guide](.documentation/DEPLOYMENT_GUIDE.md)
-- [PulsePlatform Architecture](../PulsePlatform/.documentation/PLATFORM_ARCHITECTURE.md)
-- [Global Development Standards](C:\VSProjects\CLAUDE.md)
+
+### Legacy (Reference Only)
+- [Day-1 PRD](.documentation/medibee_recruitment_ltd_website_prd_day_1.md)
+- [Original Brand Guide](.documentation/medibee_recruitment_ltd_website_style_brand_guide.md)
+
+### Global Standards
+- [Development Guidelines](C:\VSProjects\CLAUDE.md)
 
 ---
 
-*Last Updated: February 2026*
+---
+
+*Last Updated: 22 March 2026*

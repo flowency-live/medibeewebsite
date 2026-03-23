@@ -14,7 +14,7 @@
 ### BQ-01: Contact Mechanism
 **Decision:** Unlimited Direct Contact
 
-- Colony subscription (£49.99/mo) includes unlimited contact requests
+- Colony subscription (From £100/mo) includes unlimited contact requests
 - Colony can see contact details for ALL candidates (Cell and Hive)
 - No facilitation required - direct contact for everyone
 - No credit system - included in flat subscription
@@ -60,7 +60,7 @@
 ## HIGH PRIORITY DECISIONS (Resolved)
 
 ### BQ-06: Colony Tier Structure
-**Decision:** Single Tier @ £49.99/month
+**Decision:** Single Tier @ From £100/month
 
 - One price, unlimited access
 - No Bronze/Silver/Gold tiers
@@ -189,7 +189,7 @@
 | BQ-03 | Client migration | N/A (no users) |
 | BQ-04 | Verification ops | Outsourced UK partner |
 | BQ-05 | Legal review | Internal sufficient |
-| BQ-06 | Colony tiers | Single tier £49.99 |
+| BQ-06 | Colony tiers | Single tier From £100 |
 | BQ-07 | Cell limits | No hard limits |
 | BQ-08 | Hive lapse | Downgrade to Cell, Vault hidden |
 | BQ-09 | Badge expiry | 12 months |
@@ -211,7 +211,7 @@
 |---------|-------|---------|
 | Cell | Free | N/A |
 | Hive | £4.99/month | Monthly subscription |
-| Colony | £49.99/month | Monthly subscription |
+| Colony | From £100/month | Monthly subscription |
 | Verification Pack (Standard) | £29 | One-off |
 | Fast Track Add-on | £15 | One-off (with Pack) |
 

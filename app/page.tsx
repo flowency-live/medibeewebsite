@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { HoneycombCluster } from '@/components/decorative';
+import { HoneycombCluster, HoneycombPattern } from '@/components/decorative';
+import { TierCard } from '@/components/ui';
 
 // Platform preview card component with glassmorphism
 function GlassCard({
@@ -357,118 +358,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Platform Features Section */}
-      <section className="py-24 bg-void-light relative overflow-hidden">
-        <HoneycombCluster position="bottom-right" variant="filled" scale={1.2} opacityMultiplier={1} />
+      {/* Medibee Membership Section */}
+      <section className="py-24 bg-brand-dark relative overflow-hidden">
+        {/* Honeycomb background - signature denim texture */}
+        <HoneycombPattern variant="gold" opacity={0.06} />
 
         <div className="container-editorial relative z-10">
           <div className="text-center mb-16">
-            <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-semibold mb-4 text-pearl">
-              One Platform, <span className="text-gold">Three Solutions</span>
+            <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-semibold mb-4 text-brand-pearl">
+              Medibee <span className="text-brand-gold">Membership</span>
             </h2>
-            <p className="text-pearl-soft/60 max-w-2xl mx-auto">
-              Whether you&apos;re starting your healthcare career or managing a care facility,
-              Medibee has the right tier for you.
+            <p className="text-brand-pearl-muted max-w-2xl mx-auto">
+              Tailored plans for healthcare professionals and employers.
             </p>
           </div>
 
           {/* Tier cards */}
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Cell - Free */}
-            <div className="group relative p-8 rounded-2xl bg-void border border-white/[0.08] hover:border-cell/30 transition-all">
-              <div className="w-12 h-12 rounded-xl bg-cell/10 flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-cell" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
-                  <path d="M12 2L21.5 7.5V16.5L12 22L2.5 16.5V7.5L12 2Z" />
-                </svg>
+            <TierCard
+              tier="cell"
+              price="FREE"
+              features={[
+                'Free Profile',
+                'Basic Visibility',
+                'For Healthcare Workers',
+              ]}
+              ctaText="Get Started"
+              ctaHref="/candidate/register"
+              ctaVariant="filled"
+              footer="Need verification? Upgrade to Hive"
+            />
+
+            {/* Hive - £4.99/mo */}
+            <div className="relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-brand-gold text-brand-dark text-xs font-bold tracking-wide z-10">
+                MOST POPULAR
               </div>
-              <h3 className="text-xl font-semibold text-pearl mb-2">Cell</h3>
-              <p className="text-sm text-pearl-soft/50 mb-4">Free tier</p>
-              <p className="text-pearl-soft/70 mb-6 text-sm leading-relaxed">
-                Start your professional profile and showcase your credentials to potential employers.
-              </p>
-              <ul className="space-y-3 text-sm text-pearl-soft/60">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cell" />
-                  Basic profile
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cell" />
-                  Credential storage
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cell" />
-                  Job alerts
-                </li>
-              </ul>
+              <TierCard
+                tier="hive"
+                price="£4.99/mo"
+                priceSubtext="billed monthly"
+                features={[
+                  'Full Platform Access',
+                  'Vault & Passport Tools',
+                  'Stay Verified & Compliant',
+                  'For Healthcare Workers',
+                ]}
+                ctaText="Get Started"
+                ctaHref="/candidate/register?tier=hive"
+                ctaVariant="filled"
+                footer="Unlock advanced features"
+                className="border-brand-gold/40"
+              />
             </div>
 
-            {/* Hive - Premium */}
-            <div className="group relative p-8 rounded-2xl bg-gradient-to-b from-gold/[0.08] to-void border border-gold/30 hover:border-gold/50 transition-all transform hover:-translate-y-1">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gold text-void text-xs font-semibold">
-                Most Popular
-              </div>
-              <div className="w-12 h-12 rounded-xl bg-gold/20 flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-gold" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2L21.5 7.5V16.5L12 22L2.5 16.5V7.5L12 2Z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gold mb-2">Hive</h3>
-              <p className="text-sm text-gold/60 mb-4">Premium candidate</p>
-              <p className="text-pearl-soft/70 mb-6 text-sm leading-relaxed">
-                Unlock your Medibee Passport and get priority matching with top employers.
-              </p>
-              <ul className="space-y-3 text-sm text-pearl-soft/60">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                  Medibee Passport
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                  Priority matching
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                  Verified credentials
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                  Skills tracking
-                </li>
-              </ul>
-            </div>
-
-            {/* Colony - Employer */}
-            <div className="group relative p-8 rounded-2xl bg-void border border-white/[0.08] hover:border-colony/30 transition-all">
-              <div className="w-12 h-12 rounded-xl bg-colony/10 flex items-center justify-center mb-6">
-                <svg className="w-6 h-6 text-colony" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
-                  <path d="M12 2L21.5 7.5V16.5L12 22L2.5 16.5V7.5L12 2Z" />
-                  <path d="M12 8L16 10.5V15.5L12 18L8 15.5V10.5L12 8Z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-pearl mb-2">Colony</h3>
-              <p className="text-sm text-colony/70 mb-4">For employers</p>
-              <p className="text-pearl-soft/70 mb-6 text-sm leading-relaxed">
-                Access verified healthcare professionals with instant compliance checking.
-              </p>
-              <ul className="space-y-3 text-sm text-pearl-soft/60">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-colony" />
-                  Candidate search
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-colony" />
-                  Compliance dashboard
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-colony" />
-                  Team management
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-colony" />
-                  Analytics
-                </li>
-              </ul>
-            </div>
+            {/* Colony - From £100/mo */}
+            <TierCard
+              tier="colony"
+              price="From £100/mo"
+              priceSubtext="billed monthly"
+              features={[
+                'Find & Recruit Talent',
+                'Unlock Full Profiles',
+                'Streamline Hiring Process',
+              ]}
+              ctaText="Contact Us"
+              ctaHref="/contact?type=colony"
+              ctaVariant="outline"
+              footer="Custom solutions for employers"
+            />
           </div>
         </div>
       </section>

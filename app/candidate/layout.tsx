@@ -21,7 +21,8 @@ interface CandidateLayoutProps {
 const navItems = [
   { href: '/candidate/dashboard', label: 'Dashboard', icon: '◉' },
   { href: '/candidate/profile', label: 'Profile', icon: '◎' },
-  { href: '/candidate/credentials', label: 'Credentials', icon: '🛡' },
+  { href: '/candidate/credentials', label: 'Vault', icon: '🛡' },
+  { href: '/candidate/passport', label: 'Passport', icon: '📋' },
   { href: '/candidate/introductions', label: 'Introductions', icon: '💼' },
   { href: '/candidate/settings', label: 'Settings', icon: '⚙' },
 ];

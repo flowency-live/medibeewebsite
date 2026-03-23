@@ -304,40 +304,51 @@ export default function CandidateCredentialsPage() {
   return (
     <div className="space-y-8 animate-fade-in-up">
       {/* Header */}
-      <div>
-        <h1 className="font-portal text-portal-name text-portal-graphite mb-2">
-          Credential Wallet
-        </h1>
-        <p className="font-portal text-portal-body text-portal-graphite-muted">
-          Upload and manage your professional credentials. Verified documents help
-          you stand out to care providers.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-brand-gold/20 flex items-center justify-center">
+            <VaultIcon className="w-6 h-6 text-brand-gold" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-semibold text-brand-pearl">
+              MediBee Vault
+            </h1>
+            <p className="text-brand-pearl-muted">
+              Securely store and manage your documents in one place
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={() => setUploadType('other')}
+          className="px-5 py-2.5 bg-brand-gold text-brand-dark font-semibold rounded-lg hover:bg-brand-gold-light transition-colors flex items-center gap-2"
+        >
+          <span className="text-lg">+</span>
+          Upload Document
+        </button>
       </div>
 
-      {/* Summary Stats */}
-      <div className="flex flex-wrap gap-4">
-        <div className="flex items-center gap-2 px-4 py-2 bg-portal-verified/10 rounded-full">
-          <span className="w-2 h-2 rounded-full bg-portal-verified" />
-          <span className="font-portal text-portal-meta text-portal-verified font-medium">
-            {verifiedCredentials.length} Verified
-          </span>
-        </div>
-        {pendingCredentials.length > 0 && (
-          <div className="flex items-center gap-2 px-4 py-2 bg-portal-pending/10 rounded-full">
-            <span className="w-2 h-2 rounded-full bg-portal-pending" />
-            <span className="font-portal text-portal-meta text-portal-pending font-medium">
-              {pendingCredentials.length} Pending
-            </span>
-          </div>
-        )}
-        {alertCredentials.length > 0 && (
-          <div className="flex items-center gap-2 px-4 py-2 bg-portal-alert/10 rounded-full">
-            <span className="w-2 h-2 rounded-full bg-portal-alert" />
-            <span className="font-portal text-portal-meta text-portal-alert font-medium">
-              {alertCredentials.length} Need Attention
-            </span>
-          </div>
-        )}
+      {/* Vault Overview Stats */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <VaultStatCard
+          label="Documents Stored"
+          value={credentials.length}
+          color="gold"
+        />
+        <VaultStatCard
+          label="Verified"
+          value={verifiedCredentials.length}
+          color="emerald"
+        />
+        <VaultStatCard
+          label="Pending Review"
+          value={pendingCredentials.length}
+          color="amber"
+        />
+        <VaultStatCard
+          label="Expiring Soon"
+          value={alertCredentials.length}
+          color="red"
+        />
       </div>
 
       {/* Alert for expiring/expired credentials */}
@@ -428,6 +439,38 @@ export default function CandidateCredentialsPage() {
           onUpload={handleUpload}
         />
       )}
+    </div>
+  );
+}
+
+function VaultIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+    </svg>
+  );
+}
+
+function VaultStatCard({
+  label,
+  value,
+  color,
+}: {
+  label: string;
+  value: number;
+  color: 'gold' | 'emerald' | 'amber' | 'red';
+}) {
+  const colorClasses = {
+    gold: 'text-brand-gold border-brand-gold/20',
+    emerald: 'text-emerald-400 border-emerald-400/20',
+    amber: 'text-amber-400 border-amber-400/20',
+    red: 'text-red-400 border-red-400/20',
+  };
+
+  return (
+    <div className={`p-4 rounded-xl bg-brand-slate/50 border ${colorClasses[color]}`}>
+      <p className={`text-3xl font-bold ${colorClasses[color].split(' ')[0]}`}>{value}</p>
+      <p className="text-sm text-brand-pearl-muted mt-1">{label}</p>
     </div>
   );
 }

@@ -13,6 +13,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth, isClient } from '@/lib/auth';
 import { matchingApi } from '@/lib/api';
 import { PortalCard, StatusBadge } from '@/components/portal';
+import { TierBadge } from '@/components/ui';
 import { getAllPersonas, type PersonaData } from '@/lib/test-data';
 
 interface Candidate {
@@ -26,6 +27,7 @@ interface Candidate {
   professionalSummary?: string;
   status: string;
   verifiedCredentialsCount?: number;
+  tier: 'cell' | 'hive';
 }
 
 interface BrowseResponse {
@@ -71,18 +73,32 @@ const AVAILABILITY_OPTIONS = [
 // Transform test personas to candidates for demo
 function getTestCandidates(): Candidate[] {
   const personas = getAllPersonas();
-  return personas.map((p) => ({
-    candidateId: p.profile.candidateId,
-    firstName: p.profile.firstName,
-    lastName: p.profile.lastName,
-    city: p.profile.city,
-    experienceLevel: p.profile.experienceLevel ?? '',
-    preferredSettings: p.profile.preferredSettings ?? [],
-    available: p.profile.available ?? true,
-    professionalSummary: p.profile.professionalSummary,
-    status: p.profile.status,
-    verifiedCredentialsCount: p.credentials.filter((c) => c.status === 'verified').length,
-  }));
+  return personas.map((p) => {
+    const verifiedCount = p.credentials.filter((c) => c.status === 'verified').length;
+    // Candidates with verified credentials are Hive members
+    const tier: 'cell' | 'hive' = verifiedCount > 0 ? 'hive' : 'cell';
+
+    return {
+      candidateId: p.profile.candidateId,
+      firstName: p.profile.firstName,
+      lastName: p.profile.lastName,
+      city: p.profile.city,
+      experienceLevel: p.profile.experienceLevel ?? '',
+      preferredSettings: p.profile.preferredSettings ?? [],
+      available: p.profile.available ?? true,
+      professionalSummary: p.profile.professionalSummary,
+      status: p.profile.status,
+      verifiedCredentialsCount: verifiedCount,
+      tier,
+    };
+  })
+    // Hive members appear first, then sort by activity (recent first)
+    .sort((a, b) => {
+      if (a.tier !== b.tier) {
+        return a.tier === 'hive' ? -1 : 1;
+      }
+      return 0;
+    });
 }
 
 export default function BrowseCandidatesPage() {
@@ -546,6 +562,7 @@ function CandidateCard({ candidate, isBronze }: { candidate: Candidate; isBronze
                 {candidate.firstName}{' '}
                 {isBronze ? `${candidate.lastName.charAt(0)}.` : candidate.lastName}
               </h3>
+              <TierBadge tier={candidate.tier} size="sm" />
               {candidate.available && candidate.status === 'active' && (
                 <StatusBadge status="available" size="sm" />
               )}

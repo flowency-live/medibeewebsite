@@ -22,3 +22,11 @@ export type { FileInputProps } from './file-input';
 export { HexagonIcon } from './HexagonIcon';
 export { HexagonBadge } from './HexagonBadge';
 export { HexagonBullet } from './HexagonBullet';
+
+export { TierBadge } from './TierBadge';
+export type { TierType, TierBadgeVariant } from './TierBadge';
+
+export { TierCard } from './TierCard';
+
+export { VerificationBadge } from './VerificationBadge';
+export type { VerificationBadgeType, VerificationBadgeSize } from './VerificationBadge';

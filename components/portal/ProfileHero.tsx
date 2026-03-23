@@ -9,6 +9,7 @@
 
 import type { CandidateProfile } from '@/lib/auth/types';
 import { StatusBadge } from '@/components/portal';
+import { TierBadge, VerificationBadge } from '@/components/ui';
 
 const experienceLevelLabels: Record<string, string> = {
   'newly-qualified': 'Newly Qualified',
@@ -19,20 +20,27 @@ const experienceLevelLabels: Record<string, string> = {
 
 export interface ProfileHeroProps {
   profile: CandidateProfile;
+  tier?: 'cell' | 'hive';
   isOwnProfile?: boolean;
   onRequestIntroduction?: () => void;
   onAddToShortlist?: () => void;
+  onViewPassport?: () => void;
 }
 
 export function ProfileHero({
   profile,
+  tier,
   isOwnProfile = false,
   onRequestIntroduction,
   onAddToShortlist,
+  onViewPassport,
 }: ProfileHeroProps) {
   const initials = `${profile.firstName?.[0] ?? ''}${profile.lastName?.[0] ?? ''}`.toUpperCase();
   const fullName = `${profile.firstName} ${profile.lastName}`.trim();
   const showAvailable = profile.available && profile.status === 'active';
+  // Determine tier based on credentials if not provided
+  const effectiveTier = tier ?? (profile.dbsStatus === 'verified' || profile.rightToWork ? 'hive' : 'cell');
+  const isHive = effectiveTier === 'hive';
 
   return (
     <div className="bg-void-medium rounded-card-lg shadow-card overflow-hidden border border-ash-border">
@@ -73,8 +81,22 @@ export function ProfileHero({
               <h1 className="font-body text-2xl font-semibold text-pearl truncate">
                 {fullName}
               </h1>
+              <TierBadge tier={effectiveTier} size="sm" />
               {showAvailable && <StatusBadge status="available" size="sm" />}
             </div>
+
+            {/* Verification badges for Hive members */}
+            {isHive && !isOwnProfile && (
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-2">
+                {profile.dbsStatus === 'verified' && (
+                  <VerificationBadge type="dbs-verified" size="sm" />
+                )}
+                {profile.rightToWork && (
+                  <VerificationBadge type="rtw-verified" size="sm" />
+                )}
+                <VerificationBadge type="passport-ready" size="sm" />
+              </div>
+            )}
 
             {profile.tagline && (
               <p
@@ -102,7 +124,7 @@ export function ProfileHero({
           </div>
 
           {/* Action buttons */}
-          {!isOwnProfile && (onRequestIntroduction || onAddToShortlist) && (
+          {!isOwnProfile && (onRequestIntroduction || onAddToShortlist || (isHive && onViewPassport)) && (
             <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto mt-2 sm:mt-0">
               {onAddToShortlist && (
                 <button
@@ -110,6 +132,14 @@ export function ProfileHero({
                   className="px-4 py-2.5 rounded-card font-body text-ui-sm font-medium border border-ash-border text-pearl-soft hover:bg-void-elevated hover:border-ash-border-light transition-colors duration-normal w-full sm:w-auto"
                 >
                   + Shortlist
+                </button>
+              )}
+              {isHive && onViewPassport && (
+                <button
+                  onClick={onViewPassport}
+                  className="px-4 py-2.5 rounded-card font-body text-ui-sm font-medium border border-brand-gold/30 text-brand-gold hover:bg-brand-gold/10 transition-colors duration-normal w-full sm:w-auto"
+                >
+                  View Passport
                 </button>
               )}
               {onRequestIntroduction && (
