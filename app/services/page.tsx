@@ -26,7 +26,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 relative bg-void overflow-hidden">
+      <section className="py-24 relative bg-void overflow-hidden noise-overlay">
         {/* Subtle grain texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -74,7 +74,7 @@ export default function ServicesPage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Temporary Staffing */}
             <div
-              className="p-8 bg-void-medium rounded-card border-t-[3px] border-tier-colony"
+              className="p-8 bg-void-medium rounded-card border-t-[3px] border-tier-colony transition-all duration-300 hover:border-gold hover:shadow-gold-glow-sm animate-fade-in-up stagger-1"
               style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.3)' }}
             >
               <div className="w-12 h-12 mb-6 text-tier-colony">
@@ -101,7 +101,7 @@ export default function ServicesPage() {
 
             {/* Emergency Cover */}
             <div
-              className="p-8 bg-void-medium rounded-card border-t-[3px] border-tier-colony"
+              className="p-8 bg-void-medium rounded-card border-t-[3px] border-tier-colony transition-all duration-300 hover:border-gold hover:shadow-gold-glow-sm animate-fade-in-up stagger-2"
               style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.3)' }}
             >
               <div className="w-12 h-12 mb-6 text-tier-colony">
@@ -129,7 +129,7 @@ export default function ServicesPage() {
 
             {/* Contract Placements */}
             <div
-              className="p-8 bg-void-medium rounded-card border-t-[3px] border-tier-colony"
+              className="p-8 bg-void-medium rounded-card border-t-[3px] border-tier-colony transition-all duration-300 hover:border-gold hover:shadow-gold-glow-sm animate-fade-in-up stagger-3"
               style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.3)' }}
             >
               <div className="w-12 h-12 mb-6 text-tier-colony">

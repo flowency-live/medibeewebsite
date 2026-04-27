@@ -30,7 +30,7 @@ function createCredential(overrides: Partial<Credential> = {}): Credential {
     name: 'DBS Certificate',
     type: 'dbs',
     status: 'verified',
-    uploadedAt: '2024-01-01T00:00:00Z',
+    verifiedDate: '2024-01-01T00:00:00Z',
     ...overrides,
   };
 }

@@ -86,6 +86,37 @@ const config: Config = {
           light: '#F5E6A3',
           dark: '#C9A94A',
         },
+
+        // === BRAND ALIASES (for component compatibility) ===
+        // These map brand-* classes to the primary color system
+        'brand': {
+          dark: '#0D0D0D',          // void
+          slate: '#1A1A2E',         // dark slate for cards
+          gold: '#D4AF37',          // gold
+          'gold-light': '#F5C542',  // gold-light
+          pearl: '#FFFFFF',         // pearl
+          'pearl-soft': '#F5F5F5',  // pearl-soft
+          'pearl-muted': '#CCCCCC', // pearl-muted
+        },
+
+        // === PORTAL COLORS (dark theme migration) ===
+        // Portals now use dark theme - these provide compatibility
+        'portal': {
+          stone: '#141414',         // void-light (page backgrounds)
+          'blue-dark': '#0D0D0D',   // void (header backgrounds)
+          'blue': '#1A1A1A',        // void-medium (elevated surfaces)
+          graphite: '#8A8A8A',      // ash (secondary text)
+          'graphite-muted': '#5A5A5A', // ash-dark (disabled text)
+          highlight: '#D4AF37',     // gold (for notifications/badges)
+        },
+
+        // === SURFACE SCALE (semantic elevations) ===
+        'surface': {
+          0: '#0D0D0D',   // Base level (void)
+          1: '#141414',   // Level 1 (void-light)
+          2: '#1A1A1A',   // Level 2 (void-medium)
+          3: '#242424',   // Level 3 (void-elevated)
+        },
       },
 
       fontFamily: {
@@ -93,6 +124,8 @@ const config: Config = {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
         display: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
         body: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        // Portal uses same font (alias for consistency)
+        portal: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
       },
 
       fontSize: {
@@ -153,6 +186,7 @@ const config: Config = {
         'fast': '150ms',
         'normal': '200ms',
         'slow': '300ms',
+        'portal': '200ms', // Portal transition duration alias
       },
 
       keyframes: {
@@ -176,6 +210,28 @@ const config: Config = {
           '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)' },
           '50%': { boxShadow: '0 0 30px rgba(212, 175, 55, 0.5)' },
         },
+        // Enhanced entrance animations
+        'slide-in-left': {
+          '0%': { opacity: '0', transform: 'translateX(-20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        'slide-in-right': {
+          '0%': { opacity: '0', transform: 'translateX(20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        'expand-blur': {
+          '0%': { opacity: '0', transform: 'scale(0.95)', filter: 'blur(4px)' },
+          '100%': { opacity: '1', transform: 'scale(1)', filter: 'blur(0)' },
+        },
+        'float-gentle': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-6px)' },
+        },
+        // Card hover lift
+        'lift': {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-4px)' },
+        },
       },
 
       animation: {
@@ -184,6 +240,11 @@ const config: Config = {
         'pulse-soft': 'pulse-soft 2s ease-in-out infinite',
         'shimmer': 'shimmer 2s linear infinite',
         'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+        // Enhanced animations
+        'slide-in-left': 'slide-in-left 0.4s ease-out forwards',
+        'slide-in-right': 'slide-in-right 0.4s ease-out forwards',
+        'expand-blur': 'expand-blur 0.5s ease-out forwards',
+        'float-gentle': 'float-gentle 6s ease-in-out infinite',
       },
 
       backgroundImage: {

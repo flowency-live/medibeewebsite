@@ -47,7 +47,7 @@ export default function TeamPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 relative bg-void">
+      <section className="py-24 relative bg-void noise-overlay">
         {/* Subtle grain texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -83,7 +83,7 @@ export default function TeamPage() {
               return (
                 <div
                   key={member.role}
-                  className="grid md:grid-cols-2"
+                  className={`grid md:grid-cols-2 animate-fade-in-up stagger-${index + 1}`}
                 >
                   {/* Image / Placeholder */}
                   <div
@@ -131,7 +131,7 @@ export default function TeamPage() {
                   </div>
                   {/* Content */}
                   <div
-                    className={`p-8 md:p-12 flex flex-col justify-center bg-void ${isEven ? 'md:order-2 border-l-[3px] border-gold' : 'md:order-1 border-r-[3px] border-gold'}`}
+                    className={`p-8 md:p-12 flex flex-col justify-center bg-void transition-all duration-300 hover:bg-void-light ${isEven ? 'md:order-2 border-l-[3px] border-gold hover:border-gold-light' : 'md:order-1 border-r-[3px] border-gold hover:border-gold-light'}`}
                   >
                     <h2 className="font-display text-xl mb-1 text-gold-soft">
                       {member.name}

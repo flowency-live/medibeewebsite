@@ -35,7 +35,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 relative overflow-hidden bg-void">
+      <section className="py-24 relative overflow-hidden bg-void noise-overlay">
         {/* Subtle grain texture */}
         <div
           className="absolute inset-0 opacity-[0.04]"
@@ -120,10 +120,10 @@ export default function AboutPage() {
               What this means in practice
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
-              {VALUES.map((value) => (
+              {VALUES.map((value, index) => (
                 <div
                   key={value.title}
-                  className="pl-6 border-l-[3px] border-gold"
+                  className={`pl-6 border-l-[3px] border-gold transition-all duration-300 hover:border-gold-light hover:bg-void-light/30 -ml-2 p-4 rounded-r-lg animate-fade-in-up stagger-${index + 1}`}
                 >
                   <h3 className="font-display text-xl mb-3 text-pearl">
                     {value.title}

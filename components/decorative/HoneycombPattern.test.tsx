@@ -41,9 +41,9 @@ describe('HoneycombPattern', () => {
     expect(screen.getByTestId('honeycomb')).toHaveClass('custom-class');
   });
 
-  it('applies default opacity of 0.08 for gold variant', () => {
+  it('applies default opacity of 0.06 for gold variant', () => {
     render(<HoneycombPattern data-testid="honeycomb" />);
     const el = screen.getByTestId('honeycomb');
-    expect(el.style.opacity).toBe('0.08');
+    expect(el.style.opacity).toBe('0.06');
   });
 });

@@ -225,6 +225,59 @@
   .badge-expired {
     @apply badge bg-status-expired/10 border-status-expired/30 text-status-expired;
   }
+
+  /* === GLASSMORPHISM CARD === */
+  .glass-card {
+    @apply rounded-2xl backdrop-blur-xl;
+    @apply bg-gradient-to-br from-white/[0.08] to-white/[0.02];
+    @apply border border-white/[0.1];
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* === NOISE TEXTURE OVERLAY === */
+  .noise-overlay {
+    @apply relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* === HONEYCOMB GLOW HOVER EFFECT === */
+  .honeycomb-glow {
+    @apply relative overflow-hidden;
+  }
+  .honeycomb-glow::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    @apply opacity-0 transition-opacity duration-300;
+    background: radial-gradient(
+      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(212, 175, 55, 0.15) 0%,
+      transparent 50%
+    );
+  }
+  .honeycomb-glow:hover::after {
+    @apply opacity-100;
+  }
+
+  /* === PORTAL CARD STYLES === */
+  .portal-card {
+    @apply bg-void-medium border border-ash-border rounded-card;
+    @apply transition-all duration-normal;
+  }
+  .portal-card:hover {
+    @apply border-ash-border-light shadow-card;
+  }
+  .portal-card-accent {
+    @apply bg-void-medium border border-gold/20 rounded-card;
+    @apply transition-all duration-normal;
+  }
+  .portal-card-accent:hover {
+    @apply border-gold/40 shadow-gold-glow-sm;
+  }
 }
 
 @layer utilities {
@@ -310,6 +363,16 @@
   .animate-delay-200 { transition-delay: 200ms; }
   .animate-delay-300 { transition-delay: 300ms; }
   .animate-delay-400 { transition-delay: 400ms; }
+
+  /* Animation stagger system (for keyframe animations) */
+  .stagger-1 { animation-delay: 50ms; }
+  .stagger-2 { animation-delay: 100ms; }
+  .stagger-3 { animation-delay: 150ms; }
+  .stagger-4 { animation-delay: 200ms; }
+  .stagger-5 { animation-delay: 250ms; }
+  .stagger-6 { animation-delay: 300ms; }
+  .stagger-7 { animation-delay: 350ms; }
+  .stagger-8 { animation-delay: 400ms; }
 
   /* Directional animations */
   .animate-slide-left {

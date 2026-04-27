@@ -2,104 +2,22 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
 import { HoneycombCluster, HoneycombPattern } from '@/components/decorative';
-import { TierCard } from '@/components/ui';
+import {
+  TierCard,
+  PassportPreviewCard,
+  ProfilePreviewCard,
+  ColonyDashboardPreviewCard,
+} from '@/components/ui';
 
-// Platform preview card component with glassmorphism
-function GlassCard({
-  children,
-  className = '',
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
-  return (
-    <div
-      className={`
-        relative rounded-2xl backdrop-blur-xl
-        bg-gradient-to-br from-white/[0.08] to-white/[0.02]
-        border border-white/[0.1]
-        shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]
-        transition-all duration-700 ease-out
-        ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
-        ${className}
-      `}
-    >
-      {children}
-    </div>
-  );
-}
-
-// Hexagon check icon
-function HexCheck({ className = '' }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none">
-      <path
-        d="M12 2L21.5 7.5V16.5L12 22L2.5 16.5V7.5L12 2Z"
-        fill="currentColor"
-        fillOpacity="0.2"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <path d="M8 12L11 15L16 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-// Passport verification item
-function PassportItem({ label, verified = true }: { label: string; verified?: boolean }) {
-  return (
-    <div className="flex items-center gap-3 py-2">
-      <HexCheck className={`w-5 h-5 ${verified ? 'text-emerald-400' : 'text-amber-400'}`} />
-      <span className="text-sm text-pearl-soft/80">{label}</span>
-    </div>
-  );
-}
-
-// Candidate card for Colony dashboard preview
-function CandidatePreviewCard({
-  name,
-  role,
-  match,
-  avatar,
-}: {
-  name: string;
-  role: string;
-  match: number;
-  avatar: string;
-}) {
-  return (
-    <div className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] transition-colors">
-      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold/30 to-gold/10 flex items-center justify-center text-gold font-semibold text-sm">
-        {avatar}
-      </div>
-      <div className="flex-1 min-w-0">
-        <div className="text-sm font-medium text-pearl-soft truncate">{name}</div>
-        <div className="text-xs text-pearl-soft/50">{role}</div>
-      </div>
-      <div className="text-xs font-medium text-gold">{match}%</div>
-    </div>
-  );
-}
-
-// Trust signal badge
+// Trust signal badge with hover glow effect
 function TrustBadge({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
-    <div className="flex items-center gap-3 text-pearl-soft/70">
-      <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center text-gold">
+    <div className="flex items-center gap-3 text-pearl-soft/70 group">
+      <div className="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 flex items-center justify-center text-gold transition-all duration-300 group-hover:bg-gold/20 group-hover:border-gold/40 group-hover:shadow-gold-glow-sm">
         {icon}
       </div>
-      <span className="text-sm font-medium">{label}</span>
+      <span className="text-sm font-medium transition-colors group-hover:text-pearl-soft">{label}</span>
     </div>
   );
 }
@@ -108,7 +26,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section - Full viewport with platform preview */}
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-void">
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-void noise-overlay">
         {/* Background: Professional healthcare image with heavy overlay */}
         <Image
           src="/manchester-skyline.jpg"
@@ -178,137 +96,22 @@ export default function HomePage() {
             {/* Right: Platform Preview Mockups - 3 floating cards */}
             <div className="relative h-[500px] lg:h-[550px] hidden md:block">
               {/* Center: Profile Card */}
-              <GlassCard
+              <ProfilePreviewCard
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] z-20"
                 delay={200}
-              >
-                {/* Header bar */}
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.08]">
-                  <div className="w-6 h-6 rounded bg-gold/20 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M10 2L3 7v11h14V7l-7-5z" />
-                    </svg>
-                  </div>
-                  <span className="text-sm font-medium text-gold">Medibee</span>
-                </div>
-
-                {/* Profile content */}
-                <div className="p-5">
-                  {/* Avatar and name */}
-                  <div className="flex items-center gap-4 mb-5">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gold/40 to-gold/10 flex items-center justify-center overflow-hidden border-2 border-gold/30">
-                      <span className="text-2xl font-bold text-gold">SM</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-pearl">Sarah Mitchell</h3>
-                      <p className="text-sm text-pearl-soft/60">Healthcare Assistant, London, UK</p>
-                    </div>
-                  </div>
-
-                  {/* Tabs */}
-                  <div className="flex gap-1 mb-4 p-1 rounded-lg bg-white/[0.04]">
-                    <button className="flex-1 px-3 py-2 text-xs font-medium rounded-md bg-gold/20 text-gold">
-                      Summary
-                    </button>
-                    <button className="flex-1 px-3 py-2 text-xs font-medium rounded-md text-pearl-soft/50 hover:text-pearl-soft/80 transition-colors">
-                      Skills
-                    </button>
-                    <button className="flex-1 px-3 py-2 text-xs font-medium rounded-md text-pearl-soft/50 hover:text-pearl-soft/80 transition-colors">
-                      Experience
-                    </button>
-                  </div>
-
-                  {/* Summary content */}
-                  <div className="space-y-3">
-                    <div>
-                      <div className="text-xs text-pearl-soft/40 uppercase tracking-wider mb-1">Summary</div>
-                      <p className="text-sm text-pearl-soft/70 leading-relaxed">
-                        HCA ideally required for ad-hoc support roles within NHS acute care, with preference
-                        for ambulatory and clinic settings in Greater London.
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="text-xs text-pearl-soft/40 uppercase tracking-wider mb-2">Skills</div>
-                      <div className="flex flex-wrap gap-2">
-                        {['Elderly Care', 'Mental Health', 'First Aid'].map((skill) => (
-                          <span key={skill} className="px-2 py-1 text-xs rounded bg-white/[0.06] text-pearl-soft/70">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </GlassCard>
+              />
 
               {/* Left: Passport Card */}
-              <GlassCard
+              <PassportPreviewCard
                 className="absolute left-0 top-8 w-[220px] z-10 transform -rotate-3 hover:rotate-0 transition-transform duration-500"
                 delay={400}
-              >
-                <div className="p-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-5 h-5 rounded bg-emerald-500/20 flex items-center justify-center">
-                      <svg className="w-3 h-3 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <span className="text-xs font-medium text-emerald-400">Your Medibee Passport</span>
-                  </div>
-
-                  {/* QR Code placeholder */}
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-lg bg-white/[0.9] p-2 flex items-center justify-center">
-                    <div className="w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZmZmIi8+PHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbGw9IiMwMDAiLz48cmVjdCB4PSI1MCIgeT0iMTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iIzAwMCIvPjxyZWN0IHg9IjEwIiB5PSI1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDAwIi8+PHJlY3QgeD0iMzAiIHk9IjMwIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIGZpbGw9IiMwMDAiLz48L3N2Zz4=')] bg-contain bg-center bg-no-repeat" />
-                  </div>
-
-                  {/* Verification items */}
-                  <div className="space-y-0">
-                    <PassportItem label="Verified DBS Check" />
-                    <PassportItem label="ID Verified" />
-                    <PassportItem label="Right to Work Approved" />
-                    <PassportItem label="Training Completed" />
-                    <PassportItem label="Documents Up to Date" />
-                  </div>
-                </div>
-              </GlassCard>
+              />
 
               {/* Right: Colony Dashboard Card */}
-              <GlassCard
+              <ColonyDashboardPreviewCard
                 className="absolute right-0 top-16 w-[240px] z-10 transform rotate-2 hover:rotate-0 transition-transform duration-500"
                 delay={600}
-              >
-                <div className="p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded bg-indigo-500/20 flex items-center justify-center">
-                        <svg className="w-3 h-3 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                        </svg>
-                      </div>
-                      <span className="text-xs font-medium text-indigo-400">Colony Dashboard</span>
-                    </div>
-                    <span className="text-[10px] text-pearl-soft/40">Active Candidates</span>
-                  </div>
-
-                  {/* Filter tabs */}
-                  <div className="flex gap-2 mb-4 text-[10px]">
-                    <span className="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300">Shortlisted</span>
-                    <span className="px-2 py-1 rounded text-pearl-soft/40">All Matches</span>
-                  </div>
-
-                  {/* Candidate list */}
-                  <div className="space-y-2">
-                    <CandidatePreviewCard name="Hannah P." role="Senior HCA" match={98} avatar="HP" />
-                    <CandidatePreviewCard name="Jenny C." role="Care Assistant" match={94} avatar="JC" />
-                    <CandidatePreviewCard name="Claire S." role="Mental Health HCA" match={91} avatar="CS" />
-                  </div>
-                </div>
-              </GlassCard>
+              />
             </div>
           </div>
         </div>
@@ -373,7 +176,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Tier cards */}
+          {/* Tier cards with staggered animation */}
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Cell - Free */}
             <TierCard
@@ -388,11 +191,12 @@ export default function HomePage() {
               ctaHref="/candidate/register"
               ctaVariant="filled"
               footer="Need verification? Upgrade to Hive"
+              className="animate-fade-in-up stagger-1"
             />
 
             {/* Hive - £4.99/mo */}
-            <div className="relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-brand-gold text-brand-dark text-xs font-bold tracking-wide z-10">
+            <div className="relative animate-fade-in-up stagger-2">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-brand-gold text-brand-dark text-xs font-bold tracking-wide z-10 animate-glow-pulse">
                 MOST POPULAR
               </div>
               <TierCard
@@ -427,6 +231,7 @@ export default function HomePage() {
               ctaHref="/contact?type=colony"
               ctaVariant="outline"
               footer="Custom solutions for employers"
+              className="animate-fade-in-up stagger-3"
             />
           </div>
         </div>
@@ -462,9 +267,12 @@ export default function HomePage() {
                 title: 'Start Connecting',
                 desc: 'Match with opportunities or find the perfect candidate for your team.',
               },
-            ].map((item) => (
-              <div key={item.step} className="text-center">
-                <div className="w-16 h-16 rounded-2xl bg-gold/10 border border-gold/20 flex items-center justify-center mx-auto mb-6">
+            ].map((item, index) => (
+              <div
+                key={item.step}
+                className={`text-center animate-fade-in-up stagger-${index + 2}`}
+              >
+                <div className="w-16 h-16 rounded-2xl bg-gold/10 border border-gold/20 flex items-center justify-center mx-auto mb-6 transition-all duration-300 hover:bg-gold/20 hover:border-gold/40 hover:shadow-gold-glow-sm">
                   <span className="text-2xl font-bold text-gold">{item.step}</span>
                 </div>
                 <h3 className="text-lg font-semibold text-pearl mb-2">{item.title}</h3>
