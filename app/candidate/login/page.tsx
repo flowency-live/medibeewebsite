@@ -13,9 +13,9 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Button, Input } from '@/components/ui';
+import { Button, Input, AlertBanner } from '@/components/ui';
 import { useAuth } from '@/lib/auth';
-import { personas } from '@/lib/test-data';
+import { TEST_CANDIDATE } from '@/lib/test-login';
 
 type AuthMethod = 'social' | 'phone' | 'email';
 type PhoneStep = 'input' | 'verify';
@@ -31,9 +31,9 @@ function CandidateLoginContent() {
   const [method, setMethod] = React.useState<AuthMethod>('social');
 
   // TODO(PROD-WIRE): Remove test login handler before production launch
-  const handleTestLogin = (personaKey: keyof typeof personas) => {
+  const handleTestLogin = () => {
     if (devLoginAsCandidate) {
-      devLoginAsCandidate(personas[personaKey].profile);
+      devLoginAsCandidate(TEST_CANDIDATE);
       router.push('/candidate/dashboard');
     }
   };
@@ -166,9 +166,9 @@ function CandidateLoginContent() {
           {/* Auth Card */}
           <div className="bg-void-elevated border border-white/[0.08] rounded-lg p-8">
             {error && (
-              <div className="mb-6 p-4 bg-amber-50 border-l-[3px] border-amber-500" role="alert">
-                <p className="font-body text-body-sm text-amber-800">{error}</p>
-              </div>
+              <AlertBanner type="error" className="mb-6">
+                {error}
+              </AlertBanner>
             )}
 
             {/* Social Auth Options */}
@@ -367,49 +367,19 @@ function CandidateLoginContent() {
 
           {/* TODO(PROD-WIRE): Remove test login section before production launch */}
           {devLoginAsCandidate && (
-            <div className="mt-6 bg-amber-50 border border-amber-200 rounded p-4">
-              <p className="font-body text-body-sm text-amber-800 mb-3 text-center">
-                Demo / Testing Mode
-              </p>
-              <div className="space-y-2">
+            <div className="mt-6 pt-6 border-t border-status-pending/30">
+              <div className="bg-status-pending/10 border border-status-pending/30 rounded-card p-4">
+                <p className="font-body text-body-sm text-status-pending mb-3 text-center">
+                  Demo / Testing Mode
+                </p>
                 <Button
                   type="button"
-                  onClick={() => handleTestLogin('amara')}
+                  onClick={handleTestLogin}
                   fullWidth
-                  className="bg-amber-500 text-white hover:bg-amber-600"
+                  className="bg-status-pending text-void hover:bg-status-pending/90"
                 >
-                  Test Login as Amara (Mental Health, 5+ yrs)
+                  Test Login as Sarah Williams
                 </Button>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => handleTestLogin('james')}
-                    className="px-3 py-2 text-xs font-medium text-amber-800 bg-amber-100 hover:bg-amber-200 rounded transition-colors"
-                  >
-                    James (New)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleTestLogin('priya')}
-                    className="px-3 py-2 text-xs font-medium text-amber-800 bg-amber-100 hover:bg-amber-200 rounded transition-colors"
-                  >
-                    Priya (Acute)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleTestLogin('david')}
-                    className="px-3 py-2 text-xs font-medium text-amber-800 bg-amber-100 hover:bg-amber-200 rounded transition-colors"
-                  >
-                    David (EOL)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleTestLogin('sarah')}
-                    className="px-3 py-2 text-xs font-medium text-amber-800 bg-amber-100 hover:bg-amber-200 rounded transition-colors"
-                  >
-                    Sarah (Returning)
-                  </button>
-                </div>
               </div>
             </div>
           )}

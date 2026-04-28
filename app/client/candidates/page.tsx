@@ -277,10 +277,10 @@ export default function BrowseCandidatesPage() {
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             className="
-              px-4 py-2 rounded-card border border-portal-stone
+              px-4 py-2 rounded-card border border-ash-border
               font-portal text-portal-meta text-portal-graphite
               bg-surface-0
-              focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+              focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold
               transition-colors duration-portal
             "
           >
@@ -294,7 +294,7 @@ export default function BrowseCandidatesPage() {
       </div>
 
       {/* Search & Filters */}
-      <div className="bg-surface-0 rounded-card-lg shadow-card p-6">
+      <div className="bg-void-medium rounded-card border border-ash-border p-6">
         {/* Search Bar */}
         <div className="flex flex-col sm:flex-row gap-3 mb-4">
           <div className="flex-1 relative">
@@ -307,10 +307,10 @@ export default function BrowseCandidatesPage() {
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name, skills, or location..."
               className="
-                w-full pl-12 pr-4 py-3 rounded-card border border-portal-stone
+                w-full pl-12 pr-4 py-3 rounded-card border border-ash-border
                 font-portal text-portal-body text-portal-graphite
                 placeholder:text-portal-graphite-muted
-                focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold
                 transition-colors duration-portal
               "
             />
@@ -323,7 +323,7 @@ export default function BrowseCandidatesPage() {
               border transition-colors duration-portal
               w-full sm:w-auto
               ${showFilters
-                ? 'bg-portal-teal/10 border-portal-teal text-portal-teal'
+                ? 'bg-gold/10 border-gold text-gold'
                 : 'bg-surface-0 border-portal-stone text-portal-graphite hover:bg-portal-stone/50'
               }
             `}
@@ -331,7 +331,7 @@ export default function BrowseCandidatesPage() {
             <span>⚙️</span>
             Filters
             {activeFilterCount > 0 && (
-              <span className="w-5 h-5 rounded-full bg-portal-blue text-white text-xs flex items-center justify-center">
+              <span className="w-5 h-5 rounded-full bg-gold text-void text-xs flex items-center justify-center">
                 {activeFilterCount}
               </span>
             )}
@@ -340,7 +340,7 @@ export default function BrowseCandidatesPage() {
 
         {/* Expanded Filters */}
         {showFilters && (
-          <div className="pt-4 border-t border-portal-stone space-y-4 animate-fade-in-up">
+          <div className="pt-4 border-t border-ash-border space-y-4 animate-fade-in-up">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Location */}
               <div>
@@ -353,10 +353,10 @@ export default function BrowseCandidatesPage() {
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="e.g. Bournemouth, London"
                   className="
-                    w-full px-4 py-2.5 rounded-card border border-portal-stone
+                    w-full px-4 py-2.5 rounded-card border border-ash-border
                     font-portal text-portal-body text-portal-graphite
                     placeholder:text-portal-graphite-muted
-                    focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                    focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold
                     transition-colors duration-portal
                   "
                 />
@@ -371,9 +371,9 @@ export default function BrowseCandidatesPage() {
                   value={experienceLevel}
                   onChange={(e) => setExperienceLevel(e.target.value)}
                   className="
-                    w-full px-4 py-2.5 rounded-card border border-portal-stone
+                    w-full px-4 py-2.5 rounded-card border border-ash-border
                     font-portal text-portal-body text-portal-graphite
-                    focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                    focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold
                     transition-colors duration-portal
                   "
                 >
@@ -394,9 +394,9 @@ export default function BrowseCandidatesPage() {
                   value={availability}
                   onChange={(e) => setAvailability(e.target.value)}
                   className="
-                    w-full px-4 py-2.5 rounded-card border border-portal-stone
+                    w-full px-4 py-2.5 rounded-card border border-ash-border
                     font-portal text-portal-body text-portal-graphite
-                    focus:outline-none focus:ring-2 focus:ring-portal-teal/30 focus:border-portal-teal
+                    focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold
                     transition-colors duration-portal
                   "
                 >
@@ -426,7 +426,7 @@ export default function BrowseCandidatesPage() {
                         font-portal text-portal-meta
                         transition-all duration-portal
                         ${isSelected
-                          ? 'bg-portal-teal text-white'
+                          ? 'bg-gold text-void'
                           : 'bg-portal-stone/50 text-portal-graphite hover:bg-portal-stone'
                         }
                       `}
@@ -442,7 +442,7 @@ export default function BrowseCandidatesPage() {
             {activeFilterCount > 0 && (
               <button
                 onClick={clearFilters}
-                className="font-portal text-portal-meta text-portal-alert hover:underline"
+                className="font-portal text-portal-meta text-gold hover:underline"
               >
                 Clear all filters
               </button>
@@ -460,7 +460,7 @@ export default function BrowseCandidatesPage() {
           </p>
         </div>
       ) : filteredCandidates.length === 0 ? (
-        <div className="text-center py-16 bg-surface-0 rounded-card-lg shadow-card">
+        <div className="text-center py-16 bg-void-medium rounded-card border border-ash-border">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-portal-stone flex items-center justify-center">
             <span className="text-2xl">🔍</span>
           </div>
@@ -475,7 +475,7 @@ export default function BrowseCandidatesPage() {
             className="
               px-4 py-2 rounded-card
               font-portal text-portal-meta font-medium
-              text-portal-blue hover:bg-portal-blue/5
+              text-gold hover:bg-gold/5
               transition-colors duration-portal
             "
           >
@@ -537,11 +537,11 @@ function CandidateCard({ candidate, isBronze }: { candidate: Candidate; isBronze
   return (
     <Link href={`/client/candidates/${candidate.candidateId}`}>
       <div className="
-        bg-surface-0 rounded-card-lg shadow-card p-6
-        hover:shadow-card-elevated
-        transition-all duration-portal
+        bg-void-medium rounded-card border border-ash-border p-6
+        shadow-card hover:shadow-card-hover
+        hover:border-gold/30
+        transition-all duration-normal
         cursor-pointer
-        border border-transparent hover:border-portal-blue/20
       ">
         <div className="flex items-start gap-4">
           {/* Avatar */}
@@ -594,7 +594,7 @@ function CandidateCard({ candidate, isBronze }: { candidate: Candidate; isBronze
                   key={setting}
                   className="
                     px-2 py-0.5 rounded-full
-                    bg-portal-teal/10 text-portal-teal
+                    bg-gold/10 text-gold
                     font-portal text-ui-xs
                   "
                 >
@@ -622,10 +622,9 @@ function CandidateCard({ candidate, isBronze }: { candidate: Candidate; isBronze
           <div className="hidden sm:block shrink-0">
             <span className="
               inline-flex items-center gap-1
-              font-portal text-portal-meta font-medium text-portal-blue
+              font-portal text-portal-meta font-medium text-gold
             ">
-              View Profile
-              <span>→</span>
+              View Profile →
             </span>
           </div>
         </div>

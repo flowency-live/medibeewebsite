@@ -65,7 +65,8 @@ describe('HowItWorksColumn', () => {
     const badges = screen.getByTestId('column').querySelectorAll('svg polygon');
     expect(badges.length).toBeGreaterThan(0);
     badges.forEach((badge) => {
-      expect(badge).toHaveAttribute('fill', '#E5C55C');
+      // Uses primary brand gold (#D4AF37), not legacy soft-gold (#E5C55C)
+      expect(badge).toHaveAttribute('fill', '#D4AF37');
     });
   });
 

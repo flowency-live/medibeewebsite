@@ -29,9 +29,9 @@ const navItems = [
 ];
 
 const tierColors = {
-  bronze: 'bg-amber-100 text-amber-800',
-  silver: 'bg-gray-100 text-gray-800',
-  gold: 'bg-yellow-100 text-yellow-800',
+  bronze: 'bg-tier-cell/20 text-pearl',
+  silver: 'bg-ash/20 text-pearl',
+  gold: 'bg-gold/20 text-gold',
 };
 
 export default function ClientLayout({ children }: ClientLayoutProps) {
@@ -50,7 +50,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   // Show loading state
   if (state.status === 'loading') {
     return (
-      <div className="min-h-screen bg-surface-1 flex items-center justify-center">
+      <div className="min-h-screen bg-void flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 rounded-full bg-portal-blue/20 animate-pulse mx-auto mb-4" />
           <p className="font-portal text-portal-body text-portal-graphite-muted">
@@ -69,9 +69,9 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   const { profile, subscription } = state;
 
   return (
-    <div className="min-h-screen bg-surface-1">
+    <div className="min-h-screen bg-void">
       {/* Portal Header */}
-      <header className="sticky top-0 z-40 bg-portal-graphite text-white shadow-card">
+      <header className="sticky top-0 z-40 bg-void-light border-b border-ash-border text-pearl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo & Portal Label */}
@@ -80,7 +80,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
                 href="/client/dashboard"
                 className="flex items-center gap-2"
               >
-                <span className="font-portal text-portal-name font-semibold text-portal-available">
+                <span className="font-portal text-portal-name font-semibold text-gold">
                   Medibee
                 </span>
               </Link>
@@ -140,7 +140,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
           <nav className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-24 space-y-6">
               {/* Navigation Links */}
-              <div className="bg-surface-0 rounded-card-lg shadow-card overflow-hidden">
+              <div className="bg-void-medium rounded-card border border-ash-border overflow-hidden">
                 <ul className="py-2">
                   {navItems.map((item) => {
                     const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
@@ -153,8 +153,8 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
                             font-portal text-portal-body
                             transition-colors duration-portal
                             ${isActive
-                              ? 'bg-portal-blue/10 text-portal-blue border-l-2 border-portal-blue'
-                              : 'text-portal-graphite hover:bg-portal-stone/50'
+                              ? 'bg-gold/10 text-gold border-l-2 border-gold'
+                              : 'text-pearl-soft hover:bg-void-elevated'
                             }
                           `}
                         >
@@ -169,13 +169,13 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
               {/* Subscription Card */}
               {subscription ? (
-                <div className="bg-surface-0 rounded-card shadow-card p-4">
+                <div className="bg-void-medium rounded-card border border-ash-border p-4">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-portal text-portal-meta text-portal-graphite-muted">
+                    <span className="font-portal text-portal-meta text-ash">
                       Subscription
                     </span>
                     <span className={`
-                      px-2 py-0.5 rounded text-xs font-semibold uppercase
+                      px-2 py-0.5 rounded-card text-xs font-semibold uppercase
                       ${tierColors[subscription.tier]}
                     `}>
                       {subscription.tier}
@@ -184,7 +184,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="font-portal text-portal-meta text-portal-graphite-muted">
+                      <span className="font-portal text-portal-meta text-ash">
                         Status
                       </span>
                       <StatusBadge
@@ -194,10 +194,10 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
                       />
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="font-portal text-portal-meta text-portal-graphite-muted">
+                      <span className="font-portal text-portal-meta text-ash">
                         Credits
                       </span>
-                      <span className="font-portal text-portal-body text-portal-graphite font-medium">
+                      <span className="font-portal text-portal-body text-pearl font-medium">
                         {subscription.creditsRemaining === -1
                           ? 'Unlimited'
                           : subscription.creditsRemaining}
@@ -210,7 +210,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
                     className="
                       block mt-4 text-center py-2 rounded-card
                       font-portal text-portal-meta font-medium
-                      text-portal-blue hover:bg-portal-blue/5
+                      text-gold hover:bg-gold/5
                       transition-colors duration-portal
                     "
                   >
@@ -218,11 +218,11 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
                   </Link>
                 </div>
               ) : (
-                <div className="bg-portal-available/5 border border-portal-available/20 rounded-card p-4">
-                  <p className="font-portal text-portal-body font-medium text-portal-graphite mb-2">
+                <div className="bg-status-pending/5 border border-status-pending/20 rounded-card p-4">
+                  <p className="font-portal text-portal-body font-medium text-pearl mb-2">
                     No Active Subscription
                   </p>
-                  <p className="font-portal text-portal-meta text-portal-graphite-muted mb-4">
+                  <p className="font-portal text-portal-meta text-ash mb-4">
                     Subscribe to start connecting with candidates.
                   </p>
                   <Link
@@ -230,8 +230,8 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
                     className="
                       block text-center py-2.5 rounded-card
                       font-portal text-portal-meta font-medium
-                      bg-portal-available text-white
-                      hover:bg-portal-available/90
+                      bg-gold text-void
+                      hover:bg-gold-light
                       transition-colors duration-portal
                     "
                   >
@@ -243,7 +243,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
           </nav>
 
           {/* Mobile Navigation */}
-          <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface-0 border-t border-portal-stone shadow-card-elevated pb-[env(safe-area-inset-bottom)]">
+          <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-void-medium border-t border-ash-border shadow-card-elevated pb-[env(safe-area-inset-bottom)]">
             <div className="flex overflow-x-auto py-2 px-4 gap-1">
               {navItems.slice(0, 5).map((item) => {
                 const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
@@ -255,8 +255,8 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
                       flex flex-col items-center justify-center px-3 py-2 rounded-card
                       min-w-[64px]
                       ${isActive
-                        ? 'bg-portal-blue/10 text-portal-blue'
-                        : 'text-portal-graphite-muted'
+                        ? 'bg-gold/10 text-gold'
+                        : 'text-ash'
                       }
                     `}
                   >

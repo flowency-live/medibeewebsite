@@ -2,8 +2,8 @@ import { cn } from '@/lib/utils';
 
 const variantColors = {
   provider: '#4A6FA5',
-  hca: '#E5C55C',
-  gold: '#E5C55C',
+  hca: '#D4AF37',  // Primary brand gold (was #E5C55C legacy soft-gold)
+  gold: '#D4AF37', // Primary brand gold (was #E5C55C legacy soft-gold)
 } as const;
 
 const sizeClasses = {

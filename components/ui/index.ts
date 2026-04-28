@@ -32,6 +32,7 @@ export { VerificationBadge } from './VerificationBadge';
 export type { VerificationBadgeType, VerificationBadgeSize } from './VerificationBadge';
 
 export { GlassCard } from './GlassCard';
+export { AlertBanner } from './AlertBanner';
 export { PassportPreviewCard } from './PassportPreviewCard';
 export { ProfilePreviewCard } from './ProfilePreviewCard';
 export { ColonyDashboardPreviewCard } from './ColonyDashboardPreviewCard';

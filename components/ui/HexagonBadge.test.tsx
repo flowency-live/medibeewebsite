@@ -23,13 +23,15 @@ describe('HexagonBadge', () => {
   it('applies hca color for hca variant', () => {
     render(<HexagonBadge number={2} variant="hca" data-testid="badge" />);
     const polygon = screen.getByTestId('badge').querySelector('polygon');
-    expect(polygon).toHaveAttribute('fill', '#E5C55C');
+    // Uses primary brand gold (#D4AF37), not legacy soft-gold (#E5C55C)
+    expect(polygon).toHaveAttribute('fill', '#D4AF37');
   });
 
   it('applies gold color for gold variant', () => {
     render(<HexagonBadge number={1} variant="gold" data-testid="badge" />);
     const polygon = screen.getByTestId('badge').querySelector('polygon');
-    expect(polygon).toHaveAttribute('fill', '#E5C55C');
+    // Uses primary brand gold (#D4AF37), not legacy soft-gold (#E5C55C)
+    expect(polygon).toHaveAttribute('fill', '#D4AF37');
   });
 
   it('displays numbers 1-9 correctly', () => {

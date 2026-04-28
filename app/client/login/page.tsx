@@ -4,32 +4,9 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Button, Input } from '@/components/ui';
+import { Button, Input, AlertBanner } from '@/components/ui';
 import { useAuth } from '@/lib/auth';
-
-// TODO(PROD-WIRE): Remove test client data before production launch
-const testClientProfile = {
-  clientId: 'CLIENT-TEST-001',
-  organisationName: 'Sunrise Care Group',
-  organisationType: 'care-home' as const,
-  contactName: 'Eleanor Hartley',
-  contactEmail: 'eleanor@sunrisecare.example.com',
-  contactPhone: '01onal 234567',
-  address: {
-    city: 'Bournemouth',
-    postcode: 'BH1 1AA',
-  },
-  status: 'active' as const,
-  createdAt: '2024-01-01T10:00:00Z',
-  updatedAt: '2024-03-15T14:30:00Z',
-};
-
-const testClientSubscription = {
-  tier: 'gold' as const,
-  status: 'active' as const,
-  creditsRemaining: 25,
-  currentPeriodEnd: '2024-04-01',
-};
+import { TEST_CLIENT, TEST_CLIENT_SUBSCRIPTION } from '@/lib/test-login';
 
 function ClientLoginContent() {
   const router = useRouter();
@@ -44,7 +21,7 @@ function ClientLoginContent() {
   // TODO(PROD-WIRE): Remove test login handler before production launch
   const handleTestLogin = () => {
     if (devLoginAsClient) {
-      devLoginAsClient(testClientProfile, testClientSubscription);
+      devLoginAsClient(TEST_CLIENT, TEST_CLIENT_SUBSCRIPTION);
       router.push('/client/dashboard');
     }
   };
@@ -99,9 +76,9 @@ function ClientLoginContent() {
           {/* Login Form */}
           <div className="bg-void-elevated border border-white/[0.08] rounded-lg p-8">
             {error && (
-              <div className="mb-6 p-4 bg-amber-50 border-l-[3px] border-amber-500" role="alert">
-                <p className="font-body text-body-sm text-amber-800">{error}</p>
-              </div>
+              <AlertBanner type="error" className="mb-6">
+                {error}
+              </AlertBanner>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -167,16 +144,16 @@ function ClientLoginContent() {
 
             {/* TODO(PROD-WIRE): Remove test login section before production launch */}
             {devLoginAsClient && (
-              <div className="mt-6 pt-6 border-t border-amber-300/50">
-                <div className="bg-amber-50 border border-amber-200 rounded p-4">
-                  <p className="font-body text-body-sm text-amber-800 mb-3 text-center">
+              <div className="mt-6 pt-6 border-t border-status-pending/30">
+                <div className="bg-status-pending/10 border border-status-pending/30 rounded-card p-4">
+                  <p className="font-body text-body-sm text-status-pending mb-3 text-center">
                     Demo / Testing Mode
                   </p>
                   <Button
                     type="button"
                     onClick={handleTestLogin}
                     fullWidth
-                    className="bg-amber-500 text-white hover:bg-amber-600"
+                    className="bg-status-pending text-void hover:bg-status-pending/90"
                   >
                     Test Login as Sunrise Care Group
                   </Button>

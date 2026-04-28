@@ -10,7 +10,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth';
-import { Button } from '@/components/ui';
+import { Button, AlertBanner } from '@/components/ui';
 
 const ORGANISATION_TYPES = [
   { value: 'nhs-trust', label: 'NHS Trust' },
@@ -98,11 +98,11 @@ export default function ClientRegisterPage() {
           </p>
         </div>
 
-        <div className="bg-void-elevated p-8 rounded-sm border border-white/[0.08]">
+        <div className="bg-void-elevated p-8 rounded-card border border-ash-border">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border-l-[3px] border-red-500" role="alert">
-              <p className="font-body text-body-sm text-red-800">{error}</p>
-            </div>
+            <AlertBanner type="error" className="mb-6">
+              {error}
+            </AlertBanner>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -112,14 +112,14 @@ export default function ClientRegisterPage() {
                 htmlFor="organisationName"
                 className="block font-body text-body-sm text-pearl-soft/70 mb-1"
               >
-                Organisation Name <span className="text-red-500">*</span>
+                Organisation Name <span className="text-status-expired">*</span>
               </label>
               <input
                 type="text"
                 id="organisationName"
                 value={organisationName}
                 onChange={(e) => setOrganisationName(e.target.value)}
-                className="w-full px-4 py-3 border border-white/10 rounded-sm font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+                className="w-full px-4 py-3 bg-void-medium border border-ash-border rounded-card text-pearl font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
                 placeholder="e.g. Acme Healthcare Trust"
               />
             </div>
@@ -129,13 +129,13 @@ export default function ClientRegisterPage() {
                 htmlFor="organisationType"
                 className="block font-body text-body-sm text-pearl-soft/70 mb-1"
               >
-                Organisation Type <span className="text-red-500">*</span>
+                Organisation Type <span className="text-status-expired">*</span>
               </label>
               <select
                 id="organisationType"
                 value={organisationType}
                 onChange={(e) => setOrganisationType(e.target.value)}
-                className="w-full px-4 py-3 border border-white/10 rounded-sm font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+                className="w-full px-4 py-3 bg-void-medium border border-ash-border rounded-card text-pearl font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
               >
                 <option value="">Select type...</option>
                 {ORGANISATION_TYPES.map((type) => (
@@ -152,14 +152,14 @@ export default function ClientRegisterPage() {
                 htmlFor="contactName"
                 className="block font-body text-body-sm text-pearl-soft/70 mb-1"
               >
-                Your Name <span className="text-red-500">*</span>
+                Your Name <span className="text-status-expired">*</span>
               </label>
               <input
                 type="text"
                 id="contactName"
                 value={contactName}
                 onChange={(e) => setContactName(e.target.value)}
-                className="w-full px-4 py-3 border border-white/10 rounded-sm font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+                className="w-full px-4 py-3 bg-void-medium border border-ash-border rounded-card text-pearl font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
                 placeholder="e.g. Jane Smith"
               />
             </div>
@@ -169,14 +169,14 @@ export default function ClientRegisterPage() {
                 htmlFor="contactEmail"
                 className="block font-body text-body-sm text-pearl-soft/70 mb-1"
               >
-                Email Address <span className="text-red-500">*</span>
+                Email Address <span className="text-status-expired">*</span>
               </label>
               <input
                 type="email"
                 id="contactEmail"
                 value={contactEmail}
                 onChange={(e) => setContactEmail(e.target.value)}
-                className="w-full px-4 py-3 border border-white/10 rounded-sm font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+                className="w-full px-4 py-3 bg-void-medium border border-ash-border rounded-card text-pearl font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
                 placeholder="e.g. jane.smith@example.com"
               />
             </div>
@@ -186,14 +186,14 @@ export default function ClientRegisterPage() {
                 htmlFor="contactPhone"
                 className="block font-body text-body-sm text-pearl-soft/70 mb-1"
               >
-                Phone Number <span className="text-red-500">*</span>
+                Phone Number <span className="text-status-expired">*</span>
               </label>
               <input
                 type="tel"
                 id="contactPhone"
                 value={contactPhone}
                 onChange={(e) => setContactPhone(e.target.value)}
-                className="w-full px-4 py-3 border border-white/10 rounded-sm font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+                className="w-full px-4 py-3 bg-void-medium border border-ash-border rounded-card text-pearl font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
                 placeholder="e.g. 07700 900123"
               />
             </div>
@@ -204,14 +204,14 @@ export default function ClientRegisterPage() {
                 htmlFor="password"
                 className="block font-body text-body-sm text-pearl-soft/70 mb-1"
               >
-                Password <span className="text-red-500">*</span>
+                Password <span className="text-status-expired">*</span>
               </label>
               <input
                 type="password"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-white/10 rounded-sm font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+                className="w-full px-4 py-3 bg-void-medium border border-ash-border rounded-card text-pearl font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
                 placeholder="Minimum 8 characters"
               />
             </div>
@@ -221,14 +221,14 @@ export default function ClientRegisterPage() {
                 htmlFor="confirmPassword"
                 className="block font-body text-body-sm text-pearl-soft/70 mb-1"
               >
-                Confirm Password <span className="text-red-500">*</span>
+                Confirm Password <span className="text-status-expired">*</span>
               </label>
               <input
                 type="password"
                 id="confirmPassword"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-white/10 rounded-sm font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+                className="w-full px-4 py-3 bg-void-medium border border-ash-border rounded-card text-pearl font-body text-body-md focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
                 placeholder="Re-enter your password"
               />
             </div>

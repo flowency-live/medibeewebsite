@@ -58,21 +58,32 @@ const config: Config = {
           'colony': '#818CF8',      // Employer tier - indigo
         },
 
-        // === LEGACY COLORS (for gradual migration) ===
-        // These can be removed once all components are updated
+        // === DEPRECATED COLORS - DO NOT USE IN NEW CODE ===
+        // Migration: Replace with void/gold/ash/pearl equivalents
+        // These will be removed in a future release
+        // @deprecated Use text-ash instead of text-slate-blue
         'slate-blue': {
           DEFAULT: '#696F8B',
           light: '#7d8299',
           dark: '#545971',
         },
+        // @deprecated Use bg-void-medium instead
         'deep-slate': '#3d4259',
+        // @deprecated Use gold-soft instead
         'soft-gold': '#F5E6A3',
+        // @deprecated Use gold instead (#D4AF37)
         'rich-gold': '#E5C55C',
+        // @deprecated Use bg-void-light instead
         'mist': '#F5F4F0',
+        // @deprecated Use border-ash-border instead
         'neutral-grey': '#9A999B',
+        // @deprecated Use text-pearl instead
         'ink': '#09080A',
+        // @deprecated Use bg-void instead
         'cream': '#FDFCF8',
+        // @deprecated Use bg-void-medium instead
         'midnight': '#1a1d2e',
+        // @deprecated Use bg-void-elevated instead
         'midnight-light': '#2a2e42',
 
         // Provider/HCA audience colors (retained for audience differentiation)

@@ -4,13 +4,15 @@
  * Client Dashboard Page
  *
  * Overview of subscription status, recent activity, and quick actions.
+ * Uses dark theme with void/gold color system.
  */
 
 import * as React from 'react';
 import Link from 'next/link';
 import { useAuth, isClient } from '@/lib/auth';
-import { matchingApi, shortlistsApi, contactsApi } from '@/lib/api';
-import { Button } from '@/components/ui';
+import { shortlistsApi, contactsApi } from '@/lib/api';
+import { Button, AlertBanner } from '@/components/ui';
+import { HoneycombPattern } from '@/components/decorative';
 
 interface DashboardStats {
   shortlistCount: number;
@@ -85,90 +87,92 @@ export default function ClientDashboardPage() {
   const { profile, subscription } = state;
 
   return (
-    <div>
+    <div className="animate-fade-in-up">
+      {/* Header */}
       <div className="mb-8">
-        <h1 className="font-display text-display-sm text-ink mb-2">
+        <h1 className="font-display text-display-sm text-pearl mb-2">
           Welcome back, {profile.contactName.split(' ')[0]}
         </h1>
-        <p className="font-body text-body-md text-slate-blue">
+        <p className="font-body text-body-md text-ash">
           Manage your recruitment pipeline and find the perfect candidates.
         </p>
       </div>
 
       {/* Subscription Alert */}
       {!subscription && (
-        <div className="mb-8 p-6 bg-amber-50 border-l-[3px] border-amber-500 rounded-sm">
-          <h2 className="font-display text-lg text-amber-800 mb-2">No Active Subscription</h2>
-          <p className="font-body text-body-md text-amber-700 mb-4">
+        <AlertBanner type="warning" title="No Active Subscription" className="mb-8">
+          <p className="mb-4">
             Subscribe to a plan to start browsing candidates and making contact requests.
           </p>
           <Link href="/client/subscription">
             <Button>View Plans</Button>
           </Link>
-        </div>
+        </AlertBanner>
       )}
 
       {subscription && subscription.status === 'past_due' && (
-        <div className="mb-8 p-6 bg-red-50 border-l-[3px] border-red-500 rounded-sm">
-          <h2 className="font-display text-lg text-red-800 mb-2">Payment Issue</h2>
-          <p className="font-body text-body-md text-red-700 mb-4">
+        <AlertBanner type="error" title="Payment Issue" className="mb-8">
+          <p className="mb-4">
             Your last payment failed. Please update your payment method to continue using our
             services.
           </p>
           <Link href="/client/subscription">
             <Button variant="secondary">Update Payment</Button>
           </Link>
-        </div>
+        </AlertBanner>
       )}
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <div className="text-slate-blue font-body text-body-sm mb-1">Credits Remaining</div>
-          <div className="font-display text-display-sm text-ink">
-            {subscription
-              ? subscription.creditsRemaining === -1
-                ? '∞'
-                : subscription.creditsRemaining
-              : '—'}
+      <div className="relative mb-8">
+        <HoneycombPattern variant="gold" opacity={0.04} />
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-void-medium p-6 rounded-card border border-ash-border hover:border-gold/30 transition-colors">
+            <div className="text-ash font-body text-body-sm mb-1">Credits Remaining</div>
+            <div className="font-display text-display-sm text-pearl">
+              {subscription
+                ? subscription.creditsRemaining === -1
+                  ? '∞'
+                  : subscription.creditsRemaining
+                : '—'}
+            </div>
+            <div className="font-body text-body-sm text-gold mt-1">
+              {subscription?.tier || 'No plan'}
+            </div>
           </div>
-          <div className="font-body text-body-sm text-slate-blue mt-1">
-            {subscription?.tier || 'No plan'}
-          </div>
-        </div>
 
-        <div className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <div className="text-slate-blue font-body text-body-sm mb-1">Shortlists</div>
-          <div className="font-display text-display-sm text-ink">
-            {isLoading ? '—' : stats?.shortlistCount ?? 0}
+          <div className="bg-void-medium p-6 rounded-card border border-ash-border hover:border-gold/30 transition-colors">
+            <div className="text-ash font-body text-body-sm mb-1">Shortlists</div>
+            <div className="font-display text-display-sm text-pearl">
+              {isLoading ? '—' : stats?.shortlistCount ?? 0}
+            </div>
+            <div className="font-body text-body-sm text-ash mt-1">
+              {isLoading ? '—' : `${stats?.totalCandidatesShortlisted ?? 0} candidates`}
+            </div>
           </div>
-          <div className="font-body text-body-sm text-slate-blue mt-1">
-            {isLoading ? '—' : `${stats?.totalCandidatesShortlisted ?? 0} candidates`}
-          </div>
-        </div>
 
-        <div className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <div className="text-slate-blue font-body text-body-sm mb-1">Contacts This Month</div>
-          <div className="font-display text-display-sm text-ink">
-            {isLoading ? '—' : stats?.contactsThisMonth ?? 0}
+          <div className="bg-void-medium p-6 rounded-card border border-ash-border hover:border-gold/30 transition-colors">
+            <div className="text-ash font-body text-body-sm mb-1">Contacts This Month</div>
+            <div className="font-display text-display-sm text-pearl">
+              {isLoading ? '—' : stats?.contactsThisMonth ?? 0}
+            </div>
+            <div className="font-body text-body-sm text-ash mt-1">contact requests</div>
           </div>
-          <div className="font-body text-body-sm text-slate-blue mt-1">contact requests</div>
-        </div>
 
-        <div className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <div className="text-slate-blue font-body text-body-sm mb-1">Pending Responses</div>
-          <div className="font-display text-display-sm text-ink">
-            {isLoading ? '—' : stats?.pendingContacts ?? 0}
+          <div className="bg-void-medium p-6 rounded-card border border-ash-border hover:border-gold/30 transition-colors">
+            <div className="text-ash font-body text-body-sm mb-1">Pending Responses</div>
+            <div className="font-display text-display-sm text-pearl">
+              {isLoading ? '—' : stats?.pendingContacts ?? 0}
+            </div>
+            <div className="font-body text-body-sm text-ash mt-1">awaiting reply</div>
           </div>
-          <div className="font-body text-body-sm text-slate-blue mt-1">awaiting reply</div>
         </div>
       </div>
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <h2 className="font-display text-lg text-ink mb-4">Find Candidates</h2>
-          <p className="font-body text-body-md text-slate-blue mb-4">
+        <div className="bg-void-medium p-6 rounded-card border border-ash-border hover:border-gold/30 transition-colors">
+          <h2 className="font-display text-lg text-pearl mb-4">Find Candidates</h2>
+          <p className="font-body text-body-md text-ash mb-4">
             Search our database of verified healthcare professionals by location, experience, and
             care setting.
           </p>
@@ -177,9 +181,9 @@ export default function ClientDashboardPage() {
           </Link>
         </div>
 
-        <div className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-          <h2 className="font-display text-lg text-ink mb-4">Manage Shortlists</h2>
-          <p className="font-body text-body-md text-slate-blue mb-4">
+        <div className="bg-void-medium p-6 rounded-card border border-ash-border hover:border-gold/30 transition-colors">
+          <h2 className="font-display text-lg text-pearl mb-4">Manage Shortlists</h2>
+          <p className="font-body text-body-md text-ash mb-4">
             Organise your favourite candidates into shortlists for easy comparison and team sharing.
           </p>
           <Link href="/client/shortlists">
@@ -190,23 +194,25 @@ export default function ClientDashboardPage() {
         </div>
       </div>
 
-      {/* Recent Activity */}
-      <div className="bg-white p-6 rounded-sm border border-neutral-grey/20">
-        <h2 className="font-display text-lg text-ink mb-4">Getting Started</h2>
+      {/* Getting Started */}
+      <div className="bg-void-medium p-6 rounded-card border border-ash-border">
+        <h2 className="font-display text-lg text-pearl mb-4">Getting Started</h2>
         <div className="space-y-4">
           <div className="flex items-start gap-4">
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
-                subscription ? 'bg-green-100 text-green-700' : 'bg-slate-blue/10 text-slate-blue'
+                subscription
+                  ? 'bg-status-verified/10 text-status-verified'
+                  : 'bg-ash/10 text-ash'
               }`}
             >
               {subscription ? '✓' : '1'}
             </div>
             <div>
-              <h3 className="font-body text-body-md text-ink font-semibold">
+              <h3 className="font-body text-body-md text-pearl font-semibold">
                 Subscribe to a plan
               </h3>
-              <p className="font-body text-body-sm text-slate-blue">
+              <p className="font-body text-body-sm text-ash">
                 Choose a plan that fits your recruitment needs.
               </p>
             </div>
@@ -216,17 +222,17 @@ export default function ClientDashboardPage() {
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
                 (stats?.shortlistCount ?? 0) > 0
-                  ? 'bg-green-100 text-green-700'
-                  : 'bg-slate-blue/10 text-slate-blue'
+                  ? 'bg-status-verified/10 text-status-verified'
+                  : 'bg-ash/10 text-ash'
               }`}
             >
               {(stats?.shortlistCount ?? 0) > 0 ? '✓' : '2'}
             </div>
             <div>
-              <h3 className="font-body text-body-md text-ink font-semibold">
+              <h3 className="font-body text-body-md text-pearl font-semibold">
                 Create your first shortlist
               </h3>
-              <p className="font-body text-body-sm text-slate-blue">
+              <p className="font-body text-body-sm text-ash">
                 Organise candidates you&apos;re interested in for easy reference.
               </p>
             </div>
@@ -236,17 +242,17 @@ export default function ClientDashboardPage() {
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
                 (stats?.contactsThisMonth ?? 0) > 0
-                  ? 'bg-green-100 text-green-700'
-                  : 'bg-slate-blue/10 text-slate-blue'
+                  ? 'bg-status-verified/10 text-status-verified'
+                  : 'bg-ash/10 text-ash'
               }`}
             >
               {(stats?.contactsThisMonth ?? 0) > 0 ? '✓' : '3'}
             </div>
             <div>
-              <h3 className="font-body text-body-md text-ink font-semibold">
+              <h3 className="font-body text-body-md text-pearl font-semibold">
                 Request your first contact
               </h3>
-              <p className="font-body text-body-sm text-slate-blue">
+              <p className="font-body text-body-sm text-ash">
                 Found a great candidate? Request their contact details.
               </p>
             </div>
