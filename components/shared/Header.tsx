@@ -6,9 +6,11 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { siteConfig } from '@/lib/config/site';
 import { cn } from '@/lib/utils';
+import { BacklogDrawer } from '@/components/backlog';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [backlogOpen, setBacklogOpen] = React.useState(false);
   const pathname = usePathname();
   const menuButtonRef = React.useRef<HTMLButtonElement>(null);
   const mobileNavRef = React.useRef<HTMLElement>(null);
@@ -157,6 +159,18 @@ export function Header() {
               </svg>
               <span className="sr-only">Admin</span>
             </Link>
+
+            {/* Backlog Dev Tool */}
+            <button
+              onClick={() => setBacklogOpen(true)}
+              className="text-ash hover:text-gold transition-colors p-1"
+              title="Development Backlog"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+              <span className="sr-only">Backlog</span>
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -291,6 +305,19 @@ export function Header() {
             Admin
           </Link>
 
+          <button
+            onClick={() => {
+              closeMobileMenu();
+              setBacklogOpen(true);
+            }}
+            className="font-body text-body-lg flex items-center gap-2 text-gold hover:text-gold-light transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+            Dev Backlog
+          </button>
+
           <span className="rule-gold-wide" aria-hidden="true" />
 
           <Link
@@ -302,6 +329,9 @@ export function Header() {
           </Link>
         </div>
       </nav>
+
+      {/* Backlog Drawer */}
+      <BacklogDrawer isOpen={backlogOpen} onClose={() => setBacklogOpen(false)} />
     </header>
   );
 }
