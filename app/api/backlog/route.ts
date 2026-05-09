@@ -13,8 +13,25 @@ export async function GET() {
   } catch (error) {
     console.error('Failed to list backlog items:', error);
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const errorName = error instanceof Error ? error.name : 'Unknown';
+
+    // Include diagnostic info (safe for debugging, no secrets)
+    const diagnostics = {
+      hasRegion: !!process.env.BACKLOG_AWS_REGION,
+      hasTable: !!process.env.DYNAMODB_BACKLOG_TABLE,
+      hasExplicitCreds: !!(process.env.BACKLOG_AWS_ACCESS_KEY_ID && process.env.BACKLOG_AWS_SECRET_ACCESS_KEY),
+      tableName: process.env.DYNAMODB_BACKLOG_TABLE || 'medibee-backlog',
+      region: process.env.BACKLOG_AWS_REGION || process.env.AWS_REGION || 'eu-west-2',
+    };
+
     return NextResponse.json(
-      { success: false, error: 'Failed to fetch backlog items', details: errorMessage },
+      {
+        success: false,
+        error: 'Failed to fetch backlog items',
+        details: errorMessage,
+        errorName,
+        diagnostics,
+      },
       { status: 500 }
     );
   }

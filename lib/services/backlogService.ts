@@ -17,9 +17,29 @@ import type {
 } from '../schemas/backlog';
 import type { ReorderBacklog } from '../schemas/backlog';
 
-const client = new DynamoDBClient({
-  region: process.env.BACKLOG_AWS_REGION || process.env.AWS_REGION || 'eu-west-2',
-});
+// Build DynamoDB client configuration
+const getDynamoDBClientConfig = () => {
+  const region = process.env.BACKLOG_AWS_REGION || process.env.AWS_REGION || 'eu-west-2';
+
+  // Check for explicit credentials (for environments where IAM role isn't available)
+  const accessKeyId = process.env.BACKLOG_AWS_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.BACKLOG_AWS_SECRET_ACCESS_KEY;
+
+  if (accessKeyId && secretAccessKey) {
+    return {
+      region,
+      credentials: {
+        accessKeyId,
+        secretAccessKey,
+      },
+    };
+  }
+
+  // Fall back to default credential chain (IAM role, env vars, etc.)
+  return { region };
+};
+
+const client = new DynamoDBClient(getDynamoDBClientConfig());
 
 const docClient = DynamoDBDocumentClient.from(client);
 
