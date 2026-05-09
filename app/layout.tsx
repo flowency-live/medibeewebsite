@@ -57,6 +57,7 @@ export const metadata: Metadata = {
 
 import { Header, Footer } from '@/components/shared';
 import { DevPersonaSwitcher } from '@/components/portal';
+import { QuickAddBacklog } from '@/components/backlog';
 import { Providers } from './providers';
 
 export default function RootLayout({
@@ -80,6 +81,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <DevPersonaSwitcher />
+          <QuickAddBacklog />
         </Providers>
       </body>
     </html>

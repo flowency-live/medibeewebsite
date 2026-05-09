@@ -6,3 +6,4 @@ export { BacklogItemForm } from './BacklogItemForm';
 export { BacklogItemDetail } from './BacklogItemDetail';
 export { BacklogBoard } from './BacklogBoard';
 export { BacklogDrawer } from './BacklogDrawer';
+export { QuickAddBacklog } from './QuickAddBacklog';
