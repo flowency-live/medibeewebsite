@@ -111,6 +111,14 @@ export function BacklogItemDetail({
           )}
 
           <div className="pt-4 border-t border-ash-border space-y-2">
+            {item.pageContext && (
+              <div className="flex justify-between text-xs">
+                <span className="text-ash">Context</span>
+                <code className="px-1.5 py-0.5 bg-void rounded text-gold text-[10px]">
+                  {item.pageContext}
+                </code>
+              </div>
+            )}
             <div className="flex justify-between text-xs">
               <span className="text-ash">Created</span>
               <span className="text-pearl-soft">{formatDate(item.createdAt)}</span>

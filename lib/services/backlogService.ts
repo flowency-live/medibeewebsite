@@ -100,6 +100,7 @@ export async function createBacklogItem(
     type: data.type,
     status: data.status || 'todo',
     effort: data.effort || null,
+    pageContext: data.pageContext || null,
     stackPosition: maxPosition + 1,
     createdAt: now,
     updatedAt: now,
@@ -165,6 +166,12 @@ export async function updateBacklogItem(
     updates.push('#effort = :effort');
     expressionNames['#effort'] = 'effort';
     expressionValues[':effort'] = data.effort;
+  }
+
+  if (data.pageContext !== undefined) {
+    updates.push('#pageContext = :pageContext');
+    expressionNames['#pageContext'] = 'pageContext';
+    expressionValues[':pageContext'] = data.pageContext;
   }
 
   const command = new UpdateCommand({

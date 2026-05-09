@@ -12,7 +12,11 @@ import { BacklogColumn } from './BacklogColumn';
 import { BacklogItemForm } from './BacklogItemForm';
 import { BacklogItemDetail } from './BacklogItemDetail';
 
-export function BacklogBoard() {
+interface BacklogBoardProps {
+  pageContext?: string;
+}
+
+export function BacklogBoard({ pageContext }: BacklogBoardProps) {
   const [items, setItems] = useState<BacklogItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -230,6 +234,7 @@ export function BacklogBoard() {
         onClose={() => setShowCreateForm(false)}
         onSubmit={handleCreate}
         mode="create"
+        pageContext={pageContext}
       />
 
       {selectedItem && (

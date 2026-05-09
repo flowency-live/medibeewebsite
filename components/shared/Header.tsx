@@ -331,7 +331,7 @@ export function Header() {
       </nav>
 
       {/* Backlog Drawer */}
-      <BacklogDrawer isOpen={backlogOpen} onClose={() => setBacklogOpen(false)} />
+      <BacklogDrawer isOpen={backlogOpen} onClose={() => setBacklogOpen(false)} pageContext={pathname} />
     </header>
   );
 }

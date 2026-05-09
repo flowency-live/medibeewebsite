@@ -16,6 +16,7 @@ interface BacklogItemFormProps {
   onSubmit: (data: CreateBacklogItem) => Promise<void>;
   initialData?: BacklogItem;
   mode?: 'create' | 'edit';
+  pageContext?: string;
 }
 
 const typeOptions: { value: BacklogItemTypeValue; label: string }[] = [
@@ -46,6 +47,7 @@ export function BacklogItemForm({
   onSubmit,
   initialData,
   mode = 'create',
+  pageContext,
 }: BacklogItemFormProps) {
   const [title, setTitle] = useState(initialData?.title || '');
   const [description, setDescription] = useState(initialData?.description || '');
@@ -77,6 +79,7 @@ export function BacklogItemForm({
         type,
         status,
         effort: effort || undefined,
+        pageContext: pageContext || initialData?.pageContext || undefined,
       });
       onClose();
     } catch {
@@ -237,6 +240,30 @@ export function BacklogItemForm({
             ))}
           </select>
         </div>
+
+        {(pageContext || initialData?.pageContext) && (
+          <div className="pt-2 border-t border-ash-border">
+            <div className="flex items-center gap-2 text-sm text-ash">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                />
+              </svg>
+              <span>Context:</span>
+              <code className="px-2 py-0.5 bg-void rounded text-gold text-xs">
+                {pageContext || initialData?.pageContext}
+              </code>
+            </div>
+          </div>
+        )}
       </div>
     </PortalModal>
   );

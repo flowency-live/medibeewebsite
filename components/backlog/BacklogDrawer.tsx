@@ -8,9 +8,10 @@ import { BacklogBoard } from './BacklogBoard';
 interface BacklogDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  pageContext?: string;
 }
 
-export function BacklogDrawer({ isOpen, onClose }: BacklogDrawerProps) {
+export function BacklogDrawer({ isOpen, onClose, pageContext }: BacklogDrawerProps) {
   const handleEscape = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -96,7 +97,7 @@ export function BacklogDrawer({ isOpen, onClose }: BacklogDrawerProps) {
 
         {/* Board */}
         <div className="flex-1 p-4 overflow-hidden bg-void">
-          <BacklogBoard />
+          <BacklogBoard pageContext={pageContext} />
         </div>
       </div>
     </div>,
