@@ -18,7 +18,7 @@ import type {
 import type { ReorderBacklog } from '../schemas/backlog';
 
 const client = new DynamoDBClient({
-  region: process.env.AWS_REGION || 'eu-west-2',
+  region: process.env.BACKLOG_AWS_REGION || process.env.AWS_REGION || 'eu-west-2',
 });
 
 const docClient = DynamoDBDocumentClient.from(client);

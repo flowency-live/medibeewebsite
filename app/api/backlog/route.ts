@@ -12,8 +12,9 @@ export async function GET() {
     return NextResponse.json({ success: true, data: items });
   } catch (error) {
     console.error('Failed to list backlog items:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { success: false, error: 'Failed to fetch backlog items' },
+      { success: false, error: 'Failed to fetch backlog items', details: errorMessage },
       { status: 500 }
     );
   }
